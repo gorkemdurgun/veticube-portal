@@ -8,13 +8,11 @@ import Image from "next/image";
 import { FaBaby } from "react-icons/fa";
 
 export default function Home() {
-
   const dispatch = useAppDispatch();
 
-  
   return (
     <div className="flex min-h-screen flex-col items-center p-24">
-      <DatePicker />
+      <DatePicker type="primary" />
       <Button
         type="primary"
         icon={<FaBaby />}

@@ -1,13 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import themeReducer from "@/redux/slices/themeSlice";
 import createSagaMiddleware from "@redux-saga/core";
 import { rootSaga } from "@/redux/sagas";
+
+import themeReducer from "@/redux/slices/themeSlice";
+import languageReducer from "@/redux/slices/languageSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: {
     theme: themeReducer,
+    language: languageReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware),
 });
