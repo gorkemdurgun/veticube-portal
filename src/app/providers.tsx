@@ -1,12 +1,10 @@
 "use client";
 
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { ConfigProvider } from "antd";
 import { Provider as ReduxProvider } from "react-redux";
 
 import { store } from "@/redux/store";
-
-import langTR from "@/localization/tr_TR";
+import { AppConfigProvider } from "./config";
 
 export default function Providers({
   children,
@@ -15,9 +13,9 @@ export default function Providers({
 }>) {
   return (
     <ReduxProvider store={store}>
-      <ConfigProvider locale={langTR}>
+      <AppConfigProvider>
         <AntdRegistry>{children}</AntdRegistry>
-      </ConfigProvider>
+      </AppConfigProvider>
     </ReduxProvider>
   );
 }
