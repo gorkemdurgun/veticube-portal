@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "@/redux/slices/counterSlice";
+import themeReducer from "@/redux/slices/themeSlice";
 import createSagaMiddleware from "@redux-saga/core";
 import { rootSaga } from "@/redux/sagas";
 
@@ -7,7 +7,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    theme: themeReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware),
 });
