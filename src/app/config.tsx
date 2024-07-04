@@ -1,12 +1,12 @@
 import { Button, ConfigProvider, ConfigProviderProps, theme } from "antd";
-import { useState } from "react";
-import { useAppSelector } from "@/hooks";
+import { useEffect, useState } from "react";
+import { useAppSelector } from "@/utils/hooks";
 
 import i18n from "@/localization/i18n";
 import componentTranslationsTR from "@/localization/components/tr_TR";
 import componentTranslationsEN from "@/localization/components/en_US";
 
-import { customTheme } from "../../styles/theme";
+import { customTheme } from "../styles/theme";
 import { I18nextProvider, useTranslation } from "react-i18next";
 
 export const AppConfigProvider = ({ children }: Readonly<{ children: React.ReactNode }>) => {
@@ -23,10 +23,12 @@ export const AppConfigProvider = ({ children }: Readonly<{ children: React.React
     token: customTheme.token,
   };
 
-  const componentTranslations = preferredLanguage === "tr" ? componentTranslationsTR : componentTranslationsEN;
+  useEffect(() => {
+    i18n.changeLanguage(preferredLanguage);
+  }, [preferredLanguage]);
 
   return (
-    <ConfigProvider theme={appTheme} locale={componentTranslations}>
+    <ConfigProvider theme={appTheme} locale={preferredLanguage === "tr" ? componentTranslationsTR : componentTranslationsEN}>
       <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
     </ConfigProvider>
   );

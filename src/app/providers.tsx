@@ -3,8 +3,14 @@
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { Provider as ReduxProvider } from "react-redux";
 
-import { store } from "@/redux/store";
+import { persistor, store } from "@/redux/store";
 import { AppConfigProvider } from "./config";
+import { PersistGate } from "redux-persist/integration/react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ApolloClient, ApolloProvider, InMemoryCache, HttpLink } from "@apollo/client";
+import { WebSocketLink } from "@apollo/client/link/ws";
+import apolloClient from "@/utils/apollo";
+import { queryClient } from "@/utils/api";
 
 export default function Providers({
   children,
@@ -13,9 +19,13 @@ export default function Providers({
 }>) {
   return (
     <ReduxProvider store={store}>
-      <AppConfigProvider>
-        <AntdRegistry>{children}</AntdRegistry>
-      </AppConfigProvider>
+      <PersistGate persistor={persistor}>
+        <QueryClientProvider client={queryClient}>
+          <ApolloProvider client={apolloClient}>
+            <AppConfigProvider>{children}</AppConfigProvider>
+          </ApolloProvider>
+        </QueryClientProvider>
+      </PersistGate>
     </ReduxProvider>
   );
 }

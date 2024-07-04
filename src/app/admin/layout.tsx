@@ -1,6 +1,6 @@
 "use client";
 
-import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/utils/hooks";
 import { toggleDarkMode } from "@/redux/slices/themeSlice";
 import { Button, Dropdown, Layout, Menu, Switch, theme } from "antd";
 import { MenuProps } from "antd/lib";
@@ -62,11 +62,7 @@ export default function AdminLayout({
         <div className="flex justify-between items-center bg-green-600  px-[50px]">
           <div className="text-white">e-Treat Admin</div>
           <div className="flex items-center gap-2">
-            <Switch
-              checkedChildren={<MoonOutlined className="text-white" />}
-              unCheckedChildren={<SunOutlined className="text-white" />}
-              onChange={() => dispatch(toggleDarkMode())}
-            />
+            <Switch checkedChildren={<SunOutlined />} unCheckedChildren={<MoonOutlined />} onChange={() => dispatch(toggleDarkMode())} />
             <Dropdown trigger={["click"]} menu={{ items: langItems, selectedKeys: [preferredLanguage] }}>
               <Button type="primary">{preferredLanguage === "tr" ? "Türkçe" : "English"}</Button>
             </Dropdown>
