@@ -1,6 +1,6 @@
 "use client";
 
-import { useAppDispatch, useAppSelector } from "@/utils/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { toggleDarkMode } from "@/redux/slices/themeSlice";
 import { Button, Dropdown, Layout, Menu, Switch, theme } from "antd";
 import { MenuProps } from "antd/lib";

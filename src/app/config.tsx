@@ -1,6 +1,6 @@
 import { Button, ConfigProvider, ConfigProviderProps, theme } from "antd";
 import { useEffect, useState } from "react";
-import { useAppSelector } from "@/utils/hooks";
+import { useAppSelector } from "@/hooks";
 
 import i18n from "@/localization/i18n";
 import componentTranslationsTR from "@/localization/components/tr_TR";

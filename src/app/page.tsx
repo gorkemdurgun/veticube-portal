@@ -1,6 +1,6 @@
 "use client";
 
-import { useAppDispatch } from "@/utils/hooks";
+import { useAppDispatch } from "@/hooks";
 import { toggleDarkMode } from "@/redux/slices/themeSlice";
 import { Button, DatePicker } from "antd";
 import Image from "next/image";

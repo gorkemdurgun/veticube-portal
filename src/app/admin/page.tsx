@@ -2,12 +2,13 @@
 
 import { queries, subscriptions } from "@/services";
 import { useSubscription } from "@apollo/client";
-import { useQuery } from "react-query";
 
 const AdminPage = () => {
-  const { data: subscriptionData, loading: subscriptionIsLoading, error: subscriptionError } = useSubscription
-    <{ users: { id: string; name: string; }[] }>
-  (subscriptions.users.getUsers);
+  const {
+    data: subscriptionData,
+    loading: subscriptionIsLoading,
+    error: subscriptionError,
+  } = useSubscription<{ users: { id: string; name: string }[] }>(subscriptions.users.getUsers);
 
   let onlineUsersList = null;
 
@@ -27,13 +28,9 @@ const AdminPage = () => {
     <div>
       <h1>Admin Page</h1>
       <ul>
-        {
-          subscriptionData?.users.map((user) => (
-            <li key={user.id}>
-              {user.name}
-            </li>
-          ))
-        }
+        {subscriptionData?.users.map((user) => (
+          <li key={user.id}>{user.name}</li>
+        ))}
       </ul>
     </div>
   );
