@@ -17,27 +17,27 @@ type SelectedDayListProps = {
 
 const itemMap = {
   check: {
-    className: "text-green-500 bg-green-100",
+    className: "text-lime-500 bg-lime-100",
     icon: <CheckIcon />,
     text: "global.appointments.types.check",
   },
   surgery: {
-    className: "text-red-500 bg-red-100",
+    className: "text-rose-500 bg-rose-100",
     icon: <SurgeryIcon />,
     text: "global.appointments.types.surgery",
   },
   vaccination: {
-    className: "text-yellow-500 bg-yellow-100",
+    className: "text-orange-500 bg-orange-100",
     icon: <VaccinationIcon />,
     text: "global.appointments.types.vaccination",
   },
   grooming: {
-    className: "text-purple-500 bg-purple-100",
+    className: "text-indigo-500 bg-indigo-100",
     icon: <GroomingIcon />,
     text: "global.appointments.types.grooming",
   },
   other: {
-    className: "text-blue-500 bg-blue-100",
+    className: "text-sky-500 bg-sky-100",
     icon: <OtherIcon />,
     text: "global.appointments.types.other",
   },
@@ -46,7 +46,7 @@ const itemMap = {
 const EventItem: React.FC<{ type: AppointmentType; time: string }> = ({ type, time }) => {
   const { t } = useTranslation();
   return (
-    <div className={`flex items-center justify-between gap-1 p-1 rounded-xl bg-white ${itemMap[type].className}`}>
+    <div className={`flex items-center justify-between gap-1 p-1 rounded-xl ${itemMap[type].className}`}>
       {itemMap[type].icon}
       <span className="text-xs">{time}</span>
       {/* <span className="capitalize text-xs">{t(itemMap[type].text)}</span> */}
