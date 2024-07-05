@@ -1,0 +1,17 @@
+@layer tailwind-base, antd;
+
+@layer tailwind-base {
+  @tailwind base;
+}
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .compatible-dark{
+    transition: background-color 0.2s, color 0.2s;
+  }
+}
+
+div {
+  line-height: normal;
+}

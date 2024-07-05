@@ -102,6 +102,8 @@ const langTR: Locale = {
       nextDecade: "Sonraki On Yıl",
       previousCentury: "Önceki Yüzyıl",
       nextCentury: "Sonraki Yüzyıl",
+      shortWeekDays: ["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"],
+      shortMonths: ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Temmuz", "Ağu", "Eyl", "Eki", "Kas", "Ara"], 
     },
     timePickerLocale: {
       placeholder: "Zaman seç",

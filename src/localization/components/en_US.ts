@@ -54,6 +54,8 @@ const langEN: Locale = {
       nextDecade: "Next decade",
       previousCentury: "Last century",
       nextCentury: "Next century",
+      shortWeekDays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      shortMonths: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     },
     timePickerLocale: {
       placeholder: "Select time",

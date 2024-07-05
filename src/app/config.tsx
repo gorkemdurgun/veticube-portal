@@ -6,7 +6,7 @@ import i18n from "@/localization/i18n";
 import componentTranslationsTR from "@/localization/components/tr_TR";
 import componentTranslationsEN from "@/localization/components/en_US";
 
-import { customTheme } from "../styles/theme";
+import { customTheme } from "@/styles/theme";
 import { I18nextProvider, useTranslation } from "react-i18next";
 
 export const AppConfigProvider = ({ children }: Readonly<{ children: React.ReactNode }>) => {

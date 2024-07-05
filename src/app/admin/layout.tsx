@@ -20,6 +20,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { setLanguage } from "@/redux/slices/languageSlice";
+import { Navbar } from "@/components/common";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -99,32 +100,6 @@ export default function AdminLayout({
   const router = useRouter();
   const path = usePathname();
 
-  const langItems: MenuProps["items"] = [
-    {
-      key: "tr",
-      label: "Türkçe",
-      onClick: () => dispatch(setLanguage({ preferredLanguage: "tr" })),
-    },
-    {
-      key: "en",
-      label: "English",
-      onClick: () => dispatch(setLanguage({ preferredLanguage: "en" })),
-    },
-  ];
-
-  const themeItems: MenuProps["items"] = [
-    {
-      key: "dark",
-      label: "Dark",
-      onClick: () => dispatch(setMode(true)),
-    },
-    {
-      key: "light",
-      label: "Light",
-      onClick: () => dispatch(setMode(false)),
-    },
-  ];
-
   const dummyUser: User = {
     id: 1,
     name: "Görkem Durgun",
@@ -136,38 +111,7 @@ export default function AdminLayout({
 
   return (
     <Layout>
-      <Header className="!p-0 bg-transparent border-b">
-        <div className="flex justify-between items-center px-[50px]">
-          <div className="text-emerald-700">Admin Panel</div>
-          <div className="flex items-center gap-2">
-            <Dropdown.Button
-              type="default"
-              trigger={["click"]}
-              icon={<DownOutlined />}
-              menu={{
-                items: themeItems,
-                selectedKeys: [darkMode ? "dark" : "light"],
-              }}
-              buttonsRender={([leftButton, rightButton]) => [
-                <Tooltip key="leftButton" title="You can change the theme here." color="blue">
-                  {leftButton}
-                </Tooltip>,
-                rightButton,
-              ]}
-            >
-              {darkMode ? <MoonOutlined /> : <SunOutlined />}
-            </Dropdown.Button>
-            <Dropdown.Button
-              type="default"
-              trigger={["click"]}
-              icon={<DownOutlined />}
-              menu={{ items: langItems, selectedKeys: [preferredLanguage] }}
-            >
-              {preferredLanguage === "tr" ? "Türkçe" : "English"}
-            </Dropdown.Button>
-          </div>
-        </div>
-      </Header>
+      <Navbar />
       <Layout hasSider className="relative min-h-screen">
         <Sider width={240} className="!sticky top-8 h-fit my-8 ml-4 mr-0 rounded-xl">
           <Menu className="p-2 rounded-xl" mode="inline" items={items} selectedKeys={[path]} />

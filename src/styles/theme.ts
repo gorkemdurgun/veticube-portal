@@ -5,5 +5,6 @@ export const customTheme: ThemeConfig = {
     colorPrimary: "#059669",
     colorInfo: "#059669",
     borderRadius: 10,
+    fontFamily: "Inter, sans-serif",
   },
 };
