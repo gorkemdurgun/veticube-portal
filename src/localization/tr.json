@@ -1,4 +1,15 @@
 {
+  "global": {
+    "appointments": {
+      "types": {
+        "check": "Kontrol",
+        "vaccination": "Aşı",
+        "surgery": "Ameliyat",
+        "grooming": "Bakım",
+        "other": "Diğer"
+      }
+    }
+  },
   "breadcrumb": {
     "panel": "Panel",
     "overview": "Genel Bakış",

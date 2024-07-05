@@ -1,4 +1,15 @@
 {
+  "global": {
+    "appointments": {
+      "types": {
+        "check": "Check",
+        "vaccination": "Vaccination",
+        "surgery": "Surgery",
+        "grooming": "Grooming",
+        "other": "Other"
+      }
+    }
+  },
   "breadcrumb": {
     "panel": "Panel",
     "overview": "Overview",

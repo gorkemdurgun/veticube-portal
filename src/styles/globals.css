@@ -7,11 +7,16 @@
 @tailwind utilities;
 
 @layer components {
-  .compatible-dark{
+  .compatible-dark {
     transition: background-color 0.2s, color 0.2s;
   }
 }
 
 div {
   line-height: normal;
+}
+
+div > .ant-picker-calendar-date-content {
+  scrollbar-width: thin;
+  scrollbar-color: #dfdfdf transparent;
 }

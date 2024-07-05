@@ -5,12 +5,11 @@ import { useTranslation } from "react-i18next";
 
 type SelectedDayListProps = {
   selectedDate: string;
+  selectedDateAppointments: Appointment[];
 };
 
-export const SelectedDayList: React.FC<SelectedDayListProps> = ({ selectedDate }) => {
+export const SelectedDayList: React.FC<SelectedDayListProps> = ({ selectedDate, selectedDateAppointments }) => {
   const { t } = useTranslation();
-
-  const [listData, setListData] = useState<string[]>([]);
 
   let title = () => {
     switch (selectedDate) {
@@ -27,15 +26,18 @@ export const SelectedDayList: React.FC<SelectedDayListProps> = ({ selectedDate }
 
   return (
     <Card className="rounded-lg" title={title()}>
-        {listData.length === 0 ? (
-            <p>{t("components.appointments.selected-day-list.empty")}</p>
-        ) : (
-            <ul className="events">
-            {listData.map((item) => (
-                <span key={item}>{item}</span>
-            ))}
-            </ul>
-        )}
+      {selectedDateAppointments.length === 0 ? (
+        <p>{t("components.appointments.selected-day-list.empty")}</p>
+      ) : (
+        <ul className="events">
+          {selectedDateAppointments.map((item) => (
+            <div key={item.id} className="flex items-center gap-2">
+              <span>{item.type}</span>
+              <span>{item.status}</span>
+            </div>
+          ))}
+        </ul>
+      )}
     </Card>
   );
 };
