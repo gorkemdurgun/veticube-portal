@@ -1,3 +1,4 @@
+import { useAppSelector } from "@/hooks";
 import { Badge, Calendar, CalendarProps } from "antd";
 import { BadgeProps } from "antd/lib";
 import dayjs, { Dayjs } from "dayjs";
@@ -18,26 +19,31 @@ type SelectedDayListProps = {
 const itemMap = {
   check: {
     className: "text-lime-500 bg-lime-100",
+    darkClassName: "text-lime-100 bg-lime-600",
     icon: <CheckIcon />,
     text: "global.appointments.types.check",
   },
   surgery: {
     className: "text-rose-500 bg-rose-100",
+    darkClassName: "text-rose-100 bg-rose-600",
     icon: <SurgeryIcon />,
     text: "global.appointments.types.surgery",
   },
   vaccination: {
     className: "text-orange-500 bg-orange-100",
+    darkClassName: "text-orange-100 bg-orange-600",
     icon: <VaccinationIcon />,
     text: "global.appointments.types.vaccination",
   },
   grooming: {
     className: "text-indigo-500 bg-indigo-100",
+    darkClassName: "text-indigo-100 bg-indigo-600",
     icon: <GroomingIcon />,
     text: "global.appointments.types.grooming",
   },
   other: {
     className: "text-sky-500 bg-sky-100",
+    darkClassName: "text-sky-100 bg-sky-600",
     icon: <OtherIcon />,
     text: "global.appointments.types.other",
   },
@@ -45,8 +51,13 @@ const itemMap = {
 
 const EventItem: React.FC<{ type: AppointmentType; time: string }> = ({ type, time }) => {
   const { t } = useTranslation();
+  const { darkMode } = useAppSelector((state) => state.theme);
   return (
-    <div className={`flex items-center justify-between gap-1 p-1 rounded-xl ${itemMap[type].className}`}>
+    <div
+      className={`flex items-center justify-between gap-1 p-1 rounded-xl
+    compatible-dark ${darkMode ? itemMap[type].darkClassName : itemMap[type].className}
+   `}
+    >
       {itemMap[type].icon}
       <span className="text-xs">{time}</span>
       {/* <span className="capitalize text-xs">{t(itemMap[type].text)}</span> */}
@@ -96,7 +107,7 @@ export const AppointmentCalendar: React.FC<SelectedDayListProps> = ({ appointmen
 
   return (
     <Calendar
-      style={{ scrollbarWidth: "thin",}}
+      style={{ scrollbarWidth: "thin" }}
       validRange={validRange}
       cellRender={cellRender}
       onSelect={(value) => onSelectDate(value.format("DD/MM/YYYY"))}
