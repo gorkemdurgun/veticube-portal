@@ -2,8 +2,9 @@
 
 import React from "react";
 import type { BadgeProps, CalendarProps } from "antd";
-import { Badge, Calendar, Card } from "antd";
+import { Badge, Breadcrumb, Calendar, Card } from "antd";
 import type { Dayjs } from "dayjs";
+import { BreadcrumbProps } from "antd/lib";
 
 const getListData = (value: Dayjs) => {
   let listData: { type: string; content: string }[] = []; // Specify the type of listData
@@ -72,10 +73,22 @@ const AdminAppointmentsPage: React.FC = () => {
     return info.originNode;
   };
 
+  const breadcrumbItems: BreadcrumbProps["items"] = [
+    {
+      title: "Admin",
+    },
+    {
+      title: "Appointments",
+    },
+  ];
+
   return (
-    <Card>
-      <Calendar cellRender={cellRender} />;
-    </Card>
+    <div className="flex flex-col gap-4">
+      <Breadcrumb items={breadcrumbItems} />
+      <Card>
+        <Calendar cellRender={cellRender} />
+      </Card>
+    </div>
   );
 };
 

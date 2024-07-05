@@ -14,10 +14,6 @@ export const AppConfigProvider = ({ children }: Readonly<{ children: React.React
   const { darkMode } = useAppSelector((state) => state.theme);
   const { preferredLanguage } = useAppSelector((state) => state.language);
 
-  const tempTheme: ConfigProviderProps["theme"] = {
-    token: {},
-  };
-
   const appTheme: ConfigProviderProps["theme"] = {
     algorithm: darkMode ? darkAlgorithm : defaultAlgorithm,
     token: customTheme.token,

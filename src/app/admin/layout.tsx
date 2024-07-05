@@ -1,12 +1,21 @@
 "use client";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { toggleDarkMode } from "@/redux/slices/themeSlice";
-import { Button, Dropdown, Layout, Menu, Switch, theme } from "antd";
+import { setMode, toggleDarkMode } from "@/redux/slices/themeSlice";
+import { Button, Dropdown, Layout, Menu, Switch, Tooltip, theme } from "antd";
 import { MenuProps } from "antd/lib";
 
-import { PiListDuotone as DashboardIcon, PiCalendarDotsDuotone as AppointmentsIcon } from "react-icons/pi";
-import { MoonOutlined, SunOutlined } from "@ant-design/icons";
+import {
+  PiSquaresFourDuotone as DashboardIcon,
+  PiCalendarDotsDuotone as AppointmentsIcon,
+  PiPawPrintDuotone as PatientsIcon,
+  PiUserCircleDuotone as ClientsIcon,
+  PiClockUserDuotone as EmployeesIcon,
+  PiPackageDuotone as StockIcon,
+  PiWalletDuotone as AccountingIcon,
+  PiGearDuotone as SettingsIcon,
+} from "react-icons/pi";
+import { MoonOutlined, SunOutlined, DownOutlined } from "@ant-design/icons";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -22,20 +31,67 @@ export default function AdminLayout({
   const { Header, Content, Footer, Sider } = Layout;
 
   const { t } = useTranslation();
-  const { preferredLanguage } = useAppSelector((state) => state.language);
+  const { preferredLanguage, darkMode } = useAppSelector((state) => ({
+    preferredLanguage: state.language.preferredLanguage,
+    darkMode: state.theme.darkMode,
+  }));
 
   const items: MenuItem[] = [
     {
+      className: "!h-12 py-2 text-lg",
       key: "/admin",
-      label: t("sidebar.dashboard"),
+      label: t("sidebar.overview"),
       icon: <DashboardIcon className="w-5 h-5" />,
       onClick: () => router.push("/admin"),
     },
     {
+      className: "!h-12 py-2 text-lg",
       key: "/admin/appointments",
       label: t("sidebar.appointments"),
       icon: <AppointmentsIcon className="w-5 h-5" />,
       onClick: () => router.push("/admin/appointments"),
+    },
+    {
+      className: "!h-12 py-2 text-lg",
+      key: "/admin/pets",
+      label: t("sidebar.patients"),
+      icon: <PatientsIcon className="w-5 h-5" />,
+      onClick: () => router.push("/admin/patients"),
+    },
+    {
+      className: "!h-12 py-2 text-lg",
+      key: "/admin/clients",
+      label: t("sidebar.clients"),
+      icon: <ClientsIcon className="w-5 h-5" />,
+      onClick: () => router.push("/admin/clients"),
+    },
+    {
+      className: "!h-12 py-2 text-lg",
+      key: "/admin/employees",
+      label: t("sidebar.employees"),
+      icon: <EmployeesIcon className="w-5 h-5" />,
+      onClick: () => router.push("/admin/employees"),
+    },
+    {
+      className: "!h-12 py-2 text-lg",
+      key: "/admin/stock",
+      label: t("sidebar.stock"),
+      icon: <StockIcon className="w-5 h-5" />,
+      onClick: () => router.push("/admin/stock"),
+    },
+    {
+      className: "!h-12 py-2 text-lg",
+      key: "/admin/accounting",
+      label: t("sidebar.accounting"),
+      icon: <AccountingIcon className="w-5 h-5" />,
+      onClick: () => router.push("/admin/accounting"),
+    },
+    {
+      className: "!h-12 py-2 text-lg",
+      key: "/admin/settings",
+      label: t("sidebar.settings"),
+      icon: <SettingsIcon className="w-5 h-5" />,
+      onClick: () => router.push("/admin/settings"),
     },
   ];
 
@@ -56,35 +112,72 @@ export default function AdminLayout({
     },
   ];
 
+  const themeItems: MenuProps["items"] = [
+    {
+      key: "dark",
+      label: "Dark",
+      onClick: () => dispatch(setMode(true)),
+    },
+    {
+      key: "light",
+      label: "Light",
+      onClick: () => dispatch(setMode(false)),
+    },
+  ];
+
+  const dummyUser: User = {
+    id: 1,
+    name: "Görkem Durgun",
+    email: "gorkemdurgun99@gmail.com",
+    phone: "+905555555555",
+    createdAt: "2021-09-01T00:00:00.000Z",
+    updatedAt: "2021-09-01T00:00:00.000Z",
+  };
+
   return (
     <Layout>
-      <Header className="!p-0">
-        <div className="flex justify-between items-center bg-green-600  px-[50px]">
-          <div className="text-white">e-Treat Admin</div>
+      <Header className="!p-0 bg-transparent border-b">
+        <div className="flex justify-between items-center px-[50px]">
+          <div className="text-emerald-700">Admin Panel</div>
           <div className="flex items-center gap-2">
-            <Switch checkedChildren={<SunOutlined />} unCheckedChildren={<MoonOutlined />} onChange={() => dispatch(toggleDarkMode())} />
-            <Dropdown trigger={["click"]} menu={{ items: langItems, selectedKeys: [preferredLanguage] }}>
-              <Button type="primary">{preferredLanguage === "tr" ? "Türkçe" : "English"}</Button>
-            </Dropdown>
+            <Dropdown.Button
+              type="default"
+              trigger={["click"]}
+              icon={<DownOutlined />}
+              menu={{
+                items: themeItems,
+                selectedKeys: [darkMode ? "dark" : "light"],
+              }}
+              buttonsRender={([leftButton, rightButton]) => [
+                <Tooltip key="leftButton" title="You can change the theme here." color="blue">
+                  {leftButton}
+                </Tooltip>,
+                rightButton,
+              ]}
+            >
+              {darkMode ? <MoonOutlined /> : <SunOutlined />}
+            </Dropdown.Button>
+            <Dropdown.Button
+              type="default"
+              trigger={["click"]}
+              icon={<DownOutlined />}
+              menu={{ items: langItems, selectedKeys: [preferredLanguage] }}
+            >
+              {preferredLanguage === "tr" ? "Türkçe" : "English"}
+            </Dropdown.Button>
           </div>
         </div>
       </Header>
-      <Layout hasSider>
-        <Sider className="overflow-y-auto min-h-screen">
-          <Menu
-            className="h-full"
-            mode="inline"
-            items={items}
-            // is equal to path === item.key
-            selectedKeys={[path]}
-          />
+      <Layout hasSider className="relative min-h-screen">
+        <Sider width={240} className="!sticky top-8 h-fit my-8 ml-4 mr-0 rounded-xl">
+          <Menu className="p-2 rounded-xl" mode="inline" items={items} selectedKeys={[path]} />
         </Sider>
         <Content>
-          <div className="flex h-full w-full mx-auto p-4">{children}</div>
+          <div className="flex h-[200vh] w-full mx-auto px-4 py-8">{children}</div>
         </Content>
       </Layout>
       <Footer className="!p-0">
-        <div className=" text-center bg-green-700 text-white">Footer</div>
+        <div className=" text-center bg-emerald-800 text-white">Footer</div>
       </Footer>
     </Layout>
   );

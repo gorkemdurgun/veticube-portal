@@ -1,6 +1,12 @@
 {
   "sidebar": {
-    "dashboard": "Anasayfa",
-    "appointments": "Randevular"
+    "overview": "Genel Bakış",
+    "appointments": "Randevular",
+    "patients": "Hastalar",
+    "clients": "Müşteriler",
+    "employees": "Çalışanlar",
+    "stock": "Stok",
+    "accounting": "Muhasebe",
+    "settings": "Ayarlar"
   }
 }

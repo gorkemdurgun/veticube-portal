@@ -1,13 +1,6 @@
 "use client";
 
 import { useAppDispatch } from "@/hooks";
-import { toggleDarkMode } from "@/redux/slices/themeSlice";
-import { Button, DatePicker } from "antd";
-import Image from "next/image";
-import { useMutation, useSubscription, gql } from "@apollo/client";
-import { subscriptions } from "@/services";
-
-import { FaBaby } from "react-icons/fa";
 
 export default function Home() {
   const dispatch = useAppDispatch();

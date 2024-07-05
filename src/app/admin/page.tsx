@@ -2,8 +2,10 @@
 
 import { queries, subscriptions } from "@/services";
 import { useSubscription } from "@apollo/client";
+import { Breadcrumb, BreadcrumbProps } from "antd";
 
 const AdminPage = () => {
+  /*
   const {
     data: subscriptionData,
     loading: subscriptionIsLoading,
@@ -23,15 +25,20 @@ const AdminPage = () => {
     console.log(subscriptionData);
     onlineUsersList = subscriptionData;
   }
+  */
+
+  const breadcrumbItems: BreadcrumbProps["items"] = [
+    {
+      title: "Admin",
+    },
+    {
+      title: "Dashboard",
+    },
+  ];
 
   return (
-    <div>
-      <h1>Admin Page</h1>
-      <ul>
-        {subscriptionData?.users.map((user) => (
-          <li key={user.id}>{user.name}</li>
-        ))}
-      </ul>
+    <div className="flex flex-col gap-4">
+      <Breadcrumb items={breadcrumbItems} />
     </div>
   );
 };

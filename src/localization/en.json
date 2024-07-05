@@ -1,6 +1,12 @@
 {
   "sidebar": {
-    "dashboard": "Dashboard",
-    "appointments": "Appointments"
+    "overview": "Overview",
+    "appointments": "Appointments",
+    "patients": "Patients",
+    "clients": "Clients",
+    "employees": "Employees",
+    "stock": "Stock",
+    "accounting": "Accounting",
+    "settings": "Settings"
   }
 }
