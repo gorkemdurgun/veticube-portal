@@ -3,6 +3,7 @@
 import { queries, subscriptions } from "@/services";
 import { useSubscription } from "@apollo/client";
 import { Breadcrumb, BreadcrumbProps } from "antd";
+import { useTranslation } from "react-i18next";
 
 const AdminPage = () => {
   /*
@@ -27,12 +28,13 @@ const AdminPage = () => {
   }
   */
 
+  const { t } = useTranslation();
   const breadcrumbItems: BreadcrumbProps["items"] = [
     {
-      title: "Admin",
+      title: t("breadcrumb.panel"),
     },
     {
-      title: "Dashboard",
+      title: t("breadcrumb.overview"),
     },
   ];
 

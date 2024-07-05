@@ -53,6 +53,7 @@ export default function AdminLayout({
       onClick: () => router.push("/admin/appointments"),
     },
     {
+      disabled: true,
       className: "!h-12 py-2 text-lg",
       key: "/admin/pets",
       label: t("sidebar.patients"),
@@ -60,6 +61,7 @@ export default function AdminLayout({
       onClick: () => router.push("/admin/patients"),
     },
     {
+      disabled: true,
       className: "!h-12 py-2 text-lg",
       key: "/admin/clients",
       label: t("sidebar.clients"),
@@ -67,6 +69,7 @@ export default function AdminLayout({
       onClick: () => router.push("/admin/clients"),
     },
     {
+      disabled: true,
       className: "!h-12 py-2 text-lg",
       key: "/admin/employees",
       label: t("sidebar.employees"),
@@ -74,6 +77,7 @@ export default function AdminLayout({
       onClick: () => router.push("/admin/employees"),
     },
     {
+      disabled: true,
       className: "!h-12 py-2 text-lg",
       key: "/admin/stock",
       label: t("sidebar.stock"),
@@ -81,6 +85,7 @@ export default function AdminLayout({
       onClick: () => router.push("/admin/stock"),
     },
     {
+      disabled: true,
       className: "!h-12 py-2 text-lg",
       key: "/admin/accounting",
       label: t("sidebar.accounting"),
@@ -88,6 +93,7 @@ export default function AdminLayout({
       onClick: () => router.push("/admin/accounting"),
     },
     {
+      disabled: true,
       className: "!h-12 py-2 text-lg",
       key: "/admin/settings",
       label: t("sidebar.settings"),
@@ -117,7 +123,7 @@ export default function AdminLayout({
           <Menu className="p-2 rounded-xl" mode="inline" items={items} selectedKeys={[path]} />
         </Sider>
         <Content>
-          <div className="flex h-[200vh] w-full mx-auto px-4 py-8">{children}</div>
+          <div className="flex h-[200vh] w-full mx-auto gap-4 px-4 py-8">{children}</div>
         </Content>
       </Layout>
       <Footer className="!p-0">

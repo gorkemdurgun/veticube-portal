@@ -1,4 +1,15 @@
 {
+  "breadcrumb": {
+    "panel": "Panel",
+    "overview": "Overview",
+    "appointments": "Appointments",
+    "patients": "Patients",
+    "clients": "Clients",
+    "employees": "Employees",
+    "stock": "Stock",
+    "accounting": "Accounting",
+    "settings": "Settings"
+  },
   "sidebar": {
     "overview": "Overview",
     "appointments": "Appointments",
@@ -8,5 +19,15 @@
     "stock": "Stock",
     "accounting": "Accounting",
     "settings": "Settings"
+  },
+  "components": {
+    "appointments": {
+      "selected-day-list": {
+        "empty": "No appointments for the selected day.",
+        "yesterday": "Yesterday",
+        "today": "Today",
+        "tomorrow": "Tomorrow"
+      }
+    }
   }
 }

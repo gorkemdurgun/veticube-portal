@@ -1,4 +1,15 @@
 {
+  "breadcrumb": {
+    "panel": "Panel",
+    "overview": "Genel Bakış",
+    "appointments": "Randevular",
+    "patients": "Hastalar",
+    "clients": "Müşteriler",
+    "employees": "Çalışanlar",
+    "stock": "Stok",
+    "accounting": "Muhasebe",
+    "settings": "Ayarlar"
+  },
   "sidebar": {
     "overview": "Genel Bakış",
     "appointments": "Randevular",
@@ -8,5 +19,15 @@
     "stock": "Stok",
     "accounting": "Muhasebe",
     "settings": "Ayarlar"
+  },
+  "components": {
+    "appointments": {
+      "selected-day-list": {
+        "empty": "Seçilen gün için randevu bulunmamaktadır.",
+        "yesterday": "Dün",
+        "today": "Bugün",
+        "tomorrow": "Yarın"
+      }
+    }
   }
 }

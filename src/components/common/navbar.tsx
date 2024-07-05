@@ -6,7 +6,7 @@ import { setMode } from "@/redux/slices/themeSlice";
 import { UserAvatar } from "./user-avatar";
 
 export const Navbar: React.FC = () => {
-  const { Header, Content, Footer, Sider } = Layout;
+  const { Header } = Layout;
   const langItems: MenuProps["items"] = [
     {
       key: "tr",

@@ -1,45 +1,43 @@
 import { Badge, Calendar, CalendarProps } from "antd";
 import { BadgeProps } from "antd/lib";
-import type { Dayjs } from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 
-export const AppointmentCalendar = () => {
+type SelectedDayListProps = {
+  onSelectDate: (date: string) => void;
+};
+
+export const AppointmentCalendar: React.FC<SelectedDayListProps> = ({ onSelectDate }) => {
   const getListData = (value: Dayjs) => {
     let listData: { type: string; content: string }[] = []; // Specify the type of listData
     switch (value.date()) {
-      case 8:
+      case 3:
         listData = [
-          { type: "warning", content: "This is warning event." },
-          { type: "success", content: "This is usual event." },
+          { type: "error", content: "Surgery" },
+          { type: "success", content: "Check" },
         ];
         break;
       case 10:
         listData = [
-          { type: "warning", content: "This is warning event." },
-          { type: "success", content: "This is usual event." },
-          { type: "error", content: "This is error event." },
+          { type: "error", content: "Surgery" },
+          { type: "success", content: "Check" },
         ];
         break;
       case 15:
         listData = [
-          { type: "warning", content: "This is warning event" },
-          { type: "success", content: "This is very long usual event......" },
-          { type: "error", content: "This is error event 1." },
-          { type: "error", content: "This is error event 2." },
-          { type: "error", content: "This is error event 3." },
-          { type: "error", content: "This is error event 4." },
+          { type: "warning", content: "Vaccine" },
+          { type: "warning", content: "Vaccine" },
+          { type: "success", content: "Check" },
         ];
         break;
       default:
     }
     return listData || [];
   };
-
   const getMonthData = (value: Dayjs) => {
     if (value.month() === 8) {
       return 1394;
     }
   };
-
   const monthCellRender = (value: Dayjs) => {
     const num = getMonthData(value);
     return num ? (
@@ -49,7 +47,6 @@ export const AppointmentCalendar = () => {
       </div>
     ) : null;
   };
-
   const dateCellRender = (value: Dayjs) => {
     const listData = getListData(value);
     return (
@@ -62,12 +59,12 @@ export const AppointmentCalendar = () => {
       </ul>
     );
   };
-
   const cellRender: CalendarProps<Dayjs>["cellRender"] = (current, info) => {
     if (info.type === "date") return dateCellRender(current);
     if (info.type === "month") return monthCellRender(current);
     return info.originNode;
   };
+  const validRange: CalendarProps<Dayjs>["validRange"] = [dayjs().subtract(1, "year"), dayjs().add(1, "year")];
 
-  return <Calendar cellRender={cellRender} />;
+  return <Calendar validRange={validRange} cellRender={cellRender} onSelect={(value) => onSelectDate(value.format("DD/MM/YYYY"))} />;
 };
