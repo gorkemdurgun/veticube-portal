@@ -45,7 +45,7 @@ const appointmentList: Appointment[] = [
     petId: "1",
     staffId: "1",
     type: "surgery",
-    status: "canceled",
+    status: "cancelled",
     notes: "Surgery",
     createdAt: "2021-09-01",
     updatedAt: "2021-09-01",

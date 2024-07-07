@@ -39,17 +39,17 @@ export default function AdminLayout({
 
   const items: MenuItem[] = [
     {
-      className: "!h-12 py-2 text-lg",
+      className: "flex items-center justify-center !h-12 py-2 text-lg",
       key: "/admin",
       label: t("sidebar.overview"),
-      icon: <DashboardIcon className="w-5 h-5" />,
+      icon: <DashboardIcon className="w-6 h-6 !-ml-1" />,
       onClick: () => router.push("/admin"),
     },
     {
       className: "!h-12 py-2 text-lg",
       key: "/admin/appointments",
       label: t("sidebar.appointments"),
-      icon: <AppointmentsIcon className="w-5 h-5" />,
+      icon: <AppointmentsIcon className="w-6 h-6 !-ml-1" />,
       onClick: () => router.push("/admin/appointments"),
     },
     {
@@ -57,7 +57,7 @@ export default function AdminLayout({
       className: "!h-12 py-2 text-lg",
       key: "/admin/pets",
       label: t("sidebar.patients"),
-      icon: <PatientsIcon className="w-5 h-5" />,
+      icon: <PatientsIcon className="w-6 h-6 !-ml-1" />,
       onClick: () => router.push("/admin/patients"),
     },
     {
@@ -65,7 +65,7 @@ export default function AdminLayout({
       className: "!h-12 py-2 text-lg",
       key: "/admin/clients",
       label: t("sidebar.clients"),
-      icon: <ClientsIcon className="w-5 h-5" />,
+      icon: <ClientsIcon className="w-6 h-6 !-ml-1" />,
       onClick: () => router.push("/admin/clients"),
     },
     {
@@ -73,7 +73,7 @@ export default function AdminLayout({
       className: "!h-12 py-2 text-lg",
       key: "/admin/employees",
       label: t("sidebar.employees"),
-      icon: <EmployeesIcon className="w-5 h-5" />,
+      icon: <EmployeesIcon className="w-6 h-6 !-ml-1" />,
       onClick: () => router.push("/admin/employees"),
     },
     {
@@ -81,7 +81,7 @@ export default function AdminLayout({
       className: "!h-12 py-2 text-lg",
       key: "/admin/stock",
       label: t("sidebar.stock"),
-      icon: <StockIcon className="w-5 h-5" />,
+      icon: <StockIcon className="w-6 h-6 !-ml-1" />,
       onClick: () => router.push("/admin/stock"),
     },
     {
@@ -89,7 +89,7 @@ export default function AdminLayout({
       className: "!h-12 py-2 text-lg",
       key: "/admin/accounting",
       label: t("sidebar.accounting"),
-      icon: <AccountingIcon className="w-5 h-5" />,
+      icon: <AccountingIcon className="w-6 h-6 !-ml-1" />,
       onClick: () => router.push("/admin/accounting"),
     },
     {
@@ -97,7 +97,7 @@ export default function AdminLayout({
       className: "!h-12 py-2 text-lg",
       key: "/admin/settings",
       label: t("sidebar.settings"),
-      icon: <SettingsIcon className="w-5 h-5" />,
+      icon: <SettingsIcon className="w-6 h-6 !-ml-1" />,
       onClick: () => router.push("/admin/settings"),
     },
   ];
@@ -119,7 +119,7 @@ export default function AdminLayout({
     <Layout>
       <Navbar />
       <Layout hasSider className="relative min-h-screen">
-        <Sider width={240} className="!sticky top-8 h-fit my-8 ml-4 mr-0 rounded-xl">
+        <Sider collapsed className="!sticky top-8 h-fit my-8 ml-4 mr-0 rounded-xl">
           <Menu className="p-2 rounded-xl" mode="inline" items={items} selectedKeys={[path]} />
         </Sider>
         <Content>

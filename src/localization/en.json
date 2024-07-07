@@ -37,7 +37,11 @@
         "empty": "No appointments for the selected day.",
         "yesterday": "Yesterday",
         "today": "Today",
-        "tomorrow": "Tomorrow"
+        "tomorrow": "Tomorrow",
+        "scheduled": "Scheduled",
+        "rescheduled": "Rescheduled",
+        "cancelled": "Cancelled",
+        "completed": "Completed"
       }
     }
   }

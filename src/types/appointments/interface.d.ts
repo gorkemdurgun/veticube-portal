@@ -1,4 +1,4 @@
-type AppointmentStatus = "scheduled" | "rescheduled" | "canceled" | "completed";
+type AppointmentStatus = "scheduled" | "rescheduled" | "cancelled" | "completed";
 type AppointmentType = "check" | "surgery" | "vaccination" | "grooming" | "other";
 
 type Appointment = {

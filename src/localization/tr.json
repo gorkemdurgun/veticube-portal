@@ -37,7 +37,11 @@
         "empty": "Seçilen gün için randevu bulunmamaktadır.",
         "yesterday": "Dün",
         "today": "Bugün",
-        "tomorrow": "Yarın"
+        "tomorrow": "Yarın",
+        "scheduled": "Planlandı",
+        "rescheduled": "Yeniden planlandı",
+        "cancelled": "İptal edildi",
+        "completed": "Tamamlandı"
       }
     }
   }

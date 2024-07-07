@@ -15,12 +15,12 @@ export const UserAvatar: React.FC<{
   return (
     <div
       className={`flex flex-row items-center gap-2 py-1 px-4 rounded-lg shadow-xl border
-        compatible-dark ${darkMode ? "bg-gray-700 text-white" : "bg-white text-black"} `}
+        compatible-dark ${darkMode ? "bg-gray-800 text-white" : "bg-white text-black"} `}
     >
       <Avatar size={"small"} src={imageUrl} />
       <span>{name}</span>
       <Divider type="vertical" />
-      <span className="font-oswald font-semibold">{clinicName}</span>
+      <span className="font-semibold">{clinicName}</span>
     </div>
   );
 };
