@@ -3,13 +3,13 @@ import { useState } from "react";
 import dayjs from "dayjs";
 import { DatePickerProps } from "antd/lib";
 
-type AppointmentEditModalProps = {
+type AppointmentRescheduleModalProps = {
   appointment: Appointment;
   visible: boolean;
   setVisible: (visible: boolean) => void;
 };
 
-export const AppointmentEditModal: React.FC<AppointmentEditModalProps> = ({ appointment, visible, setVisible }) => {
+export const AppointmentRescheduleModal: React.FC<AppointmentRescheduleModalProps> = ({ appointment, visible, setVisible }) => {
   const [currentAppointment, setCurrentAppointment] = useState<Appointment>(appointment);
 
   const handleOk = () => {

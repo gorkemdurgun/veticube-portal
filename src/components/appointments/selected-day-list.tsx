@@ -1,11 +1,11 @@
 import { useAppSelector } from "@/hooks";
 
-import { Badge, BadgeProps, Button, Card, Divider } from "antd";
+import { Badge, BadgeProps, Button, Card, Divider, Dropdown } from "antd";
 import dayjs from "dayjs";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { PiPencil as EditIcon, PiCheck as CompleteIcon, PiX as CancelIcon } from "react-icons/pi";
-import { AppointmentEditModal } from "@/components/modals";
+import { PiPencilSimple as EditIcon, PiCheck as CompleteIcon, PiX as CancelIcon } from "react-icons/pi";
+import { AppointmentRescheduleModal } from "@/components/modals";
 
 import {
   PiSyringe as VaccinationIcon,
@@ -29,31 +29,31 @@ const appointmentTypeSwitch: {
   };
 } = {
   check: {
-    className: "text-lime-800 bg-gray-100 border",
+    className: "text-lime-800 bg-gray-100",
     darkClassName: "text-lime-100 bg-gray-600/20",
     icon: <CheckIcon />,
     text: "global.appointments.types.check",
   },
   surgery: {
-    className: "text-rose-800 bg-gray-100 border",
+    className: "text-rose-800 bg-gray-100",
     darkClassName: "text-rose-100 bg-gray-600/20",
     icon: <SurgeryIcon />,
     text: "global.appointments.types.surgery",
   },
   vaccination: {
-    className: "text-orange-800 bg-gray-100 border",
+    className: "text-orange-800 bg-gray-100",
     darkClassName: "text-orange-100 bg-gray-600/20",
     icon: <VaccinationIcon />,
     text: "global.appointments.types.vaccination",
   },
   grooming: {
-    className: "text-indigo-800 bg-gray-100 border",
+    className: "text-indigo-800 bg-gray-100",
     darkClassName: "text-indigo-100 bg-gray-600/20",
     icon: <GroomingIcon />,
     text: "global.appointments.types.grooming",
   },
   other: {
-    className: "text-sky-800 bg-gray-100 border",
+    className: "text-sky-800 bg-gray-100",
     darkClassName: "text-sky-100 bg-gray-600/20",
     icon: <OtherIcon />,
     text: "global.appointments.types.other",
@@ -123,10 +123,10 @@ export const SelectedDayList: React.FC<SelectedDayListProps> = ({ selectedDate, 
     const typeSwitch = appointmentTypeSwitch[item.type];
     return (
       <>
-        <AppointmentEditModal appointment={item} visible={editModalVisible} setVisible={setEditModalVisible} />
+        <AppointmentRescheduleModal appointment={item} visible={editModalVisible} setVisible={setEditModalVisible} />
         <div className={`flex flex-col items-center p-4 mx-4 my-1 rounded-xl compatible-dark ${darkMode ? "bg-gray-600/20" : "bg-gray-50"}`}>
           <div className="w-full flex items-center justify-between gap-2">
-            <span className="text-sm font-semibold">{item.appointmentTime}</span>
+            <span className="text-sm font-[500]">{item.appointmentTime}</span>
             <div
               className={`flex items-center justify-between gap-2 px-2 py-1 rounded-lg min-w-32 ${
                 darkMode ? statusSwitch.darkClassName : statusSwitch.className
@@ -152,13 +152,26 @@ export const SelectedDayList: React.FC<SelectedDayListProps> = ({ selectedDate, 
             </div>
           </div>
           <Divider className="m-3" />
-          {item.status === "scheduled" && (
-            <div className="w-full flex gap-1">
-              <Button className="w-full p-2" onClick={() => setEditModalVisible(true)}>
-                Edit
-              </Button>
-              <Button className="w-full p-2">Complete</Button>
-              <Button className="w-full p-2">Cancel</Button>
+          {(item.status === "scheduled" || item.status === "rescheduled") && (
+            <div className="w-full grid grid-cols-2 gap-2">
+              <Button className="w-full p-2">View</Button>
+              <Dropdown
+                menu={{
+                  items: [
+                    { key: "reschedule", label: "Reschedule", icon: <EditIcon />, onClick: () => setEditModalVisible(true) },
+                    { key: "complete", label: "Complete", icon: <CompleteIcon /> },
+                    { key: "cancel", label: "Cancel", icon: <CancelIcon /> },
+                  ],
+                }}
+              >
+                <Button className="w-full p-2">Actions</Button>
+              </Dropdown>
+            </div>
+          )}
+          {(item.status === "completed" || item.status === "cancelled") && (
+            <div className="w-full grid grid-cols-2 gap-2">
+              <Button className="w-full p-2">View</Button>
+              <Button className="w-full p-2">Actions</Button>
             </div>
           )}
         </div>

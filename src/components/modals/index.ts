@@ -1,1 +1,1 @@
-export * from "./appointment-edit-modal";
+export * from "./appointment-reschedule-modal";

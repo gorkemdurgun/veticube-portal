@@ -1,7 +1,8 @@
 import { useAppSelector } from "@/hooks";
-import { Badge, Calendar, CalendarProps } from "antd";
+import { Badge, Calendar, CalendarProps, Statistic, StatisticProps } from "antd";
 import { BadgeProps } from "antd/lib";
 import dayjs, { Dayjs } from "dayjs";
+import CountUp from "react-countup";
 import { useTranslation } from "react-i18next";
 import {
   PiSyringe as VaccinationIcon,
@@ -25,31 +26,31 @@ const appointmentTypeSwitch: {
   };
 } = {
   check: {
-    className: "text-lime-800 bg-gray-50 border",
+    className: "text-lime-800 bg-gray-100 group-hover:bg-gray-200",
     darkClassName: "text-lime-100 bg-gray-600/20",
     icon: <CheckIcon />,
     text: "global.appointments.types.check",
   },
   surgery: {
-    className: "text-rose-800 bg-gray-50 border",
+    className: "text-rose-800 bg-gray-100",
     darkClassName: "text-rose-100 bg-gray-600/20",
     icon: <SurgeryIcon />,
     text: "global.appointments.types.surgery",
   },
   vaccination: {
-    className: "text-orange-800 bg-gray-50 border",
+    className: "text-orange-800 bg-gray-100",
     darkClassName: "text-orange-100 bg-gray-600/20",
     icon: <VaccinationIcon />,
     text: "global.appointments.types.vaccination",
   },
   grooming: {
-    className: "text-indigo-800 bg-gray-50 border",
+    className: "text-indigo-800 bg-gray-100",
     darkClassName: "text-indigo-100 bg-gray-600/20",
     icon: <GroomingIcon />,
     text: "global.appointments.types.grooming",
   },
   other: {
-    className: "text-sky-800 bg-gray-50 border",
+    className: "text-sky-800 bg-gray-100",
     darkClassName: "text-sky-100 bg-gray-600/20",
     icon: <OtherIcon />,
     text: "global.appointments.types.other",
@@ -57,7 +58,6 @@ const appointmentTypeSwitch: {
 };
 
 const EventItem: React.FC<{ type: AppointmentType; time: string }> = ({ type, time }) => {
-  const { t } = useTranslation();
   const { darkMode } = useAppSelector((state) => state.theme);
 
   const typeSwitch = appointmentTypeSwitch[type];
@@ -85,23 +85,25 @@ export const AppointmentCalendar: React.FC<AppointmentCalendarProps> = ({ appoin
     return listData || [];
   };
   const getMonthData = (value: Dayjs) => {
-    if (value.month() === 8) {
-      return 1394;
-    }
+    return true;
   };
   const monthCellRender = (value: Dayjs) => {
+    const formatter: StatisticProps["formatter"] = (value) => <CountUp delay={0.5} end={value as number} />;
+
     const num = getMonthData(value);
+    const isCurrentMonth = dayjs().month() === value.month();
+
     return num ? (
-      <div className="notes-month">
-        <section>{num}</section>
-        <span>Backlog number</span>
+      <div className="grid grid-cols-2">
+        <Statistic title="Tamamlanan" value={15} formatter={isCurrentMonth ? formatter : undefined} />
+        <Statistic title="İptal Edilen" value={5} formatter={isCurrentMonth ? formatter : undefined} />
       </div>
     ) : null;
   };
   const dateCellRender = (value: Dayjs) => {
     const listData = getListData(value);
     return (
-      <ul className="grid gap-1 pb-2">
+      <ul className="grid gap-1 pb-2 ">
         {listData.map((item, index) => (
           <EventItem key={index} type={item.type} time={item.time} />
         ))}
