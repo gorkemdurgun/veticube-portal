@@ -10,6 +10,11 @@
   .compatible-dark {
     transition: background-color 0.2s, color 0.2s;
   }
+
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
 }
 
 div {
