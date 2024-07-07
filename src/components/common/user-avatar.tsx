@@ -8,9 +8,7 @@ export const UserAvatar: React.FC<{
     clinicName: string;
   };
 }> = ({ user: { imageUrl, name, clinicName } }) => {
-  const { darkMode } = useAppSelector((state) => ({
-    darkMode: state.theme.darkMode,
-  }));
+  const { darkMode } = useAppSelector((state) => state.theme);
 
   return (
     <div

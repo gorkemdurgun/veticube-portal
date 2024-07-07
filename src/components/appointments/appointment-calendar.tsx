@@ -61,8 +61,8 @@ export const AppointmentCalendar: React.FC<SelectedDayListProps> = ({ appointmen
     const listData = getListData(value);
     return (
       <ul className="grid gap-1">
-        {listData.map((item) => (
-          <EventItem key={item.type} type={item.type} time={item.time} />
+        {listData.map((item, index) => (
+          <EventItem key={index} type={item.type} time={item.time} />
         ))}
       </ul>
     );

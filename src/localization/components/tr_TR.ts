@@ -33,7 +33,7 @@ const langTR: Locale = {
       today: "Bugün",
       now: "Şimdi",
       backToToday: "Bugüne Geri Dön",
-      ok: "tamam",
+      ok: "Tamam",
       clear: "Temizle",
       month: "Ay",
       year: "Yıl",
@@ -55,6 +55,8 @@ const langTR: Locale = {
       nextDecade: "Sonraki On Yıl",
       previousCentury: "Önceki Yüzyıl",
       nextCentury: "Sonraki Yüzyıl",
+      shortWeekDays: ["Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"],
+      shortMonths: ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
     },
     timePickerLocale: {
       placeholder: "Zaman seç",

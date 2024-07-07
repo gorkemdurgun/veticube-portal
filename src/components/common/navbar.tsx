@@ -33,10 +33,8 @@ export const Navbar: React.FC = () => {
   ];
 
   const dispatch = useAppDispatch();
-  const { darkMode, preferredLanguage } = useAppSelector((state) => ({
-    darkMode: state.theme.darkMode,
-    preferredLanguage: state.language.preferredLanguage,
-  }));
+  const { darkMode } = useAppSelector((state) => state.theme);
+  const { preferredLanguage } = useAppSelector((state) => state.language);
 
   return (
     <Header className="!p-0 flex items-center bg-transparent border-b">

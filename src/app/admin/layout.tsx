@@ -32,10 +32,6 @@ export default function AdminLayout({
   const { Header, Content, Footer, Sider } = Layout;
 
   const { t } = useTranslation();
-  const { preferredLanguage, darkMode } = useAppSelector((state) => ({
-    preferredLanguage: state.language.preferredLanguage,
-    darkMode: state.theme.darkMode,
-  }));
 
   const items: MenuItem[] = [
     {

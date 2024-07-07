@@ -62,10 +62,10 @@ const appointmentStatusSwitch: {
     color: "blue",
   },
   rescheduled: {
-    className: "text-yellow-500 bg-yellow-100",
-    darkClassName: "text-yellow-300 bg-yellow-800",
+    className: "text-blue-500 bg-blue-100",
+    darkClassName: "text-blue-300 bg-blue-800",
     status: "processing",
-    color: "yellow",
+    color: "blue",
   },
   completed: {
     className: "text-green-500 bg-green-100",

@@ -54,8 +54,8 @@ const langEN: Locale = {
       nextDecade: "Next decade",
       previousCentury: "Last century",
       nextCentury: "Next century",
-      shortWeekDays: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      shortMonths: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      shortWeekDays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      shortMonths: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     },
     timePickerLocale: {
       placeholder: "Select time",
@@ -104,6 +104,8 @@ const langEN: Locale = {
       nextDecade: "Next decade",
       previousCentury: "Last century",
       nextCentury: "Next century",
+      shortWeekDays: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      shortMonths: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     },
     timePickerLocale: {
       placeholder: "Select time",

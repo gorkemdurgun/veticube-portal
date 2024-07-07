@@ -73,7 +73,7 @@ const appointmentList: Appointment[] = [
     petId: "1",
     staffId: "1",
     type: "vaccination",
-    status: "scheduled",
+    status: "rescheduled",
     notes: "Vaccine",
     createdAt: "2021-09-01",
     updatedAt: "2021-09-01",
@@ -202,7 +202,7 @@ const AdminAppointmentsPage: React.FC = () => {
   return (
     <div className="flex flex-col gap-4">
       <Breadcrumb items={breadcrumbItems} />
-      <div className="grid grid-cols-[4fr,1fr] gap-4">
+      <div className="flex flex-row gap-4">
         <Card className="rounded-lg">
           <AppointmentCalendar appointments={appointmentList} onSelectDate={setSelectedDate} />
         </Card>
