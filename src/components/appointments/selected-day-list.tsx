@@ -4,15 +4,15 @@ import { Badge, BadgeProps, Button, Card, Divider, Dropdown } from "antd";
 import dayjs from "dayjs";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { PiPencilSimple as EditIcon, PiCheck as CompleteIcon, PiX as CancelIcon } from "react-icons/pi";
-import { AppointmentRescheduleModal } from "@/components/modals";
+import { PiClockClockwise as RescheduleIcon, PiCheckCircle as CompleteIcon, PiXCircle as CancelIcon } from "react-icons/pi";
+import { AppointmentCompleteModal, AppointmentRescheduleModal } from "@/components/modals";
 
 import {
   PiSyringe as VaccinationIcon,
   PiFaceMask as SurgeryIcon,
-  PiCheckFat as CheckIcon,
+  PiEye as CheckIcon,
   PiScissors as GroomingIcon,
-  PiRadioButton as OtherIcon,
+  PiFirstAid as OtherIcon,
 } from "react-icons/pi";
 
 type SelectedDayListProps = {
@@ -118,11 +118,13 @@ export const SelectedDayList: React.FC<SelectedDayListProps> = ({ selectedDate, 
 
   const AppointmentItem: React.FC<{ item: Appointment }> = ({ item }) => {
     const [editModalVisible, setEditModalVisible] = useState(false);
+    const [completeModalVisible, setCompleteModalVisible] = useState(false);
 
     const statusSwitch = appointmentStatusSwitch[item.status];
     const typeSwitch = appointmentTypeSwitch[item.type];
     return (
       <>
+        <AppointmentCompleteModal appointment={item} visible={completeModalVisible} setVisible={setCompleteModalVisible} />
         <AppointmentRescheduleModal appointment={item} visible={editModalVisible} setVisible={setEditModalVisible} />
         <div className={`flex flex-col items-center p-4 mx-4 my-1 rounded-xl compatible-dark ${darkMode ? "bg-gray-600/20" : "bg-gray-50"}`}>
           <div className="w-full flex items-center justify-between gap-2">
@@ -152,28 +154,17 @@ export const SelectedDayList: React.FC<SelectedDayListProps> = ({ selectedDate, 
             </div>
           </div>
           <Divider className="m-3" />
-          {(item.status === "scheduled" || item.status === "rescheduled") && (
-            <div className="w-full grid grid-cols-2 gap-2">
-              <Button className="w-full p-2">View</Button>
-              <Dropdown
-                menu={{
-                  items: [
-                    { key: "reschedule", label: "Reschedule", icon: <EditIcon />, onClick: () => setEditModalVisible(true) },
-                    { key: "complete", label: "Complete", icon: <CompleteIcon /> },
-                    { key: "cancel", label: "Cancel", icon: <CancelIcon /> },
-                  ],
-                }}
-              >
-                <Button className="w-full p-2">Actions</Button>
-              </Dropdown>
-            </div>
-          )}
-          {(item.status === "completed" || item.status === "cancelled") && (
-            <div className="w-full grid grid-cols-2 gap-2">
-              <Button className="w-full p-2">View</Button>
-              <Button className="w-full p-2">Actions</Button>
-            </div>
-          )}
+          <div className="w-full grid grid-cols-3 gap-2">
+            <Button className="w-full" onClick={() => setEditModalVisible(true)}>
+              <RescheduleIcon className="w-5 h-5" />
+            </Button>
+            <Button className="w-full" disabled={item.status === "completed"} onClick={() => setCompleteModalVisible(true)}>
+              <CompleteIcon className="w-5 h-5" />
+            </Button>
+            <Button className="w-full" disabled={item.status === "cancelled"}>
+              <CancelIcon className="w-5 h-5" />
+            </Button>
+          </div>
         </div>
       </>
     );

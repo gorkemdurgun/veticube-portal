@@ -1,7 +1,8 @@
-import { Button, DatePicker, Modal, TimePicker, TimePickerProps } from "antd";
+import { Modal, TimePickerProps } from "antd";
 import { useState } from "react";
 import dayjs from "dayjs";
 import { DatePickerProps } from "antd/lib";
+import { CustomDatePicker, CustomTimePicker } from "../appointments";
 
 type AppointmentRescheduleModalProps = {
   appointment: Appointment;
@@ -32,39 +33,24 @@ export const AppointmentRescheduleModal: React.FC<AppointmentRescheduleModalProp
   };
 
   return (
-    <Modal open={visible} onOk={handleOk} onCancel={handleCancel} title="Edit Appointment">
-      <div className="flex flex-col gap-4">
+    <Modal open={visible} onOk={handleOk} onCancel={handleCancel} title="Reschedule Appointment">
+      <div className="flex flex-col gap-4 py-4">
         <div className="grid grid-cols-2 gap-x-4 gap-y-2">
           <div className="flex flex-col gap-1">
             <span className="text-sm text-gray-500">Current Date:</span>
-            <DatePicker disabled format={"DD/MM/YYYY"} value={dayjs(appointment.appointmentDate)} />
+            <CustomDatePicker size="large" disabled format={"DD/MM/YYYY"} value={dayjs(appointment.appointmentDate)} />
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-sm text-gray-500">New Date:</span>
-            <DatePicker
-              allowClear={false}
-              needConfirm
-              // past dates are disabled
-              disabledDate={(current) => current && current < dayjs().startOf("day")}
-              format={"DD/MM/YYYY"}
-              value={dayjs(currentAppointment.appointmentDate)}
-              onChange={handleChangeDate}
-            />
+            <CustomDatePicker size="large" value={dayjs(currentAppointment.appointmentDate)} onChange={handleChangeDate} />
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-sm text-gray-500">Current Time:</span>
-            <TimePicker disabled format={"HH:mm"} value={dayjs(appointment.appointmentTime, "HH:mm")} />
+            <CustomTimePicker size="large" disabled format={"HH:mm"} value={dayjs(appointment.appointmentTime, "HH:mm")} />
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-sm text-gray-500">New Time:</span>
-            <TimePicker
-              allowClear={false}
-              showNow={false}
-              needConfirm
-              format={"HH:mm"}
-              value={dayjs(currentAppointment.appointmentTime, "HH:mm")}
-              onChange={handleChangeTime}
-            />
+            <CustomTimePicker size="large" value={dayjs(currentAppointment.appointmentTime, "HH:mm")} onChange={handleChangeTime} />
           </div>
         </div>
       </div>

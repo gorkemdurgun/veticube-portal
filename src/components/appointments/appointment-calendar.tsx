@@ -7,9 +7,9 @@ import { useTranslation } from "react-i18next";
 import {
   PiSyringe as VaccinationIcon,
   PiFaceMask as SurgeryIcon,
-  PiCheckFat as CheckIcon,
+  PiEye as CheckIcon,
   PiScissors as GroomingIcon,
-  PiRadioButton as OtherIcon,
+  PiFirstAid as OtherIcon,
 } from "react-icons/pi";
 
 type AppointmentCalendarProps = {
