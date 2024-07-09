@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import { Breadcrumb, Card } from "antd";
 import { BreadcrumbProps } from "antd/lib";
-import { AppointmentCalendar, SelectedDayList } from "@/components/appointments";
+import { AppointmentActions, AppointmentCalendar, SelectedDayList } from "@/components/appointments";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 
@@ -203,9 +203,12 @@ const AdminAppointmentsPage: React.FC = () => {
     <div className="flex flex-col gap-4">
       <Breadcrumb items={breadcrumbItems} />
       <div className="flex flex-row gap-4">
-        <Card className="rounded-lg">
-          <AppointmentCalendar appointments={appointmentList} onSelectDate={setSelectedDate} />
-        </Card>
+        <div className="flex flex-col gap-4">
+          <AppointmentActions />
+          <Card>
+            <AppointmentCalendar appointments={appointmentList} onSelectDate={setSelectedDate} />
+          </Card>
+        </div>
         <SelectedDayList selectedDate={selectedDate} selectedDateAppointments={selectedDateAppointments} />
       </div>
     </div>

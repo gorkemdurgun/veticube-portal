@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { PiClockClockwise as RescheduleIcon, PiCheckCircle as CompleteIcon, PiXCircle as CancelIcon } from "react-icons/pi";
-import { AppointmentCompleteModal, AppointmentRescheduleModal } from "@/components/modals";
+import { AppointmentCancelModal, AppointmentCompleteModal, AppointmentRescheduleModal } from "@/components/modals";
 
 import {
   PiSyringe as VaccinationIcon,
@@ -119,11 +119,13 @@ export const SelectedDayList: React.FC<SelectedDayListProps> = ({ selectedDate, 
   const AppointmentItem: React.FC<{ item: Appointment }> = ({ item }) => {
     const [editModalVisible, setEditModalVisible] = useState(false);
     const [completeModalVisible, setCompleteModalVisible] = useState(false);
+    const [cancelModalVisible, setCancelModalVisible] = useState(false);
 
     const statusSwitch = appointmentStatusSwitch[item.status];
     const typeSwitch = appointmentTypeSwitch[item.type];
     return (
       <>
+        <AppointmentCancelModal appointment={item} visible={cancelModalVisible} setVisible={setCancelModalVisible} />
         <AppointmentCompleteModal appointment={item} visible={completeModalVisible} setVisible={setCompleteModalVisible} />
         <AppointmentRescheduleModal appointment={item} visible={editModalVisible} setVisible={setEditModalVisible} />
         <div className={`flex flex-col items-center p-4 mx-4 my-1 rounded-xl compatible-dark ${darkMode ? "bg-gray-600/20" : "bg-gray-50"}`}>
@@ -161,7 +163,7 @@ export const SelectedDayList: React.FC<SelectedDayListProps> = ({ selectedDate, 
             <Button className="w-full" disabled={item.status === "completed"} onClick={() => setCompleteModalVisible(true)}>
               <CompleteIcon className="w-5 h-5" />
             </Button>
-            <Button className="w-full" disabled={item.status === "cancelled"}>
+            <Button className="w-full" disabled={item.status === "cancelled"} onClick={() => setCancelModalVisible(true)}>
               <CancelIcon className="w-5 h-5" />
             </Button>
           </div>
@@ -178,7 +180,7 @@ export const SelectedDayList: React.FC<SelectedDayListProps> = ({ selectedDate, 
             <span>{t("components.appointments.selected-day-list.empty")}</span>
           </div>
         ) : (
-          <div className="flex flex-col -m-6 py-4 h-auto max-h-[800px] overflow-y-scroll scrollbar-hide">
+          <div className="flex flex-col -m-6 py-4 h-auto max-h-[850px] overflow-y-scroll scrollbar-hide">
             {selectedDateAppointments.map((item, index) => (
               <AppointmentItem key={index} item={item} />
             ))}
