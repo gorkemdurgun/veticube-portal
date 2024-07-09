@@ -32,6 +32,21 @@
     "settings": "Ayarlar"
   },
   "components": {
+    "modals": {
+      "appointment-reschedule": {
+        "title": "Randevuyu yeniden planla",
+        "date": "Tarih",
+        "time": "Saat",
+        "new-date": "Yeni tarih",
+        "new-time": "Yeni saat",
+        "quick-actions": "Hızlı işlemler",
+        "minute": "dk",
+        "hour": "saat",
+        "day": "gün",
+        "reschedule": "Planla",
+        "cancel": "İptal"
+      }
+    },
     "appointments": {
       "selected-day-list": {
         "empty": "Seçilen gün için randevu bulunmamaktadır.",

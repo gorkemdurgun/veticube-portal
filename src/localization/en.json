@@ -32,6 +32,21 @@
     "settings": "Settings"
   },
   "components": {
+    "modals": {
+      "appointment-reschedule": {
+        "title": "Reschedule appointment",
+        "date": "Date",
+        "time": "Time",
+        "new-date": "New date",
+        "new-time": "New time",
+        "quick-actions": "Quick actions",
+        "minute": "min",
+        "hour": "hour",
+        "day": "day",
+        "reschedule": "Reschedule",
+        "cancel": "Cancel"
+      }
+    },
     "appointments": {
       "selected-day-list": {
         "empty": "No appointments for the selected day.",

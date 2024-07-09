@@ -15,6 +15,7 @@ export const AppointmentCancelModal: React.FC<AppointmentCancelModalProps> = ({ 
 
   const [cancelOptions, setCancelOptions] = useState<{ [key: string]: boolean }>({
     isClientNotCome: false,
+    isClientRequest: false,
   });
 
   const handleOk = () => {
@@ -76,11 +77,20 @@ export const AppointmentCancelModal: React.FC<AppointmentCancelModalProps> = ({ 
           <Divider className="my-2" />
           <div
             className={`w-full grid grid-cols-[2fr,1fr] items-center gap-2 p-1 rounded-xl transition-all ${
+              cancelOptions.isClientRequest ? "bg-green-200" : ""
+            }`}
+          >
+            <Checkbox name="isClientRequest" checked={cancelOptions.isClientRequest} onChange={handleCheck}>
+              <span className="select-none">Müşteri talebi üzerine</span>
+            </Checkbox>
+          </div>
+          <div
+            className={`w-full grid grid-cols-[2fr,1fr] items-center gap-2 p-1 rounded-xl transition-all ${
               cancelOptions.isClientNotCome ? "bg-green-200" : ""
             }`}
           >
             <Checkbox name="isClientNotCome" checked={cancelOptions.isClientNotCome} onChange={handleCheck}>
-              <span className="select-none">Müşteri gelmedi</span>
+              <span className="select-none">Bildirimsiz gelmeme</span>
             </Checkbox>
           </div>
         </div>
