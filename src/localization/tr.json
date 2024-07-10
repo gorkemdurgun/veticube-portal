@@ -84,6 +84,10 @@
         "rescheduled": "Yeniden planlandı",
         "cancelled": "İptal edildi",
         "completed": "Tamamlandı"
+      },
+      "appointment-actions": {
+        "title": "İşlemler",
+        "add-new": "Randevu oluştur"
       }
     }
   }

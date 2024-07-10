@@ -89,6 +89,10 @@
         "rescheduled": "Rescheduled",
         "cancelled": "Cancelled",
         "completed": "Completed"
+      },
+      "appointment-actions": {
+        "title": "Actions",
+        "add-new": "Add new appointment"
       }
     }
   }

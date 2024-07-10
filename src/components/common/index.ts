@@ -1,4 +1,5 @@
+import { TranslatedText } from "./translated-text";
 import { Navbar } from "./navbar";
 import { UserAvatar } from "./user-avatar";
 
-export { Navbar, UserAvatar };
+export { TranslatedText, Navbar, UserAvatar };
