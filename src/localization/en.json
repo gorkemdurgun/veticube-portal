@@ -1,13 +1,16 @@
 {
   "global": {
-    "appointments": {
-      "types": {
-        "check": "Check",
-        "vaccination": "Vaccination",
-        "surgery": "Surgery",
-        "grooming": "Grooming",
-        "other": "Other"
-      }
+    "user-types": {
+      "vet": "Veterinarian",
+      "staff": "Staff",
+      "cli": "Client"
+    },
+    "appointment-types": {
+      "check": "Check",
+      "vaccination": "Vaccination",
+      "surgery": "Surgery",
+      "grooming": "Grooming",
+      "other": "Other"
     }
   },
   "breadcrumb": {
@@ -44,6 +47,35 @@
         "hour": "hour",
         "day": "day",
         "reschedule": "Reschedule",
+        "cancel": "Cancel"
+      },
+      "appointment-complete": {
+        "title": "Complete appointment",
+        "pet": "Pet",
+        "owner": "Owner",
+        "type": "Type",
+        "vet": "Veterinarian",
+        "date": "Date",
+        "time": "Time",
+        "options": "Complete options",
+        "options-1": "Appointment was done at a different time",
+        "options-2": "Another veterinarian did the appointment",
+        "pay-amount": "Pay amount",
+        "complete": "Complete",
+        "cancel": "Cancel"
+      },
+      "appointment-cancel": {
+        "title": "Cancel appointment",
+        "pet": "Pet",
+        "owner": "Owner",
+        "type": "Type",
+        "vet": "Veterinarian",
+        "date": "Date",
+        "time": "Time",
+        "options": "Cancel options",
+        "options-1": "Client demand",
+        "options-2": "Cancellation without demand",
+        "continue": "Continue",
         "cancel": "Cancel"
       }
     },

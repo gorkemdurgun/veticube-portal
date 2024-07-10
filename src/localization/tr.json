@@ -1,13 +1,11 @@
 {
   "global": {
     "appointments": {
-      "types": {
-        "check": "Kontrol",
-        "vaccination": "Aşı",
-        "surgery": "Ameliyat",
-        "grooming": "Bakım",
-        "other": "Diğer"
-      }
+      "check": "Kontrol",
+      "vaccination": "Aşı",
+      "surgery": "Ameliyat",
+      "grooming": "Bakım",
+      "other": "Diğer"
     }
   },
   "breadcrumb": {
@@ -44,6 +42,35 @@
         "hour": "saat",
         "day": "gün",
         "reschedule": "Planla",
+        "cancel": "İptal"
+      },
+      "appointment-complete": {
+        "title": "Randevuyu tamamla",
+        "pet": "Evcil",
+        "owner": "Sahip",
+        "type": "İşlem",
+        "vet": "Veteriner",
+        "date": "Tarih",
+        "time": "Saat",
+        "options": "Tamamlama seçenekleri",
+        "options-1": "Randevu farklı bir zamanda yapıldı",
+        "options-2": "Randevuyu başka bir veteriner yaptı",
+        "pay-amount": "Ödeme miktarı",
+        "complete": "Tamamla",
+        "cancel": "İptal"
+      },
+      "appointment-cancel": {
+        "title": "Randevuyu iptal et",
+        "pet": "Evcil",
+        "owner": "Sahip",
+        "type": "İşlem",
+        "vet": "Veteriner",
+        "date": "Tarih",
+        "time": "Saat",
+        "options": "İptal seçenekleri",
+        "options-1": "Müşteri talebi",
+        "options-2": "Bildirmeden gelmedi",
+        "continue": "Devam et",
         "cancel": "İptal"
       }
     },

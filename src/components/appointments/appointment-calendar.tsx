@@ -29,31 +29,31 @@ const appointmentTypeSwitch: {
     className: "text-lime-800 bg-gray-100 group-hover:bg-gray-200",
     darkClassName: "text-lime-100 bg-gray-600/20",
     icon: <CheckIcon />,
-    text: "global.appointments.types.check",
+    text: "global.appointment-types.check",
   },
   surgery: {
     className: "text-rose-800 bg-gray-100",
     darkClassName: "text-rose-100 bg-gray-600/20",
     icon: <SurgeryIcon />,
-    text: "global.appointments.types.surgery",
+    text: "global.appointment-types.surgery",
   },
   vaccination: {
     className: "text-orange-800 bg-gray-100",
     darkClassName: "text-orange-100 bg-gray-600/20",
     icon: <VaccinationIcon />,
-    text: "global.appointments.types.vaccination",
+    text: "global.appointment-types.vaccination",
   },
   grooming: {
     className: "text-indigo-800 bg-gray-100",
     darkClassName: "text-indigo-100 bg-gray-600/20",
     icon: <GroomingIcon />,
-    text: "global.appointments.types.grooming",
+    text: "global.appointment-types.grooming",
   },
   other: {
     className: "text-sky-800 bg-gray-100",
     darkClassName: "text-sky-100 bg-gray-600/20",
     icon: <OtherIcon />,
-    text: "global.appointments.types.other",
+    text: "global.appointment-types.other",
   },
 };
 
