@@ -2,7 +2,7 @@ import { Button, Checkbox, CheckboxProps, Descriptions, Divider, InputNumber, Mo
 import { useState } from "react";
 import dayjs from "dayjs";
 import { DatePickerProps } from "antd/lib";
-import { CustomTimePicker, DebounceSelect } from "../appointments";
+import { CustomTimePicker, SearchPatientBox } from "../appointments";
 
 import { TranslatedText } from "../common";
 
@@ -15,6 +15,9 @@ type AppointmentCreateeModalProps = {
 interface UserValue {
   label: string;
   value: string;
+  data: {
+    type: "cat" | "dog";
+  };
 }
 
 export const AppointmentCreateModal: React.FC<AppointmentCreateeModalProps> = ({ visible, setVisible, onCreated }) => {
@@ -33,13 +36,20 @@ export const AppointmentCreateModal: React.FC<AppointmentCreateeModalProps> = ({
   async function fetchUserList(username: string): Promise<UserValue[]> {
     console.log("fetching user", username);
 
-    return fetch("https://randomuser.me/api/?results=6")
+    return fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((body) =>
-        body.results.map((user: { name: { first: string; last: string }; login: { username: string } }) => ({
-          label: `${user.name.first} ${user.name.last}`,
-          value: user.login.username,
-        }))
+        body.map(
+          (user: { id: string; name: string; email: string; username: string }) =>
+            ({
+              key: user.id,
+              label: user.username,
+              value: user.name,
+              data: {
+                type: Math.random() > 0.5 ? "cat" : "dog",
+              },
+            } as UserValue)
+        )
       );
   }
 
@@ -60,10 +70,10 @@ export const AppointmentCreateModal: React.FC<AppointmentCreateeModalProps> = ({
     >
       <div className="flex flex-col gap-4 py-4">
         <div className="grid grid-cols-2 gap-4">
-          <DebounceSelect
-            showSearch
+          <SearchPatientBox
             className="w-full"
-            placeholder="Select user"
+            placeholder="Select a pet & owner"
+            popupMatchSelectWidth={500}
             value={value}
             fetchOptions={fetchUserList}
             onChange={(newValue) => {
