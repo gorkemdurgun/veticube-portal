@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "@redux-saga/core";
-import { rootSaga } from "@/redux/sagas";
+// import { rootSaga } from "@/redux/sagas";
 import storage from "redux-persist/lib/storage";
 
 import themeReducer from "@/redux/slices/themeSlice";
@@ -31,7 +31,7 @@ export const store = configureStore({
 
 export const persistor = persistStore(store);
 
-sagaMiddleware.run(rootSaga);
+// sagaMiddleware.run(rootSaga);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,6 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "@/redux/store";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import i18n from "@/localization/i18n";
 
 // Define a type for the slice state
@@ -14,13 +12,12 @@ const initialState: LanguageState = {
 };
 
 export const languageSlice = createSlice({
-  name: "theme",
-  // `createSlice` will infer the state type from the `initialState` argument
+  name: "language",
   initialState,
   reducers: {
-    setLanguage: (state, action: PayloadAction<LanguageState>) => {
-      state.preferredLanguage = action.payload.preferredLanguage;
-      i18n.changeLanguage(state.preferredLanguage === "tr" ? "tr" : "en");
+    setLanguage: (state, action: PayloadAction<"tr" | "en">) => {
+      state.preferredLanguage = action.payload;
+      i18n.changeLanguage(state.preferredLanguage);
     },
   },
 });
