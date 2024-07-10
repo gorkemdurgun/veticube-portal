@@ -6,6 +6,7 @@ import { BreadcrumbProps } from "antd/lib";
 import { AppointmentActions, AppointmentCalendar, SelectedDayList } from "@/components/appointments";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
+import { TranslatedText } from "@/components/common";
 
 const appointmentList: Appointment[] = [
   {
@@ -180,13 +181,12 @@ const appointmentList: Appointment[] = [
 ];
 
 const AdminAppointmentsPage: React.FC = () => {
-  const { t } = useTranslation();
   const breadcrumbItems: BreadcrumbProps["items"] = [
     {
-      title: t("breadcrumb.panel"),
+      title: <TranslatedText tPrefix="breadcrumb" tKey="panel" />,
     },
     {
-      title: t("breadcrumb.appointments"),
+      title: <TranslatedText tPrefix="breadcrumb" tKey="appointments" />,
     },
   ];
 

@@ -3,7 +3,8 @@ import { useState } from "react";
 import dayjs from "dayjs";
 import { DatePickerProps } from "antd/lib";
 import { CustomDatePicker, CustomTimePicker } from "../appointments";
-import { useTranslation } from "react-i18next";
+
+import { TranslatedText } from "../common";
 
 type AppointmentRescheduleModalProps = {
   appointment: Appointment;
@@ -12,8 +13,6 @@ type AppointmentRescheduleModalProps = {
 };
 
 export const AppointmentRescheduleModal: React.FC<AppointmentRescheduleModalProps> = ({ appointment, visible, setVisible }) => {
-  const { t } = useTranslation();
-
   const [currentAppointment, setCurrentAppointment] = useState<Appointment>(appointment);
 
   const handleOk = () => {
@@ -49,13 +48,13 @@ export const AppointmentRescheduleModal: React.FC<AppointmentRescheduleModalProp
       open={visible}
       onOk={handleOk}
       onCancel={handleCancel}
-      title={t("components.modals.appointment-reschedule.title")}
+      title={<TranslatedText tPrefix="components" tKey="modals.appointment-reschedule.title" />}
       footer={[
         <Button key="back" onClick={handleCancel}>
-          {t("components.modals.appointment-reschedule.cancel")}
+          <TranslatedText tPrefix="components" tKey="modals.appointment-reschedule.cancel" />
         </Button>,
         <Button key="submit" type="primary" onClick={handleOk}>
-          {t("components.modals.appointment-reschedule.reschedule")}
+          <TranslatedText tPrefix="components" tKey="modals.appointment-reschedule.reschedule" />
         </Button>,
       ]}
     >
@@ -65,33 +64,39 @@ export const AppointmentRescheduleModal: React.FC<AppointmentRescheduleModalProp
           column={2}
           items={[
             {
-              label: t("components.modals.appointment-reschedule.date"),
+              label: <TranslatedText tPrefix="components" tKey="modals.appointment-reschedule.date" />,
               children: dayjs(appointment.appointmentDate).format("DD/MM/YYYY"),
             },
             {
-              label: t("components.modals.appointment-reschedule.time"),
+              label: <TranslatedText tPrefix="components" tKey="modals.appointment-reschedule.time" />,
               children: appointment.appointmentTime,
             },
           ]}
         />
         <div className="flex flex-col gap-1 bg-gray-100 p-4 rounded-lg">
-          <span className="text-sm font-semibold">{t("components.modals.appointment-reschedule.quick-actions")}</span>
+          <TranslatedText className="text-sm font-semibold" tPrefix="components" tKey="modals.appointment-reschedule.quick-actions" />
           <Divider className="my-2" />
           <div className="grid grid-cols-4 gap-2">
-            <Button onClick={() => addMinute(10)}>+10 {t("components.modals.appointment-reschedule.minute")}</Button>
-            <Button onClick={() => addMinute(30)}>+30 {t("components.modals.appointment-reschedule.minute")}</Button>
-            <Button onClick={() => addMinute(60)}>+1 {t("components.modals.appointment-reschedule.hour")}</Button>
-            <Button onClick={() => addDay(1)}>+1 {t("components.modals.appointment-reschedule.day")}</Button>
+            <Button onClick={() => addMinute(10)}>
+              +10 {<TranslatedText tPrefix="components" tKey="modals.appointment-reschedule.minute" />}
+            </Button>
+            <Button onClick={() => addMinute(30)}>
+              +30 {<TranslatedText tPrefix="components" tKey="modals.appointment-reschedule.minute" />}
+            </Button>
+            <Button onClick={() => addMinute(60)}>
+              +1 {<TranslatedText tPrefix="components" tKey="modals.appointment-reschedule.hour" />}
+            </Button>
+            <Button onClick={() => addDay(1)}>+1 {<TranslatedText tPrefix="components" tKey="modals.appointment-reschedule.day" />}</Button>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-x-4 gap-y-2">
           <div className="flex flex-col gap-1">
-            <span className="text-sm text-gray-500">{t("components.modals.appointment-reschedule.new-date")}</span>
+            <TranslatedText className="text-sm text-gray-500" tPrefix="components" tKey="modals.appointment-reschedule.new-date" />
             <CustomDatePicker size="large" value={dayjs(currentAppointment.appointmentDate)} onChange={handleChangeDate} />
           </div>
 
           <div className="flex flex-col gap-1">
-            <span className="text-sm text-gray-500">{t("components.modals.appointment-reschedule.new-time")}</span>
+            <TranslatedText className="text-sm text-gray-500" tPrefix="components" tKey="modals.appointment-reschedule.new-time" />
             <CustomTimePicker size="large" value={dayjs(currentAppointment.appointmentTime, "HH:mm")} onChange={handleChangeTime} />
           </div>
         </div>

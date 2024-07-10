@@ -1,9 +1,7 @@
 import { Button, Checkbox, CheckboxProps, Descriptions, Divider, Modal, Select, SelectProps, TimePickerProps } from "antd";
 import { useState } from "react";
 import dayjs from "dayjs";
-import { DatePickerProps } from "antd/lib";
-import { CustomTimePicker } from "../appointments";
-import { t } from "i18next";
+import { TranslatedText } from "@/components/common";
 
 type AppointmentCancelModalProps = {
   appointment: Appointment;
@@ -41,40 +39,45 @@ export const AppointmentCancelModal: React.FC<AppointmentCancelModalProps> = ({ 
   ];
 
   return (
-    <Modal open={visible} onOk={handleOk} onCancel={handleCancel} title={t("components.modals.appointment-cancel.title")}>
+    <Modal
+      open={visible}
+      onOk={handleOk}
+      onCancel={handleCancel}
+      title={<TranslatedText tPrefix="components" tKey="modals.appointment-cancel.title" />}
+    >
       <div className="flex flex-col gap-4 py-4">
         <Descriptions
           bordered
           column={2}
           items={[
             {
-              label: t("components.modals.appointment-cancel.pet"),
+              label: <TranslatedText tPrefix="components" tKey="modals.appointment-cancel.pet" />,
               children: "Pet " + appointment.petId,
             },
             {
-              label: t("components.modals.appointment-cancel.owner"),
+              label: <TranslatedText tPrefix="components" tKey="modals.appointment-cancel.owner" />,
               children: "Owner " + appointment.petId,
             },
             {
-              label: t("components.modals.appointment-cancel.type"),
+              label: <TranslatedText tPrefix="components" tKey="modals.appointment-cancel.type" />,
               children: appointment.type,
             },
             {
-              label: t("components.modals.appointment-cancel.vet"),
+              label: <TranslatedText tPrefix="components" tKey="modals.appointment-cancel.vet" />,
               children: "Vet " + appointment.veterinarianId,
             },
             {
-              label: t("components.modals.appointment-cancel.date"),
+              label: <TranslatedText tPrefix="components" tKey="modals.appointment-cancel.date" />,
               children: dayjs(appointment.appointmentDate).format("DD/MM/YYYY"),
             },
             {
-              label: t("components.modals.appointment-cancel.time"),
+              label: <TranslatedText tPrefix="components" tKey="modals.appointment-cancel.time" />,
               children: appointment.appointmentTime,
             },
           ]}
         />
         <div className="flex flex-col gap-1 bg-gray-100 p-4 rounded-lg">
-          <span className="text-sm font-semibold">{t("components.modals.appointment-cancel.options")}</span>
+          <TranslatedText className="text-sm font-semibold" tPrefix="components" tKey="modals.appointment-cancel.options" />
           <Divider className="my-2" />
           <div
             className={`w-full grid grid-cols-[3fr,1fr] items-center gap-2 p-1 rounded-xl transition-all ${
@@ -82,7 +85,7 @@ export const AppointmentCancelModal: React.FC<AppointmentCancelModalProps> = ({ 
             }`}
           >
             <Checkbox name="isClientRequest" checked={cancelOptions.isClientRequest} onChange={handleCheck}>
-              <span className="select-none">{t("components.modals.appointment-cancel.options-1")}</span>
+              <TranslatedText className="select-none" tPrefix="components" tKey="modals.appointment-cancel.options-1" />
             </Checkbox>
           </div>
           <div
@@ -91,7 +94,7 @@ export const AppointmentCancelModal: React.FC<AppointmentCancelModalProps> = ({ 
             }`}
           >
             <Checkbox name="isClientNotCome" checked={cancelOptions.isClientNotCome} onChange={handleCheck}>
-              <span className="select-none">{t("components.modals.appointment-cancel.options-2")}</span>
+              <TranslatedText className="select-none" tPrefix="components" tKey="modals.appointment-cancel.options-2" />
             </Checkbox>
           </div>
         </div>

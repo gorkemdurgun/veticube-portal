@@ -14,6 +14,7 @@ import {
   PiScissors as GroomingIcon,
   PiFirstAid as OtherIcon,
 } from "react-icons/pi";
+import { TranslatedText } from "../common";
 
 type SelectedDayListProps = {
   selectedDate: string;
@@ -177,7 +178,7 @@ export const SelectedDayList: React.FC<SelectedDayListProps> = ({ selectedDate, 
       <Card className="rounded-lg min-w-[300px]" title={title()}>
         {selectedDateAppointments.length === 0 ? (
           <div className="text-center text-gray-500">
-            <span>{t("components.appointments.selected-day-list.empty")}</span>
+            <TranslatedText tPrefix="components" tKey="appointments.selected-day-list.empty" />
           </div>
         ) : (
           <div className="flex flex-col -m-6 py-4 h-auto max-h-[850px] overflow-y-scroll scrollbar-hide">

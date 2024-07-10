@@ -3,7 +3,8 @@ import { useState } from "react";
 import dayjs from "dayjs";
 import { DatePickerProps } from "antd/lib";
 import { CustomTimePicker } from "../appointments";
-import { useTranslation } from "react-i18next";
+
+import { TranslatedText } from "../common";
 
 type AppointmentCompleteModalProps = {
   appointment: Appointment;
@@ -12,8 +13,6 @@ type AppointmentCompleteModalProps = {
 };
 
 export const AppointmentCompleteModal: React.FC<AppointmentCompleteModalProps> = ({ appointment, visible, setVisible }) => {
-  const { t } = useTranslation();
-
   const [currentAppointment, setCurrentAppointment] = useState<Appointment>(appointment);
   const [payAmount, setPayAmount] = useState<number>(0);
   const [completeOptions, setCompleteOptions] = useState<{ [key: string]: boolean }>({
@@ -57,13 +56,13 @@ export const AppointmentCompleteModal: React.FC<AppointmentCompleteModalProps> =
       open={visible}
       onOk={handleOk}
       onCancel={handleCancel}
-      title={t("components.modals.appointment-complete.title")}
+      title={<TranslatedText tPrefix="components" tKey="modals.appointment-complete.title" />}
       footer={[
         <Button key="back" onClick={handleCancel}>
-          {t("components.modals.appointment-complete.cancel")}
+          <TranslatedText tPrefix="components" tKey="modals.appointment-complete.cancel" />
         </Button>,
         <Button key="submit" disabled={payRestrictions} onClick={handleOk}>
-          {t("components.modals.appointment-complete.complete")}
+          <TranslatedText tPrefix="components" tKey="modals.appointment-complete.complete" />
         </Button>,
       ]}
     >
@@ -73,33 +72,33 @@ export const AppointmentCompleteModal: React.FC<AppointmentCompleteModalProps> =
           column={2}
           items={[
             {
-              label: t("components.modals.appointment-complete.pet"),
+              label: <TranslatedText tPrefix="components" tKey="modals.appointment-complete.pet" />,
               children: "Pet " + appointment.petId,
             },
             {
-              label: t("components.modals.appointment-complete.owner"),
+              label: <TranslatedText tPrefix="components" tKey="modals.appointment-complete.owner" />,
               children: "Owner " + appointment.petId,
             },
             {
-              label: t("components.modals.appointment-complete.type"),
+              label: <TranslatedText tPrefix="components" tKey="modals.appointment-complete.type" />,
               children: appointment.type,
             },
             {
-              label: t("components.modals.appointment-complete.vet"),
+              label: <TranslatedText tPrefix="components" tKey="modals.appointment-complete.vet" />,
               children: "Vet " + appointment.veterinarianId,
             },
             {
-              label: t("components.modals.appointment-complete.date"),
+              label: <TranslatedText tPrefix="components" tKey="modals.appointment-complete.date" />,
               children: dayjs(appointment.appointmentDate).format("DD/MM/YYYY"),
             },
             {
-              label: t("components.modals.appointment-complete.time"),
+              label: <TranslatedText tPrefix="components" tKey="modals.appointment-complete.time" />,
               children: appointment.appointmentTime,
             },
           ]}
         />
         <div className="flex flex-col gap-1 bg-gray-100 p-4 rounded-lg">
-          <span className="text-sm font-semibold">{t("components.modals.appointment-complete.options")}</span>
+          <TranslatedText className="text-sm font-semibold" tPrefix="components" tKey="modals.appointment-complete.options" />
           <Divider className="my-2" />
           <div
             className={`w-full grid grid-cols-[3fr,1fr] items-center gap-2 p-1 rounded-xl transition-all ${
@@ -107,7 +106,7 @@ export const AppointmentCompleteModal: React.FC<AppointmentCompleteModalProps> =
             }`}
           >
             <Checkbox name="isTimeDifferent" checked={completeOptions.isTimeDifferent} onChange={handleCheck}>
-              {t("components.modals.appointment-complete.options-1")}
+              <TranslatedText tPrefix="components" tKey="modals.appointment-complete.options-1" />
             </Checkbox>
             <CustomTimePicker
               disabled={!completeOptions.isTimeDifferent}
@@ -122,7 +121,7 @@ export const AppointmentCompleteModal: React.FC<AppointmentCompleteModalProps> =
             }`}
           >
             <Checkbox name="isVetDifferent" checked={completeOptions.isVetDifferent} onChange={handleCheck}>
-              {t("components.modals.appointment-complete.options-2")}
+              <TranslatedText tPrefix="components" tKey="modals.appointment-complete.options-2" />
             </Checkbox>
             <Select
               disabled={!completeOptions.isVetDifferent}
@@ -134,7 +133,7 @@ export const AppointmentCompleteModal: React.FC<AppointmentCompleteModalProps> =
         </div>
         <Divider className="my-2" />
         <div className="w-full grid grid-cols-2 items-center p-2 rounded-lg bg-gray-100">
-          <span className="text-md">{t("components.modals.appointment-complete.pay-amount")}</span>
+          <TranslatedText className="text-md" tPrefix="components" tKey="modals.appointment-complete.pay-amount" />
           <InputNumber
             className="w-full"
             addonAfter="₺"

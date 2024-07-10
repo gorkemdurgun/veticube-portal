@@ -1,5 +1,6 @@
 "use client";
 
+import { TranslatedText } from "@/components/common";
 import { queries, subscriptions } from "@/services";
 import { useSubscription } from "@apollo/client";
 import { Breadcrumb, BreadcrumbProps } from "antd";
@@ -28,13 +29,12 @@ const AdminPage = () => {
   }
   */
 
-  const { t } = useTranslation();
   const breadcrumbItems: BreadcrumbProps["items"] = [
     {
-      title: t("breadcrumb.panel"),
+      title: <TranslatedText tPrefix="breadcrumb" tKey="panel" />,
     },
     {
-      title: t("breadcrumb.overview"),
+      title: <TranslatedText tPrefix="breadcrumb" tKey="overview" />,
     },
   ];
 
