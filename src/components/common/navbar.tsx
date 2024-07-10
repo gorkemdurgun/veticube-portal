@@ -11,12 +11,12 @@ export const Navbar: React.FC = () => {
     {
       key: "tr",
       label: "Türkçe",
-      onClick: () => dispatch(setLanguage({ preferredLanguage: "tr" })),
+      onClick: () => dispatch(setLanguage("tr")),
     },
     {
       key: "en",
       label: "English",
-      onClick: () => dispatch(setLanguage({ preferredLanguage: "en" })),
+      onClick: () => dispatch(setLanguage("en")),
     },
   ];
   const themeItems: MenuProps["items"] = [
