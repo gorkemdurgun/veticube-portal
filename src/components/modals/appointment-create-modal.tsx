@@ -69,18 +69,16 @@ export const AppointmentCreateModal: React.FC<AppointmentCreateeModalProps> = ({
       ]}
     >
       <div className="flex flex-col gap-4 py-4">
-        <div className="grid grid-cols-2 gap-4">
-          <SearchPatientBox
-            className="w-full"
-            placeholder="Select a pet & owner"
-            popupMatchSelectWidth={500}
-            value={value}
-            fetchOptions={fetchUserList}
-            onChange={(newValue) => {
-              setValue(newValue as UserValue);
-            }}
-          />
-        </div>
+        <SearchPatientBox
+          className="w-full"
+          placeholder="Select a pet & owner"
+          popupMatchSelectWidth={500}
+          value={value}
+          fetchOptions={fetchUserList}
+          onChange={(newValue) => {
+            setValue(newValue as UserValue);
+          }}
+        />
       </div>
     </Modal>
   );

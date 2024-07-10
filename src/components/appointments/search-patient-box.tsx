@@ -42,22 +42,29 @@ export function SearchPatientBox<ValueType extends { key?: string; label: React.
 
   return (
     <Select
+      {...props}
       labelInValue
       showSearch
       filterOption={false}
       onSearch={debounceFetcher}
       notFoundContent={fetching ? <Spin size="small" /> : null}
-      {...props}
       options={options}
+      labelRender={(option) => (
+        <div className="flex items-center gap-2">
+          <span className="font-semibold">{option.label}</span>
+          <span className="text-xs text-gray-500">{`(${option.value})`}</span>
+        </div>
+      )}
       optionRender={(option) => {
         console.log(option);
         return (
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              {option.data.data.type === "cat" ? <CatIcon className="text-yellow-800" /> : <DogIcon className="text-amber-800" />}
               <span className="font-semibold">{option.label}</span>
+              <span className="text-xs text-gray-500">{`(${option.value})`}</span>
             </div>
-            <span className="text-xs text-gray-500">{`(${option.value})`}</span>
+
+            {option.data.data.type === "cat" ? <CatIcon className="text-yellow-800" /> : <DogIcon className="text-amber-800" />}
           </div>
         );
       }}
