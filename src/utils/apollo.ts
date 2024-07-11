@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { WebSocketLink } from "@apollo/client/link/ws";
 
-const adminSecret = "3QZFAeWZLv11cs1t0UyjSgA5K4mEHT155Via37cpORSdEU682cIMRyPpSYDhD4Or";
+// const adminSecret = "3QZFAeWZLv11cs1t0UyjSgA5K4mEHT155Via37cpORSdEU682cIMRyPpSYDhD4Or";
 
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
@@ -12,7 +12,7 @@ const apolloClient = new ApolloClient({
       reconnect: true,
       connectionParams: {
         headers: {
-          "x-hasura-admin-secret": adminSecret,
+          // "x-hasura-admin-secret": adminSecret,
         },
       },
     },

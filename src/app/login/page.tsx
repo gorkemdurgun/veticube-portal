@@ -7,6 +7,7 @@ import { useAccessToken, useSignInEmailPassword } from "@nhost/react";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { login } from "@/redux/slices/auth/authSlice";
 import { authRest } from "@/services/rest/auth";
+import { getPets } from "@/services/rest/pets/getPets";
 
 const Login: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -25,11 +26,17 @@ const Login: React.FC = () => {
   };
 
   const onFinish = (values: any) => {
-    authRest.signInEmailAndPassword(loginForm.email, loginForm.password);
+    authRest.signInEmailAndPassword(loginForm.email, loginForm.password).then((response) => {
+      console.log("res", response);
+      const session = response.session;
+      console.log("session", session);
+      dispatch(login({ user: session.user, accessToken: session.accessToken }));
+    });
   };
 
   useEffect(() => {
-    console.log(userState);
+    console.log("userState", userState);
+    getPets();
   }, [userState]);
 
   return (

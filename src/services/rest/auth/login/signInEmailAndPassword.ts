@@ -6,7 +6,6 @@ export const signInEmailAndPassword = async (email: string, password: string) =>
       email,
       password,
     });
-    console.log("data", data);
     return data;
   } catch (error) {
     console.error(error);

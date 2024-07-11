@@ -2,8 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import i18n from "@/localization/i18n";
 
 interface User {
+  id: string;
   name: string;
   email: string;
+  roles: string[];
 }
 
 // Define a type for the slice state
