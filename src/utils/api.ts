@@ -10,8 +10,11 @@ export const queryClient = new QueryClient({
   },
 });
 
-const apiClient = axios.create({
-  baseURL: "https://jsonplaceholder.typicode.com",
+const hasuraRestAxios = axios.create({
+  baseURL: "https:/jsyvrxdasbzbovolkdhw.hasura.eu-central-1.nhost.run/api/rest/",
+});
+const nhostAuthAxios = axios.create({
+  baseURL: "https://jsyvrxdasbzbovolkdhw.auth.eu-central-1.nhost.run/v1",
 });
 
-export default apiClient;
+export { hasuraRestAxios, nhostAuthAxios };

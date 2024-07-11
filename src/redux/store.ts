@@ -2,10 +2,11 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "@redux-saga/core";
 // import { rootSaga } from "@/redux/sagas";
 import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
 
 import themeReducer from "@/redux/slices/themeSlice";
 import languageReducer from "@/redux/slices/languageSlice";
-import { persistReducer, persistStore } from "redux-persist";
+import authReducer from "@/redux/slices/auth/authSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -16,6 +17,7 @@ const persistConfig = {
 };
 
 const reducers = combineReducers({
+  auth: authReducer,
   theme: themeReducer,
   language: languageReducer,
 });

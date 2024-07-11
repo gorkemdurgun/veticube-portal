@@ -1,5 +1,5 @@
-import { userQueries } from "./users";
+// import { userQueries } from "./users";
 
-export const queries = {
-  users: userQueries,
-};
+// export const queries = {
+//   users: userQueries,
+// };

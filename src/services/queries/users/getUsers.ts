@@ -1,8 +1,8 @@
-import apiClient from "@/utils/api";
+// import apiClient from "@/utils/api";
 
-const getUsers = async () => {
-  const { data } = await apiClient.get<User[]>("/users");
-  return data;
-};
+// const getUsers = async () => {
+//   const { data } = await apiClient.get<User[]>("/users");
+//   return data;
+// };
 
-export { getUsers };
+// export { getUsers };

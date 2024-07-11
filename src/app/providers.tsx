@@ -11,18 +11,28 @@ import { ApolloClient, ApolloProvider, InMemoryCache, HttpLink } from "@apollo/c
 import { WebSocketLink } from "@apollo/client/link/ws";
 import apolloClient from "@/utils/apollo";
 import { queryClient } from "@/utils/api";
+import { NhostClient, NhostProvider, NhostProviderProps, useSignInEmailPassword } from "@nhost/react";
+import { useEffect } from "react";
 
 export default function Providers({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const nhost = new NhostClient({
+    subdomain: "jsyvrxdasbzbovolkdhw",
+    region: "eu-central-1",
+    adminSecret: "s5MIprp,;gV'bOgbD%:hYw5G(Q(ca5oB",
+  });
+
   return (
     <ReduxProvider store={store}>
       <PersistGate persistor={persistor}>
         <QueryClientProvider client={queryClient}>
           <ApolloProvider client={apolloClient}>
-            <AppConfigProvider>{children}</AppConfigProvider>
+            <NhostProvider nhost={nhost}>
+              <AppConfigProvider>{children}</AppConfigProvider>
+            </NhostProvider>
           </ApolloProvider>
         </QueryClientProvider>
       </PersistGate>
