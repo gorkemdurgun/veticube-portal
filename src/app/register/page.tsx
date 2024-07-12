@@ -6,12 +6,12 @@ import { Button, Card, Checkbox, Form, Input } from "antd";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { login } from "@/redux/slices/auth/authSlice";
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
   const dispatch = useAppDispatch();
   const { user: userState } = useAppSelector((state) => state.auth);
 
-  const [loginForm, setLoginForm] = useState({
-    email: "gtest@mail.com",
+  const [registerForm, setRegisterForm] = useState({
+    email: "gorkemdurgun99@gmail.com",
     password: "Gorkem3599",
   });
 
@@ -19,18 +19,14 @@ const Login: React.FC = () => {
     const name = e.target.name;
     const value = e.target.value;
 
-    setLoginForm({ ...loginForm, [name]: value });
+    setRegisterForm({ ...registerForm, [name]: value });
   };
 
   const onFinish = (values: any) => {};
 
-  useEffect(() => {
-    console.log("userState", userState);
-  }, [userState]);
-
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <Card title="Login" className="w-96">
+      <Card title="Register" className="w-96">
         <div className="max-w-[300px] overflow-scroll">
           {/* <span className="text-xs font-semibold">isAuthenticated: {accessToken ? accessToken : "false"}</span> */}
         </div>
@@ -38,8 +34,8 @@ const Login: React.FC = () => {
           name="normal_login"
           className="login-form"
           initialValues={{
-            email: loginForm.email,
-            password: loginForm.password,
+            email: registerForm.email,
+            password: registerForm.password,
           }}
           onFinish={onFinish}
         >
@@ -48,7 +44,7 @@ const Login: React.FC = () => {
               prefix={<UserOutlined className="site-form-item-icon" />}
               placeholder="Username"
               name="email"
-              value={loginForm.email}
+              value={registerForm.email}
               onChange={handleChange}
             />
           </Form.Item>
@@ -58,7 +54,7 @@ const Login: React.FC = () => {
               type="password"
               placeholder="Password"
               name="password"
-              value={loginForm.password}
+              value={registerForm.password}
               onChange={handleChange}
             />
           </Form.Item>
@@ -73,9 +69,8 @@ const Login: React.FC = () => {
 
           <Form.Item>
             <Button type="primary" htmlType="submit" className="login-form-button">
-              Log in
+              Register
             </Button>
-            Or <a href="">register now!</a>
           </Form.Item>
         </Form>
       </Card>
@@ -83,4 +78,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Register;
