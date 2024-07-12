@@ -36,10 +36,10 @@ export default function AdminLayout({
   const items: MenuItem[] = [
     {
       className: "flex items-center justify-center !h-12 py-2 text-lg",
-      key: "/admin",
+      key: "/admin/overview",
       label: t("sidebar.overview"),
       icon: <DashboardIcon className="w-6 h-6 !-ml-1" />,
-      onClick: () => router.push("/admin"),
+      onClick: () => router.push("/admin/overview"),
     },
     {
       className: "!h-12 py-2 text-lg",

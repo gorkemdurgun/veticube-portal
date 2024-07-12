@@ -2,14 +2,16 @@
 
 import React, { useEffect, useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Card, Checkbox, Form, Input } from "antd";
+import { Button, Card, Checkbox, Form, Input, message } from "antd";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { login } from "@/redux/slices/auth/authSlice";
+
 import { restServices } from "@/services";
+import { useMutation, useQuery } from "react-query";
+import { login } from "@/redux/slices/auth/authSlice";
 
 const Login: React.FC = () => {
   const dispatch = useAppDispatch();
-  // const { user: userState } = useAppSelector((state) => state.auth);
+  const { user: userState, accessToken } = useAppSelector((state) => state.auth);
 
   const [loginForm, setLoginForm] = useState({
     email: "",
@@ -22,22 +24,40 @@ const Login: React.FC = () => {
     setLoginForm({ ...loginForm, [name]: value });
   };
 
-  const onFinish = (values: any) => {
-    restServices.auth.signinEmailPassword(loginForm.email, loginForm.password).then((response) => {
-      console.log("response", response);
-    });
-  };
+  const {
+    mutate: loginMutation,
+    data: response,
+    error,
+    isError,
+    isSuccess,
+  } = useMutation(() => restServices.auth.signinEmailPassword(loginForm.email, loginForm.password));
 
-  // useEffect(() => {
-  //   console.log("userState", userState);
-  // }, [userState]);
+  useEffect(() => {
+    if (isSuccess) {
+      message.success("Login success");
+      dispatch(
+        login({
+          user: {
+            id: response.data.session.user.id,
+            email: response.data.session.user.email,
+          },
+          accessToken: response.data.session.accessToken,
+        })
+      );
+    } else if (isError) {
+      let errorMessage = error as string;
+      message.warning(errorMessage + " Please check your email for verification link.");
+    }
+  }, [isSuccess, isError, response, error]);
+
+  useEffect(() => {
+    console.log("userState", userState);
+    console.log("accessToken", accessToken);
+  }, [userState, accessToken]);
 
   return (
     <div className="flex items-center justify-center min-h-screen">
       <Card title="Login" className="w-96">
-        <div className="max-w-[300px] overflow-scroll">
-          {/* <span className="text-xs font-semibold">isAuthenticated: {accessToken ? accessToken : "false"}</span> */}
-        </div>
         <Form
           name="normal_login"
           className="login-form"
@@ -45,7 +65,7 @@ const Login: React.FC = () => {
             email: loginForm.email,
             password: loginForm.password,
           }}
-          onFinish={onFinish}
+          onFinish={() => loginMutation()}
         >
           <Form.Item name="email" rules={[{ required: true, message: "Please input your Email!" }]}>
             <Input

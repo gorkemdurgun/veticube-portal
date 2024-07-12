@@ -1,3 +1,4 @@
+import { logout } from "@/redux/slices/auth/authSlice";
 import { store } from "@/redux/store";
 import axios from "axios";
 import { QueryClient } from "react-query";
@@ -21,10 +22,23 @@ const nhostAuthApi = axios.create({
 nhostHasuraRestApi.interceptors.request.use((config) => {
   // const userId = store.getState().auth.user?.id;
   // const activeRole = store.getState().auth.user?.roles[0];
-  config.headers["x-hasura-admin-secret"] = process.env.NEXT_PUBLIC_HASURA_GRAPHQL_ADMIN_SECRET;
+  // config.headers["x-hasura-admin-secret"] = process.env.NEXT_PUBLIC_HASURA_GRAPHQL_ADMIN_SECRET;
   // config.headers["x-hasura-role"] = activeRole;
   // config.headers["x-hasura-user-id"] = userId;
   return config;
 });
+
+// Unauthorized error handling
+nhostHasuraRestApi.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response?.status === 401) {
+      store.dispatch(logout());
+    }
+    return Promise.reject(error);
+  }
+);
 
 export { nhostHasuraRestApi, nhostAuthApi };

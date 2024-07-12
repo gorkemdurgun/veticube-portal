@@ -13,22 +13,23 @@ const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["theme", "language"],
+  whitelist: ["theme", "lang", "auth"],
 };
 
 const reducers = combineReducers({
-  auth: authReducer,
   theme: themeReducer,
-  language: languageReducer,
+  lang: languageReducer,
+  auth: authReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-    serializableCheck: false,
-  }).concat(sagaMiddleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(sagaMiddleware),
 });
 
 export const persistor = persistStore(store);

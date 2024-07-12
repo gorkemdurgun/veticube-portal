@@ -15,8 +15,6 @@ export const signupEmailPassword = async (email: string, password: string) => {
       password,
     });
   } catch (error) {
-    const errorMessage = toErrorMessage(error);
-    console.log(errorMessage);
-    throw new Error(errorMessage);
+    throw toErrorMessage(error);
   }
 };

@@ -2,8 +2,13 @@ import { nhostAuthApi } from "@/utils/api";
 import toErrorMessage from "@/utils/toError";
 
 type SigninEmailPasswordResponse = {
-  email: string;
-  id: string;
+  session: {
+    accessToken: string;
+    user: {
+      id: string;
+      email: string;
+    }
+  }
 };
 
 const url = "/signin/email-password";
@@ -15,8 +20,6 @@ export const signinEmailPassword = async (email: string, password: string) => {
       password,
     });
   } catch (error) {
-    const errorMessage = toErrorMessage(error);
-    console.log(errorMessage);
-    throw new Error(errorMessage);
+    throw toErrorMessage(error);
   }
 };

@@ -1,4 +1,5 @@
-import { useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { logout } from "@/redux/slices/auth/authSlice";
 import { Avatar, Button, Divider } from "antd";
 
 export const UserAvatar: React.FC<{
@@ -8,6 +9,8 @@ export const UserAvatar: React.FC<{
     clinicName: string;
   };
 }> = ({ user: { imageUrl, name, clinicName } }) => {
+  const dispatch = useAppDispatch();
+
   const { darkMode } = useAppSelector((state) => state.theme);
 
   return (
@@ -19,6 +22,10 @@ export const UserAvatar: React.FC<{
       <span>{name}</span>
       <Divider type="vertical" />
       <span className="font-semibold">{clinicName}</span>
+      <Divider type="vertical" />
+      <Button type="link" onClick={() => dispatch(logout())}>
+        Logout
+      </Button>
     </div>
   );
 };

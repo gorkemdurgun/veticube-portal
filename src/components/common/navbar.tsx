@@ -34,7 +34,7 @@ export const Navbar: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const { darkMode } = useAppSelector((state) => state.theme);
-  const { preferredLanguage } = useAppSelector((state) => state.language);
+  const { language } = useAppSelector((state) => state.lang);
 
   return (
     <Header className="!p-0 flex items-center bg-transparent border-b">
@@ -62,9 +62,9 @@ export const Navbar: React.FC = () => {
             type="default"
             trigger={["click"]}
             icon={<DownOutlined />}
-            menu={{ items: langItems, selectedKeys: [preferredLanguage] }}
+            menu={{ items: langItems, selectedKeys: [language] }}
           >
-            {preferredLanguage === "tr" ? "Türkçe" : "English"}
+            {language === "tr" ? "Türkçe" : "English"}
           </Dropdown.Button>
           <UserAvatar user={{ name: "Hailey Toms", imageUrl: "https://i.pravatar.cc/300", clinicName: "LarvalVet" }} />
         </div>
