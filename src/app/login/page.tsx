@@ -5,28 +5,32 @@ import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Checkbox, Form, Input } from "antd";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { login } from "@/redux/slices/auth/authSlice";
+import { restServices } from "@/services";
 
 const Login: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { user: userState } = useAppSelector((state) => state.auth);
+  // const { user: userState } = useAppSelector((state) => state.auth);
 
   const [loginForm, setLoginForm] = useState({
-    email: "gtest@mail.com",
-    password: "Gorkem3599",
+    email: "",
+    password: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
-
     setLoginForm({ ...loginForm, [name]: value });
   };
 
-  const onFinish = (values: any) => {};
+  const onFinish = (values: any) => {
+    restServices.auth.signinEmailPassword(loginForm.email, loginForm.password).then((response) => {
+      console.log("response", response);
+    });
+  };
 
-  useEffect(() => {
-    console.log("userState", userState);
-  }, [userState]);
+  // useEffect(() => {
+  //   console.log("userState", userState);
+  // }, [userState]);
 
   return (
     <div className="flex items-center justify-center min-h-screen">
@@ -58,6 +62,7 @@ const Login: React.FC = () => {
               type="password"
               placeholder="Password"
               name="password"
+              autoComplete="off"
               value={loginForm.password}
               onChange={handleChange}
             />
