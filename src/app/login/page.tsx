@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Card, Checkbox, Form, Input, message } from "antd";
+import { Button, Card, Checkbox, Divider, Form, Input, message } from "antd";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 
 import { restServices } from "@/services";
@@ -46,7 +46,7 @@ const Login: React.FC = () => {
       );
     } else if (isError) {
       let errorMessage = error as string;
-      message.warning(errorMessage + " Please check your email for verification link.");
+      message.warning(errorMessage);
     }
   }, [isSuccess, isError, response, error]);
 
@@ -57,7 +57,13 @@ const Login: React.FC = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <Card title="Login" className="w-96">
+      <Card
+        title="Login"
+        className="w-96"
+        classNames={{
+          title: "text-2xl text-center",
+        }}
+      >
         <Form
           name="normal_login"
           className="login-form"
@@ -87,20 +93,23 @@ const Login: React.FC = () => {
               onChange={handleChange}
             />
           </Form.Item>
-          <Form.Item>
-            <Form.Item name="remember" valuePropName="checked" noStyle>
-              <Checkbox>Remember me</Checkbox>
-            </Form.Item>
+          {/* <Form.Item>
             <a className="login-form-forgot" href="">
               Forgot password
             </a>
-          </Form.Item>
-
+          </Form.Item> */}
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="login-form-button">
-              Log in
-            </Button>
-            Or <a href="">register now!</a>
+            <div className="flex flex-col text-center">
+              <Button type="primary" htmlType="submit" className="login-form-button">
+                Log in
+              </Button>
+              <Divider>
+                <span className="font-normal text-gray-500">or</span>
+              </Divider>
+              <Button type="link" href="/register">
+                Register
+              </Button>
+            </div>
           </Form.Item>
         </Form>
       </Card>

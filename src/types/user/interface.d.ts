@@ -1,9 +1,15 @@
 interface User {
-  id: number;
-  imageUrl?: string;
-  name: string;
-  email: string;
-  phone: string;
+  avatarUrl: string;
   createdAt: string;
-  updatedAt: string;
+  defaultRole: AuthRoles;
+  displayName: string;
+  email: string;
+  emailVerified: boolean;
+  id: string;
+  isAnonymous: boolean;
+  locale: string;
+  metadata: any;
+  phoneNumber: string;
+  phoneNumberVerified: boolean;
+  roles: AuthRoles[];
 }

@@ -2,10 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Card, Checkbox, Form, Input } from "antd";
+import { Button, Card, Checkbox, Divider, Form, Input, message } from "antd";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { restServices } from "@/services";
 import { useRouter } from "next/navigation";
+import { useMutation } from "react-query";
+import { nhostHasuraRestApi } from "@/utils/api";
 // import { login } from "@/redux/slices/auth/authSlice";
 
 const Register: React.FC = () => {
@@ -24,25 +26,46 @@ const Register: React.FC = () => {
     setRegisterForm({ ...registerForm, [name]: value });
   };
 
-  const onFinish = () => {
-    console.log("Received values of form: ", registerForm);
-    restServices.auth.signupEmailPassword(registerForm.email, registerForm.password).then((response) => {
-      router.push("/login");
-    });
-  };
+  /*
+  nhostHasuraRestApi.get("/getUserRoles/bbeba8cc-4447-4a3e-8122-7585a399d78e").then((response) => {
+    console.log(response.data);
+  });
+  */
+
+  const {
+    mutate: registerMutation,
+    data: response,
+    error,
+    isError,
+    isSuccess,
+  } = useMutation(() => restServices.auth.signupEmailPassword(registerForm.email, registerForm.password));
+
+  useEffect(() => {
+    if (isSuccess) {
+      message.success("Register success");
+    } else if (isError) {
+      let errorMessage = error as string;
+      message.warning(errorMessage);
+    }
+  }, [isSuccess, isError, response, error]);
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <Card title="Register" className="w-96">
-        <div className="max-w-[300px] overflow-scroll"></div>
+      <Card
+        title="Register"
+        className="w-96"
+        classNames={{
+          title: "text-2xl text-center",
+        }}
+      >
         <Form
-          name="normal_login"
-          className="login-form"
+          name="normal_register"
+          className="register-form"
           initialValues={{
             email: registerForm.email,
             password: registerForm.password,
           }}
-          onFinish={onFinish}
+          onFinish={() => registerMutation()}
         >
           <Form.Item name="email" rules={[{ required: true, message: "Please input your Email!" }]}>
             <Input
@@ -63,20 +86,24 @@ const Register: React.FC = () => {
               value={registerForm.password}
               onChange={handleChange}
             />
-          </Form.Item>
-          <Form.Item>
-            <Form.Item name="remember" valuePropName="checked" noStyle>
-              <Checkbox>Remember me</Checkbox>
-            </Form.Item>
+            {/* <Form.Item>
             <a className="login-form-forgot" href="">
               Forgot password
             </a>
+          </Form.Item> */}
           </Form.Item>
-
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="login-form-button">
-              Register
-            </Button>
+            <div className="flex flex-col text-center">
+              <Button type="primary" htmlType="submit" className="register-form-button">
+                Register
+              </Button>
+              <Divider>
+                <span className="font-normal text-gray-500">or</span>
+              </Divider>
+              <Button type="link" href="/login">
+                Login
+              </Button>
+            </div>
           </Form.Item>
         </Form>
       </Card>

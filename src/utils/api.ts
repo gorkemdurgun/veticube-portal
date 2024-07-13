@@ -13,20 +13,27 @@ export const queryClient = new QueryClient({
 });
 
 const nhostHasuraRestApi = axios.create({
-  baseURL: "https:/ymqhadczimpjnbvtnqym.hasura.eu-central-1.nhost.run/api/rest/",
+  baseURL: "https:/ymqhadczimpjnbvtnqym.hasura.eu-central-1.nhost.run/api/rest",
 });
 const nhostAuthApi = axios.create({
   baseURL: "https://ymqhadczimpjnbvtnqym.auth.eu-central-1.nhost.run/v1",
 });
 
-nhostHasuraRestApi.interceptors.request.use((config) => {
-  // const userId = store.getState().auth.user?.id;
-  // const activeRole = store.getState().auth.user?.roles[0];
-  // config.headers["x-hasura-admin-secret"] = process.env.NEXT_PUBLIC_HASURA_GRAPHQL_ADMIN_SECRET;
-  // config.headers["x-hasura-role"] = activeRole;
-  // config.headers["x-hasura-user-id"] = userId;
-  return config;
-});
+
+
+// Request interceptor to add the access token to the request
+nhostHasuraRestApi.interceptors.request.use(
+  (config) => {
+    const token = store.getState().auth.accessToken;
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 // Unauthorized error handling
 nhostHasuraRestApi.interceptors.response.use(
