@@ -1,17 +1,24 @@
 "use client";
 
-import { useSignOut } from "@nhost/nextjs";
+import { NOTES } from "@/services/queries/notes";
+
 import { Button } from "antd";
 import { useEffect, useState } from "react";
 
 const AdminPage = () => {
-  const { signOut } = useSignOut();
-
   return (
     <span>
-      <Button type="primary" onClick={signOut}>
+      <Button type="primary" onClick={() => null}>
         Logout
       </Button>
+
+      <h1>Admin Page</h1>
+
+      {/* <div>
+        {response.data?.data?.notes.map((item, index) => (
+          <div key={index}>{item.note}</div>
+        ))}
+      </div> */}
     </span>
   );
 };

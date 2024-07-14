@@ -18,15 +18,15 @@ export default function Providers({
   return (
     <AppReduxProvider>
       <AppNhostProvider>
-        <AppApolloProvicer>
-          <AppQueryProvider>
-            <AppConfigProvider>
-              <AppI18Provider>
-                <AppAuthProvider>{children}</AppAuthProvider>
-              </AppI18Provider>
-            </AppConfigProvider>
-          </AppQueryProvider>
-        </AppApolloProvicer>
+        {/* <AppApolloProvicer> */}
+        <AppQueryProvider>
+          <AppConfigProvider>
+            <AppI18Provider>
+              <AppAuthProvider>{children}</AppAuthProvider>
+            </AppI18Provider>
+          </AppConfigProvider>
+        </AppQueryProvider>
+        {/* </AppApolloProvicer> */}
       </AppNhostProvider>
     </AppReduxProvider>
   );

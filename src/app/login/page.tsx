@@ -2,16 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Card, Checkbox, Divider, Form, Input, message } from "antd";
-import { useAppDispatch, useAppSelector } from "@/hooks";
-
-import { restServices } from "@/services";
-import { useMutation, useQuery } from "react-query";
-import { useSignInEmailPassword } from "@nhost/nextjs";
+import { Button, Card, Divider, Form, Input, message } from "antd";
+import { useRouter } from "next/navigation";
 
 const Login: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const { signInEmailPassword, isSuccess, isError, error } = useSignInEmailPassword();
+  const router = useRouter();
+  // const { signInEmailPassword, isLoading, isSuccess, isError, error } = useSignInEmailPassword();
 
   const [loginForm, setLoginForm] = useState({
     email: "",
@@ -23,14 +19,6 @@ const Login: React.FC = () => {
     const value = e.target.value;
     setLoginForm({ ...loginForm, [name]: value });
   };
-
-  useEffect(() => {
-    if (isSuccess) {
-      message.success("Login success");
-    } else if (isError) {
-      message.warning(error?.message);
-    }
-  }, [isSuccess, isError, error]);
 
   return (
     <div className="flex items-center justify-center min-h-screen">
@@ -48,7 +36,7 @@ const Login: React.FC = () => {
             email: loginForm.email,
             password: loginForm.password,
           }}
-          onFinish={() => signInEmailPassword(loginForm.email, loginForm.password)}
+          // onFinish={() => signInEmailPassword(loginForm.email, loginForm.password)}
         >
           <Form.Item name="email" rules={[{ required: true, message: "Please input your Email!" }]}>
             <Input
@@ -70,11 +58,6 @@ const Login: React.FC = () => {
               onChange={handleChange}
             />
           </Form.Item>
-          {/* <Form.Item>
-            <a className="login-form-forgot" href="">
-              Forgot password
-            </a>
-          </Form.Item> */}
           <Form.Item>
             <div className="flex flex-col text-center">
               <Button type="primary" htmlType="submit" className="login-form-button">
