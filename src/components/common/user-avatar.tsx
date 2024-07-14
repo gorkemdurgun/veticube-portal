@@ -1,34 +1,25 @@
-import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useAppSelector } from "@/hooks";
 import { useSignOut, useUserData } from "@nhost/nextjs";
 import { Avatar, Button, Divider } from "antd";
+import { PiSignOutDuotone as SignOutIcon } from "react-icons/pi";
 
-export const UserAvatar: React.FC<{
-  user: {
-    imageUrl?: string;
-    name: string;
-    clinicName: string;
-  };
-}> = ({ user: { imageUrl, name, clinicName } }) => {
-  const dispatch = useAppDispatch();
-
+export const UserAvatar: React.FC<{}> = () => {
   const { darkMode } = useAppSelector((state) => state.theme);
   const { signOut } = useSignOut();
   const userData = useUserData();
 
-  console.log("userData", userData);
-
   return (
     <div
-      className={`flex flex-row items-center gap-2 py-1 px-4 rounded-lg shadow-xl border
+      className={`flex flex-row items-center gap-2 py-0 px-4 rounded-lg shadow-sm border
         compatible-dark ${darkMode ? "bg-gray-600/20 text-white" : "bg-white text-black"} `}
     >
-      <Avatar size={"small"} src={userData?.avatarUrl} />
+      <Avatar size={"small"} className="capitalize" icon={userData?.displayName?.charAt(0)} />
       <span>{userData?.displayName}</span>
-      {/* <Divider type="vertical" /> */}
-      {/* <span className="font-semibold">{clinicName}</span> */}
-      <Divider type="vertical" />
+
+      <span className="text-xs text-gray-500">{`(${userData?.email})`}</span>
+      <Divider type="vertical" className="mx-0" />
       <Button type="link" onClick={signOut}>
-        Logout
+        <SignOutIcon size={20} />
       </Button>
     </div>
   );

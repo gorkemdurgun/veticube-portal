@@ -58,15 +58,10 @@ export const Navbar: React.FC = () => {
           >
             {darkMode ? <MoonOutlined /> : <SunOutlined />}
           </Dropdown.Button>
-          <Dropdown.Button
-            type="default"
-            trigger={["click"]}
-            icon={<DownOutlined />}
-            menu={{ items: langItems, selectedKeys: [language] }}
-          >
+          <Dropdown.Button type="default" trigger={["click"]} icon={<DownOutlined />} menu={{ items: langItems, selectedKeys: [language] }}>
             {language === "tr" ? "Türkçe" : "English"}
           </Dropdown.Button>
-          <UserAvatar user={{ name: "Hailey Toms", imageUrl: "https://i.pravatar.cc/300", clinicName: "LarvalVet" }} />
+          <UserAvatar />
         </div>
       </div>
     </Header>

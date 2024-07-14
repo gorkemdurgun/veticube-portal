@@ -1,28 +1,24 @@
 import { useEffect } from "react";
-import { useAppSelector } from "@/hooks";
 import { usePathname, useRouter } from "next/navigation";
-import { useAccessToken } from "@nhost/nextjs";
+import { useAuthenticated } from "@nhost/nextjs";
 
 const AppAuthProvider = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   const pathname = usePathname();
   const router = useRouter();
-  const accessToken = useAccessToken();
+  const isAuthenticated = useAuthenticated();
 
-  const unauthenticatedPaths = ["/login", "/register"];
+  const authRequiredPaths = ["/admin"];
+  const authNotRequiredPaths = ["/", "/login", "/register"];
 
   useEffect(() => {
-    if (!accessToken) {
-      if (!unauthenticatedPaths.includes(pathname)) {
-        router.push("/login");
-      }
-    } else {
-      if (pathname !== "/admin") {
-        router.push("/admin");
-      }
+    if (isAuthenticated && authNotRequiredPaths.includes(pathname)) {
+      router.push("/admin");
+    } else if (!isAuthenticated && authRequiredPaths.includes(pathname)) {
+      router.push("/login");
     }
-  }, [accessToken, pathname]);
+  }, [pathname, isAuthenticated]);
 
-  return children;
+  return <>{children}</>;
 };
 
 export default AppAuthProvider;
