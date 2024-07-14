@@ -10,5 +10,5 @@ export const queryClient = new QueryClient({
 });
 
 export default function AppQueryProvider({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <QueryClientProvider client={queryClient}></QueryClientProvider>;
+  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 }
