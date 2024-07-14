@@ -1,20 +1,14 @@
 "use client";
 
-import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { Provider as ReduxProvider } from "react-redux";
+// import { AntdRegistry } from "@ant-design/nextjs-registry";
 
-import { persistor, store } from "@/redux/store";
-
-import { PersistGate } from "redux-persist/integration/react";
-import { ApolloClient, ApolloProvider, InMemoryCache, HttpLink } from "@apollo/client";
-
-import apolloClient from "@/utils/apollo";
-import { QueryClientProvider } from "react-query";
-import { queryClient } from "@/utils/api";
-
-import AppConfigProvider from "@/providers/config_provider";
-import I18Provider from "@/providers/i18_provider";
-import AuthProvider from "@/providers/auth_provider";
+import AppConfigProvider from "@/providers/app_config_provider";
+import AppI18Provider from "@/providers/app_i18_provider";
+import AppAuthProvider from "@/providers/app_auth_provider";
+import AppNhostProvider from "@/providers/app_nhost_provider";
+import AppApolloProvicer from "@/providers/app_apollo_provider";
+import AppQueryProvider from "@/providers/app_query_provider";
+import AppReduxProvider from "@/providers/app_redux_provider";
 
 export default function Providers({
   children,
@@ -22,18 +16,18 @@ export default function Providers({
   children: React.ReactNode;
 }>) {
   return (
-    <ReduxProvider store={store}>
-      <PersistGate persistor={persistor}>
-        <ApolloProvider client={apolloClient}>
-          <QueryClientProvider client={queryClient}>
+    <AppReduxProvider>
+      <AppNhostProvider>
+        <AppApolloProvicer>
+          <AppQueryProvider>
             <AppConfigProvider>
-              <I18Provider>
-                <AuthProvider>{children}</AuthProvider>
-              </I18Provider>
+              <AppI18Provider>
+                <AppAuthProvider>{children}</AppAuthProvider>
+              </AppI18Provider>
             </AppConfigProvider>
-          </QueryClientProvider>
-        </ApolloProvider>
-      </PersistGate>
-    </ReduxProvider>
+          </AppQueryProvider>
+        </AppApolloProvicer>
+      </AppNhostProvider>
+    </AppReduxProvider>
   );
 }

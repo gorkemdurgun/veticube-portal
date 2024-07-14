@@ -1,7 +1,5 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { WebSocketLink } from "@apollo/client/link/ws";
-
-// const adminSecret = "3QZFAeWZLv11cs1t0UyjSgA5K4mEHT155Via37cpORSdEU682cIMRyPpSYDhD4Or";
 
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
@@ -19,4 +17,10 @@ const apolloClient = new ApolloClient({
   }),
 });
 
-export default apolloClient;
+export default function AppApolloProvicer({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return <ApolloProvider client={apolloClient}>{children}</ApolloProvider>;
+}

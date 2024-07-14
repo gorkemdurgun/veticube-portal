@@ -7,11 +7,11 @@ import { useAppDispatch, useAppSelector } from "@/hooks";
 
 import { restServices } from "@/services";
 import { useMutation, useQuery } from "react-query";
-import { login } from "@/redux/slices/auth/authSlice";
+import { useSignInEmailPassword } from "@nhost/nextjs";
 
 const Login: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { user: userState, accessToken } = useAppSelector((state) => state.auth);
+  const { signInEmailPassword, isSuccess, isError, error } = useSignInEmailPassword();
 
   const [loginForm, setLoginForm] = useState({
     email: "",
@@ -24,36 +24,13 @@ const Login: React.FC = () => {
     setLoginForm({ ...loginForm, [name]: value });
   };
 
-  const {
-    mutate: loginMutation,
-    data: response,
-    error,
-    isError,
-    isSuccess,
-  } = useMutation(() => restServices.auth.signinEmailPassword(loginForm.email, loginForm.password));
-
   useEffect(() => {
     if (isSuccess) {
       message.success("Login success");
-      dispatch(
-        login({
-          user: {
-            id: response.data.session.user.id,
-            email: response.data.session.user.email,
-          },
-          accessToken: response.data.session.accessToken,
-        })
-      );
     } else if (isError) {
-      let errorMessage = error as string;
-      message.warning(errorMessage);
+      message.warning(error?.message);
     }
-  }, [isSuccess, isError, response, error]);
-
-  useEffect(() => {
-    console.log("userState", userState);
-    console.log("accessToken", accessToken);
-  }, [userState, accessToken]);
+  }, [isSuccess, isError, error]);
 
   return (
     <div className="flex items-center justify-center min-h-screen">
@@ -71,7 +48,7 @@ const Login: React.FC = () => {
             email: loginForm.email,
             password: loginForm.password,
           }}
-          onFinish={() => loginMutation()}
+          onFinish={() => signInEmailPassword(loginForm.email, loginForm.password)}
         >
           <Form.Item name="email" rules={[{ required: true, message: "Please input your Email!" }]}>
             <Input

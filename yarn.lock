@@ -289,6 +289,17 @@
     graphql "16.8.1"
     xstate "^4.38.3"
 
+"@nhost/nextjs@^2.1.17":
+  version "2.1.17"
+  resolved "https://registry.yarnpkg.com/@nhost/nextjs/-/nextjs-2.1.17.tgz#8d90e96b4c684b7e03410a6a58f969b2291afaf0"
+  integrity sha512-mbqX1AhnI0fHYgRtEClOmxZehbHllZN8LYvdN7lGtAXgT3A1a5ThXEIivCwcBKG1aF7ZSWA12jiebksSuOvKvA==
+  dependencies:
+    "@nhost/react" "3.5.3"
+    graphql "16.8.1"
+    isomorphic-unfetch "^3.1.0"
+    js-cookie "^3.0.5"
+    xstate "^4.38.3"
+
 "@nhost/nhost-js@3.1.6":
   version "3.1.6"
   resolved "https://registry.yarnpkg.com/@nhost/nhost-js/-/nhost-js-3.1.6.tgz#c64fbfab8fcd5a3c9a5e3d9661d7b98c7c47e135"
@@ -299,7 +310,7 @@
     "@nhost/hasura-storage-js" "2.5.1"
     isomorphic-unfetch "^3.1.0"
 
-"@nhost/react@^3.5.3":
+"@nhost/react@3.5.3":
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/@nhost/react/-/react-3.5.3.tgz#4190f4555f41b629446f6305d4526105f87ee89e"
   integrity sha512-oBV87puHdGGFb9sv9jIk7DsqQKxc+LWoISDRBdx433eMJMXJuN4nYB3fL6LiCc8vqX4lCLb6kuo6hj9mfMk3/Q==
