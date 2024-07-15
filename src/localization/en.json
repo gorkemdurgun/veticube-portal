@@ -77,6 +77,17 @@
         "options-2": "Cancellation without demand",
         "continue": "Continue",
         "cancel": "Cancel"
+      },
+      "appointment-create": {
+        "title": "Create appointment",
+        "pet": "Pet",
+        "owner": "Owner",
+        "type": "Type",
+        "vet": "Veterinarian",
+        "date": "Date",
+        "time": "Time",
+        "create": "Create",
+        "cancel": "Cancel"
       }
     },
     "appointments": {

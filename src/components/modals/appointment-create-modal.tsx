@@ -58,7 +58,7 @@ export const AppointmentCreateModal: React.FC<AppointmentCreateeModalProps> = ({
       open={visible}
       onOk={handleOk}
       onCancel={handleCancel}
-      title={<TranslatedText tPrefix="components" tKey="modals.appointment-complete.title" />}
+      title={<TranslatedText tPrefix="components" tKey="modals.appointment-create.title" />}
       footer={[
         <Button key="back" onClick={handleCancel}>
           <TranslatedText tPrefix="components" tKey="modals.appointment-complete.cancel" />

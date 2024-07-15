@@ -57,7 +57,7 @@ export default function AdminLayout({
       onClick: () => router.push("/admin/patients"),
     },
     {
-      disabled: true,
+      // disabled: true,
       className: "!h-12 py-2 text-lg",
       key: "/admin/clients",
       label: t("sidebar.clients"),
