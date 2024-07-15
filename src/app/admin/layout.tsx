@@ -102,15 +102,6 @@ export default function AdminLayout({
   const router = useRouter();
   const path = usePathname();
 
-  const dummyUser: User = {
-    id: 1,
-    name: "Görkem Durgun",
-    email: "gorkemdurgun99@gmail.com",
-    phone: "+905555555555",
-    createdAt: "2021-09-01T00:00:00.000Z",
-    updatedAt: "2021-09-01T00:00:00.000Z",
-  };
-
   return (
     <Layout>
       <Navbar />
