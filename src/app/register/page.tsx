@@ -5,15 +5,25 @@ import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Divider, Form, Input, message } from "antd";
 import { useRouter } from "next/navigation";
 import { authenticate } from "@/services/auth/authenticate";
+import userPool from "@/services/auth/userpool";
+import { CognitoUserAttribute } from "amazon-cognito-identity-js";
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
   const router = useRouter();
+  // const { signInEmailPassword, isLoading, isSuccess, isError, error } = useSignInEmailPassword();
 
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
   });
-  const [isNotConfirmed, setIsNotConfirmed] = useState(false);
+
+  const attributes: CognitoUserAttribute[] = [];
+  attributes.push(
+    new CognitoUserAttribute({
+      Name: "email",
+      Value: loginForm.email,
+    })
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
@@ -22,31 +32,27 @@ const Login: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    authenticate(loginForm.email, loginForm.password)
-      .then((data) => {
-        console.log("Login success", data);
-        // router.push("/");
-      })
-      .catch((err) => {
-        message.error(err.message);
-        if (err.code === "UserNotConfirmedException") {
-          setIsNotConfirmed(true);
-        }
-      });
+    userPool.signUp(loginForm.email, loginForm.password, attributes, attributes, (err, data) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.log(data);
+    });
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen">
       <Card
-        title="Login"
+        title="Register"
         className="w-96"
         classNames={{
           title: "text-2xl text-center",
         }}
       >
         <Form
-          name="normal_login"
-          className="login-form"
+          name="normal_register"
+          className="register-form"
           initialValues={{
             email: loginForm.email,
             password: loginForm.password,
@@ -74,23 +80,16 @@ const Login: React.FC = () => {
               onChange={handleChange}
             />
           </Form.Item>
-          <Form hidden={!isNotConfirmed}>
-            <Form.Item>
-              <Button type="primary" onClick={() => router.push(`/confirm?email=${loginForm.email}`)}>
-                Confirm Email
-              </Button>
-            </Form.Item>
-          </Form>
           <Form.Item>
             <div className="flex flex-col text-center">
               <Button type="primary" htmlType="submit" className="login-form-button">
-                Log in
+                Register
               </Button>
               <Divider>
                 <span className="font-normal text-gray-500">or</span>
               </Divider>
               <Button type="link" href="/register">
-                Register
+                Login
               </Button>
             </div>
           </Form.Item>
@@ -100,4 +99,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Register;

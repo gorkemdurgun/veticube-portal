@@ -1,6 +1,6 @@
 "use client";
 
-import { NOTES } from "@/services/queries/notes";
+import { NOTES } from "@/services/db/queries/notes";
 
 import { Button } from "antd";
 import { useEffect, useState } from "react";

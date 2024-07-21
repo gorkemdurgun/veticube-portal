@@ -12,6 +12,7 @@
     "@ant-design/nextjs-registry": "^1.0.0",
     "@apollo/client": "^3.10.8",
     "@reduxjs/toolkit": "^2.2.6",
+    "amazon-cognito-identity-js": "^6.3.12",
     "antd": "^5.18.3",
     "axios": "^1.7.2",
     "graphql": "^16.9.0",
