@@ -63,7 +63,7 @@ const Register: React.FC = () => {
           <Form.Item name="email" rules={[{ required: true, message: "Please input your Email!" }]}>
             <Input
               prefix={<UserOutlined className="site-form-item-icon" />}
-              placeholder="Username"
+              placeholder="Email"
               name="email"
               value={loginForm.email}
               onChange={handleChange}
@@ -88,7 +88,7 @@ const Register: React.FC = () => {
               <Divider>
                 <span className="font-normal text-gray-500">or</span>
               </Divider>
-              <Button type="link" href="/register">
+              <Button type="link" href="/login">
                 Login
               </Button>
             </div>

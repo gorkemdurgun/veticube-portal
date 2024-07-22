@@ -10,8 +10,8 @@ const Login: React.FC = () => {
   const router = useRouter();
 
   const [loginForm, setLoginForm] = useState({
-    email: "",
-    password: "",
+    email: "rimemed307@reebsd.com",
+    password: "Goko3599.",
   });
   const [isNotConfirmed, setIsNotConfirmed] = useState(false);
 
@@ -22,17 +22,7 @@ const Login: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    authenticate(loginForm.email, loginForm.password)
-      .then((data) => {
-        console.log("Login success", data);
-        // router.push("/");
-      })
-      .catch((err) => {
-        message.error(err.message);
-        if (err.code === "UserNotConfirmedException") {
-          setIsNotConfirmed(true);
-        }
-      });
+    authenticate(loginForm.email, loginForm.password);
   };
 
   return (
@@ -47,6 +37,7 @@ const Login: React.FC = () => {
         <Form
           name="normal_login"
           className="login-form"
+          preserve={false}
           initialValues={{
             email: loginForm.email,
             password: loginForm.password,
@@ -57,7 +48,7 @@ const Login: React.FC = () => {
           <Form.Item name="email" rules={[{ required: true, message: "Please input your Email!" }]}>
             <Input
               prefix={<UserOutlined className="site-form-item-icon" />}
-              placeholder="Username"
+              placeholder="Email"
               name="email"
               value={loginForm.email}
               onChange={handleChange}
