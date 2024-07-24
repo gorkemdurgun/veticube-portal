@@ -10,17 +10,8 @@ const httpLink = new HttpLink({
 
 const authLink = setContext((_, { headers }) => {
   const state = store.getState();
-  const token = state.auth.clientSession?.idToken;
+  const token = state.auth?.clientSession?.idToken;
 
-  // Kullanıcı giriş yapmamışsa ve token yoksa
-  if (!token) {
-    // Burada ekstra bir işlem yapmanız gerekebilir
-    return {
-      headers,
-    };
-  }
-
-  // Token mevcutsa Authorization header'ını ekle
   return {
     headers: {
       ...headers,
@@ -33,13 +24,11 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.map(({ message }) => {
       console.log(`[GraphQL error]: ${message}`); // GraphQL hatalarını logla
-      // store.dispatch(logout());
-      // window.location.href = "/login";
+      store.dispatch(logout());
     });
   }
   if (networkError) {
     console.log(`[Network error]: ${networkError}`); // Ağ hatalarını logla
-    // window.location.href = "/login"; // Kullanıcıyı login sayfasına yönlendir
   }
 });
 
