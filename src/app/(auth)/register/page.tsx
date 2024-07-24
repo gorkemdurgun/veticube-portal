@@ -24,6 +24,18 @@ const Register: React.FC = () => {
       Value: loginForm.email,
     })
   );
+  attributes.push(
+    new CognitoUserAttribute({
+      Name: "custom:role",
+      Value: "user",
+    })
+  );
+  attributes.push(
+    new CognitoUserAttribute({
+      Name: "custom:allowedRoles",
+      Value: "user,client",
+    })
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;

@@ -29,3 +29,23 @@ export const authenticate = (email: string, password: string) => {
     });
   });
 };
+
+export const verifyEmail = (email: string, code: string) => {
+  return new Promise((resolve, reject) => {
+    const user = new CognitoUser({
+      Username: email,
+      Pool: userPool,
+    });
+
+    user.confirmRegistration(code, true, (err, result) => {
+      if (err) {
+        console.error("Email verification failed", err);
+        reject(err);
+        return;
+      }
+
+      console.log("Email verification success", result);
+      resolve(result);
+    });
+  });
+}

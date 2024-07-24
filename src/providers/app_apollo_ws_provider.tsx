@@ -1,9 +1,8 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { WebSocketLink } from "@apollo/client/link/ws";
 
-const apolloClient = new ApolloClient({
+const apolloWsClient = new ApolloClient({
   cache: new InMemoryCache(),
-
   link: new WebSocketLink({
     uri: "wss://nearby-weevil-32.hasura.app/v1/graphql",
     options: {
@@ -17,10 +16,10 @@ const apolloClient = new ApolloClient({
   }),
 });
 
-export default function AppApolloProvicer({
+export default function AppApolloWSProvider({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <ApolloProvider client={apolloClient}>{children}</ApolloProvider>;
+  return <ApolloProvider client={apolloWsClient}>{children}</ApolloProvider>;
 }

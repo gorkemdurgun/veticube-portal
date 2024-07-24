@@ -1,7 +1,7 @@
-// import { getNotes } from "./notes";
+ import { getDeneme } from "./deneme";
 
-// export const queries = {
-//   notes: {
-//     getNotes,
-//   },
-// };
+export const queries = {
+   deneme: {
+    getDeneme,
+   },
+};

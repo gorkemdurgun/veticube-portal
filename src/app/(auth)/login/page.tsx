@@ -5,12 +5,13 @@ import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Divider, Form, Input, message } from "antd";
 import { useRouter } from "next/navigation";
 import { authenticate } from "@/services/auth/authenticate";
+import { queries } from "@/services/db";
 
 const Login: React.FC = () => {
   const router = useRouter();
 
   const [loginForm, setLoginForm] = useState({
-    email: "rimemed307@reebsd.com",
+    email: "",
     password: "Goko3599.",
   });
   const [isNotConfirmed, setIsNotConfirmed] = useState(false);
@@ -22,8 +23,21 @@ const Login: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    authenticate(loginForm.email, loginForm.password);
+    authenticate(loginForm.email, loginForm.password).catch((err) => {
+      if (err.code === "UserNotConfirmedException") {
+        setIsNotConfirmed(true);
+        message.warning("User not confirmed, please check your email to confirm your account.");
+      } else {
+        message.error(err.message);
+      }
+    });
   };
+
+  /*
+  queries.deneme.getDeneme().then((res) => {
+    console.log("deneme", res);
+  });
+  */
 
   return (
     <div className="flex items-center justify-center min-h-screen">
@@ -45,7 +59,11 @@ const Login: React.FC = () => {
           onFinish={handleSubmit}
           // onFinish={() => signInEmailPassword(loginForm.email, loginForm.password)}
         >
-          <Form.Item name="email" rules={[{ required: true, message: "Please input your Email!" }]}>
+          <Form.Item
+            name="email"
+            rules={[{ required: true, message: "Please input your Email!" }]}
+            validateStatus={isNotConfirmed ? "warning" : undefined}
+          >
             <Input
               prefix={<UserOutlined className="site-form-item-icon" />}
               placeholder="Email"
@@ -65,13 +83,6 @@ const Login: React.FC = () => {
               onChange={handleChange}
             />
           </Form.Item>
-          <Form hidden={!isNotConfirmed}>
-            <Form.Item>
-              <Button type="primary" onClick={() => router.push(`/confirm?email=${loginForm.email}`)}>
-                Confirm Email
-              </Button>
-            </Form.Item>
-          </Form>
           <Form.Item>
             <div className="flex flex-col text-center">
               <Button type="primary" htmlType="submit" className="login-form-button">
