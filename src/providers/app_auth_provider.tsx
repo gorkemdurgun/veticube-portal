@@ -1,5 +1,5 @@
 import { useAppSelector } from "@/hooks";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 type AppAuthProviderProps = {
@@ -8,13 +8,18 @@ type AppAuthProviderProps = {
 
 export const AppAuthProvider: React.FC<AppAuthProviderProps> = ({ children }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const { isAuthenticated } = useAppSelector((state) => state.auth);
 
+  const unprotectedRoutes = ["/", "/login", "/register", "/forgot-password"];
+
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated && !unprotectedRoutes.includes(pathname)) {
       router.push("/login");
+    } else if (isAuthenticated && unprotectedRoutes.includes(pathname)) {
+      // router.push("/admin");
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, pathname]);
 
   return <>{children}</>;
 };

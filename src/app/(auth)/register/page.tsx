@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Divider, Form, Input, message } from "antd";
 import { useRouter } from "next/navigation";
-import { authenticate } from "@/services/auth/authenticate";
 import userPool from "@/services/auth/userpool";
 import { CognitoUserAttribute } from "amazon-cognito-identity-js";
 
