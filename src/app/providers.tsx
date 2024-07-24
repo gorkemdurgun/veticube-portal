@@ -18,7 +18,7 @@ export default function Providers({
 }>) {
   return (
     <AppReduxProvider>
-      {/* <AppApolloProvicer> */}
+      {/* <AppApolloWSProvider> */}
       <AppApolloGqlProvider>
         <AppQueryProvider>
           <AppConfigProvider>
@@ -28,7 +28,7 @@ export default function Providers({
           </AppConfigProvider>
         </AppQueryProvider>
       </AppApolloGqlProvider>
-      {/* </AppApolloProvicer> */}
+      {/* </AppApolloWSProvider> */}
     </AppReduxProvider>
   );
 }

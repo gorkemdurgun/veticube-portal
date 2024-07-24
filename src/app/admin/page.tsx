@@ -1,11 +1,14 @@
 "use client";
 
-import { NOTES } from "@/services/db/queries/notes";
-
+import { queries } from "@/services/db";
 import { Button } from "antd";
 import { useEffect, useState } from "react";
 
 const AdminPage = () => {
+  queries.deneme.getDeneme().then((res) => {
+    console.log("deneme", res);
+  });
+
   return (
     <span>
       <Button type="primary" onClick={() => null}>

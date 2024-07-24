@@ -2,14 +2,17 @@
 
 import React, { useEffect, useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Card, Divider, Form, Input, message } from "antd";
+import { Button, Card, Descriptions, Divider, Form, Input, message } from "antd";
 import { useRouter } from "next/navigation";
-import { authenticate } from "@/services/auth/authenticate";
-import { queries } from "@/services/db";
+
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { loginRequest } from "@/redux/slices/authSlice";
 
 const Login: React.FC = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
+  const clientSession = useAppSelector((state) => state.auth.clientSession);
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "Goko3599.",
@@ -23,21 +26,16 @@ const Login: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    authenticate(loginForm.email, loginForm.password).catch((err) => {
-      if (err.code === "UserNotConfirmedException") {
-        setIsNotConfirmed(true);
-        message.warning("User not confirmed, please check your email to confirm your account.");
-      } else {
-        message.error(err.message);
-      }
-    });
+    dispatch(
+      loginRequest({
+        email: loginForm.email,
+        password: loginForm.password,
+        onSuccess: () => {
+          router.push("/admin");
+        },
+      })
+    );
   };
-
-  /*
-  queries.deneme.getDeneme().then((res) => {
-    console.log("deneme", res);
-  });
-  */
 
   return (
     <div className="flex items-center justify-center min-h-screen">

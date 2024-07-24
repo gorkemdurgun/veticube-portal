@@ -13,9 +13,8 @@ type GetDenemeResponse = {
 export const getDeneme = async () => {
   const { data } = await apolloGqlClient.query<GetDenemeResponse>({
     query: gql`
-      query GetDeneme {
+      query MyQuery {
         deneme {
-          id
           pet
         }
       }
