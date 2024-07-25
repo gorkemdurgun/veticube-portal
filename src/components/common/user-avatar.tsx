@@ -4,6 +4,7 @@ import { PiSignOutDuotone as SignOutIcon } from "react-icons/pi";
 
 export const UserAvatar: React.FC<{}> = () => {
   const { darkMode } = useAppSelector((state) => state.theme);
+  const { clientSession } = useAppSelector((state) => state.auth);
 
   return (
     <div
@@ -11,7 +12,7 @@ export const UserAvatar: React.FC<{}> = () => {
         compatible-dark ${darkMode ? "bg-gray-600/20 text-white" : "bg-white text-black"} `}
     >
       {/* <Avatar size={"small"} className="capitalize" icon={userData?.displayName?.charAt(0)} /> */}
-      {/* <span>{userData?.displayName}</span> */}
+      <span>{clientSession?.idToken.substring(0, 10)}</span>
 
       {/* <span className="text-xs text-gray-500">{`(${userData?.email})`}</span> */}
       <Divider type="vertical" className="mx-0" />

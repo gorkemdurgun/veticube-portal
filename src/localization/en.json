@@ -105,6 +105,13 @@
         "title": "Actions",
         "add-new": "Add new appointment"
       }
+    },
+    "employees": {
+      "employee-actions": {
+        "title": "Actions",
+        "add-new-vet": "Add new veterinarian",
+        "add-new-staff": "Add new staff"
+      }
     }
   }
 }

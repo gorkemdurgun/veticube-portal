@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { LockOutlined, UserOutlined, MailOutlined, FlagOutlined, PhoneOutlined } from "@ant-design/icons";
 import { Button, Card, Divider, Form, Input, message } from "antd";
 import { useRouter } from "next/navigation";
 import userPool from "@/services/auth/userpool";
@@ -12,29 +12,13 @@ const Register: React.FC = () => {
   // const { signInEmailPassword, isLoading, isSuccess, isError, error } = useSignInEmailPassword();
 
   const [loginForm, setLoginForm] = useState({
+    firstName: "",
+    lastName: "",
+    countryCode: "",
+    phoneNumber: "",
     email: "",
     password: "",
   });
-
-  const attributes: CognitoUserAttribute[] = [];
-  attributes.push(
-    new CognitoUserAttribute({
-      Name: "email",
-      Value: loginForm.email,
-    })
-  );
-  attributes.push(
-    new CognitoUserAttribute({
-      Name: "custom:role",
-      Value: "user",
-    })
-  );
-  attributes.push(
-    new CognitoUserAttribute({
-      Name: "custom:allowedRoles",
-      Value: "user,client",
-    })
-  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
@@ -43,7 +27,40 @@ const Register: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    userPool.signUp(loginForm.email, loginForm.password, attributes, attributes, (err, data) => {
+    let attributes: CognitoUserAttribute[] = [];
+    attributes.push(
+      new CognitoUserAttribute({
+        Name: "email",
+        Value: loginForm.email,
+      })
+    );
+    attributes.push(
+      new CognitoUserAttribute({
+        Name: "custom:firstName",
+        Value: loginForm.firstName,
+      })
+    );
+    attributes.push(
+      new CognitoUserAttribute({
+        Name: "custom:lastName",
+        Value: loginForm.lastName,
+      })
+    );
+    attributes.push(
+      new CognitoUserAttribute({
+        Name: "custom:countryCode",
+        Value: loginForm.countryCode,
+      })
+    );
+    attributes.push(
+      new CognitoUserAttribute({
+        Name: "custom:phoneNumber",
+        Value: loginForm.phoneNumber,
+      })
+    );
+
+    console.log(attributes);
+    userPool.signUp(loginForm.email, loginForm.password, attributes, [], (err, data) => {
       if (err) {
         console.error(err);
         return;
@@ -71,15 +88,52 @@ const Register: React.FC = () => {
           onFinish={handleSubmit}
           // onFinish={() => signInEmailPassword(loginForm.email, loginForm.password)}
         >
-          <Form.Item name="email" rules={[{ required: true, message: "Please input your Email!" }]}>
+          <Form.Item name="firstName" rules={[{ required: true, message: "Please input your First Name!" }]}>
             <Input
               prefix={<UserOutlined className="site-form-item-icon" />}
+              placeholder="First Name"
+              name="firstName"
+              value={loginForm.firstName}
+              onChange={handleChange}
+            />
+          </Form.Item>
+          <Form.Item name="lastName" rules={[{ required: true, message: "Please input your Last Name!" }]}>
+            <Input
+              prefix={<UserOutlined className="site-form-item-icon" />}
+              placeholder="Last Name"
+              name="lastName"
+              value={loginForm.lastName}
+              onChange={handleChange}
+            />
+          </Form.Item>
+          <Form.Item name="countryCode" rules={[{ required: true, message: "Please input your Country Code!" }]}>
+            <Input
+              prefix={<FlagOutlined className="site-form-item-icon" />}
+              placeholder="Country Code"
+              name="countryCode"
+              value={loginForm.countryCode}
+              onChange={handleChange}
+            />
+          </Form.Item>
+          <Form.Item name="phoneNumber" rules={[{ required: true, message: "Please input your Phone Number!" }]}>
+            <Input
+              prefix={<PhoneOutlined className="site-form-item-icon" />}
+              placeholder="Phone Number"
+              name="phoneNumber"
+              value={loginForm.phoneNumber}
+              onChange={handleChange}
+            />
+          </Form.Item>
+          <Form.Item name="email" rules={[{ required: true, message: "Please input your Email!" }]}>
+            <Input
+              prefix={<MailOutlined className="site-form-item-icon" />}
               placeholder="Email"
               name="email"
               value={loginForm.email}
               onChange={handleChange}
             />
           </Form.Item>
+
           <Form.Item name="password" rules={[{ required: true, message: "Please input your Password!" }]}>
             <Input
               prefix={<LockOutlined className="site-form-item-icon" />}
