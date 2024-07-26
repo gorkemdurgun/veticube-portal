@@ -43,8 +43,28 @@ type CognitoLoginResponse = {
   clockDrift: number;
 };
 
-type ClientSession = {
+type LoginRequestPayload = {
+  email: string;
+  password: string;
+  onSuccess?: () => void;
+  onError?: (error: string) => void;
+};
+
+type LoginSuccessPayload = {
   idToken: string;
   accessToken: string;
   refreshToken: string;
+};
+
+type SignUpVetAccountRequestPayload = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  countryCode: string;
+  phoneNumber: string;
+  clinicBranchId: string;
+  specilization?: string;
+  onSuccess?: () => void;
+  onError?: (error: string) => void;
 };

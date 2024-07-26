@@ -1,7 +1,7 @@
 import { Button, Card } from "antd";
 import { TranslatedText } from "@/components/common";
 import { PiPlusBold as AddIcon } from "react-icons/pi";
-import { AppointmentCreateModal } from "../modals";
+import { AddVeterinaryModal } from "../modals";
 import { useState } from "react";
 
 type EmployeeActionsProps = {};
@@ -12,7 +12,7 @@ export const EmployeeActions: React.FC<EmployeeActionsProps> = () => {
 
   return (
     <>
-      {/* <AppointmentCreateModal visible={createModalVisible} setVisible={setCreateModalVisible} onCreated={() => {}} /> */}
+      <AddVeterinaryModal visible={createVetAccountModalVisible} setVisible={setCreateVetAccountModalVisible} />
       <Card>
         <div className="flex flex-row items-center justify-between gap-4 -m-2">
           <TranslatedText className="text-lg font-semibold" tPrefix="components" tKey="employees.employee-actions.title" />

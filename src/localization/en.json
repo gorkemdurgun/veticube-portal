@@ -90,6 +90,16 @@
         "time": "Time",
         "create": "Create",
         "cancel": "Cancel"
+      },
+      "add-vet": {
+        "title": "Create new veterinarian account",
+        "email": "Email",
+        "first-name": "First name",
+        "last-name": "Last name",
+        "country-code": "Country code",
+        "phone": "Phone",
+        "clinic-branch": "Clinic branch",
+        "specilization": "Specilization"
       }
     },
     "appointments": {
