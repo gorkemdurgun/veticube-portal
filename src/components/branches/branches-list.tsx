@@ -26,9 +26,10 @@ export const BranchesList: React.FC<Props> = ({ isLoading, branches }) => {
           expandable={{
             expandRowByClick: true,
             expandedRowRender: (record) => (
-              <Descriptions title={t("components.branches.branches-list.columns.details")} bordered size="small" column={1}>
+              <Descriptions bordered size="small" column={3}>
                 <Descriptions.Item label={"Veteriner sayısı"}>{record.veterinarian_count.aggregate.count}</Descriptions.Item>
-                {/* <Descriptions.Item label={"Asistan sayısı"}>{record.assistant_count}</Descriptions.Item> */}
+                <Descriptions.Item label={"x sayısı"}>x</Descriptions.Item>
+                <Descriptions.Item label={"x sayısı"}>x</Descriptions.Item>
               </Descriptions>
             ),
           }}
