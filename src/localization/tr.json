@@ -1,8 +1,13 @@
 {
   "global": {
-    "appointments": {
+    "user-types": {
+      "vet": "Veteriner",
+      "staff": "Personel",
+      "cli": "Müşteri"
+    },
+    "appointment-types": {
       "check": "Kontrol",
-      "vaccination": "Aşı",
+      "vaccination": "Aşılama",
       "surgery": "Ameliyat",
       "grooming": "Bakım",
       "other": "Diğer"
@@ -43,36 +48,47 @@
         "minute": "dk",
         "hour": "saat",
         "day": "gün",
-        "reschedule": "Planla",
+        "reschedule": "Yeniden planla",
         "cancel": "İptal"
       },
       "appointment-complete": {
         "title": "Randevuyu tamamla",
-        "pet": "Evcil",
+        "pet": "Evcil Hayvan",
         "owner": "Sahip",
-        "type": "İşlem",
+        "type": "Tür",
         "vet": "Veteriner",
         "date": "Tarih",
         "time": "Saat",
         "options": "Tamamlama seçenekleri",
-        "options-1": "Randevu farklı bir zamanda yapıldı",
-        "options-2": "Randevuyu başka bir veteriner yaptı",
+        "options-1": "Randevu farklı bir saatte gerçekleşti",
+        "options-2": "Başka bir veteriner randevuyu gerçekleştirdi",
         "pay-amount": "Ödeme miktarı",
         "complete": "Tamamla",
         "cancel": "İptal"
       },
       "appointment-cancel": {
         "title": "Randevuyu iptal et",
-        "pet": "Evcil",
+        "pet": "Evcil Hayvan",
         "owner": "Sahip",
-        "type": "İşlem",
+        "type": "Tür",
         "vet": "Veteriner",
         "date": "Tarih",
         "time": "Saat",
         "options": "İptal seçenekleri",
         "options-1": "Müşteri talebi",
-        "options-2": "Bildirmeden gelmedi",
+        "options-2": "Talep olmadan iptal",
         "continue": "Devam et",
+        "cancel": "İptal"
+      },
+      "appointment-create": {
+        "title": "Randevu oluştur",
+        "pet": "Evcil Hayvan",
+        "owner": "Sahip",
+        "type": "Tür",
+        "vet": "Veteriner",
+        "date": "Tarih",
+        "time": "Saat",
+        "create": "Oluştur",
         "cancel": "İptal"
       }
     },
@@ -82,27 +98,37 @@
         "yesterday": "Dün",
         "today": "Bugün",
         "tomorrow": "Yarın",
-        "scheduled": "Planlandı",
-        "rescheduled": "Yeniden planlandı",
-        "cancelled": "İptal edildi",
-        "completed": "Tamamlandı"
+        "scheduled": "Planlanmış",
+        "rescheduled": "Yeniden planlanmış",
+        "cancelled": "İptal edilmiş",
+        "completed": "Tamamlanmış"
       },
       "appointment-actions": {
         "title": "İşlemler",
-        "add-new": "Randevu oluştur"
+        "add-new": "Yeni randevu ekle"
       }
     },
     "employees": {
       "employee-actions": {
         "title": "İşlemler",
         "add-new-vet": "Yeni veteriner ekle",
-        "add-new-staff": "Yeni çalışan ekle"
+        "add-new-staff": "Yeni personel ekle"
       }
     },
     "branches": {
       "branch-actions": {
         "title": "İşlemler",
         "add-new": "Yeni şube ekle"
+      },
+      "branches-list": {
+        "empty": "Şube bulunamadı.",
+        "columns": {
+          "name": "İsim",
+          "address": "Adres",
+          "city": "Şehir",
+          "phone": "Telefon",
+          "actions": "İşlemler"
+        }
       }
     }
   }

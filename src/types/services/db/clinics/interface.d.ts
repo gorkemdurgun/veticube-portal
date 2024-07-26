@@ -9,4 +9,9 @@ type ClinicBranchItem = {
   phone: string;
   address: string;
   city: string;
+  veterinarian_count: {
+    aggregate: {
+      count: number;
+    };
+  };
 };

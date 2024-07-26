@@ -119,6 +119,16 @@
       "branch-actions": {
         "title": "Actions",
         "add-new": "Add new branch"
+      },
+      "branches-list": {
+        "empty": "No branches found.",
+        "columns": {
+          "name": "Name",
+          "address": "Address",
+          "city": "City",
+          "phone": "Phone",
+          "actions": "Actions"
+        }
       }
     }
   }
