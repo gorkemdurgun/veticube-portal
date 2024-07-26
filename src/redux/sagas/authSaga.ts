@@ -8,6 +8,7 @@ function* login(action: ReturnType<typeof loginRequest>): Generator<CallEffect<a
   const { email, password, onSuccess, onError } = action.payload;
   try {
     const response = yield call(auth.login, action.payload.email, action.payload.password);
+    console.log(response);
     yield put(
       loginSuccess({
         idToken: response.idToken.jwtToken,

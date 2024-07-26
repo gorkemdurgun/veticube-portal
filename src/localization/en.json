@@ -20,6 +20,7 @@
     "patients": "Patients",
     "clients": "Clients",
     "employees": "Employees",
+    "branches": "Branches",
     "stock": "Stock",
     "accounting": "Accounting",
     "settings": "Settings"
@@ -30,6 +31,7 @@
     "patients": "Patients",
     "clients": "Clients",
     "employees": "Employees",
+    "branches": "Branches",
     "stock": "Stock",
     "accounting": "Accounting",
     "settings": "Settings"
@@ -111,6 +113,12 @@
         "title": "Actions",
         "add-new-vet": "Add new veterinarian",
         "add-new-staff": "Add new staff"
+      }
+    },
+    "branches": {
+      "branch-actions": {
+        "title": "Actions",
+        "add-new": "Add new branch"
       }
     }
   }

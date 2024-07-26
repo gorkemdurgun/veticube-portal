@@ -1,7 +1,7 @@
- import { getDeneme } from "./deneme";
+import { getClinicAndBranches } from "./clinic";
 
 export const queries = {
-   deneme: {
-    getDeneme,
-   },
+  clinic: {
+    getClinicAndBranches,
+  },
 };

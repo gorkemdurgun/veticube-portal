@@ -15,6 +15,7 @@
     "patients": "Hastalar",
     "clients": "Müşteriler",
     "employees": "Çalışanlar",
+    "branches": "Şubeler",
     "stock": "Stok",
     "accounting": "Muhasebe",
     "settings": "Ayarlar"
@@ -25,6 +26,7 @@
     "patients": "Hastalar",
     "clients": "Müşteriler",
     "employees": "Çalışanlar",
+    "branches": "Şubeler",
     "stock": "Stok",
     "accounting": "Muhasebe",
     "settings": "Ayarlar"
@@ -88,6 +90,19 @@
       "appointment-actions": {
         "title": "İşlemler",
         "add-new": "Randevu oluştur"
+      }
+    },
+    "employees": {
+      "employee-actions": {
+        "title": "İşlemler",
+        "add-new-vet": "Yeni veteriner ekle",
+        "add-new-staff": "Yeni çalışan ekle"
+      }
+    },
+    "branches": {
+      "branch-actions": {
+        "title": "İşlemler",
+        "add-new": "Yeni şube ekle"
       }
     }
   }

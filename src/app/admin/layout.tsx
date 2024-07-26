@@ -11,6 +11,7 @@ import {
   PiPawPrintDuotone as PatientsIcon,
   PiUserCircleDuotone as ClientsIcon,
   PiClockUserDuotone as EmployeesIcon,
+  PiStorefrontDuotone as BranchesIcon,
   PiPackageDuotone as StockIcon,
   PiWalletDuotone as AccountingIcon,
   PiGearDuotone as SettingsIcon,
@@ -71,6 +72,14 @@ export default function AdminLayout({
       label: t("sidebar.employees"),
       icon: <EmployeesIcon className="w-6 h-6 !-ml-1" />,
       onClick: () => router.push("/admin/employees"),
+    },
+    {
+      // disabled: true,
+      className: "!h-12 py-2 text-lg",
+      key: "/admin/branches",
+      label: t("sidebar.branches"),
+      icon: <BranchesIcon className="w-6 h-6 !-ml-1" />,
+      onClick: () => router.push("/admin/branches"),
     },
     {
       disabled: true,

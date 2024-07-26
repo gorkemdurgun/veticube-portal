@@ -1,7 +1,7 @@
 type AppointmentStatus = "scheduled" | "rescheduled" | "cancelled" | "completed";
 type AppointmentType = "check" | "surgery" | "vaccination" | "grooming" | "other";
 
-type Appointment = {
+interface Appointment {
   id: string;
   appointmentDate: string;
   appointmentTime: string;
@@ -14,4 +14,4 @@ type Appointment = {
   notes: string;
   createdAt: string;
   updatedAt: string;
-};
+}

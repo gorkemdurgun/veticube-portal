@@ -41,7 +41,7 @@ export const Navbar: React.FC = () => {
       <div className="w-full flex justify-between items-center px-[50px]">
         <div className="text-emerald-700">Admin Panel</div>
         <div className="grid grid-flow-col items-center gap-2">
-          <Dropdown.Button
+          {/* <Dropdown.Button
             type="default"
             trigger={["click"]}
             icon={<DownOutlined />}
@@ -57,7 +57,7 @@ export const Navbar: React.FC = () => {
             ]}
           >
             {darkMode ? <MoonOutlined /> : <SunOutlined />}
-          </Dropdown.Button>
+          </Dropdown.Button> */}
           <Dropdown.Button type="default" trigger={["click"]} icon={<DownOutlined />} menu={{ items: langItems, selectedKeys: [language] }}>
             {language === "tr" ? "Türkçe" : "English"}
           </Dropdown.Button>
