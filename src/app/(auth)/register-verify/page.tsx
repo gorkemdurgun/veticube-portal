@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Divider, Form, Input, message } from "antd";
 import type { GetProps } from "antd";
-import { verifyEmail } from "@/services/auth/authenticate";
+// import { verifyEmail } from "@/services/auth/authenticate";
 
 type OTPProps = GetProps<typeof Input.OTP>;
 
@@ -31,7 +31,7 @@ const RegisterVerify: React.FC = () => {
   };
 
   const onSubmit = async () => {
-    await verifyEmail("gorkemdurgunn@gmail.com", otp);
+    // await verifyEmail("gorkemdurgunn@gmail.com", otp);
   };
 
   const onChange: OTPProps["onChange"] = (text) => {
