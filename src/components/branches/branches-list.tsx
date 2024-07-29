@@ -15,14 +15,40 @@ const VetTable = ({ vets }: { vets: ClinicBranchVeterinarianItem[] }) => {
     <List
       dataSource={vets}
       renderItem={(vet) => (
-        <List.Item>
+        <List.Item
+          className="bg-gray-100 rounded-lg !p-4"
+          actions={[
+            <Button
+              key={vet.vetId}
+              disabled={vet?.user?.allowed_roles?.includes("vet")}
+              danger={vet?.user?.allowed_roles?.includes("vet") ? false : true}
+              className={vet?.user?.allowed_roles?.includes("vet") ? "bg-green-200 text-green-500" : "bg-red-200 text-red-500"}
+            >
+              <span>
+                {vet?.user?.allowed_roles?.includes("vet") ? "Have Veterinarian Role" : "Not Have Veterinarian Role"}
+                {vet?.user?.allowed_roles?.includes("vet") ? "" : " (Click to Authorize)" || ""}
+              </span>
+            </Button>,
+
+            <Button
+              key={vet.vetId}
+              disabled={vet?.user?.is_verified}
+              danger={vet?.user?.is_verified ? false : true}
+              className={vet?.user?.is_verified ? "bg-green-200 text-green-500" : "bg-red-200 text-red-500"}
+            >
+              <span>
+                {vet?.user?.is_verified ? "Verified User" : "Not Verified User"} {vet?.user?.is_verified ? "" : " (Click to Verify)" || ""}
+              </span>
+            </Button>,
+          ]}
+        >
           <List.Item.Meta
-            title={`${vet.user.first_name} ${vet.user.last_name}`}
-            description={
-              <div>
-                <Badge status={vet.user.is_verified ? "success" : "default"} />
-                {vet.user.default_role}
-                {` (${vet.user.allowed_roles})`}
+            title={
+              <div className="flex flex-row gap-2">
+                <span className="font-semibold">
+                  {vet.user?.first_name} {vet.user?.last_name}
+                </span>
+                <span className="text-gray-500">{`#${vet?.user?.default_role}`}</span>
               </div>
             }
           />

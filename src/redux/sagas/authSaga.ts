@@ -41,7 +41,7 @@ function* signUpVetAccount(action: ReturnType<typeof signUpVetAccountRequest>): 
       console.log(vet);
 
       console.log("Updating user role...", userId);
-      const updateRole = yield call(mutations.auth.veterinarians.updateVetRole, userId, "user,vet");
+      const updateRole = yield call(mutations.auth.veterinarians.updateVetRole, userId);
       console.log(updateRole);
     }
 
