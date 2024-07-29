@@ -9,9 +9,16 @@ type ClinicBranchItem = {
   phone: string;
   address: string;
   city: string;
-  veterinarian_count: {
-    aggregate: {
-      count: number;
-    };
+  veterinarians: ClinicBranchVeterinarianItem[];
+};
+type ClinicBranchVeterinarianItem = {
+  vetId: string;
+  user: {
+    userId: string;
+    first_name: string;
+    last_name: string;
+    default_role: string;
+    allowed_roles: string;
+    is_verified: boolean;
   };
 };

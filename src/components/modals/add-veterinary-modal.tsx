@@ -65,7 +65,7 @@ export const AddVeterinaryModal: React.FC<Props> = ({ visible, setVisible }) => 
   ];
 
   return (
-    <Modal open={true} onOk={handleOk} onCancel={handleCancel} title={<TranslatedText tPrefix="components" tKey="modals.add-vet.title" />}>
+    <Modal open={visible} onOk={handleOk} onCancel={handleCancel} title={<TranslatedText tPrefix="components" tKey="modals.add-vet.title" />}>
       <Form name="create-vet-form" layout="vertical" preserve={false} form={createForm} onFinish={handleSubmit}>
         <div className="grid grid-cols-2 gap-4 mt-4">
           <Form.Item name="first_name" label="First Name" rules={[{ required: true, message: "Please input first name!" }]}>

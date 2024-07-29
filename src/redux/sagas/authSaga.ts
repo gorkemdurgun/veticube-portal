@@ -1,5 +1,5 @@
 import { call, put, takeLatest, takeEvery, ForkEffect, CallEffect, PutEffect } from "redux-saga/effects";
-import { loginRequest, loginSuccess, loginFailure, signUpVetAccountRequest } from "@/redux/slices/authSlice"; // authSlice dosyanızın yolunu kontrol edin
+import { loginRequest, loginSuccess, loginFailure, signUpVetAccountRequest } from "@/redux/slices/authSlice";
 import { auth } from "@/services/auth";
 import { mutations } from "@/services/db";
 import toErrorMessage from "@/utils/toError";
@@ -35,10 +35,14 @@ function* signUpVetAccount(action: ReturnType<typeof signUpVetAccountRequest>): 
     const response = yield call(auth.signup.signupUser, email, password, firstName, lastName, countryCode, phoneNumber);
     const userId = response.userId;
 
-    // Kullanıcıyı veritabanına kaydetme
+    // Kullanıcıyı veritabanına kaydetme ve kullanıcıya veteriner rolü verme
     if (userId) {
       const vet = yield call(mutations.auth.veterinarians.insertVeterinarian, userId, clinicBranchId, specilization);
       console.log(vet);
+
+      console.log("Updating user role...", userId);
+      const updateRole = yield call(mutations.auth.veterinarians.updateVetRole, userId, "user,vet");
+      console.log(updateRole);
     }
 
     if (onSuccess) {

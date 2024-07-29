@@ -17,7 +17,7 @@ export const EmployeeActions: React.FC<EmployeeActionsProps> = () => {
         <div className="flex flex-row items-center justify-between gap-4 -m-2">
           <TranslatedText className="text-lg font-semibold" tPrefix="components" tKey="employees.employee-actions.title" />
           <div className="flex flex-row gap-2">
-            <Button type="primary" onClick={() => {}}>
+            <Button type="primary" onClick={() => setCreateVetAccountModalVisible(true)}>
               <AddIcon className="mr-2" />
               <TranslatedText tPrefix="components" tKey="employees.employee-actions.add-new-vet" />
             </Button>

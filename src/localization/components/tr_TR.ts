@@ -156,7 +156,7 @@ const langTR: Locale = {
     downloadFile: "Dosyayı indir",
   },
   Empty: {
-    description: "Veri Yok",
+    description: "Veri yok",
   },
   Icon: {
     icon: "ikon",

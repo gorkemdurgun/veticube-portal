@@ -1,5 +1,5 @@
 import { queries } from "@/services/db";
-import { Badge, Button, Descriptions, List, Table, TableProps } from "antd";
+import { Badge, Button, List, Table, TableProps } from "antd";
 import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { PiPhone as PhoneIcon, PiMapPin as AddressIcon, PiPencilSimple as EditIcon } from "react-icons/pi";
@@ -8,6 +8,28 @@ import { useTranslation } from "react-i18next";
 type Props = {
   isLoading: boolean;
   branches?: ClinicBranchItem[];
+};
+
+const VetTable = ({ vets }: { vets: ClinicBranchVeterinarianItem[] }) => {
+  return (
+    <List
+      dataSource={vets}
+      renderItem={(vet) => (
+        <List.Item>
+          <List.Item.Meta
+            title={`${vet.user.first_name} ${vet.user.last_name}`}
+            description={
+              <div>
+                <Badge status={vet.user.is_verified ? "success" : "default"} />
+                {vet.user.default_role}
+                {` (${vet.user.allowed_roles})`}
+              </div>
+            }
+          />
+        </List.Item>
+      )}
+    />
+  );
 };
 
 export const BranchesList: React.FC<Props> = ({ isLoading, branches }) => {
@@ -24,14 +46,9 @@ export const BranchesList: React.FC<Props> = ({ isLoading, branches }) => {
           rowClassName="cursor-pointer"
           pagination={false}
           expandable={{
+            defaultExpandAllRows: true,
             expandRowByClick: true,
-            expandedRowRender: (record) => (
-              <Descriptions bordered size="small" column={3}>
-                <Descriptions.Item label={"Veteriner sayısı"}>{record.veterinarian_count.aggregate.count}</Descriptions.Item>
-                <Descriptions.Item label={"x sayısı"}>x</Descriptions.Item>
-                <Descriptions.Item label={"x sayısı"}>x</Descriptions.Item>
-              </Descriptions>
-            ),
+            expandedRowRender: (record) => <VetTable vets={record.veterinarians} />,
           }}
           columns={[
             {

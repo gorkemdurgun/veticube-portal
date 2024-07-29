@@ -14,9 +14,15 @@ export const getClinicAndBranches = async () => {
             phone
             address
             city
-            veterinarian_count: veterinarians_aggregate {
-              aggregate {
-                count
+            veterinarians {
+              vetId: id
+              user {
+                userId: id
+                first_name
+                last_name
+                default_role
+                allowed_roles
+                is_verified
               }
             }
           }
