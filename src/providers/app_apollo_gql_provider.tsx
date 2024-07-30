@@ -25,7 +25,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     graphQLErrors.map(({ message }) => {
       console.log(`[GraphQL error]: ${message}`); // GraphQL hatalarını logla
       // if JWT token is expired, logout user
-      if (message === "jwt expired") {
+      if (message === "Could not verify JWT: JWTExpired") {
         store.dispatch(logout());
       }
     });

@@ -46,7 +46,8 @@ function* signUpVetAccount(action: ReturnType<typeof signUpVetAccountRequest>): 
     }
 
     if (onSuccess) {
-      onSuccess();
+      console.log("Sending email to user...");
+      onSuccess(email);
     }
   } catch (error) {
     // Hata alındığında onError callback fonksiyonunu çağırma

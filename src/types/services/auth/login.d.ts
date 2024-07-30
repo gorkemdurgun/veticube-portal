@@ -65,6 +65,6 @@ type SignUpVetAccountRequestPayload = {
   phoneNumber: string;
   clinicBranchId: string;
   specilization?: string;
-  onSuccess?: () => void;
+  onSuccess?: (email: string) => void;
   onError?: (error: string) => void;
 };
