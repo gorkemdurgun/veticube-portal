@@ -1,9 +1,11 @@
 import { login } from "./login";
-import { signupUser } from "./signup";
+import { signupUser, resendOtp, confirmUser } from "./signup";
 
 export const auth = {
   login,
   signup: {
     signupUser,
+    resendOtp,
+    confirmUser,
   },
 };

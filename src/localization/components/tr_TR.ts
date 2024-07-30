@@ -133,7 +133,7 @@ const langTR: Locale = {
     justOkText: "Tamam",
   },
   Popconfirm: {
-    okText: "Tamam",
+    okText: "Devam",
     cancelText: "İptal",
   },
   Transfer: {

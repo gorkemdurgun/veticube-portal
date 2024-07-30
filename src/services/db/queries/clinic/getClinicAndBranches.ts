@@ -18,6 +18,7 @@ export const getClinicAndBranches = async () => {
               vetId: id
               user {
                 userId: id
+                email
                 first_name
                 last_name
                 default_role

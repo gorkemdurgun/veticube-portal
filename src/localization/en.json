@@ -100,6 +100,10 @@
         "phone": "Phone",
         "clinic-branch": "Clinic branch",
         "specilization": "Specilization"
+      },
+      "verify-user": {
+        "title": "Verify user with email",
+        "description": "Please enter the verification code sent to the email address:"
       }
     },
     "appointments": {

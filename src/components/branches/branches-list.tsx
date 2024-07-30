@@ -1,9 +1,17 @@
 import { queries } from "@/services/db";
-import { Badge, Button, List, Table, TableProps } from "antd";
-import { useEffect } from "react";
+import { Badge, Button, List, message, Popconfirm, Table, TableProps } from "antd";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { PiPhone as PhoneIcon, PiMapPin as AddressIcon, PiPencilSimple as EditIcon } from "react-icons/pi";
+import {
+  PiPhone as PhoneIcon,
+  PiMapPin as AddressIcon,
+  PiPencilSimple as EditIcon,
+  PiSealCheckDuotone as VerifiedIcon,
+  PiSealWarningDuotone as NotVerifiedIcon,
+} from "react-icons/pi";
 import { useTranslation } from "react-i18next";
+import { auth } from "@/services/auth";
+import { VerifyVeterinaryModal } from "../modals";
 
 type Props = {
   isLoading: boolean;
@@ -11,50 +19,97 @@ type Props = {
 };
 
 const VetTable = ({ vets }: { vets: ClinicBranchVeterinarianItem[] }) => {
-  return (
-    <List
-      dataSource={vets}
-      renderItem={(vet) => (
-        <List.Item
-          className="bg-gray-100 rounded-lg !p-4"
-          actions={[
-            <Button
-              key={vet.vetId}
-              disabled={vet?.user?.allowed_roles?.includes("vet")}
-              danger={vet?.user?.allowed_roles?.includes("vet") ? false : true}
-              className={vet?.user?.allowed_roles?.includes("vet") ? "bg-green-200 text-green-500" : "bg-red-200 text-red-500"}
-            >
-              <span>
-                {vet?.user?.allowed_roles?.includes("vet") ? "Have Veterinarian Role" : "Not Have Veterinarian Role"}
-                {vet?.user?.allowed_roles?.includes("vet") ? "" : " (Click to Authorize)" || ""}
-              </span>
-            </Button>,
+  const [verifyModalVisible, setVerifyModalVisible] = useState<boolean>(false);
+  const [sendedEmail, setSendedEmail] = useState<string>("");
 
-            <Button
-              key={vet.vetId}
-              disabled={vet?.user?.is_verified}
-              danger={vet?.user?.is_verified ? false : true}
-              className={vet?.user?.is_verified ? "bg-green-200 text-green-500" : "bg-red-200 text-red-500"}
+  const onVerifyClick = (vetEmail: string) =>
+    Promise.resolve(
+      auth.signup.resendOtp(vetEmail, (email) => {
+        message.success(`Verification email sent to ${email}`);
+        setSendedEmail(email);
+        setTimeout(() => {
+          setVerifyModalVisible(true);
+        }, 1000);
+      })
+    );
+
+  return (
+    <>
+      <VerifyVeterinaryModal visible={verifyModalVisible} setVisible={setVerifyModalVisible} email={sendedEmail} />
+      <List
+        dataSource={vets}
+        renderItem={(vet) => {
+          const isVetAuthorized = vet?.user?.allowed_roles?.includes("vet") && vet?.user?.default_role === "vet";
+          const isVetVerified = vet?.user?.is_verified;
+          return (
+            <List.Item
+              className="bg-gray-100 rounded-lg !p-4"
+              actions={[
+                <Popconfirm
+                  key={vet.vetId}
+                  disabled={isVetVerified}
+                  overlayInnerStyle={{ width: "360px" }}
+                  icon={null}
+                  placement="bottomLeft"
+                  title="Kullanıcı doğrulama"
+                  description="Kullanıcının email adresine doğrulama kodu gönderilecektir. Devam etmek istiyor musunuz?"
+                  onConfirm={() => onVerifyClick(vet?.user?.email)}
+                >
+                  <Button
+                    disabled={isVetVerified}
+                    danger={!isVetVerified}
+                    className={isVetVerified ? "bg-green-200 text-green-500" : "bg-red-200 text-red-500"}
+                  >
+                    {isVetVerified ? (
+                      <div className="flex flex-row gap-2">
+                        <VerifiedIcon className="w-5 h-5" />
+                        Verified User
+                      </div>
+                    ) : (
+                      <div className="flex flex-row gap-2">
+                        <NotVerifiedIcon className="w-5 h-5" />
+                        Not Verified User (Click to Verify)
+                      </div>
+                    )}
+                  </Button>
+                </Popconfirm>,
+                <Button
+                  key={vet.vetId}
+                  disabled={isVetAuthorized}
+                  danger={!isVetAuthorized}
+                  className={isVetAuthorized ? "bg-green-200 text-green-500" : "bg-red-200 text-red-500"}
+                >
+                  <span>
+                    {isVetAuthorized ? (
+                      <div className="flex flex-row items-center gap-2">
+                        <VerifiedIcon className="w-5 h-5" />
+                        Authorized Vet User
+                      </div>
+                    ) : (
+                      <div className="flex flex-row items-center gap-2">
+                        <NotVerifiedIcon className="w-5 h-5" />
+                        Not Authorized Vet User
+                      </div>
+                    )}
+                  </span>
+                </Button>,
+              ]}
             >
-              <span>
-                {vet?.user?.is_verified ? "Verified User" : "Not Verified User"} {vet?.user?.is_verified ? "" : " (Click to Verify)" || ""}
-              </span>
-            </Button>,
-          ]}
-        >
-          <List.Item.Meta
-            title={
-              <div className="flex flex-row gap-2">
-                <span className="font-semibold">
-                  {vet.user?.first_name} {vet.user?.last_name}
-                </span>
-                <span className="text-gray-500">{`#${vet?.user?.default_role}`}</span>
-              </div>
-            }
-          />
-        </List.Item>
-      )}
-    />
+              <List.Item.Meta
+                title={
+                  <div className="flex flex-row gap-2">
+                    <span className="font-semibold">
+                      {vet.user?.first_name} {vet.user?.last_name}
+                    </span>
+                    <span className="text-gray-500">{`(${vet.user?.email})`}</span>
+                  </div>
+                }
+              />
+            </List.Item>
+          );
+        }}
+      />
+    </>
   );
 };
 

@@ -15,6 +15,7 @@ type ClinicBranchVeterinarianItem = {
   vetId: string;
   user: {
     userId: string;
+    email: string;
     first_name: string;
     last_name: string;
     default_role: string;
