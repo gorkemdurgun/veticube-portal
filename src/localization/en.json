@@ -132,7 +132,8 @@
     "branches": {
       "branch-actions": {
         "title": "Actions",
-        "add-new": "Add new branch"
+        "create-clinic": "Create new clinic",
+        "add-branch": "Add new branch"
       },
       "branches-list": {
         "empty": "No branches found.",

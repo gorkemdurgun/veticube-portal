@@ -28,7 +28,7 @@ const AdminBranchesPage: React.FC = () => {
   return (
     <div className="w-full flex flex-col gap-4">
       <Breadcrumb items={breadcrumbItems} />
-      <BranchesActions clinicName={clinicData?.name} />
+      <BranchesActions isLoading={isLoading} clinicName={clinicData?.name} />
       <BranchesList isLoading={isLoading} branches={clinicData?.branches} />
     </div>
   );
