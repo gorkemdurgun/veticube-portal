@@ -68,8 +68,8 @@ export const AddVeterinaryModal: React.FC<Props> = ({ visible, setVisible }) => 
   ];
 
   const dummyClinicBranches = [
-    { value: "3aac7a8f-0bd5-4634-b92f-5d1aa30bbf5b", label: "Clinic Branch 1" },
-    { value: "3ce2ed1e-3d34-4cc3-8034-9735a4f7d724", label: "Clinic Branch 2" },
+    { value: "8568fb04-da06-4491-a4a7-df2a0ea96827", label: "Clinic Branch 1" },
+    { value: "90f25a15-7b1e-41a9-b41c-20507825f13", label: "Clinic Branch 2" },
   ];
 
   return (

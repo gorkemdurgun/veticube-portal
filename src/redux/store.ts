@@ -7,6 +7,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import themeReducer from "@/redux/slices/themeSlice";
 import languageReducer from "@/redux/slices/languageSlice";
 import authReducer from "@/redux/slices/authSlice";
+import clinicReducer from "@/redux/slices/clinicSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -20,6 +21,7 @@ const reducers = combineReducers({
   theme: themeReducer,
   lang: languageReducer,
   auth: authReducer,
+  clinic: clinicReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

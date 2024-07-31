@@ -4,3 +4,4 @@ export * from "./appointment-cancel-modal";
 export * from "./appointment-create-modal";
 export * from "./add-veterinary-modal";
 export * from "./verify-veterinary-modal";
+export * from "./create-clinic-modal";

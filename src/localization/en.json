@@ -91,6 +91,18 @@
         "create": "Create",
         "cancel": "Cancel"
       },
+      "create-clinic": {
+        "title": "Create new clinic",
+        "have-multiple-branches": "I have multiple branches",
+        "branch-count": "Branch count",
+        "form": {
+          "name": "Name",
+          "branch-name": "Branch name",
+          "address": "Address",
+          "city": "City",
+          "phone": "Phone"
+        }
+      },
       "add-vet": {
         "title": "Create new veterinarian account",
         "email": "Email",
@@ -137,8 +149,9 @@
       },
       "branches-list": {
         "empty": "No branches found.",
+        "list": "Branch list",
         "columns": {
-          "name": "Name",
+          "name": "Branch name",
           "address": "Address",
           "city": "City",
           "phone": "Phone",

@@ -1,9 +1,7 @@
-import { all } from 'redux-saga/effects';
-import authSaga from './auth'; // authSaga dosyanızın yolunu kontrol edin
+import { all } from "redux-saga/effects";
+import authSaga from "./auth";
+import clinicSaga from "./clinic";
 
 export default function* rootSaga(): Generator<any, void, unknown> {
-  yield all([
-    authSaga(),
-    // Diğer saga'larınızı buraya ekleyin
-  ]);
+  yield all([authSaga(), clinicSaga()]);
 }

@@ -7,10 +7,6 @@ import { useEffect, useState } from "react";
 const AdminPage = () => {
   return (
     <span>
-      <Button type="primary" onClick={() => null}>
-        Logout
-      </Button>
-
       <h1>Admin Page</h1>
       {/* <div>
         {response.data?.data?.notes.map((item, index) => (

@@ -23,12 +23,13 @@ const AdminBranchesPage: React.FC = () => {
 
   useEffect(() => {
     refetch();
-  }, [refetch]);
+  }, []);
 
   return (
     <div className="w-full flex flex-col gap-4">
       <Breadcrumb items={breadcrumbItems} />
       <BranchesActions isLoading={isLoading} clinicName={clinicData?.name} />
+      <Divider className="my-2" />
       <BranchesList isLoading={isLoading} branches={clinicData?.branches} />
     </div>
   );

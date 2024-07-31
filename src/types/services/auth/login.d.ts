@@ -54,6 +54,12 @@ type LoginSuccessPayload = {
   idToken: string;
   accessToken: string;
   refreshToken: string;
+  user: {
+    id: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+  };
 };
 
 type SignUpVetAccountRequestPayload = {

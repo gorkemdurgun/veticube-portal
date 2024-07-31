@@ -1,5 +1,5 @@
 import { queries } from "@/services/db";
-import { Badge, Button, List, message, Popconfirm, Table, TableProps } from "antd";
+import { Badge, Button, Divider, List, message, Popconfirm, Table, TableProps } from "antd";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import {
@@ -12,6 +12,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { auth } from "@/services/auth";
 import { VerifyVeterinaryModal } from "../modals";
+import { TranslatedText } from "../common";
 
 type Props = {
   isLoading: boolean;
@@ -117,7 +118,8 @@ export const BranchesList: React.FC<Props> = ({ isLoading, branches }) => {
   const { t } = useTranslation();
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col gap-4">
+      <TranslatedText className="text-2xl font-semibold" tPrefix="components" tKey="branches.branches-list.list" />
       {isLoading ? (
         <div>Loading...</div>
       ) : (
@@ -127,8 +129,8 @@ export const BranchesList: React.FC<Props> = ({ isLoading, branches }) => {
           rowClassName="cursor-pointer"
           pagination={false}
           expandable={{
-            defaultExpandAllRows: true,
             expandRowByClick: true,
+            defaultExpandedRowKeys: branches?.filter((branch) => branch.veterinarians.length > 0).map((branch) => branch.id),
             expandedRowRender: (record) => <VetTable vets={record.veterinarians} />,
           }}
           columns={[

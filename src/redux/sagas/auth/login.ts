@@ -14,6 +14,12 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
         idToken: response.idToken.jwtToken,
         refreshToken: response.refreshToken.token,
         accessToken: response.accessToken.jwtToken,
+        user: {
+          id: response.idToken.payload.sub,
+          email: response.idToken.payload.email,
+          firstName: response.idToken.payload["custom:firstName"],
+          lastName: response.idToken.payload["custom:lastName"],
+        }
       })
     );
     if (onSuccess) {

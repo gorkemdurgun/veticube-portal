@@ -39,91 +39,119 @@
   "components": {
     "modals": {
       "appointment-reschedule": {
-        "title": "Randevuyu yeniden planla",
+        "title": "Randevuyu Yeniden Planla",
         "date": "Tarih",
         "time": "Saat",
-        "new-date": "Yeni tarih",
-        "new-time": "Yeni saat",
-        "quick-actions": "Hızlı işlemler",
-        "minute": "dk",
-        "hour": "saat",
-        "day": "gün",
-        "reschedule": "Yeniden planla",
+        "new-date": "Yeni Tarih",
+        "new-time": "Yeni Saat",
+        "quick-actions": "Hızlı İşlemler",
+        "minute": "Dakika",
+        "hour": "Saat",
+        "day": "Gün",
+        "reschedule": "Yeniden Planla",
         "cancel": "İptal"
       },
       "appointment-complete": {
-        "title": "Randevuyu tamamla",
+        "title": "Randevuyu Tamamla",
         "pet": "Evcil Hayvan",
-        "owner": "Sahip",
+        "owner": "Sahibi",
         "type": "Tür",
         "vet": "Veteriner",
         "date": "Tarih",
         "time": "Saat",
-        "options": "Tamamlama seçenekleri",
-        "options-1": "Randevu farklı bir saatte gerçekleşti",
-        "options-2": "Başka bir veteriner randevuyu gerçekleştirdi",
-        "pay-amount": "Ödeme miktarı",
+        "options": "Tamamlama Seçenekleri",
+        "options-1": "Randevu farklı bir saatte yapıldı",
+        "options-2": "Randevuyu başka bir veteriner yaptı",
+        "pay-amount": "Ödeme Tutarı",
         "complete": "Tamamla",
         "cancel": "İptal"
       },
       "appointment-cancel": {
-        "title": "Randevuyu iptal et",
+        "title": "Randevuyu İptal Et",
         "pet": "Evcil Hayvan",
-        "owner": "Sahip",
+        "owner": "Sahibi",
         "type": "Tür",
         "vet": "Veteriner",
         "date": "Tarih",
         "time": "Saat",
-        "options": "İptal seçenekleri",
-        "options-1": "Müşteri talebi",
-        "options-2": "Talep olmadan iptal",
-        "continue": "Devam et",
+        "options": "İptal Seçenekleri",
+        "options-1": "Müşteri Talebi",
+        "options-2": "Talep Olmadan İptal",
+        "continue": "Devam Et",
         "cancel": "İptal"
       },
       "appointment-create": {
-        "title": "Randevu oluştur",
+        "title": "Randevu Oluştur",
         "pet": "Evcil Hayvan",
-        "owner": "Sahip",
+        "owner": "Sahibi",
         "type": "Tür",
         "vet": "Veteriner",
         "date": "Tarih",
         "time": "Saat",
         "create": "Oluştur",
         "cancel": "İptal"
+      },
+      "create-clinic": {
+        "title": "Yeni Klinik Oluştur",
+        "have-multiple-branches": "Birden Fazla Şubem Var",
+        "branch-count": "Şube Sayısı",
+        "form": {
+          "name": "Ad",
+          "branch-name": "Şube Adı",
+          "address": "Adres",
+          "city": "Şehir",
+          "phone": "Telefon"
+        }
+      },
+      "add-vet": {
+        "title": "Yeni Veteriner Hesabı Oluştur",
+        "email": "E-posta",
+        "first-name": "Ad",
+        "last-name": "Soyad",
+        "country-code": "Ülke Kodu",
+        "phone": "Telefon",
+        "clinic-branch": "Klinik Şubesi",
+        "specilization": "Uzmanlık"
+      },
+      "verify-user": {
+        "title": "Kullanıcıyı E-posta ile Doğrula",
+        "description": "Lütfen e-posta adresine gönderilen doğrulama kodunu girin:"
       }
     },
     "appointments": {
       "selected-day-list": {
-        "empty": "Seçilen gün için randevu bulunmamaktadır.",
+        "empty": "Seçilen gün için randevu yok.",
         "yesterday": "Dün",
         "today": "Bugün",
         "tomorrow": "Yarın",
         "scheduled": "Planlanmış",
-        "rescheduled": "Yeniden planlanmış",
-        "cancelled": "İptal edilmiş",
+        "rescheduled": "Yeniden Planlanmış",
+        "cancelled": "İptal Edilmiş",
         "completed": "Tamamlanmış"
       },
       "appointment-actions": {
         "title": "İşlemler",
-        "add-new": "Yeni randevu ekle"
+        "add-new": "Yeni Randevu Ekle"
       }
     },
     "employees": {
       "employee-actions": {
         "title": "İşlemler",
-        "add-new-vet": "Yeni veteriner ekle",
-        "add-new-staff": "Yeni personel ekle"
+        "add-new-vet": "Yeni Veteriner Ekle",
+        "add-new-staff": "Yeni Personel Ekle"
       }
     },
     "branches": {
       "branch-actions": {
         "title": "İşlemler",
-        "add-new": "Yeni şube ekle"
+        "create-clinic": "Yeni Klinik Oluştur",
+        "add-branch": "Yeni Şube Ekle"
       },
       "branches-list": {
         "empty": "Şube bulunamadı.",
+        "list": "Şube Listesi",
         "columns": {
-          "name": "İsim",
+          "name": "Şube Adı",
           "address": "Adres",
           "city": "Şehir",
           "phone": "Telefon",
