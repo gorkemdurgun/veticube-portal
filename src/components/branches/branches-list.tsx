@@ -1,8 +1,9 @@
 import { queries } from "@/services/db";
-import { Badge, Button, Divider, List, message, Popconfirm, Table, TableProps } from "antd";
+import { Badge, Button, Divider, List, message, Popconfirm, Table, TableProps, Tooltip } from "antd";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import {
+  PiUserCirclePlus as AddUserIcon,
   PiPhone as PhoneIcon,
   PiMapPin as AddressIcon,
   PiPencilSimple as EditIcon,
@@ -130,6 +131,7 @@ export const BranchesList: React.FC<Props> = ({ isLoading, branches }) => {
           pagination={false}
           expandable={{
             expandRowByClick: true,
+            rowExpandable: (record) => record.veterinarians.length > 0,
             defaultExpandedRowKeys: branches?.filter((branch) => branch.veterinarians.length > 0).map((branch) => branch.id),
             expandedRowRender: (record) => <VetTable vets={record.veterinarians} />,
           }}
@@ -163,27 +165,11 @@ export const BranchesList: React.FC<Props> = ({ isLoading, branches }) => {
               key: "actions",
               render: (record: ClinicBranchItem) => (
                 <div className="flex flex-row gap-2">
-                  <Button type="link" disabled={!record.id} onClick={() => {}}>
-                    <EditIcon className="w-5 h-5" />
-                  </Button>
-                  <Button
-                    type="link"
-                    disabled={!record.address}
-                    onClick={() => {
-                      window.open(`https://www.google.com/maps/search/${record.address} ${record.city}`, "_blank");
-                    }}
-                  >
-                    <AddressIcon className="w-5 h-5" />
-                  </Button>
-                  <Button
-                    type="link"
-                    disabled={!record.phone}
-                    onClick={() => {
-                      window.open(`tel:${record.phone}`, "_blank");
-                    }}
-                  >
-                    <PhoneIcon className="w-5 h-5" />
-                  </Button>
+                  <Tooltip placement="bottom" title="Add Veterinarian">
+                    <Button type="link" disabled={!record.id} onClick={() => {}}>
+                      <AddUserIcon className="w-5 h-5" />
+                    </Button>
+                  </Tooltip>
                 </div>
               ),
             },

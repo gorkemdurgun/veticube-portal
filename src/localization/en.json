@@ -91,9 +91,23 @@
         "create": "Create",
         "cancel": "Cancel"
       },
-      "create-clinic": {
-        "title": "Create new clinic",
-        "have-multiple-branches": "I have multiple branches",
+      "choose-clinic": {
+        "title": "Choose business type",
+        "subtitle": "Select a business type to continue. If you are a clinic chain or hospital continue with the multiple branches option, otherwise continue with the single clinic option."
+      },
+      "create-clinic-single": {
+        "title": "Create single clinic",
+        "subtitle": "Dont worry, you can add more branches later. We just create the first one for you.",
+        "form": {
+          "name": "Name",
+          "branch-name": "Branch name",
+          "address": "Address",
+          "city": "City",
+          "phone": "Phone"
+        }
+      },
+      "create-clinic-multiple": {
+        "title": "Create multiple branches",
         "branch-count": "Branch count",
         "form": {
           "name": "Name",

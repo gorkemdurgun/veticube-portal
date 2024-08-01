@@ -1,7 +1,7 @@
 import { Button, Card, Skeleton, Space, Tour } from "antd";
 import { TranslatedText } from "@/components/common";
 import { PiPlusBold as AddIcon } from "react-icons/pi";
-import { AppointmentCreateModal, CreateClinicModal } from "../modals";
+import { AppointmentCreateModal, CreateClinicChooseModal } from "../modals";
 import type { TourProps } from "antd";
 
 import { useEffect, useRef, useState } from "react";
@@ -37,14 +37,14 @@ export const BranchesActions: React.FC<BranchesActionsProps> = ({ isLoading, cli
 
   return (
     <>
-      <CreateClinicModal visible={createClinicModalVisible} setVisible={setCreateClinicModalVisible} />
+      <CreateClinicChooseModal visible={createClinicModalVisible} setVisible={setCreateClinicModalVisible} />
       {/* <Tour closable={false} open={tourCreateClinicVisible} steps={steps} onClose={() => setTourCreateClinicVisible(false)} /> */}
       <Card>
         <div className="flex flex-row items-center justify-between gap-4 -m-2">
           <>
             {isLoading && <Skeleton.Input style={{ width: 200 }} active />}
             {clinicNotExists && <h1 className="text-2xl font-semibold">Branches</h1>}
-            {clinicExists && <h1 className="text-2xl font-semibold">{clinicName}</h1>}
+            {clinicExists && <h1 className="text-2xl font-semibold">{clinicName} Şube Yönetimi</h1>}
           </>
           <>
             {clinicExists && (

@@ -18,9 +18,16 @@ const clinicSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
+    createClinicSuccess: (state) => {
+      state.loading = false;
+    },
+    createClinicFailure: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = action.payload;
+    }
   },
 });
 
-export const { createClinicRequest } = clinicSlice.actions;
+export const { createClinicRequest, createClinicSuccess, createClinicFailure } = clinicSlice.actions;
 
 export default clinicSlice.reducer;
