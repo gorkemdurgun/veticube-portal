@@ -3,6 +3,7 @@ import { setContext } from "@apollo/client/link/context";
 import { store } from "@/redux/store";
 import { onError } from "@apollo/client/link/error";
 import { logout } from "@/redux/slices/authSlice";
+import { message } from "antd";
 
 const httpLink = new HttpLink({
   uri: "http://52.59.222.78:8080/v1/graphql",
@@ -22,11 +23,12 @@ const authLink = setContext((_, { headers }) => {
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    graphQLErrors.map(({ message }) => {
-      console.log(`[GraphQL error]: ${message}`); // GraphQL hatalarını logla
+    graphQLErrors.map(({ message: errMessage }) => {
+      console.log(`[GraphQL error]: ${errMessage}`); // GraphQL hatalarını logla
       // if JWT token is expired, logout user
-      if (message === "Could not verify JWT: JWTExpired") {
-        // store.dispatch(logout());
+      if (errMessage === "Could not verify JWT: JWTExpired") {
+        message.error("Your session has expired. Please login again.");
+        store.dispatch(logout());
       }
     });
   }

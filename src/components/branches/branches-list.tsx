@@ -12,7 +12,7 @@ import {
 } from "react-icons/pi";
 import { useTranslation } from "react-i18next";
 import { auth } from "@/services/auth";
-import { VerifyVeterinaryModal } from "../modals";
+import { AddVeterinaryModal, VerifyVeterinaryModal } from "../modals";
 import { TranslatedText } from "../common";
 
 type Props = {
@@ -22,13 +22,15 @@ type Props = {
 
 const VetTable = ({ vets }: { vets: ClinicBranchVeterinarianItem[] }) => {
   const [verifyModalVisible, setVerifyModalVisible] = useState<boolean>(false);
-  const [sendedEmail, setSendedEmail] = useState<string>("");
+  const [verifyVetModalData, setVerifyVetModalData] = useState({
+    vetEmail: "",
+  });
 
   const onVerifyClick = (vetEmail: string) =>
     Promise.resolve(
       auth.signup.resendOtp(vetEmail, (email) => {
         message.success(`Verification email sent to ${email}`);
-        setSendedEmail(email);
+        setVerifyVetModalData({ vetEmail: email });
         setTimeout(() => {
           setVerifyModalVisible(true);
         }, 1000);
@@ -37,7 +39,7 @@ const VetTable = ({ vets }: { vets: ClinicBranchVeterinarianItem[] }) => {
 
   return (
     <>
-      <VerifyVeterinaryModal visible={verifyModalVisible} setVisible={setVerifyModalVisible} email={sendedEmail} />
+      <VerifyVeterinaryModal visible={verifyModalVisible} setVisible={setVerifyModalVisible} data={verifyVetModalData} />
       <List
         dataSource={vets}
         renderItem={(vet) => {
@@ -117,65 +119,82 @@ const VetTable = ({ vets }: { vets: ClinicBranchVeterinarianItem[] }) => {
 
 export const BranchesList: React.FC<Props> = ({ isLoading, branches }) => {
   const { t } = useTranslation();
+  const [addVetModalVisible, setAddVetModalVisible] = useState<boolean>(false);
+  const [addVetModalData, setAddVetModalData] = useState({
+    clinicId: "",
+    branchName: "",
+  });
+
+  const onAddVetClick = (clinicId: string, branchName: string) => {
+    setAddVetModalData({ clinicId, branchName });
+    setAddVetModalVisible(true);
+  };
 
   return (
-    <div className="w-full flex flex-col gap-4">
-      <TranslatedText className="text-2xl font-semibold" tPrefix="components" tKey="branches.branches-list.list" />
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <Table
-          dataSource={branches}
-          rowKey="id"
-          rowClassName="cursor-pointer"
-          pagination={false}
-          expandable={{
-            expandRowByClick: true,
-            rowExpandable: (record) => record.veterinarians.length > 0,
-            defaultExpandedRowKeys: branches?.filter((branch) => branch.veterinarians.length > 0).map((branch) => branch.id),
-            expandedRowRender: (record) => <VetTable vets={record.veterinarians} />,
-          }}
-          columns={[
-            {
-              title: t("components.branches.branches-list.columns.name"),
-              dataIndex: "branch_name",
-              key: "branch_name",
-              render: (name: string) => <strong>{name}</strong>,
-            },
-            {
-              title: t("components.branches.branches-list.columns.address"),
-              dataIndex: "address",
-              key: "address",
-              render: (address: string) => <span>{address || "-"}</span>,
-            },
-            {
-              title: t("components.branches.branches-list.columns.city"),
-              dataIndex: "city",
-              key: "city",
-              render: (city: string) => <span>{city || "-"}</span>,
-            },
-            {
-              title: t("components.branches.branches-list.columns.phone"),
-              dataIndex: "phone",
-              key: "phone",
-              render: (phone: string) => <span>{phone || "-"}</span>,
-            },
-            {
-              title: t("components.branches.branches-list.columns.actions"),
-              key: "actions",
-              render: (record: ClinicBranchItem) => (
-                <div className="flex flex-row gap-2">
-                  <Tooltip placement="bottom" title="Add Veterinarian">
-                    <Button type="link" disabled={!record.id} onClick={() => {}}>
-                      <AddUserIcon className="w-5 h-5" />
-                    </Button>
-                  </Tooltip>
-                </div>
-              ),
-            },
-          ]}
-        />
-      )}
-    </div>
+    <>
+      <AddVeterinaryModal visible={addVetModalVisible} setVisible={setAddVetModalVisible} data={addVetModalData} />
+      <div className="w-full flex flex-col gap-4">
+        <TranslatedText className="text-2xl font-semibold" tPrefix="components" tKey="branches.branches-list.list" />
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <Table
+            dataSource={branches}
+            rowKey="id"
+            rowClassName="cursor-pointer"
+            pagination={false}
+            expandable={{
+              expandRowByClick: true,
+              rowExpandable: (record) => record.veterinarians.length > 0,
+              defaultExpandedRowKeys: branches?.filter((branch) => branch.veterinarians.length > 0).map((branch) => branch.id),
+              expandedRowRender: (record) => <VetTable vets={record.veterinarians} />,
+            }}
+            columns={[
+              {
+                title: t("components.branches.branches-list.columns.name"),
+                dataIndex: "branch_name",
+                key: "branch_name",
+                render: (name: string) => <strong>{name}</strong>,
+              },
+              {
+                title: t("components.branches.branches-list.columns.address"),
+                dataIndex: "address",
+                key: "address",
+                render: (address: string) => <span>{address || "-"}</span>,
+              },
+              {
+                title: t("components.branches.branches-list.columns.city"),
+                dataIndex: "city",
+                key: "city",
+                render: (city: string) => <span>{city || "-"}</span>,
+              },
+              {
+                title: t("components.branches.branches-list.columns.phone"),
+                dataIndex: "phone",
+                key: "phone",
+                render: (phone: string) => <span>{phone || "-"}</span>,
+              },
+              {
+                title: t("components.branches.branches-list.columns.actions"),
+                key: "actions",
+                render: (record: ClinicBranchItem) => (
+                  <div className="flex flex-row gap-2">
+                    <Tooltip placement="bottom" title="Add Veterinarian">
+                      <Button
+                        type="link"
+                        disabled={!record?.id && !record?.branch_name}
+                        onClick={() => onAddVetClick(record.id, record.branch_name)}
+                      >
+                        <AddUserIcon className="w-5 h-5" />
+                      </Button>
+                    </Tooltip>
+                  </div>
+                ),
+              },
+            ]}
+          />
+        )}
+      </div>
+    </>
   );
 };

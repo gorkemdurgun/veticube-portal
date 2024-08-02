@@ -1,7 +1,7 @@
 import { Button, Card, Skeleton, Space, Tour } from "antd";
 import { TranslatedText } from "@/components/common";
 import { PiPlusBold as AddIcon } from "react-icons/pi";
-import { AppointmentCreateModal, CreateClinicChooseModal } from "../modals";
+import { AppointmentCreateModal, CreateClinicBranchModal, CreateClinicChooseModal } from "../modals";
 import type { TourProps } from "antd";
 
 import { useEffect, useRef, useState } from "react";
@@ -38,6 +38,11 @@ export const BranchesActions: React.FC<BranchesActionsProps> = ({ isLoading, cli
   return (
     <>
       <CreateClinicChooseModal visible={createClinicModalVisible} setVisible={setCreateClinicModalVisible} />
+      <CreateClinicBranchModal
+        visible={createBranchModalVisible}
+        setVisible={setCreateBranchModalVisible}
+        clinicId={"a1751cac-1517-41d2-b62b-e9d192873e27"}
+      />
       {/* <Tour closable={false} open={tourCreateClinicVisible} steps={steps} onClose={() => setTourCreateClinicVisible(false)} /> */}
       <Card>
         <div className="flex flex-row items-center justify-between gap-4 -m-2">
@@ -48,7 +53,7 @@ export const BranchesActions: React.FC<BranchesActionsProps> = ({ isLoading, cli
           </>
           <>
             {clinicExists && (
-              <Button type="primary" onClick={() => {}}>
+              <Button type="primary" onClick={() => setCreateBranchModalVisible(true)}>
                 <AddIcon className="mr-2" />
                 <TranslatedText tPrefix="components" tKey="branches.branch-actions.add-branch" />
               </Button>

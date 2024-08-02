@@ -7,16 +7,22 @@ import { auth } from "@/services/auth";
 type Props = {
   visible: boolean;
   setVisible: (visible: boolean) => void;
-  email: string;
+  data: {
+    vetEmail: string;
+  };
 };
 
-export const VerifyVeterinaryModal: React.FC<Props> = ({ visible, setVisible, email }) => {
+export const VerifyVeterinaryModal: React.FC<Props> = ({ visible, setVisible, data }) => {
   const [otp, setOtp] = useState("");
 
   const handleOk = () => {
+    if (!data.vetEmail) {
+      console.error("Vet email is required");
+      return;
+    }
     auth.signup.confirmUser(
       otp,
-      email,
+      data.vetEmail,
       () => {
         message.success("User verified successfully");
         setVisible(false);
@@ -47,7 +53,7 @@ export const VerifyVeterinaryModal: React.FC<Props> = ({ visible, setVisible, em
     >
       <div className="flex flex-col py-2">
         <TranslatedText tPrefix="components" tKey="modals.verify-user.description" />
-        <span className="font-bold text-gray-600">{email}</span>
+        <span className="font-bold text-gray-600">{data?.vetEmail}</span>
         <div className="text-center pt-4">
           <Input.OTP length={6} value={otp} onChange={setOtp} />
         </div>

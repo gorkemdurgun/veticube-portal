@@ -117,8 +117,19 @@
           "phone": "Phone"
         }
       },
+      "create-clinic-branch": {
+        "title": "Create clinic branch",
+        "subtitle": "Create a new branch for the clinic, fill in the details below.",
+        "form": {
+          "name": "Name",
+          "address": "Address",
+          "city": "City",
+          "phone": "Phone"
+        }
+      },
       "add-vet": {
         "title": "Create new veterinarian account",
+        "subtitle": "Dont worry, you can change the clinic your veterinarian is affiliated with. We just create the account for veterinarian.",
         "email": "Email",
         "first-name": "First name",
         "last-name": "Last name",
