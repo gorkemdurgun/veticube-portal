@@ -7,7 +7,7 @@ import AppI18Provider from "@/providers/app_i18_provider";
 import AppAuthProvider from "@/providers/app_auth_provider";
 
 import AppApolloWSProvider from "@/providers/app_apollo_ws_provider";
-import AppQueryProvider from "@/providers/app_query_provider";
+
 import AppReduxProvider from "@/providers/app_redux_provider";
 import AppApolloGqlProvider from "@/providers/app_apollo_gql_provider";
 
@@ -20,13 +20,11 @@ export default function Providers({
     <AppReduxProvider>
       {/* <AppApolloWSProvider> */}
       <AppApolloGqlProvider>
-        <AppQueryProvider>
-          <AppConfigProvider>
-            <AppI18Provider>
-              <AppAuthProvider>{children}</AppAuthProvider>
-            </AppI18Provider>
-          </AppConfigProvider>
-        </AppQueryProvider>
+        <AppConfigProvider>
+          <AppI18Provider>
+            <AppAuthProvider>{children}</AppAuthProvider>
+          </AppI18Provider>
+        </AppConfigProvider>
       </AppApolloGqlProvider>
       {/* </AppApolloWSProvider> */}
     </AppReduxProvider>

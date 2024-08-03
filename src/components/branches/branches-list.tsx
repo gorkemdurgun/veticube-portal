@@ -1,7 +1,6 @@
 import { queries } from "@/services/db";
 import { Badge, Button, Divider, List, message, Popconfirm, Table, TableProps, Tooltip } from "antd";
 import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
 import {
   PiUserCirclePlus as AddUserIcon,
   PiPhone as PhoneIcon,

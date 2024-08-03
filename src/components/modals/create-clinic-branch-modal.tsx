@@ -4,7 +4,7 @@ import { useState } from "react";
 import { mutations, queries } from "@/services/db";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { createClinicRequest } from "@/redux/slices/clinicSlice";
-import { useMutation } from "react-query";
+//TODO: import { useMutation } from "react-query"; use this instead of apollo client
 import { useQuery } from "@apollo/client";
 import { AddVeterinaryModal } from "./add-veterinary-modal";
 import { GET_CLINIC_AND_BRANCHES } from "@/services/db/queries/clinic";
@@ -34,6 +34,7 @@ export const CreateClinicBranchModal: React.FC<CreateClinicBranchModalProps> = (
       },
     },
   });
+  /*
   const { mutate: createBranchMutation } = useMutation(
     (values: BranchFormValues) => {
       return mutations.clinics.createBranch(clinicId, values.name, values.city, values.address, values.phone);
@@ -49,11 +50,13 @@ export const CreateClinicBranchModal: React.FC<CreateClinicBranchModalProps> = (
       },
     }
   );
+  */
+
   const handleOk = () => {
     const branchValues = createBranchForm.getFieldsValue();
 
     createBranchForm.validateFields().then(() => {
-      createBranchMutation(branchValues);
+      // createBranchMutation(branchValues);
     });
   };
 
