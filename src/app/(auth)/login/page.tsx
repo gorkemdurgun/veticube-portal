@@ -12,7 +12,7 @@ const Login: React.FC = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const clientSession = useAppSelector((state) => state.auth.clientSession);
+  const { loading } = useAppSelector((state) => state.auth);
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "Goko3599.",
@@ -83,13 +83,13 @@ const Login: React.FC = () => {
           </Form.Item>
           <Form.Item>
             <div className="flex flex-col text-center">
-              <Button type="primary" htmlType="submit" className="login-form-button">
+              <Button loading={loading} type="primary" htmlType="submit" className="login-form-button">
                 Log in
               </Button>
               <Divider>
                 <span className="font-normal text-gray-500">or</span>
               </Divider>
-              <Button type="link" href="/register">
+              <Button disabled type="link" href="/register">
                 Register
               </Button>
             </div>

@@ -2,6 +2,7 @@ import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
 import { gql } from "@apollo/client";
 
 export const getClinicAndBranches = async () => {
+  const reqRole = "manager";
   const { data } = await apolloGqlClient.query<GetClinicAndBranchesResponse>({
     query: gql`
       query GetClinicAndBranches {
@@ -30,6 +31,11 @@ export const getClinicAndBranches = async () => {
         }
       }
     `,
+    context: {
+      headers: {
+        "x-hasura-role": reqRole,
+      },
+    },
   });
 
   return data.clinic[0];
