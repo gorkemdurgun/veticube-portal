@@ -15,7 +15,7 @@
   },
   "breadcrumb": {
     "panel": "Panel",
-    "overview": "Overview",
+    "devices": "Devices",
     "appointments": "Appointments",
     "patients": "Patients",
     "clients": "Clients",
@@ -26,7 +26,7 @@
     "settings": "Settings"
   },
   "sidebar": {
-    "overview": "Overview",
+    "devices": "Devices",
     "appointments": "Appointments",
     "patients": "Patients",
     "clients": "Clients",

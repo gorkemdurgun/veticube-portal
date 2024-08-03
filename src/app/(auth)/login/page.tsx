@@ -14,7 +14,7 @@ const Login: React.FC = () => {
 
   const clientSession = useAppSelector((state) => state.auth.clientSession);
   const [loginForm, setLoginForm] = useState({
-    email: "gorkemdurgunn@gmail.com",
+    email: "",
     password: "Goko3599.",
   });
   const [isNotConfirmed, setIsNotConfirmed] = useState(false);
