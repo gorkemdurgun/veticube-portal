@@ -43,7 +43,7 @@ const VetTable = ({ vets }: { vets: ClinicBranchVeterinarianItem[] }) => {
       <List
         dataSource={vets}
         renderItem={(vet) => {
-          const isVetAuthorized = vet?.user?.allowed_roles?.includes("vet") && vet?.user?.default_role === "vet";
+          const isVetAuthorized = vet?.user?.allowed_roles?.includes("vet");
           const isVetVerified = vet?.user?.is_verified;
           return (
             <List.Item

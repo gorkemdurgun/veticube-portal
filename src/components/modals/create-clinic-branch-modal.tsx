@@ -1,11 +1,13 @@
 import { Checkbox, Divider, Form, Input, InputNumber, message, Modal } from "antd";
 import { TranslatedText } from "../common";
 import { useState } from "react";
-import { mutations } from "@/services/db";
+import { mutations, queries } from "@/services/db";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { createClinicRequest } from "@/redux/slices/clinicSlice";
 import { useMutation } from "react-query";
+import { useQuery } from "@apollo/client";
 import { AddVeterinaryModal } from "./add-veterinary-modal";
+import { GET_CLINIC_AND_BRANCHES } from "@/services/db/queries/clinic";
 
 type CreateClinicBranchModalProps = {
   visible: boolean;
@@ -25,27 +27,28 @@ export const CreateClinicBranchModal: React.FC<CreateClinicBranchModalProps> = (
   const { loading, error } = useAppSelector((state) => state.clinic);
   const [createBranchForm] = Form.useForm<BranchFormValues>();
 
-  const {
-    mutate: createBranchMutation,
-    data: createBranchData,
-    isLoading: isCreatingBranch,
-    isError: createBranchError,
-    error: createBranchErrorData,
-  } = useMutation(
+  const { refetch: refetchClinics } = useQuery(GET_CLINIC_AND_BRANCHES, {
+    context: {
+      headers: {
+        "x-hasura-role": "manager",
+      },
+    },
+  });
+  const { mutate: createBranchMutation } = useMutation(
     (values: BranchFormValues) => {
       return mutations.clinics.createBranch(clinicId, values.name, values.city, values.address, values.phone);
     },
     {
       onSuccess: (data) => {
-        console.log(data);
         message.success("Branch created successfully");
+        refetchClinics();
+        setVisible(false);
       },
       onError: (error) => {
         message.error("Error creating branch");
       },
     }
   );
-
   const handleOk = () => {
     const branchValues = createBranchForm.getFieldsValue();
 

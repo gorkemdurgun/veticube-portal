@@ -7,7 +7,8 @@ import { queries } from "@/services/db";
 import { Breadcrumb, Button, Card, Divider, message, Segmented } from "antd";
 import type { BreadcrumbProps } from "antd";
 import { useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@apollo/client";
+import { GET_CLINIC_AND_BRANCHES } from "@/services/db/queries/clinic";
 
 const breadcrumbItems: BreadcrumbProps["items"] = [
   {
@@ -19,31 +20,44 @@ const breadcrumbItems: BreadcrumbProps["items"] = [
 ];
 
 const AdminBranchesPage: React.FC = () => {
-  const { data: clinicData, isLoading, isError} = useQuery("clinic.getClinicAndBranches", queries.clinic.getClinicAndBranches);
+  const {
+    loading,
+    error,
+    data: clinicData,
+    refetch,
+  } = useQuery(GET_CLINIC_AND_BRANCHES, {
+    context: {
+      headers: {
+        "x-hasura-role": "manager",
+      },
+    },
+  });
 
+  const handleRefetch = () => {
+    refetch()
+      .then((res) => {
+        console.log("Refetched", res);
+      })
+      .catch((err) => {
+        console.log("Error refetching");
+      });
+  };
 
-  if (isLoading) {
-    return (
-      <Card>
-        <div className="flex flex-col items-center justify-center gap-4">Loading...</div>
-      </Card>
-    );
-  }
+  useEffect(() => {
+    console.log("Clinic data", clinicData);
+  }, [clinicData]);
 
-  if (isError) {
-    return (
-      <Card>
-        <div className="flex flex-col items-center justify-center gap-4">Error...</div>
-      </Card>
-    );
-  }
+  // if (isFetching) return <div>Fetching...</div>;
+  // if (isLoading) return <div>Loading...</div>;
+  // if (isError) return <div>Error</div>;
 
   return (
     <div className="w-full flex flex-col gap-4">
       <Breadcrumb items={breadcrumbItems} />
-      <BranchesActions isLoading={isLoading} clinicName={clinicData?.name} />
+      <Button onClick={handleRefetch}>Refetch</Button>
+      <BranchesActions isLoading={loading} clinicName={clinicData?.clinic[0]?.name} />
       <Divider className="my-2" />
-      <BranchesList isLoading={isLoading} branches={clinicData?.branches} />
+      <BranchesList isLoading={loading} branches={clinicData?.clinic[0]?.branches} />
     </div>
   );
 };

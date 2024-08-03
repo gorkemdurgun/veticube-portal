@@ -2,6 +2,7 @@ import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
 import { gql } from "@apollo/client";
 
 export const createBranch = async (clinic_id: string, branch_name: string, city?: string, address?: string, phone?: string) => {
+  const reqRole = "manager";
   const { data } = await apolloGqlClient.mutate<{
     branch: { returning: { id: string; branch_name: string }[]; affected_rows: number };
   }>({
@@ -24,6 +25,11 @@ export const createBranch = async (clinic_id: string, branch_name: string, city?
       city,
       address,
       phone,
+    },
+    context: {
+      headers: {
+        "x-hasura-role": reqRole,
+      },
     },
   });
 
