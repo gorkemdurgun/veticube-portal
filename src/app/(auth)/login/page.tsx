@@ -7,96 +7,105 @@ import { useRouter } from "next/navigation";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { loginRequest } from "@/redux/slices/authSlice";
+import { VerifyUserModal } from "@/components/modals";
+
+type LoginForm = {
+  email: string;
+  password: string;
+};
 
 const Login: React.FC = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
   const { loading } = useAppSelector((state) => state.auth);
-  const [loginForm, setLoginForm] = useState({
-    email: "",
-    password: "Goko3599.",
-  });
+
+  const [loginForm] = Form.useForm<LoginForm>();
   const [isNotConfirmed, setIsNotConfirmed] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setLoginForm({ ...loginForm, [name]: value });
-  };
-
   const handleSubmit = () => {
-    dispatch(
-      loginRequest({
-        email: loginForm.email,
-        password: loginForm.password,
-        onSuccess: () => {
-          router.push("/admin");
-        },
-      })
-    );
+    console.log("handleSubmit", loginForm.getFieldsValue());
+    loginForm.validateFields().then(() => {
+      dispatch(
+        loginRequest({
+          email: loginForm.getFieldValue("email"),
+          password: loginForm.getFieldValue("password"),
+          onSuccess: () => {
+            router.push("/admin");
+          },
+          onError(error) {
+            if (error === "User is not confirmed.") {
+              setIsNotConfirmed(true);
+            } else {
+              message.error(error);
+            }
+          },
+        })
+      );
+    });
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <Card
-        title="Login"
-        className="w-96"
-        classNames={{
-          title: "text-2xl text-center",
+    <>
+      <VerifyUserModal
+        visible={isNotConfirmed}
+        setVisible={setIsNotConfirmed}
+        data={{
+          userEmail: loginForm.getFieldValue("email"),
         }}
-      >
-        <Form
-          name="normal_login"
-          className="login-form"
-          preserve={false}
-          initialValues={{
-            email: loginForm.email,
-            password: loginForm.password,
+      />
+      <div className="flex items-center justify-center min-h-screen">
+        <Card
+          title="Login"
+          className="w-96"
+          classNames={{
+            title: "text-2xl text-center",
           }}
-          onFinish={handleSubmit}
-          // onFinish={() => signInEmailPassword(loginForm.email, loginForm.password)}
         >
-          <Form.Item
-            name="email"
-            rules={[{ required: true, message: "Please input your Email!" }]}
-            validateStatus={isNotConfirmed ? "warning" : undefined}
+          <Form
+            name="normal_login"
+            className="login-form"
+            preserve={false}
+            form={loginForm}
+            initialValues={{
+              email: "",
+              password: "Goko3599.",
+            }}
+            onFinish={handleSubmit}
           >
-            <Input
-              prefix={<UserOutlined className="site-form-item-icon" />}
-              placeholder="Email"
+            <Form.Item
               name="email"
-              value={loginForm.email}
-              onChange={handleChange}
-            />
-          </Form.Item>
-          <Form.Item name="password" rules={[{ required: true, message: "Please input your Password!" }]}>
-            <Input
-              prefix={<LockOutlined className="site-form-item-icon" />}
-              type="password"
-              placeholder="Password"
-              name="password"
-              autoComplete="off"
-              value={loginForm.password}
-              onChange={handleChange}
-            />
-          </Form.Item>
-          <Form.Item>
-            <div className="flex flex-col text-center">
-              <Button loading={loading} type="primary" htmlType="submit" className="login-form-button">
-                Log in
-              </Button>
-              <Divider>
-                <span className="font-normal text-gray-500">or</span>
-              </Divider>
-              <Button disabled type="link" href="/register">
-                Register
-              </Button>
-            </div>
-          </Form.Item>
-        </Form>
-      </Card>
-    </div>
+              rules={[{ required: true, message: "Please input your Email!" }]}
+              validateStatus={isNotConfirmed ? "warning" : undefined}
+            >
+              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" name="email" />
+            </Form.Item>
+            <Form.Item name="password" rules={[{ required: true, message: "Please input your Password!" }]}>
+              <Input
+                prefix={<LockOutlined className="site-form-item-icon" />}
+                type="password"
+                placeholder="Password"
+                name="password"
+                autoComplete="off"
+              />
+            </Form.Item>
+            <Form.Item>
+              <div className="flex flex-col text-center">
+                <Button loading={loading} type="primary" htmlType="submit" className="login-form-button">
+                  Log in
+                </Button>
+                <Divider>
+                  <span className="font-normal text-gray-500">or</span>
+                </Divider>
+                <Button disabled type="link" href="/register">
+                  Register
+                </Button>
+              </div>
+            </Form.Item>
+          </Form>
+        </Card>
+      </div>
+    </>
   );
 };
 

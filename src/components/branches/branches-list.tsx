@@ -11,7 +11,7 @@ import {
 } from "react-icons/pi";
 import { useTranslation } from "react-i18next";
 import { auth } from "@/services/auth";
-import { AddVeterinaryModal, VerifyVeterinaryModal } from "../modals";
+import { AddVeterinaryModal, VerifyUserModal } from "../modals";
 import { TranslatedText } from "../common";
 
 type Props = {
@@ -38,7 +38,7 @@ const VetTable = ({ vets }: { vets: ClinicBranchVeterinarianItem[] }) => {
 
   return (
     <>
-      <VerifyVeterinaryModal visible={verifyModalVisible} setVisible={setVerifyModalVisible} data={verifyVetModalData} />
+      <VerifyUserModal visible={verifyModalVisible} setVisible={setVerifyModalVisible} data={verifyVetModalData} />
       <List
         dataSource={vets}
         renderItem={(vet) => {

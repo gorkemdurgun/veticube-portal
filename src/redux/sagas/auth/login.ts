@@ -19,7 +19,7 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
           email: response.idToken.payload.email,
           firstName: response.idToken.payload["custom:firstName"],
           lastName: response.idToken.payload["custom:lastName"],
-        }
+        },
       })
     );
     if (onSuccess) {

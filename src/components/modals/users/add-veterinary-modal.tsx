@@ -3,7 +3,7 @@ import { CountrySelector, TranslatedText } from "../../common";
 import { useAppDispatch } from "@/hooks";
 import { signUpVetAccountRequest } from "@/redux/slices/authSlice";
 import { useState } from "react";
-import { VerifyVeterinaryModal } from "./verify-veterinary-modal";
+import { VerifyUserModal } from "./verify-user-modal";
 
 type Props = {
   visible: boolean;
@@ -69,7 +69,7 @@ export const AddVeterinaryModal: React.FC<Props> = ({ visible, setVisible, data 
 
   return (
     <>
-      <VerifyVeterinaryModal visible={verifyModalVisible} setVisible={setVerifyModalVisible} data={{ vetEmail: createdEmail }} />
+      <VerifyUserModal visible={verifyModalVisible} setVisible={setVerifyModalVisible} data={{ userEmail: createdEmail }} />
       <Modal
         open={visible}
         onOk={handleOk}

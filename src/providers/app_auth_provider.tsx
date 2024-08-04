@@ -15,7 +15,7 @@ export const AppAuthProvider: React.FC<AppAuthProviderProps> = ({ children }) =>
 
   useEffect(() => {
     if (!isAuthenticated) {
-      router.push("/login");
+      // router.push("/login");
     } else if (isAuthenticated) {
       // router.push("/admin");
     } else {
