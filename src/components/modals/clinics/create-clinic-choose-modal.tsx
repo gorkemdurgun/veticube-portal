@@ -40,7 +40,7 @@ export const CreateClinicChooseModal: React.FC<CreateClinicChooseModalProps> = (
   return (
     <>
       <CreateClinicSingleModal visible={createSingleModalVisible} setVisible={setCreateSingleModalVisible} />
-      <CreateClinicMultipleModal visible={createMultipleModalVisible} setVisible={setCreateMultipleModalVisible} />
+      {/* <CreateClinicMultipleModal visible={createMultipleModalVisible} setVisible={setCreateMultipleModalVisible} /> */}
       <Modal
         open={visible}
         onOk={handleOk}
@@ -71,6 +71,7 @@ export const CreateClinicChooseModal: React.FC<CreateClinicChooseModalProps> = (
             <OneBranchIcon className={`w-32 h-32 transition-all ${clinicType === "single" ? "text-blue-500" : ""}`} />
           </Card>
           <Card
+            aria-disabled={true}
             className={`cursor-pointer border-2 transition-all ${
               clinicType === "multiple" ? "border-blue-500 bg-blue-50" : "border border-gray-200"
             }`}
