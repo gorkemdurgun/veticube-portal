@@ -2,12 +2,14 @@ import { Checkbox, Divider, Form, Input, InputNumber, message, Modal } from "ant
 import { TranslatedText } from "../common";
 import { useState } from "react";
 import { mutations, queries } from "@/services/db";
-import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector, useAppQuery } from "@/hooks";
 import { createClinicRequest } from "@/redux/slices/clinicSlice";
 //TODO: import { useMutation } from "react-query"; use this instead of apollo client
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { AddVeterinaryModal } from "./add-veterinary-modal";
 import { GET_CLINIC_AND_BRANCHES } from "@/services/db/queries/clinic";
+
+import { createBranchMutation } from "@/services/db/mutations/clinics";
 
 type CreateClinicBranchModalProps = {
   visible: boolean;
@@ -24,39 +26,53 @@ type BranchFormValues = {
 
 export const CreateClinicBranchModal: React.FC<CreateClinicBranchModalProps> = ({ visible, setVisible, clinicId }) => {
   const dispatch = useAppDispatch();
-  const { loading, error } = useAppSelector((state) => state.clinic);
+  // const { loading, error } = useAppSelector((state) => state.clinic);
   const [createBranchForm] = Form.useForm<BranchFormValues>();
 
-  const { refetch: refetchClinics } = useQuery(GET_CLINIC_AND_BRANCHES, {
+  const {
+    loading,
+    error,
+    data,
+    refetch: refetchClinics,
+  } = useAppQuery("GetClinicAndBranches", {
     context: {
       headers: {
         "x-hasura-role": "manager",
       },
     },
   });
-  /*
-  const { mutate: createBranchMutation } = useMutation(
-    (values: BranchFormValues) => {
-      return mutations.clinics.createBranch(clinicId, values.name, values.city, values.address, values.phone);
+
+  // @apollo/client mutation
+  const [createBranch] = useMutation(createBranchMutation, {
+    context: {
+      headers: {
+        "x-hasura-role": "manager",
+      },
     },
-    {
-      onSuccess: (data) => {
-        message.success("Branch created successfully");
-        refetchClinics();
-        setVisible(false);
-      },
-      onError: (error) => {
-        message.error("Error creating branch");
-      },
-    }
-  );
-  */
+    onCompleted: (data) => {
+      message.success("Branch created successfully");
+      refetchClinics();
+      setVisible(false);
+    },
+    onError: (error) => {
+      message.error("Error creating branch");
+      console.log(error)
+    },
+  });
 
   const handleOk = () => {
     const branchValues = createBranchForm.getFieldsValue();
 
     createBranchForm.validateFields().then(() => {
-      // createBranchMutation(branchValues);
+      createBranch({
+        variables: {
+          clinic_id: clinicId,
+          branch_name: branchValues.name,
+          city: branchValues.city,
+          address: branchValues.address,
+          phone: branchValues.phone,
+        },
+      });
     });
   };
 

@@ -1,7 +1,7 @@
-import { getClinicAndBranches } from "./clinic";
+import { GET_CLINIC_AND_BRANCHES } from "./clinic";
 
 export const queries = {
   clinic: {
-    getClinicAndBranches,
+    GET_CLINIC_AND_BRANCHES,
   },
 };

@@ -8,7 +8,7 @@ import { Breadcrumb, Button, Card, Divider, message, Segmented } from "antd";
 import type { BreadcrumbProps } from "antd";
 import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
-import { GET_CLINIC_AND_BRANCHES } from "@/services/db/queries/clinic";
+import { useAppQuery } from "@/hooks";
 
 const breadcrumbItems: BreadcrumbProps["items"] = [
   {
@@ -20,12 +20,7 @@ const breadcrumbItems: BreadcrumbProps["items"] = [
 ];
 
 const AdminBranchesPage: React.FC = () => {
-  const {
-    loading,
-    error,
-    data: clinicData,
-    refetch,
-  } = useQuery(GET_CLINIC_AND_BRANCHES, {
+  const { loading, error, data, refetch } = useAppQuery("GetClinicAndBranches", {
     context: {
       headers: {
         "x-hasura-role": "manager",
@@ -44,8 +39,8 @@ const AdminBranchesPage: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log("Clinic data", clinicData);
-  }, [clinicData]);
+    console.log("Clinic data", data);
+  }, [data]);
 
   // if (isFetching) return <div>Fetching...</div>;
   // if (isLoading) return <div>Loading...</div>;
@@ -55,9 +50,9 @@ const AdminBranchesPage: React.FC = () => {
     <div className="w-full flex flex-col gap-4">
       <Breadcrumb items={breadcrumbItems} />
       <Button onClick={handleRefetch}>Refetch</Button>
-      <BranchesActions isLoading={loading} clinicName={clinicData?.clinic[0]?.name} />
+      <BranchesActions isLoading={loading} clinicName={data?.clinic[0]?.name} />
       <Divider className="my-2" />
-      <BranchesList isLoading={loading} branches={clinicData?.clinic[0]?.branches} />
+      <BranchesList isLoading={loading} branches={data?.clinic[0]?.branches} />
     </div>
   );
 };

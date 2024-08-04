@@ -17,6 +17,7 @@ const authLink = setContext((_, { headers }) => {
     headers: {
       ...headers,
       Authorization: `Bearer ${token}`,
+      "x-hasura-role": "manager",
     },
   };
 });

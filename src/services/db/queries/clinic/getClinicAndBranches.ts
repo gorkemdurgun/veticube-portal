@@ -2,6 +2,31 @@ import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
 import { gql } from "@apollo/client";
 
 const reqRole = "manager";
+export type GetClinicAndBranchesResponse = {
+  clinic: {
+    id: string;
+    name: string;
+    branches: {
+      id: string;
+      branch_name: string;
+      phone: string;
+      address: string;
+      city: string;
+      veterinarians: {
+        vetId: string;
+        user: {
+          userId: string;
+          email: string;
+          first_name: string;
+          last_name: string;
+          default_role: string;
+          allowed_roles: string;
+          is_verified: boolean;
+        };
+      }[];
+    }[];
+  }[];
+};
 export const GET_CLINIC_AND_BRANCHES = gql`
   query GetClinicAndBranches {
     clinic: clinic_clinics {

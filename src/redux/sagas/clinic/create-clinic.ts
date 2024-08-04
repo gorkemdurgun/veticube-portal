@@ -14,9 +14,13 @@ export function* createClinic(action: ReturnType<typeof createClinicRequest>): G
       throw new Error("User ID is not available");
     }
 
+    console.log("userid", userId);
+
     // Kullanıcıdan alınan verileri kullanarak yeni bir klinik oluştur
     const response = yield call(mutations.clinics.createClinic, name);
     const clinicId = response.clinic.returning[0].id;
+
+    console.log("saga response", response, clinicId);
 
     if (!clinicId) {
       throw new Error("Failed to create clinic");
@@ -31,7 +35,7 @@ export function* createClinic(action: ReturnType<typeof createClinicRequest>): G
       throw new Error("Branches are not defined");
     }
 
-    console.log("saga br", branches);
+    console.log("saga branches", branches);
     for (const branch of branches) {
       yield call(mutations.clinics.createBranch, clinicId, branch.name, branch.city, branch.address, branch.phone);
     }

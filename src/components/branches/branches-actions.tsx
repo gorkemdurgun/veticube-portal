@@ -43,7 +43,7 @@ export const BranchesActions: React.FC<BranchesActionsProps> = ({ isLoading, cli
         setVisible={setCreateBranchModalVisible}
         clinicId={"a1751cac-1517-41d2-b62b-e9d192873e27"}
       />
-      {/* <Tour closable={false} open={tourCreateClinicVisible} steps={steps} onClose={() => setTourCreateClinicVisible(false)} /> */}
+      <Tour closable={false} open={tourCreateClinicVisible} steps={steps} onClose={() => setTourCreateClinicVisible(false)} />
       <Card>
         <div className="flex flex-row items-center justify-between gap-4 -m-2">
           <>
