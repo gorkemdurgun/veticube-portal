@@ -49,7 +49,7 @@ export const BranchesActions: React.FC<BranchesActionsProps> = ({ isLoading, cli
           <>
             {isLoading && <Skeleton.Input style={{ width: 200 }} active />}
             {clinicNotExists && <h1 className="text-2xl font-semibold">Branches</h1>}
-            {clinicExists && <h1 className="text-2xl font-semibold">{clinicName} Şube Yönetimi</h1>}
+            {clinicExists && <h1 className="text-2xl font-semibold">{clinicName} - Şube Yönetimi</h1>}
           </>
           <>
             {clinicExists && (
