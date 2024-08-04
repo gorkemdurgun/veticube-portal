@@ -22,14 +22,14 @@ type Props = {
 const VetTable = ({ vets }: { vets: ClinicBranchVeterinarianItem[] }) => {
   const [verifyModalVisible, setVerifyModalVisible] = useState<boolean>(false);
   const [verifyVetModalData, setVerifyVetModalData] = useState({
-    vetEmail: "",
+    userEmail: "",
   });
 
   const onVerifyClick = (vetEmail: string) =>
     Promise.resolve(
       auth.signup.resendOtp(vetEmail, (email) => {
         message.success(`Verification email sent to ${email}`);
-        setVerifyVetModalData({ vetEmail: email });
+        setVerifyVetModalData({ userEmail: email });
         setTimeout(() => {
           setVerifyModalVisible(true);
         }, 1000);
