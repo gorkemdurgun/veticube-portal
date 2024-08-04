@@ -11,7 +11,7 @@ const AdminOverviewPage = () => {
       title: <TranslatedText tPrefix="breadcrumb" tKey="panel" />,
     },
     {
-      title: <TranslatedText tPrefix="breadcrumb" tKey="overview" />,
+      title: <TranslatedText tPrefix="breadcrumb" tKey="devices" />,
     },
   ];
 
