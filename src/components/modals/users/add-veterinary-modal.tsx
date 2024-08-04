@@ -1,6 +1,6 @@
 import { Button, Divider, Form, Input, Modal, Select } from "antd";
 import { CountrySelector, TranslatedText } from "../../common";
-import { useAppDispatch } from "@/hooks";
+import { useAppDispatch, useAppQuery } from "@/hooks";
 import { signUpVetAccountRequest } from "@/redux/slices/authSlice";
 import { useState } from "react";
 import { VerifyUserModal } from "./verify-user-modal";
@@ -30,6 +30,8 @@ export const AddVeterinaryModal: React.FC<Props> = ({ visible, setVisible, data 
   const [verifyModalVisible, setVerifyModalVisible] = useState(false);
   const [createdEmail, setCreatedEmail] = useState("");
 
+  const { refetch: refetchClinics } = useAppQuery("GetClinicAndBranches");
+
   const handleCancel = () => {
     setVisible(false);
   };
@@ -55,6 +57,7 @@ export const AddVeterinaryModal: React.FC<Props> = ({ visible, setVisible, data 
         phoneNumber: values.phone,
         specilization: values.specilization,
         onSuccess: (email) => {
+          refetchClinics();
           setCreatedEmail(email);
           setVisible(false);
           setVerifyModalVisible(true);

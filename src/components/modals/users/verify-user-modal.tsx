@@ -3,6 +3,7 @@ import { TranslatedText } from "../../common";
 
 import { useState } from "react";
 import { auth } from "@/services/auth";
+import { useAppQuery } from "@/hooks";
 
 type Props = {
   visible: boolean;
@@ -15,6 +16,8 @@ type Props = {
 export const VerifyUserModal: React.FC<Props> = ({ visible, setVisible, data }) => {
   const [otp, setOtp] = useState("");
 
+  const { refetch: refetchClinics } = useAppQuery("GetClinicAndBranches");
+
   const handleOk = () => {
     if (!data.userEmail) {
       console.error("Vet email is required");
@@ -25,6 +28,7 @@ export const VerifyUserModal: React.FC<Props> = ({ visible, setVisible, data }) 
       data.userEmail,
       () => {
         message.success("User verified successfully");
+        refetchClinics();
         setVisible(false);
       },
       (error) => {

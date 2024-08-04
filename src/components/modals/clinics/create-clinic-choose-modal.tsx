@@ -28,7 +28,7 @@ export const CreateClinicChooseModal: React.FC<CreateClinicChooseModalProps> = (
     if (clinicType === "single") {
       setCreateSingleModalVisible(true);
     } else if (clinicType === "multiple") {
-      setCreateMultipleModalVisible(true);
+      // setCreateMultipleModalVisible(true);
     }
     setVisible(false);
   };
