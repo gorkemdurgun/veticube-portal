@@ -2,9 +2,9 @@ import { Button, Checkbox, CheckboxProps, Descriptions, Divider, InputNumber, Mo
 import { useState } from "react";
 import dayjs from "dayjs";
 import { DatePickerProps } from "antd/lib";
-import { CustomTimePicker } from "../appointments";
+import { CustomTimePicker } from "../../appointments";
 
-import { TranslatedText } from "../common";
+import { TranslatedText } from "../../common";
 
 type AppointmentCompleteModalProps = {
   appointment: Appointment;

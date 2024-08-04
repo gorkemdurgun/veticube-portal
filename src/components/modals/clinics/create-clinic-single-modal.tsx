@@ -1,5 +1,5 @@
 import { Checkbox, Divider, Form, Input, InputNumber, message, Modal } from "antd";
-import { TranslatedText } from "../common";
+import { TranslatedText } from "../../common";
 import { useState } from "react";
 import { mutations } from "@/services/db";
 import { useAppDispatch, useAppSelector } from "@/hooks";

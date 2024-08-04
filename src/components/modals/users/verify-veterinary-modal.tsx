@@ -1,5 +1,5 @@
 import { Button, Form, Input, message, Modal, Select } from "antd";
-import { TranslatedText } from "../common";
+import { TranslatedText } from "../../common";
 
 import { useState } from "react";
 import { auth } from "@/services/auth";

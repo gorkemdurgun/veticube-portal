@@ -1,5 +1,5 @@
 import { Card, Checkbox, Divider, Form, Input, InputNumber, Modal } from "antd";
-import { TranslatedText } from "../common";
+import { TranslatedText } from "../../common";
 import { useState } from "react";
 import { mutations } from "@/services/db";
 import { useAppDispatch } from "@/hooks";

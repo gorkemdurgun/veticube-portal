@@ -2,9 +2,9 @@ import { Button, Descriptions, Divider, Modal, TimePickerProps } from "antd";
 import { useState } from "react";
 import dayjs from "dayjs";
 import { DatePickerProps } from "antd/lib";
-import { CustomDatePicker, CustomTimePicker } from "../appointments";
+import { CustomDatePicker, CustomTimePicker } from "../../appointments";
 
-import { TranslatedText } from "../common";
+import { TranslatedText } from "../../common";
 
 type AppointmentRescheduleModalProps = {
   appointment: Appointment;

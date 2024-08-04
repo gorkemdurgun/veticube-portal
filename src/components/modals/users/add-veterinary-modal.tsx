@@ -1,5 +1,5 @@
 import { Button, Divider, Form, Input, Modal, Select } from "antd";
-import { CountrySelector, TranslatedText } from "../common";
+import { CountrySelector, TranslatedText } from "../../common";
 import { useAppDispatch } from "@/hooks";
 import { signUpVetAccountRequest } from "@/redux/slices/authSlice";
 import { useState } from "react";
