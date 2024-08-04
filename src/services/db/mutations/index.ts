@@ -1,5 +1,5 @@
 import { insertVeterinarian, updateVetRole, insertManager } from "./auth";
-import { createBranch, createClinic } from "./clinics";
+import { createClinic, createBranch } from "./clinics";
 
 export const mutations = {
   auth: {
@@ -16,3 +16,4 @@ export const mutations = {
     createBranch,
   },
 };
+

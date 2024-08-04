@@ -1,15 +1,6 @@
 import { Checkbox, Divider, Form, Input, InputNumber, message, Modal } from "antd";
 import { TranslatedText } from "../common";
-import { useState } from "react";
-import { mutations, queries } from "@/services/db";
 import { useAppDispatch, useAppSelector, useAppQuery } from "@/hooks";
-import { createClinicRequest } from "@/redux/slices/clinicSlice";
-//TODO: import { useMutation } from "react-query"; use this instead of apollo client
-import { useMutation, useQuery } from "@apollo/client";
-import { AddVeterinaryModal } from "./add-veterinary-modal";
-import { GET_CLINIC_AND_BRANCHES } from "@/services/db/queries/clinic";
-
-import { createBranchMutation } from "@/services/db/mutations/clinics";
 
 type CreateClinicBranchModalProps = {
   visible: boolean;
@@ -29,51 +20,10 @@ export const CreateClinicBranchModal: React.FC<CreateClinicBranchModalProps> = (
   // const { loading, error } = useAppSelector((state) => state.clinic);
   const [createBranchForm] = Form.useForm<BranchFormValues>();
 
-  const {
-    loading,
-    error,
-    data,
-    refetch: refetchClinics,
-  } = useAppQuery("GetClinicAndBranches", {
-    context: {
-      headers: {
-        "x-hasura-role": "manager",
-      },
-    },
-  });
-
-  // @apollo/client mutation
-  const [createBranch] = useMutation(createBranchMutation, {
-    context: {
-      headers: {
-        "x-hasura-role": "manager",
-      },
-    },
-    onCompleted: (data) => {
-      message.success("Branch created successfully");
-      refetchClinics();
-      setVisible(false);
-    },
-    onError: (error) => {
-      message.error("Error creating branch");
-      console.log(error)
-    },
-  });
-
   const handleOk = () => {
     const branchValues = createBranchForm.getFieldsValue();
 
-    createBranchForm.validateFields().then(() => {
-      createBranch({
-        variables: {
-          clinic_id: clinicId,
-          branch_name: branchValues.name,
-          city: branchValues.city,
-          address: branchValues.address,
-          phone: branchValues.phone,
-        },
-      });
-    });
+    createBranchForm.validateFields().then(() => {});
   };
 
   const handleCancel = () => {
