@@ -11,7 +11,7 @@ import {
   PiCalendarDotsDuotone as AppointmentsIcon,
   PiPawPrintDuotone as PatientsIcon,
   PiUserCircleDuotone as ClientsIcon,
-  PiClockUserDuotone as EmployeesIcon,
+  PiClockCounterClockwiseDuotone as TransactionsIcon,
   PiStorefrontDuotone as BranchesIcon,
   PiPackageDuotone as StockIcon,
   PiWalletDuotone as AccountingIcon,
@@ -37,6 +37,7 @@ export default function AdminLayout({
 
   const items: MenuItem[] = [
     {
+      disabled: true,
       className: "flex items-center justify-center !h-12 py-2 text-lg",
       key: "/admin",
       label: t("sidebar.overview"),
@@ -44,6 +45,15 @@ export default function AdminLayout({
       onClick: () => router.push("/admin"),
     },
     {
+      disabled: true,
+      className: "!h-12 py-2 text-lg",
+      key: "/admin/transactions",
+      label: t("sidebar.transactions"),
+      icon: <TransactionsIcon className="w-6 h-6 !-ml-1" />,
+      onClick: () => router.push("/admin/transactions"),
+    },
+    {
+      disabled: true,
       className: "flex items-center justify-center !h-12 py-2 text-lg",
       key: "/admin/devices",
       label: t("sidebar.devices"),
@@ -51,6 +61,7 @@ export default function AdminLayout({
       onClick: () => router.push("/admin/devices"),
     },
     {
+      disabled: true,
       className: "!h-12 py-2 text-lg",
       key: "/admin/appointments",
       label: t("sidebar.appointments"),
@@ -66,20 +77,12 @@ export default function AdminLayout({
       onClick: () => router.push("/admin/patients"),
     },
     {
-      // disabled: true,
+      disabled: true,
       className: "!h-12 py-2 text-lg",
       key: "/admin/clients",
       label: t("sidebar.clients"),
       icon: <ClientsIcon className="w-6 h-6 !-ml-1" />,
       onClick: () => router.push("/admin/clients"),
-    },
-    {
-      // disabled: true,
-      className: "!h-12 py-2 text-lg",
-      key: "/admin/employees",
-      label: t("sidebar.employees"),
-      icon: <EmployeesIcon className="w-6 h-6 !-ml-1" />,
-      onClick: () => router.push("/admin/employees"),
     },
     {
       // disabled: true,

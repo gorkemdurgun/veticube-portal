@@ -14,23 +14,25 @@
     }
   },
   "breadcrumb": {
-    "panel": "Panel",
+    "panel": "Admin Panel",
+    "overview": "Overview",
     "devices": "Devices",
     "appointments": "Appointments",
     "patients": "Patients",
     "clients": "Clients",
-    "employees": "Employees",
+    "transactions": "Last Transactions",
     "branches": "Branches",
     "stock": "Stock",
     "accounting": "Accounting",
     "settings": "Settings"
   },
   "sidebar": {
+    "overview": "Overview",
     "devices": "Devices",
     "appointments": "Appointments",
     "patients": "Patients",
     "clients": "Clients",
-    "employees": "Employees",
+    "transactions": "Last Transactions",
     "branches": "Branches",
     "stock": "Stock",
     "accounting": "Accounting",
@@ -157,13 +159,6 @@
       "appointment-actions": {
         "title": "Actions",
         "add-new": "Add new appointment"
-      }
-    },
-    "employees": {
-      "employee-actions": {
-        "title": "Actions",
-        "add-new-vet": "Add new veterinarian",
-        "add-new-staff": "Add new staff"
       }
     },
     "branches": {

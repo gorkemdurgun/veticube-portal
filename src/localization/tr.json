@@ -14,23 +14,25 @@
     }
   },
   "breadcrumb": {
-    "panel": "Panel",
+    "panel": "Yönetim Paneli",
+    "overview": "Genel Bakış",
     "devices": "Cihazlar",
     "appointments": "Randevular",
     "patients": "Hastalar",
     "clients": "Müşteriler",
-    "employees": "Çalışanlar",
+    "transactions": "Son İşlemler",
     "branches": "Şubeler",
     "stock": "Stok",
     "accounting": "Muhasebe",
     "settings": "Ayarlar"
   },
   "sidebar": {
+    "overview": "Genel Bakış",
     "devices": "Cihazlar",
     "appointments": "Randevular",
     "patients": "Hastalar",
     "clients": "Müşteriler",
-    "employees": "Çalışanlar",
+    "transactions": "Son İşlemler",
     "branches": "Şubeler",
     "stock": "Stok",
     "accounting": "Muhasebe",
@@ -132,13 +134,6 @@
       "appointment-actions": {
         "title": "İşlemler",
         "add-new": "Yeni Randevu Ekle"
-      }
-    },
-    "employees": {
-      "employee-actions": {
-        "title": "İşlemler",
-        "add-new-vet": "Yeni Veteriner Ekle",
-        "add-new-staff": "Yeni Personel Ekle"
       }
     },
     "branches": {
