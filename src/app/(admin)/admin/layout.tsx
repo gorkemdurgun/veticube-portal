@@ -37,7 +37,8 @@ export default function AdminLayout({
 
   const items: MenuItem[] = [
     {
-      disabled: true,
+      type: "item",
+      // disabled: true,
       className: "flex items-center justify-center !h-12 py-2 text-lg",
       key: "/admin",
       label: t("sidebar.overview"),
@@ -45,15 +46,8 @@ export default function AdminLayout({
       onClick: () => router.push("/admin"),
     },
     {
-      disabled: true,
-      className: "!h-12 py-2 text-lg",
-      key: "/admin/transactions",
-      label: t("sidebar.transactions"),
-      icon: <TransactionsIcon className="w-6 h-6 !-ml-1" />,
-      onClick: () => router.push("/admin/transactions"),
-    },
-    {
-      disabled: true,
+      type: "item",
+      // disabled: true,
       className: "flex items-center justify-center !h-12 py-2 text-lg",
       key: "/admin/devices",
       label: t("sidebar.devices"),
@@ -61,15 +55,21 @@ export default function AdminLayout({
       onClick: () => router.push("/admin/devices"),
     },
     {
-      disabled: true,
-      className: "!h-12 py-2 text-lg",
+      type: "divider",
+      className: "!border-gray-200 !my-2",
+    },
+    {
+      type: "item",
+      // disabled: true,
+      className: "!h-12 py-2 text-lg border-gray-200",
       key: "/admin/appointments",
       label: t("sidebar.appointments"),
       icon: <AppointmentsIcon className="w-6 h-6 !-ml-1" />,
       onClick: () => router.push("/admin/appointments"),
     },
     {
-      disabled: true,
+      type: "item",
+      // disabled: true,
       className: "!h-12 py-2 text-lg",
       key: "/admin/pets",
       label: t("sidebar.patients"),
@@ -77,6 +77,7 @@ export default function AdminLayout({
       onClick: () => router.push("/admin/patients"),
     },
     {
+      type: "item",
       disabled: true,
       className: "!h-12 py-2 text-lg",
       key: "/admin/clients",
@@ -85,6 +86,11 @@ export default function AdminLayout({
       onClick: () => router.push("/admin/clients"),
     },
     {
+      type: "divider",
+      className: "!border-gray-200 !my-2",
+    },
+    {
+      type: "item",
       // disabled: true,
       className: "!h-12 py-2 text-lg",
       key: "/admin/branches",
@@ -93,6 +99,7 @@ export default function AdminLayout({
       onClick: () => router.push("/admin/branches"),
     },
     {
+      type: "item",
       disabled: true,
       className: "!h-12 py-2 text-lg",
       key: "/admin/stock",
@@ -101,6 +108,7 @@ export default function AdminLayout({
       onClick: () => router.push("/admin/stock"),
     },
     {
+      type: "item",
       disabled: true,
       className: "!h-12 py-2 text-lg",
       key: "/admin/accounting",
@@ -109,6 +117,7 @@ export default function AdminLayout({
       onClick: () => router.push("/admin/accounting"),
     },
     {
+      type: "item",
       disabled: true,
       className: "!h-12 py-2 text-lg",
       key: "/admin/settings",
@@ -126,7 +135,7 @@ export default function AdminLayout({
     <Layout>
       <Navbar />
       <Layout hasSider className="relative min-h-screen">
-        <Sider collapsed className="!sticky top-8 h-fit my-8 ml-4 mr-0 rounded-xl">
+        <Sider collapsed collapsedWidth={100} className="!sticky top-8 h-fit my-8 ml-4 mr-0 rounded-2xl">
           <Menu className="p-2 rounded-xl" mode="inline" items={items} selectedKeys={[path]} />
         </Sider>
         <Content>
