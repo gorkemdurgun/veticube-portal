@@ -39,19 +39,19 @@ export default function AdminLayout({
     {
       type: "item",
       // disabled: true,
-      className: "flex items-center justify-center !h-12 py-2 text-lg",
+      className: "!h-12 py-2 text-sm",
       key: "/admin",
       label: t("sidebar.overview"),
-      icon: <DashboardIcon className="w-6 h-6 !-ml-1" />,
+      icon: <DashboardIcon className="w-5 h-5 !-ml-1" />,
       onClick: () => router.push("/admin"),
     },
     {
       type: "item",
       // disabled: true,
-      className: "flex items-center justify-center !h-12 py-2 text-lg",
+      className: "!h-12 py-2 text-sm",
       key: "/admin/devices",
       label: t("sidebar.devices"),
-      icon: <DevicesIcon className="w-6 h-6 !-ml-1" />,
+      icon: <DevicesIcon className="w-5 h-5 !-ml-1" />,
       onClick: () => router.push("/admin/devices"),
     },
     {
@@ -61,28 +61,28 @@ export default function AdminLayout({
     {
       type: "item",
       // disabled: true,
-      className: "!h-12 py-2 text-lg border-gray-200",
+      className: "!h-12 py-2 text-sm border-gray-200",
       key: "/admin/appointments",
       label: t("sidebar.appointments"),
-      icon: <AppointmentsIcon className="w-6 h-6 !-ml-1" />,
+      icon: <AppointmentsIcon className="w-5 h-5 !-ml-1" />,
       onClick: () => router.push("/admin/appointments"),
     },
     {
       type: "item",
       // disabled: true,
-      className: "!h-12 py-2 text-lg",
-      key: "/admin/pets",
+      className: "!h-12 py-2 text-sm",
+      key: "/admin/patients",
       label: t("sidebar.patients"),
-      icon: <PatientsIcon className="w-6 h-6 !-ml-1" />,
+      icon: <PatientsIcon className="w-5 h-5 !-ml-1" />,
       onClick: () => router.push("/admin/patients"),
     },
     {
       type: "item",
       disabled: true,
-      className: "!h-12 py-2 text-lg",
+      className: "!h-12 py-2 text-sm",
       key: "/admin/clients",
       label: t("sidebar.clients"),
-      icon: <ClientsIcon className="w-6 h-6 !-ml-1" />,
+      icon: <ClientsIcon className="w-5 h-5 !-ml-1" />,
       onClick: () => router.push("/admin/clients"),
     },
     {
@@ -92,37 +92,37 @@ export default function AdminLayout({
     {
       type: "item",
       // disabled: true,
-      className: "!h-12 py-2 text-lg",
+      className: "!h-12 py-2 text-sm",
       key: "/admin/branches",
       label: t("sidebar.branches"),
-      icon: <BranchesIcon className="w-6 h-6 !-ml-1" />,
+      icon: <BranchesIcon className="w-5 h-5 !-ml-1" />,
       onClick: () => router.push("/admin/branches"),
     },
     {
       type: "item",
       disabled: true,
-      className: "!h-12 py-2 text-lg",
+      className: "!h-12 py-2 text-sm",
       key: "/admin/stock",
       label: t("sidebar.stock"),
-      icon: <StockIcon className="w-6 h-6 !-ml-1" />,
+      icon: <StockIcon className="w-5 h-5 !-ml-1" />,
       onClick: () => router.push("/admin/stock"),
     },
     {
       type: "item",
       disabled: true,
-      className: "!h-12 py-2 text-lg",
+      className: "!h-12 py-2 text-sm",
       key: "/admin/accounting",
       label: t("sidebar.accounting"),
-      icon: <AccountingIcon className="w-6 h-6 !-ml-1" />,
+      icon: <AccountingIcon className="w-5 h-5 !-ml-1" />,
       onClick: () => router.push("/admin/accounting"),
     },
     {
       type: "item",
       disabled: true,
-      className: "!h-12 py-2 text-lg",
+      className: "!h-12 py-2 text-sm",
       key: "/admin/settings",
       label: t("sidebar.settings"),
-      icon: <SettingsIcon className="w-6 h-6 !-ml-1" />,
+      icon: <SettingsIcon className="w-5 h-5 !-ml-1" />,
       onClick: () => router.push("/admin/settings"),
     },
   ];
@@ -134,8 +134,8 @@ export default function AdminLayout({
   return (
     <Layout>
       <Navbar />
-      <Layout hasSider className="relative min-h-screen">
-        <Sider collapsed collapsedWidth={100} className="!sticky top-8 h-fit my-8 ml-4 mr-0 rounded-2xl">
+      <Layout hasSider className="relative min-h-screen bg-gray-50">
+        <Sider collapsedWidth={100} className="!sticky top-8 h-fit my-8 ml-4 mr-0 rounded-2xl">
           <Menu className="p-2 rounded-xl" mode="inline" items={items} selectedKeys={[path]} />
         </Sider>
         <Content>

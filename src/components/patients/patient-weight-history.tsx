@@ -1,6 +1,7 @@
 import { Card } from "antd";
 import React from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area } from "recharts";
+import { ComponentCard } from "../common";
 
 type WeightHistory = {
   date: string;
@@ -12,12 +13,13 @@ type Props = {
 
 const Component: React.FC<Props> = ({ weightHistory }) => {
   return (
-    <Card
-      title="Weight History"
-      classNames={{
-        body: "h-64",
+    <ComponentCard
+      bodyClassName="h-64"
+      header={{
+        title: "Kilo Geçmişi",
       }}
     >
+      
       <ResponsiveContainer width={"100%"} height={"100%"}>
         <AreaChart data={weightHistory}>
           <defs>
@@ -63,7 +65,7 @@ const Component: React.FC<Props> = ({ weightHistory }) => {
           {/* <Legend /> */}
         </AreaChart>
       </ResponsiveContainer>
-    </Card>
+    </ComponentCard>
   );
 };
 

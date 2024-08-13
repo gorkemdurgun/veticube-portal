@@ -37,3 +37,45 @@ div > .ant-picker-calendar-date-content {
 * > .ant-form-item {
   margin-bottom: 16px;
 }
+
+.button {
+  outline: none;
+  border: none;
+  border-radius: 12px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, scale 0.2s;
+  font-weight: 400;
+
+  .icon {
+    transition: scale 0.2s;
+  }
+
+  &:hover {
+    .icon {
+      scale: 1.1;
+    }
+  }
+
+  &:active {
+    scale: 0.95;
+  }
+}
+
+.button-primary-opaque {
+  background-color: #10b985 !important; /* green-500 */
+  color: #ecfdf8 !important; /* green-50 */
+
+  &:active {
+    background-color: #059669 !important; /* green-600 */
+  }
+}
+
+.button-primary-ghost {
+  background-color: #d1faed !important; /* green-100 */
+  color: #047854 !important; /* green-700 */
+
+  &:active {
+    background-color: #a7f3db !important; /* green-200 */
+  }
+}

@@ -159,6 +159,14 @@
         "add-new": "Add new appointment"
       }
     },
+    "patients": {
+      "patient-information": {
+        "header": {
+          "title": "Patient Overview",
+          "edit": "Edit"
+        }
+      }
+    },
     "branches": {
       "branch-actions": {
         "title": "Actions",

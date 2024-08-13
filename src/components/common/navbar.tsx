@@ -37,7 +37,7 @@ export const Navbar: React.FC = () => {
   const { language } = useAppSelector((state) => state.lang);
 
   return (
-    <Header className="!p-0 flex items-center bg-transparent border-b">
+    <Header className="!p-0 flex items-center bg-gray-50 border-b">
       <div className="w-full flex justify-between items-center px-4">
         <div className="text-emerald-700">Admin Panel</div>
         <div className="grid grid-flow-col items-center gap-2">
