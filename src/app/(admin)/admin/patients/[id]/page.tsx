@@ -64,7 +64,20 @@ const PatientsIDPage = () => {
     <div className="w-full flex flex-col gap-4">
       {/* <Breadcrumb items={breadcrumbItems} /> */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <PatientOverviewCard />
+        <PatientOverviewCard
+          pet={{
+            name: "Foxie",
+            gender: "F",
+            species: "Cat",
+            breed: "Siamese",
+            birthDate: "2020-01-01",
+            isNeutered: true,
+            microchip: "#123456789",
+            owner: "John Doe",
+            ownerPhone: "555-555-5555",
+            ownerEmail: "wqeldsdaseo2321@gmail.com",
+          }}
+        />
         <PatientWeightHistory weightHistory={weightData} />
       </div>
     </div>

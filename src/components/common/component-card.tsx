@@ -16,9 +16,9 @@ const Component: React.FC<Props> = ({ children, header, headerClassName, titleCl
     <Card
       className="border-0 shadow-basic"
       classNames={{
-        header: `${headerClassName} !bg-gradient-to-r from-green-50/50 to-green-50/10`,
-        title: `${titleClassName} text-green-600 text-lg font-semibold`,
-        body: `${bodyClassName}`,
+        header: `${headerClassName || ""} !bg-gradient-to-r from-green-50/50 to-green-50/10`,
+        title: `${titleClassName || ""} text-green-600 text-lg font-semibold`,
+        body: `${bodyClassName || ""}`,
       }}
       title={
         header?.title ? (
