@@ -2,7 +2,7 @@ import { memo } from "react";
 import { IconType } from "react-icons";
 import { TranslatedText } from "./translated-text";
 
-type ButtonType = "primary-opaque" | "primary-ghost" | "secondary-opaque" | "secondary-ghost";
+type ButtonType = "neutral-opaque" | "neutral-ghost" | "primary-opaque" | "primary-ghost";
 
 type Props = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
   size?: "xs" | "sm" | "md" | "lg";
@@ -36,7 +36,7 @@ const Component: React.FC<Props> = ({ size, variant, ...props }) => {
   }
 
   return (
-    <button {...props} className={`${buttonClass} ${props.className || ""}`}>
+    <button {...props} className={`flex items-center justify-center ${buttonClass} ${props.className || ""}`}>
       {props.icon && <props.icon className={iconClass} />}
       {props.children}
     </button>
