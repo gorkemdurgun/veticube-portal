@@ -38,7 +38,7 @@ export default function AdminLayout({
   const items: MenuItem[] = [
     {
       type: "item",
-      // disabled: true,
+      disabled: true,
       className: "!h-12 py-2 text-sm",
       key: "/admin",
       label: t("sidebar.overview"),
@@ -47,7 +47,7 @@ export default function AdminLayout({
     },
     {
       type: "item",
-      // disabled: true,
+      disabled: true,
       className: "!h-12 py-2 text-sm",
       key: "/admin/devices",
       label: t("sidebar.devices"),

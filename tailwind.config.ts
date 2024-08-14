@@ -21,6 +21,8 @@ const config: Config = {
       "6xl": "3rem",
     },
     colors: {
+      white: "#ffffff",
+      black: "#000000",
       gray: {
         "50": "#f6f6f7",
         "100": "#efeff0",
