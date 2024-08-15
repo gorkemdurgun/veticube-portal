@@ -20,7 +20,7 @@ export const PatientListHeaderCard = ({ image, label, count, button }: Props) =>
         <h4 className="text-sm text-gray-500">{label}</h4>
         <span className="text-2xl font-semibold">{count}</span>
       </div>
-      {button && <CustomButton size="md" variant="neutral-ghost" className="ml-auto" icon={button.icon} onClick={button.onClick} />}
+      {button && <CustomButton size="md" variant="neutral-faded" className="ml-auto" icon={button.icon} onClick={button.onClick} />}
     </div>
   );
 };

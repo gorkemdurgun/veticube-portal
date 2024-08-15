@@ -61,15 +61,8 @@ div > .ant-picker-calendar-date-content {
   }
 }
 
-/* Text buttons */
-.button-text-opaque {
-  background-color: transparent;
-  color: #059669; /* green-600 */
-  &:active {
-    color: #047854; /* green-700 */
-  }
-}
-.button-text-ghost {
+/* Neutral buttons */
+.button-neutral-text {
   background-color: transparent;
   color: #929299; /* gray-600 */
   &:active {
@@ -77,19 +70,11 @@ div > .ant-picker-calendar-date-content {
   }
 }
 
-/* Neutral buttons */
 .button-neutral-opaque {
   background-color: #929299 !important; /* gray-600 */
   color: #f6f6f7 !important; /* gray-50 */
   &:active {
     background-color: #7e7d85 !important; /* gray-700 */
-  }
-}
-.button-neutral-ghost {
-  background-color: #efeff0 !important; /* gray-100 */
-  color: #67676c !important; /* gray-800 */
-  &:active {
-    background-color: #e1e2e4 !important; /* gray-200 */
   }
 }
 .button-neutral-faded {
@@ -101,18 +86,18 @@ div > .ant-picker-calendar-date-content {
 }
 
 /* Primary buttons */
+.button-primary-text {
+  background-color: transparent;
+  color: #059669; /* green-600 */
+  &:active {
+    color: #047854; /* green-700 */
+  }
+}
 .button-primary-opaque {
   background-color: #059669 !important; /* green-600 */
   color: #ecfdf8 !important; /* green-50 */
   &:active {
     background-color: #047854 !important; /* green-700 */
-  }
-}
-.button-primary-ghost {
-  background-color: #d1faed !important; /* green-100 */
-  color: #047854 !important; /* green-700 */
-  &:active {
-    background-color: #a7f3db !important; /* green-200 */
   }
 }
 .button-primary-faded {

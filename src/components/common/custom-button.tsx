@@ -1,15 +1,7 @@
 import { memo } from "react";
 import { IconType } from "react-icons";
 
-type ButtonType =
-  | "text-opaque"
-  | "text-ghost"
-  | "neutral-opaque"
-  | "neutral-ghost"
-  | "neutral-faded"
-  | "primary-opaque"
-  | "primary-ghost"
-  | "primary-faded";
+type ButtonType = "neutral-text" | "neutral-opaque" | "neutral-faded" | "primary-text" | "primary-opaque" | "primary-faded";
 
 type Props = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
   size?: "xs" | "sm" | "md" | "lg";

@@ -51,8 +51,8 @@ const Component: React.FC<Props> = ({ pet }) => {
         <div className="flex items-center justify-between gap-2">
           <span>{pet.owner}</span>
           <div className="flex gap-2">
-            <CustomButton variant="primary-ghost" icon={EmailIcon} />
-            <CustomButton variant="primary-ghost" icon={WhatsappIcon} />
+            <CustomButton variant="primary-text" icon={EmailIcon} />
+            <CustomButton variant="primary-text" icon={WhatsappIcon} />
           </div>
         </div>
       ),

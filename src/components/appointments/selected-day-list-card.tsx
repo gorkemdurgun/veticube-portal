@@ -52,21 +52,21 @@ const Component: React.FC<{ item: Appointment }> = ({ item }) => {
               <CustomButton
                 size="md"
                 className="w-full"
-                variant="neutral-ghost"
+                variant="neutral-text"
                 onClick={() => setRescheduleModalVisible(true)}
                 icon={RescheduleIcon}
               />
               <CustomButton
                 size="md"
                 className="w-full"
-                variant="neutral-ghost"
+                variant="neutral-text"
                 onClick={() => setCompleteModalVisible(true)}
                 icon={CompleteIcon}
               />
               <CustomButton
                 size="md"
                 className="w-full"
-                variant="neutral-ghost"
+                variant="neutral-text"
                 onClick={() => setCancelModalVisible(true)}
                 icon={CancelIcon}
               />

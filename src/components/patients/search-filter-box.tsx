@@ -33,17 +33,17 @@ export const SearchFilterBox = ({ onFilterChange }: Props) => {
   };
 
   return (
-    <div className="grid grid-cols-1 gap-2 py-2 px-4 rounded-lg bg-gray-100">
+    <div className="grid grid-cols-1 gap-2 py-2 px-4 rounded-lg bg-gray-100/50 border border-gray-100">
       <Radio.Group value={filters.species} onChange={(e) => handleFilterChange("species", e.target.value)}>
         <div className="flex justify-between items-center mb-1">
           <h5 className="text-sm text-gray-500">Species</h5>
           {filters.species && (
-            <CustomButton size="xs" variant="text-ghost" icon={ClearIcon} onClick={() => handleFilterClear("species")}>
+            <CustomButton size="xs" variant="neutral-text" icon={ClearIcon} onClick={() => handleFilterClear("species")}>
               Clear Filter
             </CustomButton>
           )}
         </div>
-        <Space className="grid grid-cols-1 lg:grid-cols-2 gap-2" direction="vertical">
+        <Space className="grid grid-cols-1 lg:grid-cols-1 gap-2" direction="vertical">
           <Radio value="cat">Cat</Radio>
           <Radio value="dog">Dog</Radio>
         </Space>
@@ -53,12 +53,12 @@ export const SearchFilterBox = ({ onFilterChange }: Props) => {
         <div className="flex justify-between items-center mb-1">
           <h5 className="text-sm text-gray-500">Gender</h5>
           {filters.gender && (
-            <CustomButton size="xs" variant="text-ghost" icon={ClearIcon} onClick={() => handleFilterClear("gender")}>
+            <CustomButton size="xs" variant="neutral-text" icon={ClearIcon} onClick={() => handleFilterClear("gender")}>
               Clear Filter
             </CustomButton>
           )}
         </div>
-        <Space className="grid grid-cols-1 lg:grid-cols-2 gap-2" direction="vertical">
+        <Space className="grid grid-cols-1 lg:grid-cols-1 gap-2" direction="vertical">
           <Radio value="male">Male</Radio>
           <Radio value="female">Female</Radio>
         </Space>
@@ -68,12 +68,12 @@ export const SearchFilterBox = ({ onFilterChange }: Props) => {
         <div className="flex justify-between items-center mb-1">
           <h5 className="text-sm text-gray-500">Age</h5>
           {filters.age && (
-            <CustomButton size="xs" variant="text-ghost" icon={ClearIcon} onClick={() => handleFilterClear("age")}>
+            <CustomButton size="xs" variant="neutral-text" icon={ClearIcon} onClick={() => handleFilterClear("age")}>
               Clear Filter
             </CustomButton>
           )}
         </div>
-        <Space className="grid grid-cols-1 lg:grid-cols-2 gap-2" direction="vertical">
+        <Space className="grid grid-cols-1 lg:grid-cols-1 gap-2" direction="vertical">
           <Radio value="0-1">0-1 years</Radio>
           <Radio value="1-5">1-5 years</Radio>
           <Radio value="5-10">5-10 years</Radio>
@@ -81,7 +81,7 @@ export const SearchFilterBox = ({ onFilterChange }: Props) => {
         </Space>
       </Radio.Group>
       <Divider className="my-2" />
-      <CustomButton variant="neutral-faded" onClick={() => onApplyFilters()}>
+      <CustomButton variant="primary-faded" onClick={() => onApplyFilters()}>
         Apply Filters
       </CustomButton>
     </div>

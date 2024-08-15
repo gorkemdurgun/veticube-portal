@@ -1,7 +1,7 @@
 "use client";
 
 import { svg } from "@/assets";
-import { PatientListHeaderCard, SearchFilterBox, SearchPatientInput } from "@/components/patients";
+import { PatientList, PatientListHeaderCard, SearchFilterBox, SearchPatientInput } from "@/components/patients";
 import { useEffect, useState } from "react";
 
 import { PiPlusCircleDuotone as AddIcon, PiMagnifyingGlassDuotone as ViewIcon } from "react-icons/pi";
@@ -41,8 +41,11 @@ const PatientsPage = () => {
             button={{ icon: ViewIcon, onClick: () => console.log("View today's arrivals") }}
           />
         </div>
-        <div className="w-full grid grid-cols-[1fr,200px] lg:grid-cols-[1fr,300px] gap-4">
-          <SearchPatientInput onSearchDone={setSearchResults} />
+        <div className="w-full grid grid-cols-[1fr,160px] lg:grid-cols-[1fr,200px] gap-4">
+          <div className="flex flex-col gap-4">
+            <SearchPatientInput onSearchDone={setSearchResults} />
+            <PatientList />
+          </div>
           <SearchFilterBox onFilterChange={setFilters} />
         </div>
       </div>
