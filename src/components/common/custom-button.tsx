@@ -1,7 +1,15 @@
 import { memo } from "react";
 import { IconType } from "react-icons";
 
-type ButtonType = "neutral-opaque" | "neutral-ghost" | "primary-opaque" | "primary-ghost";
+type ButtonType =
+  | "text-opaque"
+  | "text-ghost"
+  | "neutral-opaque"
+  | "neutral-ghost"
+  | "neutral-faded"
+  | "primary-opaque"
+  | "primary-ghost"
+  | "primary-faded";
 
 type Props = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
   size?: "xs" | "sm" | "md" | "lg";
@@ -12,7 +20,7 @@ type Props = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElemen
 const Component: React.FC<Props> = ({ size, variant, ...props }) => {
   const selectedSize = size || "sm";
   const selectedVariant = variant || "primary-opaque";
-  let buttonClass = "flex items-center gap-2 button button-" + selectedVariant;
+  let buttonClass = "flex items-center justify-center gap-1 py-2 px-2 button button-" + selectedVariant;
   let iconClass = `icon`;
 
   switch (selectedSize) {
@@ -35,7 +43,7 @@ const Component: React.FC<Props> = ({ size, variant, ...props }) => {
   }
 
   return (
-    <button {...props} className={`flex items-center justify-center ${buttonClass} ${props.className || ""}`}>
+    <button {...props} className={`${buttonClass} ${props.className || ""}`}>
       {props.icon && <props.icon className={iconClass} />}
       {props.children}
     </button>

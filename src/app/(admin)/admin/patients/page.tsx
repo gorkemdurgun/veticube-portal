@@ -2,12 +2,21 @@
 
 import { svg } from "@/assets";
 import { PatientListHeaderCard, SearchFilterBox, SearchPatientInput } from "@/components/patients";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { PiPlusCircleDuotone as AddIcon, PiMagnifyingGlassDuotone as ViewIcon } from "react-icons/pi";
 
 const PatientsPage = () => {
   const [searchResults, setSearchResults] = useState<string[]>([]);
+  const [filters, setFilters] = useState<Record<string, string | undefined>>();
+
+  useEffect(() => {
+    console.log("Search results:", searchResults);
+  }, [searchResults]);
+
+  useEffect(() => {
+    console.log("Filters:", filters);
+  }, [filters]);
 
   return (
     <div className="w-full flex flex-col gap-4">
@@ -32,9 +41,9 @@ const PatientsPage = () => {
             button={{ icon: ViewIcon, onClick: () => console.log("View today's arrivals") }}
           />
         </div>
-        <div className="w-full grid grid-cols-[1fr,150px] lg:grid-cols-[1fr,300px] gap-4">
+        <div className="w-full grid grid-cols-[1fr,200px] lg:grid-cols-[1fr,300px] gap-4">
           <SearchPatientInput onSearchDone={setSearchResults} />
-          <SearchFilterBox />
+          <SearchFilterBox onFilterChange={setFilters} />
         </div>
       </div>
     </div>

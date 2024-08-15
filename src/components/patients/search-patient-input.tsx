@@ -1,5 +1,6 @@
-import { Input } from "antd";
+import { Button, Input } from "antd";
 import { memo, useState } from "react";
+import { PiMagnifyingGlass as SearchIcon } from "react-icons/pi";
 
 type Props = {
   onSearchDone: (list: string[]) => void;
@@ -21,11 +22,12 @@ export const Component = ({ onSearchDone }: Props) => {
 
   return (
     <Input.Search
+      enterButton
       size="large"
       placeholder="Search patient"
+      loading={undefined}
       value={activeValue}
       onChange={(e) => setActiveValue(e.target.value)}
-      enterButton
       onSearch={onSearch}
     />
   );
