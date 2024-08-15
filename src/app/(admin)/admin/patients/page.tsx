@@ -1,20 +1,40 @@
+"use client";
+
 import { svg } from "@/assets";
-import Image from "next/image";
+import { PatientListHeaderCard, SearchFilterBox, SearchPatientInput } from "@/components/patients";
+import { useState } from "react";
+
+import { PiPlusCircleDuotone as AddIcon, PiMagnifyingGlassDuotone as ViewIcon } from "react-icons/pi";
 
 const PatientsPage = () => {
+  const [searchResults, setSearchResults] = useState<string[]>([]);
+
   return (
     <div className="w-full flex flex-col gap-4">
-      <div className="grid grid-cols-3 gap-4">
-        <div className="flex items-center justify-between gap-2 px-2 py-4 rounded-md bg-white shadow-basic">
-          <div className="flex flex-col items-start gap-2">
-            <h4 className="text-lg font-semibold">Active Patients</h4>
-            <span className="text-sm text-gray-500">
-              You have registered
-              <span className="font-semibold"> 20 </span>
-              active patients
-            </span>
-          </div>
-          <Image src={svg.PetReview} width={50} height={50} alt="Active Patients" />
+      <div className="flex flex-col gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <PatientListHeaderCard
+            image={svg.AidPaw}
+            label="Registered Patients"
+            count={20}
+            button={{ icon: AddIcon, onClick: () => console.log("Add new patient") }}
+          />
+          <PatientListHeaderCard
+            image={svg.PetIcu}
+            label="In ICU"
+            count={2}
+            button={{ icon: ViewIcon, onClick: () => console.log("View ICU patients") }}
+          />
+          <PatientListHeaderCard
+            image={svg.PetReview}
+            label="Arrival Today"
+            count={4}
+            button={{ icon: ViewIcon, onClick: () => console.log("View today's arrivals") }}
+          />
+        </div>
+        <div className="w-full grid grid-cols-[1fr,150px] lg:grid-cols-[1fr,300px] gap-4">
+          <SearchPatientInput onSearchDone={setSearchResults} />
+          <SearchFilterBox />
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
 import { memo } from "react";
 import { IconType } from "react-icons";
-import { TranslatedText } from "./translated-text";
 
 type ButtonType = "neutral-opaque" | "neutral-ghost" | "primary-opaque" | "primary-ghost";
 
