@@ -64,7 +64,7 @@ const Component: React.FC<Props> = ({ pet }) => {
     <ComponentCard
       header={{
         title: <TranslatedText tPrefix="components" tKey="patients.patient-information.header.title" />,
-        extra: <CustomButton variant="primary-opaque" icon={EditIcon} />,
+        extra: <CustomButton variant="primary-faded" icon={EditIcon} />,
       }}
     >
       <div className="flex flex-col gap-4">

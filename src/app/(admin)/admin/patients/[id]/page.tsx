@@ -1,8 +1,8 @@
 "use client";
 
-import { ComponentCard, CustomButton, TranslatedText } from "@/components/common";
+import {  TranslatedText } from "@/components/common";
 import { PatientOverviewCard, PatientWeightHistory } from "@/components/patients";
-import { Breadcrumb, BreadcrumbProps, Button } from "antd";
+import {  BreadcrumbProps } from "antd";
 
 const weightData = [
   {
