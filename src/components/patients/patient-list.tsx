@@ -1,12 +1,7 @@
 import { memo } from "react";
 import { Divider, Space, Table, Tag, type TableProps } from "antd";
 import { CustomButton } from "../common";
-import {
-  PiCalendarBlank as AppointmentIcon,
-  PiWhatsappLogo as WhatsAppIcon,
-  PiPencilSimple as EditIcon,
-  PiTrash as DeleteIcon,
-} from "react-icons/pi";
+import { PiCalendarBlank as AppointmentIcon, PiWhatsappLogo as WhatsAppIcon } from "react-icons/pi";
 import dayjs from "dayjs";
 
 type Props = {};
@@ -30,15 +25,22 @@ interface DataType {
 
 const columns: TableProps<DataType>["columns"] = [
   {
-    title: "Owner Name",
-    dataIndex: ["owner", "name"],
-    key: "ownerName",
+    title: "Owner",
     align: "center",
-    sorter: (a, b) => a.owner.name.localeCompare(b.owner.name),
+    children: [
+      {
+        title: "Full Name",
+        dataIndex: ["owner", "name"],
+        key: "ownerName",
+        align: "center",
+        sorter: (a, b) => a.owner.name.localeCompare(b.owner.name),
+      },
+    ],
   },
   {
-    title: "Patient",
+    title: "Pet",
     align: "center",
+
     children: [
       {
         title: "Name",
@@ -62,12 +64,12 @@ const columns: TableProps<DataType>["columns"] = [
         sorter: (a, b) => a.patient.gender.localeCompare(b.patient.gender),
         render(value, record, index) {
           return value === "M" ? (
-            <Tag className="w-16 text-center" color="blue" key={index}>
-              Male
+            <Tag className="w-8 text-center" color="cyan" key={index}>
+              M
             </Tag>
           ) : (
-            <Tag className="w-16 text-center" color="magenta" key={index}>
-              Female
+            <Tag className="w-8 text-center" color="pink" key={index}>
+              F
             </Tag>
           );
         },
@@ -75,29 +77,36 @@ const columns: TableProps<DataType>["columns"] = [
     ],
   },
   {
-    title: "Last Arrival",
-    dataIndex: "lastArrival",
-    key: "lastArrival",
+    title: "Appointment",
     align: "center",
-    sorter: (a, b) => a.lastArrival.localeCompare(b.lastArrival),
-    render: (value) => (
-      <Tag className="w-28 text-center" color="default">
-        {dayjs(value).format("DD/MM/YYYY")}
-      </Tag>
-    ),
+    children: [
+      {
+        title: "Last Arrival",
+        dataIndex: "lastArrival",
+        key: "lastArrival",
+        align: "center",
+        sorter: (a, b) => a.lastArrival.localeCompare(b.lastArrival),
+        render: (value) => (
+          <Tag className="w-28 text-center" color="default">
+            {dayjs(value).format("DD/MM/YYYY")}
+          </Tag>
+        ),
+      },
+      {
+        title: "Next Appointment",
+        dataIndex: "nextAppointment",
+        key: "nextAppointment",
+        align: "center",
+        sorter: (a, b) => a.nextAppointment.localeCompare(b.nextAppointment),
+        render: (value) => (
+          <Tag className="w-28 text-center" color="default">
+            {dayjs(value).format("DD/MM/YYYY")}
+          </Tag>
+        ),
+      },
+    ],
   },
-  {
-    title: "Next Appointment",
-    dataIndex: "nextAppointment",
-    key: "nextAppointment",
-    align: "center",
-    sorter: (a, b) => a.nextAppointment.localeCompare(b.nextAppointment),
-    render: (value) => (
-      <Tag className="w-28 text-center" color="default">
-        {dayjs(value).format("DD/MM/YYYY")}
-      </Tag>
-    ),
-  },
+
   {
     title: "Action",
     key: "action",
@@ -107,10 +116,6 @@ const columns: TableProps<DataType>["columns"] = [
         <CustomButton variant="primary-text" icon={AppointmentIcon} />
         <Divider type="vertical" className="mx-0" />
         <CustomButton variant="primary-text" icon={WhatsAppIcon} />
-        <Divider type="vertical" className="mx-0" />
-        <CustomButton variant="neutral-text" icon={EditIcon} />
-        <Divider type="vertical" className="mx-0" />
-        <CustomButton variant="neutral-text" icon={DeleteIcon} />
       </Space>
     ),
   },
@@ -148,10 +153,164 @@ const data: DataType[] = [
     lastArrival: "2021-09-02",
     nextAppointment: "2021-09-16",
   },
+  {
+    key: "3",
+    owner: {
+      id: "3",
+      name: "Emily Johnson",
+      phone: "5551234567",
+    },
+    patient: {
+      id: "3",
+      name: "Oliver",
+      age: 3,
+      gender: "M",
+    },
+    lastArrival: "2021-09-03",
+    nextAppointment: "2021-09-17",
+  },
+  {
+    key: "4",
+    owner: {
+      id: "4",
+      name: "David Miller",
+      phone: "5559876543",
+    },
+    patient: {
+      id: "4",
+      name: "Ava",
+      age: 2,
+      gender: "F",
+    },
+    lastArrival: "2021-09-04",
+    nextAppointment: "2021-09-18",
+  },
+  {
+    key: "5",
+    owner: {
+      id: "5",
+      name: "Sophia Brown",
+      phone: "5554567890",
+    },
+    patient: {
+      id: "5",
+      name: "Noah",
+      age: 6,
+      gender: "M",
+    },
+    lastArrival: "2021-09-05",
+    nextAppointment: "2021-09-19",
+  },
+  {
+    key: "6",
+    owner: {
+      id: "6",
+      name: "William Wilson",
+      phone: "5557890123",
+    },
+    patient: {
+      id: "6",
+      name: "Mia",
+      age: 7,
+      gender: "F",
+    },
+    lastArrival: "2021-09-06",
+    nextAppointment: "2021-09-20",
+  },
+  {
+    key: "7",
+    owner: {
+      id: "7",
+      name: "Olivia Taylor",
+      phone: "5553456789",
+    },
+    patient: {
+      id: "7",
+      name: "Ethan",
+      age: 5,
+      gender: "M",
+    },
+    lastArrival: "2021-09-07",
+    nextAppointment: "2021-09-21",
+  },
+  {
+    key: "8",
+    owner: {
+      id: "8",
+      name: "James Anderson",
+      phone: "5556789012",
+    },
+    patient: {
+      id: "8",
+      name: "Emma",
+      age: 4,
+      gender: "F",
+    },
+    lastArrival: "2021-09-08",
+    nextAppointment: "2021-09-22",
+  },
+  {
+    key: "9",
+    owner: {
+      id: "9",
+      name: "Benjamin Thomas",
+      phone: "5552345678",
+    },
+    patient: {
+      id: "9",
+      name: "Alexander",
+      age: 3,
+      gender: "M",
+    },
+    lastArrival: "2021-09-09",
+    nextAppointment: "2021-09-23",
+  },
+  {
+    key: "10",
+    owner: {
+      id: "10",
+      name: "Charlotte Harris",
+      phone: "5559012345",
+    },
+    patient: {
+      id: "10",
+      name: "Abigail",
+      age: 2,
+      gender: "F",
+    },
+    lastArrival: "2021-09-10",
+    nextAppointment: "2021-09-24",
+  },
+  {
+    key: "11",
+    owner: {
+      id: "11",
+      name: "Lucas Smith",
+      phone: "5558765432",
+    },
+    patient: {
+      id: "11",
+      name: "Sofia",
+      age: 6,
+      gender: "F",
+    },
+    lastArrival: "2021-09-11",
+    nextAppointment: "2021-09-25",
+  },
 ];
 
 const Component = (props: Props) => {
-  return <Table size="small" rowClassName="cursor-pointer" columns={columns} dataSource={data} />;
+  return (
+    <Table
+      size="middle"
+      rowClassName="cursor-pointer"
+      columns={columns}
+      dataSource={data}
+      pagination={{
+        pageSize: 10,
+      }}
+    />
+  );
 };
 
 export const PatientList = memo(Component);

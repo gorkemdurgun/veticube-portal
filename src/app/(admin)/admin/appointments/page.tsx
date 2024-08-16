@@ -202,12 +202,10 @@ const AdminAppointmentsPage: React.FC = () => {
   return (
     <div className="w-full flex flex-col gap-4">
       <Breadcrumb items={breadcrumbItems} />
-      <div className="w-full grid grid-cols-[3fr,1fr] gap-4">
+      <div className="overflow-y-auto w-full grid grid-cols-[3fr,1fr] gap-4">
         <div className="flex flex-col gap-4">
           <AppointmentActions />
-          <Card>
-            <AppointmentCalendar appointments={appointmentList} onSelectDate={setSelectedDate} />
-          </Card>
+          <AppointmentCalendar appointments={appointmentList} onSelectDate={setSelectedDate} />
         </div>
         <SelectedDayList selectedDate={selectedDate} selectedDateAppointments={selectedDateAppointments} />
       </div>

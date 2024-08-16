@@ -139,7 +139,7 @@ export default function AdminLayout({
           <Menu className="p-2 rounded-xl" mode="inline" items={items} selectedKeys={[path]} />
         </Sider>
         <Content>
-          <div className="flex h-[200vh] w-full mx-auto gap-4 px-4 py-8">{children}</div>
+          <div className="flex h-[200vh] mx-auto gap-4 px-4 py-8">{children}</div>
         </Content>
       </Layout>
       <Footer className="!p-0">

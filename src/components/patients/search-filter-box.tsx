@@ -1,4 +1,4 @@
-import { Radio, Space, Divider } from "antd";
+import { Radio, Space, Divider, DatePicker } from "antd";
 import { CustomButton } from "../common";
 import { PiX as ClearIcon } from "react-icons/pi";
 import { useEffect, useState } from "react";
@@ -9,6 +9,8 @@ type Props = {
 
 export const SearchFilterBox = ({ onFilterChange }: Props) => {
   const [filters, setFilters] = useState({
+    date: undefined,
+    where: undefined,
     species: undefined,
     gender: undefined,
     age: undefined,
@@ -20,7 +22,6 @@ export const SearchFilterBox = ({ onFilterChange }: Props) => {
       [key]: value,
     }));
   };
-
   const handleFilterClear = (key: string) => {
     setFilters((prev) => ({
       ...prev,
@@ -33,7 +34,26 @@ export const SearchFilterBox = ({ onFilterChange }: Props) => {
   };
 
   return (
-    <div className="grid grid-cols-1 gap-2 py-2 px-4 rounded-lg bg-gray-100/50 border border-gray-100">
+    <div className="h-fit grid grid-cols-1 gap-2 py-2 px-4 rounded-lg bg-gray-100 border border-gray-200">
+      <h4 className="text-lg font-semibold text-gray-800">Filters</h4>
+      <Divider className="my-2" />
+      <DatePicker className="w-full" onChange={(date) => handleFilterChange("date", date?.toISOString())} />
+      <Divider className="my-2" />
+      <Radio.Group value={filters.where} onChange={(e) => handleFilterChange("where", e.target.value)}>
+        <div className="flex justify-between items-center mb-1">
+          <h5 className="text-sm text-gray-500">Where</h5>
+          {filters.where && (
+            <CustomButton size="xs" variant="neutral-text" icon={ClearIcon} onClick={() => handleFilterClear("where")}>
+              Clear Filter
+            </CustomButton>
+          )}
+        </div>
+        <Space className="grid grid-cols-1 lg:grid-cols-1 gap-2" direction="vertical">
+          <Radio value="care">In Care</Radio>
+          <Radio value="icu">In ICU</Radio>
+        </Space>
+      </Radio.Group>
+      <Divider className="my-2" />
       <Radio.Group value={filters.species} onChange={(e) => handleFilterChange("species", e.target.value)}>
         <div className="flex justify-between items-center mb-1">
           <h5 className="text-sm text-gray-500">Species</h5>

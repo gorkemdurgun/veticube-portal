@@ -21,27 +21,33 @@ const PatientsPage = () => {
   return (
     <div className="w-full flex flex-col gap-4">
       <div className="flex flex-col gap-4">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <PatientListHeaderCard
-            image={svg.AidPaw}
+            image={svg.pack3.AidPaw2}
             label="Registered Patients"
             count={20}
             button={{ icon: AddIcon, onClick: () => console.log("Add new patient") }}
           />
           <PatientListHeaderCard
-            image={svg.PetIcu}
-            label="In ICU"
-            count={2}
-            button={{ icon: ViewIcon, onClick: () => console.log("View ICU patients") }}
-          />
-          <PatientListHeaderCard
-            image={svg.PetReview}
+            image={svg.pack3.Magnify}
             label="Arrival Today"
             count={4}
             button={{ icon: ViewIcon, onClick: () => console.log("View today's arrivals") }}
           />
+          <PatientListHeaderCard
+            image={svg.pack3.PetBox}
+            label="In Care"
+            count={6}
+            button={{ icon: ViewIcon, onClick: () => console.log("View patients in care") }}
+          />
+          <PatientListHeaderCard
+            image={svg.pack3.Icu}
+            label="In ICU"
+            count={2}
+            button={{ icon: ViewIcon, onClick: () => console.log("View patients in ICU") }}
+          />
         </div>
-        <div className="w-full grid grid-cols-[1fr,160px] lg:grid-cols-[1fr,200px] gap-4">
+        <div className="overflow-y-auto grid grid-cols-[1fr,160px] lg:grid-cols-[1fr,200px] gap-4">
           <div className="flex flex-col gap-4">
             <SearchPatientInput onSearchDone={setSearchResults} />
             <PatientList />

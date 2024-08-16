@@ -15,7 +15,7 @@ type Props = {
 export const PatientListHeaderCard = ({ image, label, count, button }: Props) => {
   return (
     <div className="flex items-center justify-start gap-4 pl-2 p-4 rounded-md bg-white shadow-basic">
-      <Image src={image} width={50} height={50} alt="Active Patients" />
+      <Image src={image} width={64} height={64} alt="Active Patients" />
       <div className="flex flex-col items-start gap-1">
         <h4 className="text-sm text-gray-500">{label}</h4>
         <span className="text-2xl font-semibold">{count}</span>

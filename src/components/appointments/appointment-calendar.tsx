@@ -11,6 +11,7 @@ import {
   PiScissors as GroomingIcon,
   PiFirstAid as OtherIcon,
 } from "react-icons/pi";
+import { ComponentCard } from "../common";
 
 type AppointmentCalendarProps = {
   appointments: Appointment[];
@@ -118,11 +119,13 @@ export const AppointmentCalendar: React.FC<AppointmentCalendarProps> = ({ appoin
   const validRange: CalendarProps<Dayjs>["validRange"] = [dayjs().subtract(1, "year"), dayjs().add(1, "year")];
 
   return (
-    <Calendar
-      style={{ scrollbarWidth: "thin" }}
-      validRange={validRange}
-      cellRender={cellRender}
-      onSelect={(value) => onSelectDate(value.format("DD/MM/YYYY"))}
-    />
+    <ComponentCard title="Randevular" className="min-w-[600px]">
+      <Calendar
+        style={{ scrollbarWidth: "thin" }}
+        validRange={validRange}
+        cellRender={cellRender}
+        onSelect={(value) => onSelectDate(value.format("DD/MM/YYYY"))}
+      />
+    </ComponentCard>
   );
 };
