@@ -37,7 +37,10 @@ export const SearchFilterBox = ({ onFilterChange }: Props) => {
     <div className="h-fit grid grid-cols-1 gap-2 py-2 px-4 rounded-lg bg-gray-100 border border-gray-200">
       <h4 className="text-lg font-semibold text-gray-800">Filters</h4>
       <Divider className="my-2" />
-      <DatePicker className="w-full" onChange={(date) => handleFilterChange("date", date?.toISOString())} />
+      <div className="flex flex-col gap-2">
+        <h5 className="text-sm text-gray-500">Last Arrival</h5>
+        <DatePicker className="w-full" format="DD/MM/YYYY" onChange={(date) => handleFilterChange("date", date?.toISOString())} />
+      </div>
       <Divider className="my-2" />
       <Radio.Group value={filters.where} onChange={(e) => handleFilterChange("where", e.target.value)}>
         <div className="flex justify-between items-center mb-1">

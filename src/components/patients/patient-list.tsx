@@ -64,7 +64,7 @@ const columns: TableProps<DataType>["columns"] = [
         sorter: (a, b) => a.patient.gender.localeCompare(b.patient.gender),
         render(value, record, index) {
           return value === "M" ? (
-            <Tag className="w-8 text-center" color="cyan" key={index}>
+            <Tag className="w-8 text-center" color="blue" key={index}>
               M
             </Tag>
           ) : (
@@ -125,14 +125,14 @@ const data: DataType[] = [
     key: "1",
     owner: {
       id: "1",
-      name: "John Doe",
+      name: "Henry Johnson",
       phone: "1234567890",
     },
     patient: {
       id: "1",
-      name: "Max",
+      name: "Esther",
       age: 5,
-      gender: "M",
+      gender: "F",
     },
     lastArrival: "2021-09-01",
     nextAppointment: "2021-09-15",
@@ -178,9 +178,9 @@ const data: DataType[] = [
     },
     patient: {
       id: "4",
-      name: "Ava",
+      name: "Klaus",
       age: 2,
-      gender: "F",
+      gender: "M",
     },
     lastArrival: "2021-09-04",
     nextAppointment: "2021-09-18",
@@ -226,9 +226,9 @@ const data: DataType[] = [
     },
     patient: {
       id: "7",
-      name: "Ethan",
+      name: "Seeley",
       age: 5,
-      gender: "M",
+      gender: "F",
     },
     lastArrival: "2021-09-07",
     nextAppointment: "2021-09-21",
