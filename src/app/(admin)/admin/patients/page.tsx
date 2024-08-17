@@ -21,24 +21,24 @@ const PatientsPage = () => {
   return (
     <div className="w-full flex flex-col gap-4">
       <div className="flex flex-col gap-4">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <PatientListHeaderCard
             image={svg.pack3.AidPaw2}
             label="Registered Patients"
             count={20}
             button={{ icon: AddIcon, onClick: () => console.log("Add new patient") }}
+            chartData={[
+              { date: "2021-10-01", value: 1 },
+              { date: "2021-10-02", value: 1 },
+              { date: "2021-10-03", value: 7 },
+              { date: "2021-10-04", value: 2 },
+            ]}
           />
           <PatientListHeaderCard
             image={svg.pack3.Magnify}
             label="Arrival Today"
             count={4}
             button={{ icon: ViewIcon, onClick: () => console.log("View today's arrivals") }}
-          />
-          <PatientListHeaderCard
-            image={svg.pack3.PetBox}
-            label="In Care"
-            count={6}
-            button={{ icon: ViewIcon, onClick: () => console.log("View patients in care") }}
           />
           <PatientListHeaderCard
             image={svg.pack3.Icu}

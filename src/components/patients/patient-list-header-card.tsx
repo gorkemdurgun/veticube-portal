@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { IconType } from "react-icons";
 import { CustomButton } from "../common";
+import { Line, LineChart, ResponsiveContainer } from "recharts";
 
 type Props = {
   image: string;
@@ -10,17 +11,34 @@ type Props = {
     icon: IconType;
     onClick: () => void;
   };
+  chartData?: {
+    date: string;
+    value: number;
+  }[];
 };
 
-export const PatientListHeaderCard = ({ image, label, count, button }: Props) => {
+export const PatientListHeaderCard = ({ image, label, count, button, chartData }: Props) => {
   return (
-    <div className="flex items-center justify-start gap-4 pl-2 p-4 rounded-md bg-white shadow-basic">
-      <Image src={image} width={64} height={64} alt="Active Patients" />
-      <div className="flex flex-col items-start gap-1">
-        <h4 className="text-sm text-gray-500">{label}</h4>
-        <span className="text-2xl font-semibold">{count}</span>
+    <div className="grid grid-cols-2 gap-4 pl-2 p-4 rounded-md bg-white shadow-basic">
+      <div className="flex items-center justify-start gap-4 ">
+        <Image src={image} width={64} height={64} alt="Active Patients" />
+        <div className="flex flex-col items-start gap-1">
+          <h4 className="text-sm text-gray-500 whitespace-nowrap">{label}</h4>
+          <div className="flex items-center gap-2">
+            <span className="text-3xl font-semibold">{count}</span>
+            {button && <CustomButton size="sm" variant="neutral-faded" className="ml-auto" icon={button.icon} onClick={button.onClick} />}
+          </div>
+        </div>
       </div>
-      {button && <CustomButton size="md" variant="neutral-faded" className="ml-auto" icon={button.icon} onClick={button.onClick} />}
+      {chartData && (
+        <div className="ml-auto h-16 w-0 sm:w-48 lg:w-32">
+          <ResponsiveContainer width={"100%"} height={"100%"}>
+            <LineChart data={chartData}>
+              <Line dot={false} type="monotone" dataKey="value" stroke="#8884d8" strokeWidth={2} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      )}
     </div>
   );
 };

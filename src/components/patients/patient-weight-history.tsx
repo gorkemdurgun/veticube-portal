@@ -18,7 +18,7 @@ const Component: React.FC<Props> = ({ weightHistory }) => {
       header={{
         title: "Kilo Geçmişi",
       }}
-    >    
+    >
       <ResponsiveContainer width={"100%"} height={"100%"}>
         <AreaChart data={weightHistory}>
           <defs>
@@ -28,7 +28,7 @@ const Component: React.FC<Props> = ({ weightHistory }) => {
             </linearGradient>
           </defs>
           <Area
-            type="monotone"
+            type="step"
             dataKey="weight"
             fill="url(#colorUv)"
             stroke="#059669"

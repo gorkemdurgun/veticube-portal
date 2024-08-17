@@ -3,6 +3,7 @@ import { Divider, Space, Table, Tag, type TableProps } from "antd";
 import { CustomButton } from "../common";
 import { PiCalendarBlank as AppointmentIcon, PiWhatsappLogo as WhatsAppIcon } from "react-icons/pi";
 import dayjs from "dayjs";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
@@ -63,13 +64,9 @@ const columns: TableProps<DataType>["columns"] = [
         align: "center",
         sorter: (a, b) => a.patient.gender.localeCompare(b.patient.gender),
         render(value, record, index) {
-          return value === "M" ? (
-            <Tag className="w-8 text-center" color="blue" key={index}>
-              M
-            </Tag>
-          ) : (
-            <Tag className="w-8 text-center" color="pink" key={index}>
-              F
+          return (
+            <Tag className="w-8 text-center" color="default" key={index}>
+              {value}
             </Tag>
           );
         },
@@ -300,6 +297,8 @@ const data: DataType[] = [
 ];
 
 const Component = (props: Props) => {
+  const router = useRouter();
+
   return (
     <Table
       size="middle"
@@ -308,6 +307,13 @@ const Component = (props: Props) => {
       dataSource={data}
       pagination={{
         pageSize: 10,
+      }}
+      onRow={(record, rowIndex) => {
+        return {
+          onClick: (event) => {
+            router.push(`patients/${record.patient.id}`);
+          },
+        };
       }}
     />
   );
