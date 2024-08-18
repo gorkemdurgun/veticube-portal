@@ -14,7 +14,7 @@ import type { DescriptionsProps } from "antd";
 
 type Props = {
   pet: {
-    name: string;
+    name?: string;
     gender: string;
     species: string;
     breed: string;

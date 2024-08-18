@@ -2,6 +2,7 @@
 
 import { svg } from "@/assets";
 import { PatientList, PatientListHeaderCard, SearchFilterBox, SearchPatientInput } from "@/components/patients";
+import { useAppQuery } from "@/hooks";
 import { useEffect, useState } from "react";
 
 import { PiPlusCircleDuotone as AddIcon, PiMagnifyingGlassDuotone as ViewIcon } from "react-icons/pi";
@@ -9,6 +10,14 @@ import { PiPlusCircleDuotone as AddIcon, PiMagnifyingGlassDuotone as ViewIcon } 
 const PatientsPage = () => {
   const [searchResults, setSearchResults] = useState<string[]>([]);
   const [filters, setFilters] = useState<Record<string, string | undefined>>();
+
+  const { data, loading, error } = useAppQuery("GetClinicPets", {
+    context: {
+      headers: {
+        "x-hasura-role": "manager",
+      },
+    },
+  });
 
   useEffect(() => {
     console.log("Search results:", searchResults);
@@ -53,7 +62,7 @@ const PatientsPage = () => {
         <div className="overflow-y-auto grid grid-cols-[1fr,160px] lg:grid-cols-[1fr,200px] gap-4">
           <div className="flex flex-col gap-4">
             <SearchPatientInput onSearchDone={setSearchResults} />
-            <PatientList />
+            <PatientList data={data?.petList} />
           </div>
           <SearchFilterBox onFilterChange={setFilters} />
         </div>

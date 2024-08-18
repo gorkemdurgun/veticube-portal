@@ -1,8 +1,11 @@
 "use client";
 
-import {  TranslatedText } from "@/components/common";
+import { TranslatedText } from "@/components/common";
 import { PatientOverviewCard, PatientWeightHistory } from "@/components/patients";
-import {  BreadcrumbProps } from "antd";
+import { useAppQuery, useNewAppQuery } from "@/hooks";
+import { queries } from "@/services/db";
+import { BreadcrumbProps } from "antd";
+import { useParams } from "next/navigation";
 
 const weightData = [
   {
@@ -48,17 +51,14 @@ const weightData = [
 ];
 
 const PatientsIDPage = () => {
-  const breadcrumbItems: BreadcrumbProps["items"] = [
-    {
-      title: <TranslatedText tPrefix="breadcrumb" tKey="panel" />,
-    },
-    {
-      title: <TranslatedText tPrefix="breadcrumb" tKey="patients" />,
-    },
-    {
-      title: <span>Hasta 1</span>,
-    },
-  ];
+  const { id: petId } = useParams();
+
+  const { data } = useNewAppQuery<typeof queries.pet.GetPetDetail.response>({
+    query: queries.pet.GetPetDetail.query,
+    options: { variables: { petId } },
+    asRole: "manager",
+  });
+  console.log("Pet data", data?.pet[0].name);
 
   return (
     <div className="w-full flex flex-col gap-4">
@@ -66,7 +66,7 @@ const PatientsIDPage = () => {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <PatientOverviewCard
           pet={{
-            name: "Foxie",
+            name: data?.pet[0].name,
             gender: "F",
             species: "Cat",
             breed: "Siamese",
