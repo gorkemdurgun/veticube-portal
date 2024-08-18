@@ -15,7 +15,6 @@ const PatientsPage = () => {
 
   const { data } = useCustomAppQuery({
     query: queries.pet.GetClinicPets,
-    asRole: "manager",
   });
 
   useEffect(() => {

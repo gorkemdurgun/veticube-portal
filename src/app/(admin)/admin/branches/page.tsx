@@ -20,7 +20,6 @@ const breadcrumbItems: BreadcrumbProps["items"] = [
 const AdminBranchesPage: React.FC = () => {
   const { loading, data } = useCustomAppQuery({
     query: queries.clinic.GetClinicAndBranches,
-    asRole: "manager",
   });
 
   return (

@@ -18,6 +18,7 @@ const authLink = setContext((_, { headers }) => {
     headers: {
       ...headers,
       Authorization: `Bearer ${token}`,
+      "x-hasura-role": "manager",
     },
   };
 });
@@ -27,7 +28,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     graphQLErrors.map(({ message: errMessage }) => {
       console.log(`[GraphQL error]: ${errMessage}`); // GraphQL hatalarını logla
       // if JWT token is expired, logout user
-      if (errMessage === "Could not verify JWT: JWTExpired") {
+      if (errMessage.includes("Could not verify JWT")) {
         message.error("Your session has expired. Please login again.");
         auth.login.refreshSession();
         // store.dispatch(logout());

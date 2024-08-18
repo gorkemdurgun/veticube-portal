@@ -56,7 +56,6 @@ const PatientsIDPage = () => {
   const { data } = useCustomAppQuery({
     query: queries.pet.GetPetDetail,
     options: { variables: { petId } },
-    asRole: "manager",
   });
   console.log("Pet data", data?.pet[0].name);
 

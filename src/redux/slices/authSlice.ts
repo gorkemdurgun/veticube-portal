@@ -37,12 +37,20 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = null;
     },
+    setTokens: (state, action: PayloadAction<{ idToken: string; accessToken: string; refreshToken: string }>) => {
+      state.clientSession = {
+        ...state.clientSession!,
+        idToken: action.payload.idToken,
+        accessToken: action.payload.accessToken,
+        refreshToken: action.payload.refreshToken,
+      };
+    },
     signUpVetAccountRequest: (state, action: PayloadAction<SignUpVetAccountRequestPayload>) => {
       state.loading = true;
-    }
+    },
   },
 });
 
-export const { loginRequest, loginSuccess, loginFailure, logout, signUpVetAccountRequest } = authSlice.actions;
+export const { loginRequest, loginSuccess, loginFailure, logout, setTokens, signUpVetAccountRequest } = authSlice.actions;
 
 export default authSlice.reducer;
