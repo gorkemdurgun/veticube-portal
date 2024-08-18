@@ -4,6 +4,7 @@ import { CustomButton } from "../common";
 import { Line, LineChart, ResponsiveContainer } from "recharts";
 
 type Props = {
+  className?: string;
   image: string;
   label: string;
   count: number;
@@ -17,16 +18,16 @@ type Props = {
   }[];
 };
 
-export const PatientListHeaderCard = ({ image, label, count, button, chartData }: Props) => {
+export const PatientListHeaderCard = ({ className, image, label, count, button, chartData }: Props) => {
   return (
-    <div className="grid grid-cols-2 gap-4 pl-2 p-4 rounded-md bg-white shadow-basic">
+    <div className={`grid grid-cols-2 gap-4 pl-2 p-4 rounded-md bg-white shadow-basic ${className || ""}`}>
       <div className="flex items-center justify-start gap-4 ">
         <Image src={image} width={64} height={64} alt="Active Patients" />
         <div className="flex flex-col items-start gap-1">
           <h4 className="text-sm text-gray-500 whitespace-nowrap">{label}</h4>
           <div className="flex items-center gap-2">
             <span className="text-3xl font-semibold">{count}</span>
-            {button && <CustomButton size="sm" variant="neutral-faded" className="ml-auto" icon={button.icon} onClick={button.onClick} />}
+            {button && <CustomButton variant="neutral-faded" icon={button.icon} onClick={button.onClick} />}
           </div>
         </div>
       </div>
