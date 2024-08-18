@@ -1,9 +1,10 @@
 import { Button, Divider, Form, Input, Modal, Select } from "antd";
 import { CountrySelector, TranslatedText } from "../../common";
-import { useAppDispatch, useAppQuery } from "@/hooks";
+import { useAppDispatch, useCustomAppQuery } from "@/hooks";
 import { signUpVetAccountRequest } from "@/redux/slices/authSlice";
 import { useState } from "react";
 import { VerifyUserModal } from "./verify-user-modal";
+import { queries } from "@/services/db";
 
 type Props = {
   visible: boolean;
@@ -30,7 +31,9 @@ export const AddVeterinaryModal: React.FC<Props> = ({ visible, setVisible, data 
   const [verifyModalVisible, setVerifyModalVisible] = useState(false);
   const [createdEmail, setCreatedEmail] = useState("");
 
-  const { refetch: refetchClinics } = useAppQuery("GetClinicAndBranches");
+  const { refetch: refetchClinics } = useCustomAppQuery({
+    query: queries.clinic.GetClinicAndBranches,
+  });
 
   const handleCancel = () => {
     setVisible(false);

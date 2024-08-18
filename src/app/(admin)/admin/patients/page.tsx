@@ -2,7 +2,9 @@
 
 import { svg } from "@/assets";
 import { PatientList, PatientListHeaderCard, SearchFilterBox, SearchPatientInput } from "@/components/patients";
-import { useAppQuery } from "@/hooks";
+import { useCustomAppQuery } from "@/hooks";
+import { queries } from "@/services/db";
+
 import { useEffect, useState } from "react";
 
 import { PiPlusCircleDuotone as AddIcon, PiMagnifyingGlassDuotone as ViewIcon } from "react-icons/pi";
@@ -11,12 +13,9 @@ const PatientsPage = () => {
   const [searchResults, setSearchResults] = useState<string[]>([]);
   const [filters, setFilters] = useState<Record<string, string | undefined>>();
 
-  const { data, loading, error } = useAppQuery("GetClinicPets", {
-    context: {
-      headers: {
-        "x-hasura-role": "manager",
-      },
-    },
+  const { data } = useCustomAppQuery({
+    query: queries.pet.GetClinicPets,
+    asRole: "manager",
   });
 
   useEffect(() => {

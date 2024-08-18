@@ -2,10 +2,11 @@
 
 import { BranchesActions, BranchesList } from "@/components/branches";
 import { TranslatedText } from "@/components/common";
+import { useCustomAppQuery } from "@/hooks";
+import { queries } from "@/services/db";
 import { Breadcrumb, Button, Card, Divider, message, Segmented } from "antd";
 import type { BreadcrumbProps } from "antd";
 import { useEffect, useState } from "react";
-import { useAppQuery } from "@/hooks";
 
 const breadcrumbItems: BreadcrumbProps["items"] = [
   {
@@ -17,17 +18,10 @@ const breadcrumbItems: BreadcrumbProps["items"] = [
 ];
 
 const AdminBranchesPage: React.FC = () => {
-  const { loading, error, data, refetch } = useAppQuery("GetClinicAndBranches", {
-    context: {
-      headers: {
-        "x-hasura-role": "manager",
-      },
-    },
+  const { loading, data } = useCustomAppQuery({
+    query: queries.clinic.GetClinicAndBranches,
+    asRole: "manager",
   });
-
-  useEffect(() => {
-    console.log("Clinic data", data);
-  }, [data]);
 
   return (
     <div className="w-full flex flex-col gap-4">

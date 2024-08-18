@@ -1,8 +1,8 @@
 import { Checkbox, Divider, Form, Input, InputNumber, message, Modal } from "antd";
 import { TranslatedText } from "../../common";
 import { useState } from "react";
-import { mutations } from "@/services/db";
-import { useAppDispatch, useAppQuery, useAppSelector } from "@/hooks";
+import { mutations, queries } from "@/services/db";
+import { useAppDispatch, useAppSelector, useCustomAppQuery } from "@/hooks";
 import { createClinicRequest } from "@/redux/slices/clinicSlice";
 
 type CreateClinicSingleModalProps = {
@@ -24,7 +24,10 @@ export const CreateClinicSingleModal: React.FC<CreateClinicSingleModalProps> = (
   const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector((state) => state.clinic);
   const [createClinicForm] = Form.useForm<ClinicFormValues>();
-  const { refetch: refetchClinics } = useAppQuery("GetClinicAndBranches");
+
+  const { refetch: refetchClinics } = useCustomAppQuery({
+    query: queries.clinic.GetClinicAndBranches,
+  });
 
   const handleOk = () => {
     const clinicValues = createClinicForm.getFieldsValue();

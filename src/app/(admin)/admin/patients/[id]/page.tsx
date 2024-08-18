@@ -2,7 +2,7 @@
 
 import { TranslatedText } from "@/components/common";
 import { PatientOverviewCard, PatientWeightHistory } from "@/components/patients";
-import { useAppQuery, useNewAppQuery } from "@/hooks";
+import { useCustomAppQuery } from "@/hooks";
 import { queries } from "@/services/db";
 import { BreadcrumbProps } from "antd";
 import { useParams } from "next/navigation";
@@ -53,7 +53,7 @@ const weightData = [
 const PatientsIDPage = () => {
   const { id: petId } = useParams();
 
-  const { data } = useNewAppQuery<typeof queries.pet.GetPetDetail.response>({
+  const { data } = useCustomAppQuery<typeof queries.pet.GetPetDetail.response>({
     query: queries.pet.GetPetDetail.query,
     options: { variables: { petId } },
     asRole: "manager",

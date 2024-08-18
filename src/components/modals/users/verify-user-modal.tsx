@@ -1,9 +1,9 @@
 import { Button, Form, Input, message, Modal, Select } from "antd";
 import { TranslatedText } from "../../common";
-
 import { useState } from "react";
 import { auth } from "@/services/auth";
-import { useAppQuery } from "@/hooks";
+import { useCustomAppQuery } from "@/hooks";
+import { queries } from "@/services/db";
 
 type Props = {
   visible: boolean;
@@ -16,7 +16,9 @@ type Props = {
 export const VerifyUserModal: React.FC<Props> = ({ visible, setVisible, data }) => {
   const [otp, setOtp] = useState("");
 
-  const { refetch: refetchClinics } = useAppQuery("GetClinicAndBranches");
+  const { refetch: refetchClinics } = useCustomAppQuery({
+    query: queries.clinic.GetClinicAndBranches,
+  });
 
   const handleOk = () => {
     if (!data.userEmail) {

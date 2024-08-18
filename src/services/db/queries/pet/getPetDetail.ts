@@ -1,13 +1,4 @@
-import { gql } from "@apollo/client";
-
-const query = gql`
-  query GetPetDetail($petId: uuid = "") {
-    pet: pet_pets(where: { id: { _eq: $petId } }) {
-      id
-      name
-    }
-  }
-`;
+import { gql, TypedDocumentNode } from "@apollo/client";
 
 type GetPetDetailResponse = {
   pet: {
@@ -15,8 +6,11 @@ type GetPetDetailResponse = {
     name: string;
   }[];
 };
-
-export const GET_PET_DETAIL = {
-  query,
-  response: {} as GetPetDetailResponse,
-};
+export const GET_PET_DETAIL: TypedDocumentNode<GetPetDetailResponse> = gql`
+  query GetPetDetail($petId: uuid = "") {
+    pet: pet_pets(where: { id: { _eq: $petId } }) {
+      id
+      name
+    }
+  }
+`;

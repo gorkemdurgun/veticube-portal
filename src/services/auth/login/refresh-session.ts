@@ -1,5 +1,6 @@
 import { CognitoUserSession } from "amazon-cognito-identity-js";
 import userPool from "../userpool";
+import { message } from "antd";
 
 export const refreshSession = () => {
   return new Promise((resolve, reject) => {
@@ -15,11 +16,11 @@ export const refreshSession = () => {
         cognitoUser.refreshSession(session.getRefreshToken(), (err: any, session: CognitoUserSession) => {
           if (err) {
             reject(err);
-            console.log("Error refreshing session", err);
+            message.error("Refresh session failed");
             return;
           }
 
-          console.log("Refreshed session", session);
+          message.success("Session refreshed!!!");
           resolve(session);
         });
       });
