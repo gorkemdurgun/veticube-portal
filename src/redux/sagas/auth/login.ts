@@ -7,7 +7,7 @@ import toErrorMessage from "@/utils/toError";
 export function* login(action: ReturnType<typeof loginRequest>): Generator<CallEffect<any> | PutEffect<any>, void, any> {
   const { email, password, onSuccess, onError } = action.payload;
   try {
-    const response = yield call(auth.login, email, password);
+    const response = yield call(auth.login.loginUser, email, password);
     console.log(response);
     yield put(
       loginSuccess({

@@ -4,6 +4,7 @@ import { store } from "@/redux/store";
 import { onError } from "@apollo/client/link/error";
 import { logout } from "@/redux/slices/authSlice";
 import { message } from "antd";
+import { auth } from "@/services/auth";
 
 const httpLink = new HttpLink({
   uri: "http://52.59.222.78:8080/v1/graphql",
@@ -28,7 +29,8 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
       // if JWT token is expired, logout user
       if (errMessage === "Could not verify JWT: JWTExpired") {
         message.error("Your session has expired. Please login again.");
-        store.dispatch(logout());
+        auth.login.refreshSession();
+        // store.dispatch(logout());
       }
     });
   }
