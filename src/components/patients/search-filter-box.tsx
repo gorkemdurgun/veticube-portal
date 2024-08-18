@@ -2,6 +2,7 @@ import { Radio, Space, Divider, DatePicker } from "antd";
 import { CustomButton } from "../common";
 import { PiX as ClearIcon } from "react-icons/pi";
 import { useEffect, useState } from "react";
+import dayjs from "dayjs";
 
 type Props = {
   onFilterChange: (filters: Record<string, string | undefined>) => void;
@@ -39,7 +40,7 @@ export const SearchFilterBox = ({ onFilterChange }: Props) => {
       <Divider className="my-2" />
       <div className="flex flex-col gap-2">
         <h5 className="text-sm text-gray-500">Last Arrival</h5>
-        <DatePicker className="w-full" format="DD/MM/YYYY" onChange={(date) => handleFilterChange("date", date?.toISOString())} />
+        <DatePicker className="w-full" format="DD/MM/YYYY" onChange={(date) => handleFilterChange("date", dayjs(date).format("YYYY-MM-DD"))} />
       </div>
       <Divider className="my-2" />
       <Radio.Group value={filters.where} onChange={(e) => handleFilterChange("where", e.target.value)}>
