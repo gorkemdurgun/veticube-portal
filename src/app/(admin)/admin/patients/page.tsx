@@ -46,7 +46,7 @@ const PatientsPage = () => {
             className="col-span-1 sm:col-span-2 lg:col-span-1"
             image={svg.pack3.AidPaw2}
             label="Total Patients"
-            count={20}
+            count={chartData?.totalPets.aggregate.count || 0}
             button={{ icon: AddIcon, onClick: () => console.log("Add new patient") }}
             chartData={chartDataGenerator.groupDatesByCount(chartData?.registeredPatients)}
           />

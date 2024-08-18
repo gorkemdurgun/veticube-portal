@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { IconType } from "react-icons";
 import { CustomButton } from "../common";
-import { Line, LineChart, ResponsiveContainer } from "recharts";
+import { Line, LineChart, ResponsiveContainer, Tooltip } from "recharts";
+import dayjs from "dayjs";
 
 type Props = {
   className?: string;
@@ -36,6 +37,11 @@ export const PatientListHeaderCard = ({ className, image, label, count, button, 
           <ResponsiveContainer width={"100%"} height={"100%"}>
             <LineChart data={chartData}>
               <Line dot={false} type="bump" dataKey="value" stroke="#8884d8" strokeWidth={2} />
+              <Tooltip
+                position={{ y: 40 }}
+                labelFormatter={(label, payload) => dayjs(payload[0]?.payload?.date).format("DD/MM/YYYY")}
+                formatter={(value: number) => [value, "Registered patients"]}
+              />
             </LineChart>
           </ResponsiveContainer>
         </div>
