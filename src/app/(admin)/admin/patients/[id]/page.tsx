@@ -53,8 +53,8 @@ const weightData = [
 const PatientsIDPage = () => {
   const { id: petId } = useParams();
 
-  const { data } = useCustomAppQuery<typeof queries.pet.GetPetDetail.response>({
-    query: queries.pet.GetPetDetail.query,
+  const { data } = useCustomAppQuery({
+    query: queries.pet.GetPetDetail,
     options: { variables: { petId } },
     asRole: "manager",
   });
