@@ -35,7 +35,7 @@ export const PatientListHeaderCard = ({ className, image, label, count, button, 
         <div className="ml-auto h-16 w-0 sm:w-48 lg:w-32">
           <ResponsiveContainer width={"100%"} height={"100%"}>
             <LineChart data={chartData}>
-              <Line dot={false} type="monotone" dataKey="value" stroke="#8884d8" strokeWidth={2} />
+              <Line dot={false} type="bump" dataKey="value" stroke="#8884d8" strokeWidth={2} />
             </LineChart>
           </ResponsiveContainer>
         </div>
