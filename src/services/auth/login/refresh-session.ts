@@ -2,7 +2,7 @@ import { CognitoUserSession } from "amazon-cognito-identity-js";
 import userPool from "../userpool";
 import { message } from "antd";
 import { store } from "@/redux/store";
-import { loginSuccess, setTokens } from "@/redux/slices/authSlice";
+import { loginSuccess } from "@/redux/slices/authSlice";
 
 export const refreshSession = () => {
   return new Promise((resolve, reject) => {

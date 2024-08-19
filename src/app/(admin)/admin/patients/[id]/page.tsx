@@ -53,7 +53,7 @@ const weightData = [
 const PatientsIDPage = () => {
   const { id: petId } = useParams();
 
-  const { data } = useCustomAppQuery({
+  const { loading, data } = useCustomAppQuery({
     query: queries.pet.GetPetDetail,
     options: { variables: { petId } },
   });
@@ -64,6 +64,7 @@ const PatientsIDPage = () => {
       {/* <Breadcrumb items={breadcrumbItems} /> */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <PatientOverviewCard
+        loading={loading} 
           pet={{
             name: data?.pet[0].name,
             gender: "F",

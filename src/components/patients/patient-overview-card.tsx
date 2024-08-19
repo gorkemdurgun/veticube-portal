@@ -9,10 +9,11 @@ import {
   PiGenderFemale as GenderFemaleIcon,
   PiGenderMale as GenderMaleIcon,
 } from "react-icons/pi";
-import { Avatar, Descriptions, Divider } from "antd";
+import { Avatar, Descriptions, Divider, Skeleton } from "antd";
 import type { DescriptionsProps } from "antd";
 
 type Props = {
+  loading?: boolean;
   pet: {
     name?: string;
     gender: string;
@@ -27,7 +28,7 @@ type Props = {
   };
 };
 
-const Component: React.FC<Props> = ({ pet }) => {
+const Component: React.FC<Props> = ({ loading, pet }) => {
   let classColor = pet.gender === "M" ? "bg-blue-200 text-blue-800" : "bg-pink-200 text-pink-800";
   let genderIcon =
     pet.gender === "M" ? <GenderMaleIcon className="w-4 h-4 text-blue-800" /> : <GenderFemaleIcon className="w-4 h-4 text-pink-800" />;
@@ -60,6 +61,24 @@ const Component: React.FC<Props> = ({ pet }) => {
     },
   ];
 
+  const LoadingSkeleton = () => (
+    <div className="flex flex-col gap-4">
+      <div className="flex gap-4">
+        <Skeleton.Avatar active size={64} shape="square" />
+        <div className="flex flex-col justify-around">
+          <Skeleton.Input active style={{ height: 30 }} />
+          <Skeleton.Input active style={{ height: 20 }} />
+        </div>
+        <div className="ml-auto flex flex-col items-end justify-around">
+          <Skeleton.Input active style={{ height: 30 }} />
+          <Skeleton.Input active style={{ height: 20 }} />
+        </div>
+      </div>
+      <Divider className="my-2" />
+      <Skeleton active title={false} paragraph={{ rows: 3 }} />
+    </div>
+  );
+
   return (
     <ComponentCard
       header={{
@@ -67,26 +86,30 @@ const Component: React.FC<Props> = ({ pet }) => {
         extra: <CustomButton variant="primary-faded" icon={EditIcon} />,
       }}
     >
-      <div className="flex flex-col gap-4">
-        <div className="flex gap-4">
-          <Avatar shape="square" className={`bg-gray-50 text-gray-700 h-16 w-16`} icon={species} />
-          <div className="flex flex-col justify-around">
-            <h3 className="text-2xl font-semibold">{pet.name}</h3>
-            <div className="flex items-center gap-2">
-              <div className={`flex items-center p-1 rounded-md ${classColor}`}>{genderIcon}</div>
-              <span className="text-gray-900">{pet.species}</span>
-              <Divider rootClassName="mx-0" type="vertical" className="border-gray-700" />
-              <span className="text-gray-700">{pet.breed}</span>
+      {loading ? (
+        <LoadingSkeleton />
+      ) : (
+        <div className="flex flex-col gap-4">
+          <div className="flex gap-4">
+            <Avatar shape="square" className={`bg-gray-50 text-gray-700 h-16 w-16`} icon={species} />
+            <div className="flex flex-col justify-around">
+              <h3 className="text-2xl font-semibold">{pet.name}</h3>
+              <div className="flex items-center gap-2">
+                <div className={`flex items-center p-1 rounded-md ${classColor}`}>{genderIcon}</div>
+                <span className="text-gray-900">{pet.species}</span>
+                <Divider rootClassName="mx-0" type="vertical" className="border-gray-700" />
+                <span className="text-gray-700">{pet.breed}</span>
+              </div>
+            </div>
+            <div className="ml-auto flex flex-col items-end justify-around">
+              <h2 className="text-3xl font-semibold">{age + " years"}</h2>
+              <span className="text-gray-500">{`(${pet.birthDate})`}</span>
             </div>
           </div>
-          <div className="ml-auto flex flex-col items-end justify-around">
-            <h2 className="text-3xl font-semibold">{age + " years"}</h2>
-            <span className="text-gray-500">{`(${pet.birthDate})`}</span>
-          </div>
+          <Divider className="my-2" />
+          <Descriptions column={2} size="small" bordered items={items} />
         </div>
-        <Divider className="my-2"/>
-        <Descriptions column={2} size="small" bordered items={items} />
-      </div>
+      )}
     </ComponentCard>
   );
 };
