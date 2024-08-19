@@ -23,10 +23,16 @@ export const refreshSession = () => {
           }
 
           store.dispatch(
-            setTokens({
+            loginSuccess({
               idToken: session.getIdToken().getJwtToken(),
               accessToken: session.getAccessToken().getJwtToken(),
               refreshToken: session.getRefreshToken().getToken(),
+              user: {
+                id: session.getIdToken().payload.sub,
+                email: session.getIdToken().payload.email,
+                firstName: session.getIdToken().payload["custom:firstName"],
+                lastName: session.getIdToken().payload["custom:lastName"],
+              },
             })
           );
           message.success("Session refreshed!!!");

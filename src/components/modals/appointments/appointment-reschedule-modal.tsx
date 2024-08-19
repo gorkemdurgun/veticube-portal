@@ -17,7 +17,7 @@ export const AppointmentRescheduleModal: React.FC<AppointmentRescheduleModalProp
 
   const handleOk = () => {
     // setVisible(false);
-    console.log(currentAppointment);
+    // console.log(currentAppointment);
   };
 
   const handleCancel = () => {

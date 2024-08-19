@@ -57,7 +57,7 @@ const PatientsIDPage = () => {
     query: queries.pet.GetPetDetail,
     options: { variables: { petId } },
   });
-  console.log("Pet data", data?.pet[0].name);
+  // console.log("Pet data", data?.pet[0].name);
 
   return (
     <div className="w-full flex flex-col gap-4">

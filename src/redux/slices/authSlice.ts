@@ -37,6 +37,19 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = null;
     },
+    refreshSessionRequest: (state, action: PayloadAction<RefreshSessionRequestPayload>) => {
+      state.loading = true;
+    },
+    refreshSessionSuccess: (state, action: PayloadAction<LoginSuccessPayload>) => {
+      state.isAuthenticated = true;
+      state.clientSession = action.payload;
+      state.loading = false;
+      state.error = null;
+    },
+    refreshSessionFailure: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
     setTokens: (state, action: PayloadAction<{ idToken: string; accessToken: string; refreshToken: string }>) => {
       state.clientSession = {
         ...state.clientSession!,
@@ -51,6 +64,16 @@ const authSlice = createSlice({
   },
 });
 
-export const { loginRequest, loginSuccess, loginFailure, logout, setTokens, signUpVetAccountRequest } = authSlice.actions;
+export const {
+  loginRequest,
+  loginSuccess,
+  loginFailure,
+  refreshSessionRequest,
+  refreshSessionSuccess,
+  refreshSessionFailure,
+  logout,
+  setTokens,
+  signUpVetAccountRequest,
+} = authSlice.actions;
 
 export default authSlice.reducer;

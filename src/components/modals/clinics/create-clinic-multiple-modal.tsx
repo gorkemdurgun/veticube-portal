@@ -32,7 +32,7 @@ export const CreateClinicMultipleModal: React.FC<CreateClinicMultipleModalProps>
     const clinicValues = createClinicForm.getFieldsValue();
     const branchValues = createBranchForm.getFieldsValue();
 
-    console.log(clinicValues, branchValues);
+    // console.log(clinicValues, branchValues);
 
     dispatch(
       createClinicRequest({

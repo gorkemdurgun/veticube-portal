@@ -36,18 +36,6 @@ export default function AdminLayout({
 
   const { t } = useTranslation();
 
-  useEffect(() => {
-    Router.events.on("routeChangeStart", () => {
-      console.log("Route is changing");
-    });
-    Router.events.on("routeChangeComplete", () => {
-      console.log("Route is changed");
-    });
-    Router.events.on("routeChangeError", () => {
-      console.log("Route change error");
-    });
-  }, []);
-
   const items: MenuItem[] = [
     {
       type: "item",

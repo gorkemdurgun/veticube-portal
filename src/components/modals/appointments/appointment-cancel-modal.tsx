@@ -19,7 +19,7 @@ export const AppointmentCancelModal: React.FC<AppointmentCancelModalProps> = ({ 
 
   const handleOk = () => {
     // setVisible(false);
-    console.log(currentAppointment);
+    // console.log(currentAppointment);
   };
 
   const handleCancel = () => {

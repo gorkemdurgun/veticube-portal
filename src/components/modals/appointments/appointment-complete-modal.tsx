@@ -22,7 +22,7 @@ export const AppointmentCompleteModal: React.FC<AppointmentCompleteModalProps> =
 
   const handleOk = () => {
     // setVisible(false);
-    console.log(currentAppointment);
+    // console.log(currentAppointment);
   };
 
   const handleCancel = () => {

@@ -26,7 +26,7 @@ export const AppointmentCreateModal: React.FC<AppointmentCreateeModalProps> = ({
 
   const handleOk = () => {
     // setVisible(false);
-    console.log(newAppointment);
+    // console.log(newAppointment);
   };
 
   const handleCancel = () => {

@@ -14,15 +14,15 @@ export function* signUpVetAccount(action: ReturnType<typeof signUpVetAccountRequ
     // Kullanıcıyı veritabanına kaydetme ve kullanıcıya veteriner rolü verme
     if (userId) {
       const vet = yield call(mutations.auth.veterinarians.insertVeterinarian, userId, clinicBranchId, specilization);
-      console.log(vet);
+      // console.log(vet);
 
-      console.log("Updating user role...", userId);
+      // console.log("Updating user role...", userId);
       const updateRole = yield call(mutations.auth.veterinarians.updateVetRole, userId);
-      console.log(updateRole);
+      // console.log(updateRole);
     }
 
     if (onSuccess) {
-      console.log("Sending email to user...");
+      // console.log("Sending email to user...");
       onSuccess(email);
     }
   } catch (error) {

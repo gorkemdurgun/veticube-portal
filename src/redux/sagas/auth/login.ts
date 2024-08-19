@@ -1,7 +1,6 @@
 import { call, put, CallEffect, PutEffect } from "redux-saga/effects";
 import { loginRequest, loginSuccess, loginFailure } from "@/redux/slices/authSlice";
 import { auth } from "@/services/auth";
-import { mutations } from "@/services/db";
 import toErrorMessage from "@/utils/toError";
 
 export function* login(action: ReturnType<typeof loginRequest>): Generator<CallEffect<any> | PutEffect<any>, void, any> {

@@ -13,7 +13,7 @@ const GQL = gql`
 `;
 
 export const service = async (name: string) => {
-  console.log("createClinic", name);
+  // console.log("createClinic", name);
   const { data, errors } = await apolloGqlClient.mutate<{
     clinic: { returning: { id: string; name: string }[] };
   }>({
@@ -28,7 +28,7 @@ export const service = async (name: string) => {
     },
   });
 
-  console.log("createclinic res", data, errors);
+  // console.log("createclinic res", data, errors);
   return data;
 };
 

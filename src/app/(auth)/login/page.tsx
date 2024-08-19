@@ -24,7 +24,7 @@ const Login: React.FC = () => {
   const [isNotConfirmed, setIsNotConfirmed] = useState(false);
 
   const handleSubmit = () => {
-    console.log("handleSubmit", loginForm.getFieldsValue());
+    // console.log("handleSubmit", loginForm.getFieldsValue());
     loginForm.validateFields().then(() => {
       dispatch(
         loginRequest({

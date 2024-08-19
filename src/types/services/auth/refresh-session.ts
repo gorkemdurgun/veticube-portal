@@ -1,0 +1,3 @@
+type RefreshSessionRequestPayload = {
+  refreshToken: string;
+};

@@ -27,15 +27,15 @@ const PatientsPage = () => {
   });
 
   useEffect(() => {
-    console.log("Search results:", searchResults);
+    // console.log("Search results:", searchResults);
   }, [searchResults]);
 
   useEffect(() => {
-    console.log("Filters:", filters);
+    // console.log("Filters:", filters);
   }, [filters]);
 
   useEffect(() => {
-    console.log("Chart data:", chartData);
+    // console.log("Chart data:", chartData);
   }, [chartData]);
 
   return (

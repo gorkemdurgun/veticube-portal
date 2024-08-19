@@ -46,7 +46,7 @@ export const AddVeterinaryModal: React.FC<Props> = ({ visible, setVisible, data 
     }
 
     createForm.validateFields().then(() => {
-      console.log(values, data);
+      // console.log(values, data);
     });
 
     dispatch(
@@ -67,7 +67,7 @@ export const AddVeterinaryModal: React.FC<Props> = ({ visible, setVisible, data 
           createForm.resetFields();
         },
         onError: (error) => {
-          console.log(error);
+          // console.log(error);
         },
       })
     );

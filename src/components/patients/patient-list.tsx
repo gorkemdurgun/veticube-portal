@@ -118,7 +118,7 @@ const columns: TableProps<DataType>["columns"] = [
 
 const Component = ({ data }: Props) => {
   const router = useRouter();
-  console.log(data);
+  // console.log(data);
 
   return (
     <Table

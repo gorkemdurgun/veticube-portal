@@ -35,7 +35,7 @@ const RegisterVerify: React.FC = () => {
   };
 
   const onChange: OTPProps["onChange"] = (text) => {
-    console.log("onChange:", text);
+    // console.log("onChange:", text);
   };
 
   const sharedProps: OTPProps = {
