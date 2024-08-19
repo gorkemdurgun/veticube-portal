@@ -19,10 +19,11 @@ import {
 } from "react-icons/pi";
 import { MoonOutlined, SunOutlined, DownOutlined } from "@ant-design/icons";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { setLanguage } from "@/redux/slices/languageSlice";
 import { Navbar } from "@/components/common";
+import { Router } from "next/router";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -34,6 +35,18 @@ export default function AdminLayout({
   const { Header, Content, Footer, Sider } = Layout;
 
   const { t } = useTranslation();
+
+  useEffect(() => {
+    Router.events.on("routeChangeStart", () => {
+      console.log("Route is changing");
+    });
+    Router.events.on("routeChangeComplete", () => {
+      console.log("Route is changed");
+    });
+    Router.events.on("routeChangeError", () => {
+      console.log("Route change error");
+    });
+  }, []);
 
   const items: MenuItem[] = [
     {

@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { IconType } from "react-icons";
+import { IconBase, IconType } from "react-icons";
 
 type ButtonType = "neutral-text" | "neutral-opaque" | "neutral-faded" | "primary-text" | "primary-opaque" | "primary-faded";
 
@@ -9,7 +9,7 @@ type Props = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElemen
   icon?: IconType;
 };
 
-const Component: React.FC<Props> = ({ size, variant, ...props }) => {
+const Component: React.FC<Props> = ({ size, variant, icon, ...props }) => {
   const selectedSize = size || "sm";
   const selectedVariant = variant || "primary-opaque";
   let buttonClass = "flex items-center justify-center gap-1 py-2 px-2 button button-" + selectedVariant;
@@ -36,7 +36,7 @@ const Component: React.FC<Props> = ({ size, variant, ...props }) => {
 
   return (
     <button {...props} className={`${buttonClass} ${props.className || ""}`}>
-      {props.icon && <props.icon className={iconClass} />}
+      {icon && icon({ className: iconClass })}
       {props.children}
     </button>
   );

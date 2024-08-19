@@ -17,7 +17,8 @@ const groupByDate = (data: Data[]): GroupedData => {
   }, {});
 };
 
-const groupDatesByCount = (data?: Data[]): { date: string; value: number }[] | undefined => {
+const groupDatesByCount = (data?: Data[]): { 
+  date: string; value: number }[] | undefined => {
   if (!data) return undefined;
   const groupedData = groupByDate(data);
   return Object.keys(groupedData).map((date) => ({

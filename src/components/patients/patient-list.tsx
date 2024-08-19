@@ -124,6 +124,7 @@ const Component = ({ data }: Props) => {
     <Table
       size="middle"
       rowClassName="cursor-pointer"
+      rowKey="id"
       columns={columns}
       dataSource={data}
       pagination={{
