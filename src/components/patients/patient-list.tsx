@@ -1,36 +1,40 @@
 import { memo } from "react";
 
-
 import { PiCalendarBlank as AppointmentIcon, PiWhatsappLogo as WhatsAppIcon } from "react-icons/pi";
 
-import { Divider, Space, Table, Tag, type TableProps } from "antd";
+import { Divider, Popover, Space, Table, Tag, type TableProps } from "antd";
 import dayjs from "dayjs";
 import { useRouter } from "next/navigation";
 
+import type { GetClinicPetsResponse } from "@/services/db/queries/pet/getClinicPets";
+
+import PatientOwnersButton from "./patient-owners-button";
+
 import { CustomButton } from "../common";
 
-
 type Props = {
-  data?: GetClinicPetsResponse["petList"];
+  data?: GetClinicPetsResponse["pet_list"];
 };
-type DataType = GetClinicPetsResponse["petList"][number];
+type DataType = GetClinicPetsResponse["pet_list"][number];
 
 const columns: TableProps<DataType>["columns"] = [
   {
-    title: "Client",
+    title: "Clients",
     align: "center",
     children: [
       {
         title: "Full Name",
-        dataIndex: ["client", "user", "first_name"],
-        key: "clientName",
+        dataIndex: ["pet_clients", 0, "client", "user", "first_name"],
+        key: "client",
         align: "center",
-        sorter: (a, b) => a.client.user.first_name.localeCompare(b.client.user.first_name),
+        sorter: (a, b) => a.pet_clients[0].client.user.first_name.localeCompare(b.pet_clients[0].client.user.first_name),
         render(value, record, index) {
-          return (
-            <span key={index} className="text-center">
-              {record.client.user.first_name} {record.client.user.last_name}
-            </span>
+          return record.pet_clients.length > 1 ? (
+            <PatientOwnersButton clientList={record.pet_clients} />
+          ) : (
+            <CustomButton variant="primary-text" onClick={(e) => e.stopPropagation()}>
+              {record.pet_clients[0]?.client?.user?.first_name + " " + record.pet_clients[0]?.client?.user?.last_name}
+            </CustomButton>
           );
         },
       },
@@ -38,20 +42,19 @@ const columns: TableProps<DataType>["columns"] = [
   },
   {
     title: "Pet",
-    align: "center",
+
     children: [
       {
         title: "Name",
         dataIndex: ["name"],
         key: "name",
-        align: "center",
         sorter: (a, b) => a.name.localeCompare(b.name),
       },
       {
         title: "Age",
         dataIndex: ["birth_date"],
         key: "age",
-        align: "center",
+
         sorter: (a, b) => a.birth_date.localeCompare(b.birth_date),
         render(value, record, index) {
           return (
@@ -108,14 +111,14 @@ const columns: TableProps<DataType>["columns"] = [
     ],
   },
   {
-    title: "Action",
-    key: "action",
+    title: "Actions",
+    key: "actions",
     align: "center",
     render: (_, record) => (
       <Space size="middle">
         <CustomButton variant="primary-text" icon={AppointmentIcon} />
-        <Divider type="vertical" className="mx-0" />
-        <CustomButton variant="primary-text" icon={WhatsAppIcon} />
+        {/* <Divider type="vertical" className="mx-0" /> */}
+        {/* <CustomButton variant="primary-text" icon={WhatsAppIcon} /> */}
       </Space>
     ),
   },
@@ -133,7 +136,12 @@ const PatientList = ({ data }: Props) => {
       columns={columns}
       dataSource={data}
       pagination={{
-        pageSize: 10,
+        responsive: true,
+        simple: true,
+        hideOnSinglePage: true,
+        position: ["bottomRight"],
+        pageSize: 3,
+        showTotal: (total, range) => <span>{`${range[0]}-${range[1]} of ${total} items`}</span>,
       }}
       onRow={(record, rowIndex) => {
         return {

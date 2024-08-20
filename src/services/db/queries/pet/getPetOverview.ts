@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 import type { TypedDocumentNode } from "@apollo/client";
 
-type GetPetOverviewResponse = {
+export type GetPetOverviewResponse = {
   pet: {
     id: string;
     name: string;
@@ -14,12 +14,15 @@ type GetPetOverviewResponse = {
     gender: string;
     neutralized: boolean;
     birth_date: string;
-    client: {
-      user: {
-        first_name: string;
-        last_name: string;
+    pet_clients: {
+      client: {
+        id: string;
+        user: {
+          first_name: string;
+          last_name: string;
+        };
       };
-    };
+    }[];
   }[];
 };
 export const GET_PET_OVERVIEW: TypedDocumentNode<GetPetOverviewResponse> = gql`
@@ -28,17 +31,20 @@ export const GET_PET_OVERVIEW: TypedDocumentNode<GetPetOverviewResponse> = gql`
       id
       name
       chip_id
-     pet_breed {
+      pet_breed {
         breed: breed_name
         species
       }
       gender
       neutralized
       birth_date
-      client {
-        user {
-          first_name
-          last_name
+      pet_clients {
+        client {
+          id
+          user {
+            first_name
+            last_name
+          }
         }
       }
     }

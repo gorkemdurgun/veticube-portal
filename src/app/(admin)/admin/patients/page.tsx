@@ -9,7 +9,7 @@ import dayjs from "dayjs";
 import { svg } from "@/assets";
 import { useCustomAppQuery } from "@/hooks";
 import { queries } from "@/services/db";
-import { chart} from "@/utils";
+import { chart } from "@/utils";
 
 import PatientList from "@/components/patients/patient-list";
 import PatientListHeaderCard from "@/components/patients/patient-list-header-card";
@@ -27,6 +27,7 @@ const PatientsPage = () => {
   const { data: chartData } = useCustomAppQuery({
     query: queries.pet.GetRegisteredPatientsChartData,
     options: {
+      skip: true,
       variables: {
         untilDate: last7Days,
       },
@@ -75,7 +76,7 @@ const PatientsPage = () => {
         <div className="overflow-y-auto grid grid-cols-[1fr,240px] gap-4">
           <div className="flex flex-col gap-4">
             <SearchPatientInput onSearchDone={setSearchResults} />
-            <PatientList data={data?.petList} />
+            <PatientList data={data?.pet_list} />
           </div>
           <SearchFilterBox onFilterChange={setFilters} />
         </div>

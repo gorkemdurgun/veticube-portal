@@ -54,12 +54,14 @@ div > .ant-picker-calendar-date-content {
   }
 
   &:hover {
+    transition: all 0.2s;
     .icon {
       scale: 1.1;
     }
   }
 
   &:active {
+    transition: all 0.2s;
     scale: 0.9;
     .icon {
       opacity: 0.8;
@@ -86,11 +88,13 @@ div > .ant-picker-calendar-date-content {
 .button-neutral-text {
   background-color: transparent;
   color: #929299; /* gray-600 */
+  &:hover {
+    text-decoration: underline;
+  }
   &:active {
     color: #7e7d85; /* gray-700 */
   }
 }
-
 .button-neutral-opaque {
   background-color: #929299 !important; /* gray-600 */
   color: #f6f6f7 !important; /* gray-50 */
@@ -110,6 +114,9 @@ div > .ant-picker-calendar-date-content {
 .button-primary-text {
   background-color: transparent;
   color: #059669; /* green-600 */
+  &:hover {
+    text-decoration: underline;
+  }
   &:active {
     color: #047854; /* green-700 */
   }

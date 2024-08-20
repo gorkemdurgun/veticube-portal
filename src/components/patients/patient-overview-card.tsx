@@ -12,7 +12,10 @@ import {
 
 import { Avatar, Descriptions, Divider, Skeleton } from "antd";
 
+import { GetPetOverviewResponse } from "@/services/db/queries/pet";
 import { calculator, converter } from "@/utils";
+
+import PatientOwnersButton from "./patient-owners-button";
 
 import type { DescriptionsProps } from "antd";
 
@@ -20,23 +23,7 @@ import { ComponentCard, CustomButton, TranslatedText } from "../common";
 
 type Props = {
   loading?: boolean;
-  pet?: {
-    name?: string;
-    chip_id?: string;
-    pet_breed?: {
-      breed?: string;
-      species?: string;
-    };
-    gender?: string;
-    neutralized?: boolean;
-    birth_date?: string;
-    client?: {
-      user?: {
-        first_name?: string;
-        last_name?: string;
-      };
-    };
-  };
+  pet?: GetPetOverviewResponse["pet"][number];
 };
 
 const PatientOverviewCard: React.FC<Props> = ({ loading, pet }) => {
@@ -59,15 +46,7 @@ const PatientOverviewCard: React.FC<Props> = ({ loading, pet }) => {
     },
     {
       label: <span>Owner</span>,
-      children: (
-        <div className="flex items-center justify-between gap-2">
-          <span>{`${pet?.client?.user?.first_name} ${pet?.client?.user?.last_name}`}</span>
-          <div className="flex gap-2">
-            <CustomButton variant="primary-text" icon={EmailIcon} />
-            <CustomButton variant="primary-text" icon={WhatsappIcon} />
-          </div>
-        </div>
-      ),
+      children: <PatientOwnersButton clientList={pet?.pet_clients} />,
       span: 2,
     },
   ];
