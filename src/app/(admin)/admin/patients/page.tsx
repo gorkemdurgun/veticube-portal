@@ -6,11 +6,10 @@ import { PiPlusCircleDuotone as AddIcon, PiMagnifyingGlassDuotone as ViewIcon } 
 
 import dayjs from "dayjs";
 
-
 import { svg } from "@/assets";
 import { useCustomAppQuery } from "@/hooks";
 import { queries } from "@/services/db";
-import { chartDataGenerator } from "@/utils/chartDataGenerator";
+import { chartGenerator } from "@/utils/chartGenerator";
 
 import PatientList from "@/components/patients/patient-list";
 import PatientListHeaderCard from "@/components/patients/patient-list-header-card";
@@ -56,7 +55,7 @@ const PatientsPage = () => {
             label="Total Patients"
             count={chartData?.totalPets.aggregate.count || 0}
             button={{ icon: AddIcon, onClick: () => console.log("Add new patient") }}
-            chartData={chartDataGenerator.groupDatesByCount(chartData?.registeredPatients)}
+            chartData={chartGenerator.groupDatesByCount(chartData?.registeredPatients)}
           />
           <PatientListHeaderCard
             className="col-span-1"

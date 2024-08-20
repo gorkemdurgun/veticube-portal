@@ -17,16 +17,24 @@ const groupByDate = (data: Data[]): GroupedData => {
   }, {});
 };
 
-const groupDatesByCount = (data?: Data[]): { 
-  date: string; value: number }[] | undefined => {
+const groupDatesByCount = (
+  data?: Data[]
+):
+  | {
+      date: string;
+      value: number;
+    }[]
+  | undefined => {
   if (!data) return undefined;
   const groupedData = groupByDate(data);
-  return Object.keys(groupedData).map((date) => ({
-    date,
-    value: groupedData[date].length,
-  })).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  return Object.keys(groupedData)
+    .map((date) => ({
+      date,
+      value: groupedData[date].length,
+    }))
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 };
 
-export const chartDataGenerator = {
+export const chartGenerator = {
   groupDatesByCount,
 };
