@@ -9,7 +9,7 @@ import dayjs from "dayjs";
 import { svg } from "@/assets";
 import { useCustomAppQuery } from "@/hooks";
 import { queries } from "@/services/db";
-import { chartGenerator } from "@/utils/chartGenerator";
+import { chart} from "@/utils";
 
 import PatientList from "@/components/patients/patient-list";
 import PatientListHeaderCard from "@/components/patients/patient-list-header-card";
@@ -55,7 +55,7 @@ const PatientsPage = () => {
             label="Total Patients"
             count={chartData?.totalPets.aggregate.count || 0}
             button={{ icon: AddIcon, onClick: () => console.log("Add new patient") }}
-            chartData={chartGenerator.groupDatesByCount(chartData?.registeredPatients)}
+            chartData={chart.groupDatesByCount(chartData?.registeredPatients)}
           />
           <PatientListHeaderCard
             className="col-span-1"

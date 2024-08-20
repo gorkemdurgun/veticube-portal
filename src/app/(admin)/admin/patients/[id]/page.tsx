@@ -8,7 +8,6 @@ import { queries } from "@/services/db";
 import PatientOverviewCard from "@/components/patients/patient-overview-card";
 import PatientWeightHistory from "@/components/patients/patient-weight-history";
 
-
 const weightData = [
   {
     date: "2021-01-01",
@@ -65,21 +64,7 @@ const PatientsIDPage = () => {
     <div className="w-full flex flex-col gap-4">
       {/* <Breadcrumb items={breadcrumbItems} /> */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <PatientOverviewCard
-          loading={loading}
-          pet={{
-            name: data?.pet[0]?.name,
-            gender: data?.pet[0]?.gender,
-            species: "Cat",
-            breed: "Siamese",
-            birthDate: "2020-01-01",
-            isNeutered: true,
-            microchip: "#123456789",
-            owner: "John Doe",
-            ownerPhone: "555-555-5555",
-            ownerEmail: "wqeldsdaseo2321@gmail.com",
-          }}
-        />
+        <PatientOverviewCard loading={loading} pet={data?.pet?.[0]} />
         <PatientWeightHistory weightHistory={weightData} />
       </div>
     </div>

@@ -7,13 +7,19 @@ type GetPetOverviewResponse = {
     id: string;
     name: string;
     chip_id: string;
-    petBreed: {
+    pet_breed: {
       breed: string;
       species: string;
     };
     gender: string;
     neutralized: boolean;
     birth_date: string;
+    client: {
+      user: {
+        first_name: string;
+        last_name: string;
+      };
+    };
   }[];
 };
 export const GET_PET_OVERVIEW: TypedDocumentNode<GetPetOverviewResponse> = gql`
@@ -22,13 +28,19 @@ export const GET_PET_OVERVIEW: TypedDocumentNode<GetPetOverviewResponse> = gql`
       id
       name
       chip_id
-      petBreed: pet_breed {
+     pet_breed {
         breed: breed_name
         species
       }
       gender
       neutralized
       birth_date
+      client {
+        user {
+          first_name
+          last_name
+        }
+      }
     }
   }
 `;

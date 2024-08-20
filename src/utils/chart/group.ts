@@ -17,7 +17,7 @@ const groupByDate = (data: Data[]): GroupedData => {
   }, {});
 };
 
-const groupDatesByCount = (
+export const groupDatesByCount = (
   data?: Data[]
 ):
   | {
@@ -33,8 +33,4 @@ const groupDatesByCount = (
       value: groupedData[date].length,
     }))
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-};
-
-export const chartGenerator = {
-  groupDatesByCount,
-};
+}
