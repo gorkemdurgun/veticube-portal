@@ -1,6 +1,8 @@
-import { useTranslation } from "react-i18next";
-import enJson from "@/localization/en.json";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
+
+import { useTranslation } from "react-i18next";
+
+import enJson from "@/localization/en.json";
 
 type SpanProps = DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>;
 type LocalizationStructure = typeof enJson;

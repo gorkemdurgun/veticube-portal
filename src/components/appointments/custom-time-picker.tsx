@@ -1,4 +1,6 @@
-import { TimePicker, TimePickerProps } from "antd";
+import { TimePicker } from "antd";
+
+import type { TimePickerProps } from "antd";
 
 export const CustomTimePicker: React.FC<TimePickerProps> = (props) => {
   return (

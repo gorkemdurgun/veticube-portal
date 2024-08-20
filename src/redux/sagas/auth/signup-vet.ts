@@ -1,8 +1,12 @@
-import { call, CallEffect, PutEffect } from "redux-saga/effects";
+import { call } from "redux-saga/effects";
+
+
 import { signUpVetAccountRequest } from "@/redux/slices/authSlice";
 import { auth } from "@/services/auth";
 import { mutations } from "@/services/db";
 import toErrorMessage from "@/utils/toError";
+
+import type { CallEffect, PutEffect } from "redux-saga/effects";
 
 export function* signUpVetAccount(action: ReturnType<typeof signUpVetAccountRequest>): Generator<CallEffect<any>, void, any> {
   const { firstName, lastName, email, password, countryCode, phoneNumber, clinicBranchId, specilization, onSuccess, onError } = action.payload;

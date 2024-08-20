@@ -1,6 +1,7 @@
+import { useEffect } from "react";
+
 import { useAppSelector } from "@/hooks";
 import i18n from "@/localization/i18n";
-import { useEffect } from "react";
 
 const AppI18Provider = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   const { language } = useAppSelector((state) => state.lang);

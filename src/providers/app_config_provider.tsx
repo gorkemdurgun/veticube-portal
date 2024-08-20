@@ -1,8 +1,12 @@
-import { ConfigProvider, ConfigProviderProps, theme } from "antd";
+import { ConfigProvider, theme } from "antd";
+
+
 import { useAppSelector } from "@/hooks";
-import { customTheme } from "@/styles/theme";
-import componentTranslationsTR from "@/localization/components/tr_TR";
 import componentTranslationsEN from "@/localization/components/en_US";
+import componentTranslationsTR from "@/localization/components/tr_TR";
+import { customTheme } from "@/styles/theme";
+
+import type { ConfigProviderProps } from "antd";
 
 const AppConfigProvider = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   const { defaultAlgorithm, darkAlgorithm } = theme;

@@ -1,5 +1,6 @@
-import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
 import { gql } from "@apollo/client";
+
+import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
 
 const GQL = gql`
   mutation InsertClinic($name: String = "") {

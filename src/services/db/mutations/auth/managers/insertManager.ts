@@ -1,5 +1,6 @@
-import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
 import { gql } from "@apollo/client";
+
+import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
 
 export const insertManager = async (user_id: string, clinic_id: string) => {
   const { data } = await apolloGqlClient.mutate<{

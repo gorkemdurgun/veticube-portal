@@ -1,9 +1,12 @@
-import { Button, Checkbox, CheckboxProps, Descriptions, Divider, InputNumber, Modal, Select, SelectProps, TimePickerProps } from "antd";
 import { useState } from "react";
-import dayjs from "dayjs";
-import { DatePickerProps } from "antd/lib";
-import { CustomTimePicker, SearchPatientBox } from "../../appointments";
 
+import { Button, Checkbox, Descriptions, Divider, InputNumber, Modal, Select } from "antd";
+import { DatePickerProps } from "antd/lib";
+import dayjs from "dayjs";
+
+import type { CheckboxProps, SelectProps, TimePickerProps } from "antd";
+
+import { CustomTimePicker, SearchPatientBox } from "../../appointments";
 import { TranslatedText } from "../../common";
 
 type AppointmentCreateeModalProps = {

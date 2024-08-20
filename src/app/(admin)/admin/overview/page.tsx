@@ -1,9 +1,12 @@
 "use client";
 
-import { TranslatedText } from "@/components/common";
 import { useSubscription } from "@apollo/client";
-import { Breadcrumb, BreadcrumbProps } from "antd";
+import { Breadcrumb } from "antd";
 import { useTranslation } from "react-i18next";
+
+import { TranslatedText } from "@/components/common";
+
+import type { BreadcrumbProps } from "antd";
 
 const AdminOverviewPage = () => {
   const breadcrumbItems: BreadcrumbProps["items"] = [

@@ -1,4 +1,5 @@
 import { AuthenticationDetails, CognitoUser, CognitoUserAttribute, CognitoUserSession } from "amazon-cognito-identity-js";
+
 import userPool from "@/services/auth/userpool";
 
 export const signupUser = (

@@ -1,10 +1,17 @@
-import { Button, Card, Skeleton, Space, Tour } from "antd";
-import { TranslatedText } from "@/components/common";
+import { useEffect, useRef, useState } from "react";
+
 import { PiPlusBold as AddIcon } from "react-icons/pi";
-import { AppointmentCreateModal, CreateClinicBranchModal, CreateClinicChooseModal } from "../modals";
+
+import { Button, Card, Skeleton, Space, Tour } from "antd";
+
+import { TranslatedText } from "@/components/common";
+
 import type { TourProps } from "antd";
 
-import { useEffect, useRef, useState } from "react";
+
+import { AppointmentCreateModal, CreateClinicBranchModal, CreateClinicChooseModal } from "../modals";
+
+
 
 type BranchesActionsProps = {
   isLoading?: boolean;

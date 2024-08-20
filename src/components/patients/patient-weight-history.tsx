@@ -1,6 +1,8 @@
-import { Card } from "antd";
 import React from "react";
+
+import { Card } from "antd";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area } from "recharts";
+
 import { ComponentCard } from "../common";
 
 type WeightHistory = {

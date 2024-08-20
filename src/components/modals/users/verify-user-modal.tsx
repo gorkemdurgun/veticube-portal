@@ -1,9 +1,12 @@
-import { Button, Form, Input, message, Modal, Select } from "antd";
-import { TranslatedText } from "../../common";
 import { useState } from "react";
-import { auth } from "@/services/auth";
+
+import { Button, Form, Input, message, Modal, Select } from "antd";
+
 import { useCustomAppQuery } from "@/hooks";
+import { auth } from "@/services/auth";
 import { queries } from "@/services/db";
+
+import { TranslatedText } from "../../common";
 
 type Props = {
   visible: boolean;

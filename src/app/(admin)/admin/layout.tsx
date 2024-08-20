@@ -1,9 +1,6 @@
 "use client";
 
-import { useAppDispatch, useAppSelector } from "@/hooks";
-import { setMode, toggleDarkMode } from "@/redux/slices/themeSlice";
-import { Button, Dropdown, Layout, Menu, Switch, Tooltip, theme } from "antd";
-import { MenuProps } from "antd/lib";
+import { useEffect, useState } from "react";
 
 import {
   PiSquaresFourDuotone as DashboardIcon,
@@ -17,13 +14,23 @@ import {
   PiWalletDuotone as AccountingIcon,
   PiGearDuotone as SettingsIcon,
 } from "react-icons/pi";
+
 import { MoonOutlined, SunOutlined, DownOutlined } from "@ant-design/icons";
+import { Button, Dropdown, Layout, Menu, Switch, Tooltip, theme } from "antd";
+import { MenuProps } from "antd/lib";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { setLanguage } from "@/redux/slices/languageSlice";
-import { Navbar } from "@/components/common";
 import { Router } from "next/router";
+import { useTranslation } from "react-i18next";
+
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { setLanguage } from "@/redux/slices/languageSlice";
+import { setMode, toggleDarkMode } from "@/redux/slices/themeSlice";
+
+
+
+
+import { Navbar } from "@/components/common";
+
 
 type MenuItem = Required<MenuProps>["items"][number];
 

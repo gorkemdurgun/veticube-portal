@@ -1,8 +1,12 @@
-import { call, CallEffect, put, PutEffect } from "redux-saga/effects";
+import { call, put } from "redux-saga/effects";
+
+
 import { createClinicRequest, createClinicSuccess, createClinicFailure } from "@/redux/slices/clinicSlice";
+import { store } from "@/redux/store";
 import { mutations } from "@/services/db";
 import toErrorMessage from "@/utils/toError";
-import { store } from "@/redux/store";
+
+import type { CallEffect, PutEffect } from "redux-saga/effects";
 
 export function* createClinic(action: ReturnType<typeof createClinicRequest>): Generator<CallEffect<any> | PutEffect<any>, void, any> {
   const { name, branches, onSuccess, onError } = action.payload;

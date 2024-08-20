@@ -1,12 +1,19 @@
 "use client";
 
-import { BranchesActions, BranchesList } from "@/components/branches";
-import { TranslatedText } from "@/components/common";
+import { useEffect, useState } from "react";
+
+import { Breadcrumb, Button, Card, Divider, message, Segmented } from "antd";
+
+
 import { useCustomAppQuery } from "@/hooks";
 import { queries } from "@/services/db";
-import { Breadcrumb, Button, Card, Divider, message, Segmented } from "antd";
+
+import { BranchesActions, BranchesList } from "@/components/branches";
+import { TranslatedText } from "@/components/common";
+
 import type { BreadcrumbProps } from "antd";
-import { useEffect, useState } from "react";
+
+
 
 const breadcrumbItems: BreadcrumbProps["items"] = [
   {

@@ -1,9 +1,12 @@
+import { memo, useState } from "react";
+
+import { PiClockClockwise as RescheduleIcon, PiCheckCircle as CompleteIcon, PiXCircle as CancelIcon } from "react-icons/pi";
+
 import { Divider, Button, Avatar, Tooltip } from "antd";
 import { t } from "i18next";
-import { memo, useState } from "react";
-import { PiClockClockwise as RescheduleIcon, PiCheckCircle as CompleteIcon, PiXCircle as CancelIcon } from "react-icons/pi";
-import { AppointmentCancelModal, AppointmentCompleteModal, AppointmentRescheduleModal } from "../modals";
+
 import { CustomButton } from "../common";
+import { AppointmentCancelModal, AppointmentCompleteModal, AppointmentRescheduleModal } from "../modals";
 
 const Component: React.FC<{ item: Appointment }> = ({ item }) => {
   const [rescheduleModalVisible, setRescheduleModalVisible] = useState(false);

@@ -1,13 +1,17 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+
 import { LockOutlined, UserOutlined, MailOutlined, FlagOutlined, PhoneOutlined } from "@ant-design/icons";
+import { CognitoUserAttribute } from "amazon-cognito-identity-js";
 import { Button, Card, Divider, Form, Input, message } from "antd";
 import { useRouter } from "next/navigation";
-import userPool from "@/services/auth/userpool";
-import { CognitoUserAttribute } from "amazon-cognito-identity-js";
-import { CountrySelector } from "@/components/common";
+
 import { countries } from "@/constants/countries";
+import userPool from "@/services/auth/userpool";
+
+import { CountrySelector } from "@/components/common";
+
 
 type RegisterFormValues = {
   first_name: string;

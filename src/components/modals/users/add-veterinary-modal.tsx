@@ -1,10 +1,14 @@
+import { useState } from "react";
+
 import { Button, Divider, Form, Input, Modal, Select } from "antd";
-import { CountrySelector, TranslatedText } from "../../common";
+
 import { useAppDispatch, useCustomAppQuery } from "@/hooks";
 import { signUpVetAccountRequest } from "@/redux/slices/authSlice";
-import { useState } from "react";
-import { VerifyUserModal } from "./verify-user-modal";
 import { queries } from "@/services/db";
+
+import { VerifyUserModal } from "./verify-user-modal";
+
+import { CountrySelector, TranslatedText } from "../../common";
 
 type Props = {
   visible: boolean;

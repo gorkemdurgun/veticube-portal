@@ -1,13 +1,17 @@
 "use client";
 
-import { svg } from "@/assets";
+import { useEffect, useState } from "react";
 
+import { PiPlusCircleDuotone as AddIcon, PiMagnifyingGlassDuotone as ViewIcon } from "react-icons/pi";
+
+import dayjs from "dayjs";
+
+
+import { svg } from "@/assets";
 import { useCustomAppQuery } from "@/hooks";
 import { queries } from "@/services/db";
-import { useEffect, useState } from "react";
-import { PiPlusCircleDuotone as AddIcon, PiMagnifyingGlassDuotone as ViewIcon } from "react-icons/pi";
-import dayjs from "dayjs";
 import { chartDataGenerator } from "@/utils/chartDataGenerator";
+
 import PatientList from "@/components/patients/patient-list";
 import PatientListHeaderCard from "@/components/patients/patient-list-header-card";
 import SearchFilterBox from "@/components/patients/search-filter-box";

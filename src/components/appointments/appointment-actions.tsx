@@ -1,8 +1,13 @@
-import { Button, Card } from "antd";
-import { TranslatedText } from "@/components/common";
-import { PiPlusBold as AddIcon } from "react-icons/pi";
-import { AppointmentCreateModal } from "../modals";
 import { useState } from "react";
+
+import { PiPlusBold as AddIcon } from "react-icons/pi";
+
+import { Button, Card } from "antd";
+
+import { TranslatedText } from "@/components/common";
+
+import { AppointmentCreateModal } from "../modals";
+
 
 type AppointmentActionsProps = {};
 

@@ -1,9 +1,14 @@
-import { Avatar, Badge, Dropdown, Layout, MenuProps, Tooltip } from "antd";
 import { DownOutlined, MoonOutlined, SunOutlined } from "@ant-design/icons";
+import { Avatar, Badge, Dropdown, Layout, Tooltip } from "antd";
+
+
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { setLanguage } from "@/redux/slices/languageSlice";
 import { setMode } from "@/redux/slices/themeSlice";
+
 import { UserAvatar } from "./user-avatar";
+
+import type { MenuProps } from "antd";
 
 export const Navbar: React.FC = () => {
   const { Header } = Layout;

@@ -1,4 +1,6 @@
-import { useQuery, QueryHookOptions, OperationVariables, TypedDocumentNode } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+
+import type { QueryHookOptions, OperationVariables, TypedDocumentNode } from "@apollo/client";
 
 type UseAppQueryOptions<TData, TVariables extends OperationVariables> = QueryHookOptions<TData, TVariables> & {
   // Diğer opsiyonlar burada tanımlanabilir

@@ -1,6 +1,8 @@
 import { Checkbox, Divider, Form, Input, InputNumber, message, Modal } from "antd";
-import { TranslatedText } from "../../common";
+
 import { useAppDispatch, useAppSelector } from "@/hooks";
+
+import { TranslatedText } from "../../common";
 
 type CreateClinicBranchModalProps = {
   visible: boolean;

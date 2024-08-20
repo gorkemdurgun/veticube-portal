@@ -1,4 +1,5 @@
 import { CognitoUser } from "amazon-cognito-identity-js";
+
 import userPool from "../userpool";
 
 type ConfirmUserResponse = any;

@@ -1,9 +1,10 @@
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { store } from "@/redux/store";
 import { onError } from "@apollo/client/link/error";
-import { logout } from "@/redux/slices/authSlice";
 import { message } from "antd";
+
+import { logout } from "@/redux/slices/authSlice";
+import { store } from "@/redux/store";
 import { auth } from "@/services/auth";
 
 const httpLink = new HttpLink({

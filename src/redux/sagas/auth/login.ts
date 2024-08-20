@@ -1,7 +1,11 @@
-import { call, put, CallEffect, PutEffect } from "redux-saga/effects";
+import { call, put } from "redux-saga/effects";
+
+
 import { loginRequest, loginSuccess, loginFailure } from "@/redux/slices/authSlice";
 import { auth } from "@/services/auth";
 import toErrorMessage from "@/utils/toError";
+
+import type { CallEffect, PutEffect } from "redux-saga/effects";
 
 export function* login(action: ReturnType<typeof loginRequest>): Generator<CallEffect<any> | PutEffect<any>, void, any> {
   const { email, password, onSuccess, onError } = action.payload;

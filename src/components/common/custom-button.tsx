@@ -1,4 +1,5 @@
 import { memo } from "react";
+
 import { IconBase, IconType } from "react-icons";
 
 type ButtonType = "neutral-text" | "neutral-opaque" | "neutral-faded" | "primary-text" | "primary-opaque" | "primary-faded";

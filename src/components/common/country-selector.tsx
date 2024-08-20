@@ -1,7 +1,10 @@
-import { countries } from "@/constants/countries";
-import { Select } from "antd";
 import { useState } from "react";
+
 import { PiFlag as FlagIcon } from "react-icons/pi";
+
+import { Select } from "antd";
+
+import { countries } from "@/constants/countries";
 
 type Props = {
   value: string;

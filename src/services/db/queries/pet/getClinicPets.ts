@@ -1,4 +1,6 @@
-import { gql, TypedDocumentNode } from "@apollo/client";
+import { gql } from "@apollo/client";
+
+import type { TypedDocumentNode } from "@apollo/client";
 
 type GetClinicPetsResponse = {
   petList: {

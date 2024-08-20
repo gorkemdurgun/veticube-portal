@@ -1,12 +1,13 @@
 "use client";
 
-import { TranslatedText } from "@/components/common";
-import PatientOverviewCard from "@/components/patients/patient-overview-card";
-import PatientWeightHistory from "@/components/patients/patient-weight-history";
+import { useParams } from "next/navigation";
+
 import { useCustomAppQuery } from "@/hooks";
 import { queries } from "@/services/db";
-import { BreadcrumbProps } from "antd";
-import { useParams } from "next/navigation";
+
+import PatientOverviewCard from "@/components/patients/patient-overview-card";
+import PatientWeightHistory from "@/components/patients/patient-weight-history";
+
 
 const weightData = [
   {

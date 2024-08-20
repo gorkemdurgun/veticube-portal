@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { ComponentCard, CustomButton, TranslatedText } from "../common";
+
 import {
   PiPenDuotone as EditIcon,
   PiWhatsappLogo as WhatsappIcon,
@@ -9,8 +9,12 @@ import {
   PiGenderFemale as GenderFemaleIcon,
   PiGenderMale as GenderMaleIcon,
 } from "react-icons/pi";
+
 import { Avatar, Descriptions, Divider, Skeleton } from "antd";
+
 import type { DescriptionsProps } from "antd";
+
+import { ComponentCard, CustomButton, TranslatedText } from "../common";
 
 type Props = {
   loading?: boolean;

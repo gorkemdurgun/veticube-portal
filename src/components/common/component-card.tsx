@@ -1,5 +1,8 @@
-import { Card, CardProps } from "antd";
 import React from "react";
+
+import { Card } from "antd";
+
+import type { CardProps } from "antd";
 
 type Props = CardProps & {
   header?: {

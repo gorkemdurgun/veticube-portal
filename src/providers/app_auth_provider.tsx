@@ -1,6 +1,8 @@
-import { useAppSelector } from "@/hooks";
-import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
+
+import { usePathname, useRouter } from "next/navigation";
+
+import { useAppSelector } from "@/hooks";
 
 type AppAuthProviderProps = {
   children: React.ReactNode;

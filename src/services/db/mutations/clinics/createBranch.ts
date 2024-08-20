@@ -1,5 +1,6 @@
-import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
 import { gql } from "@apollo/client";
+
+import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
 
 export const GQL = gql`
   mutation InsertClinicBranches($address: String, $branch_name: String, $city: String, $phone: String, $clinic_id: uuid) {

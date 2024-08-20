@@ -1,12 +1,17 @@
-import { Card, Checkbox, Divider, Form, Input, InputNumber, Modal } from "antd";
-import { TranslatedText } from "../../common";
 import { useState } from "react";
-import { mutations } from "@/services/db";
+
+import { PiWarehouseDuotone as OneBranchIcon, PiBuildingOfficeDuotone as MultiBranchIcon } from "react-icons/pi";
+
+import { Card, Checkbox, Divider, Form, Input, InputNumber, Modal } from "antd";
+
 import { useAppDispatch } from "@/hooks";
 import { createClinicRequest } from "@/redux/slices/clinicSlice";
-import { PiWarehouseDuotone as OneBranchIcon, PiBuildingOfficeDuotone as MultiBranchIcon } from "react-icons/pi";
-import { CreateClinicSingleModal } from "./create-clinic-single-modal";
+import { mutations } from "@/services/db";
+
 import { CreateClinicMultipleModal } from "./create-clinic-multiple-modal";
+import { CreateClinicSingleModal } from "./create-clinic-single-modal";
+
+import { TranslatedText } from "../../common";
 
 type CreateClinicChooseModalProps = {
   visible: boolean;

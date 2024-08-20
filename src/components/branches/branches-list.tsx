@@ -1,6 +1,5 @@
-import { queries } from "@/services/db";
-import { Badge, Button, Divider, List, message, Popconfirm, Table, TableProps, Tooltip } from "antd";
 import { useEffect, useState } from "react";
+
 import {
   PiUserCirclePlus as AddUserIcon,
   PiPhone as PhoneIcon,
@@ -9,10 +8,17 @@ import {
   PiSealCheckDuotone as VerifiedIcon,
   PiSealWarningDuotone as NotVerifiedIcon,
 } from "react-icons/pi";
+
+import { Badge, Button, Divider, List, message, Popconfirm, Table, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
+
 import { auth } from "@/services/auth";
-import { AddVeterinaryModal, VerifyUserModal } from "../modals";
+import { queries } from "@/services/db";
+
+import type { TableProps } from "antd";
+
 import { TranslatedText } from "../common";
+import { AddVeterinaryModal, VerifyUserModal } from "../modals";
 
 type Props = {
   isLoading: boolean;

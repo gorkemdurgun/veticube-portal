@@ -1,9 +1,12 @@
 import React, { useMemo, useRef, useState } from "react";
-import { Avatar, Select, Spin } from "antd";
-import type { SelectProps } from "antd";
-import debounce from "lodash/debounce";
 
 import { PiCat as CatIcon, PiDog as DogIcon } from "react-icons/pi";
+
+import { Avatar, Select, Spin } from "antd";
+import debounce from "lodash/debounce";
+
+import type { SelectProps } from "antd";
+
 
 export interface SearchPatientBoxProps<ValueType = any> extends Omit<SelectProps<ValueType | ValueType[]>, "options" | "children"> {
   fetchOptions: (search: string) => Promise<ValueType[]>;

@@ -1,9 +1,12 @@
-import { Checkbox, Divider, Form, Input, InputNumber, Modal } from "antd";
-import { TranslatedText } from "../../common";
 import { useState } from "react";
-import { mutations } from "@/services/db";
+
+import { Checkbox, Divider, Form, Input, InputNumber, Modal } from "antd";
+
 import { useAppDispatch } from "@/hooks";
 import { createClinicRequest } from "@/redux/slices/clinicSlice";
+import { mutations } from "@/services/db";
+
+import { TranslatedText } from "../../common";
 
 type CreateClinicMultipleModalProps = {
   visible: boolean;

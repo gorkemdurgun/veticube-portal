@@ -1,5 +1,6 @@
-import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
 import { gql } from "@apollo/client";
+
+import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
 
 export const insertVeterinarian = async (user_id: string, clinic_branch_id: string, specialization?: string) => {
   const { data } = await apolloGqlClient.mutate<{

@@ -1,7 +1,11 @@
-import { Button, Checkbox, CheckboxProps, Descriptions, Divider, Modal, Select, SelectProps, TimePickerProps } from "antd";
 import { useState } from "react";
+
+import { Button, Checkbox, Descriptions, Divider, Modal, Select } from "antd";
 import dayjs from "dayjs";
+
 import { TranslatedText } from "@/components/common";
+
+import type { CheckboxProps, SelectProps, TimePickerProps } from "antd";
 
 type AppointmentCancelModalProps = {
   appointment: Appointment;

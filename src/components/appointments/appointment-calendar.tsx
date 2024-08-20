@@ -1,9 +1,3 @@
-import { useAppSelector } from "@/hooks";
-import { Badge, Calendar, CalendarProps, Statistic, StatisticProps } from "antd";
-import { BadgeProps } from "antd/lib";
-import dayjs, { Dayjs } from "dayjs";
-import CountUp from "react-countup";
-import { useTranslation } from "react-i18next";
 import {
   PiSyringe as VaccinationIcon,
   PiFaceMask as SurgeryIcon,
@@ -11,6 +5,17 @@ import {
   PiScissors as GroomingIcon,
   PiFirstAid as OtherIcon,
 } from "react-icons/pi";
+
+import { Badge, Calendar, Statistic } from "antd";
+import { BadgeProps } from "antd/lib";
+import dayjs, { Dayjs } from "dayjs";
+import CountUp from "react-countup";
+import { useTranslation } from "react-i18next";
+
+import { useAppSelector } from "@/hooks";
+
+import type { CalendarProps, StatisticProps } from "antd";
+
 import { ComponentCard } from "../common";
 
 type AppointmentCalendarProps = {

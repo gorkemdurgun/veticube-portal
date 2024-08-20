@@ -1,13 +1,13 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "@redux-saga/core";
-import rootSaga from "@/redux/sagas";
-import storage from "redux-persist/lib/storage";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-import themeReducer from "@/redux/slices/themeSlice";
-import languageReducer from "@/redux/slices/languageSlice";
+import rootSaga from "@/redux/sagas";
 import authReducer from "@/redux/slices/authSlice";
 import clinicReducer from "@/redux/slices/clinicSlice";
+import languageReducer from "@/redux/slices/languageSlice";
+import themeReducer from "@/redux/slices/themeSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 
