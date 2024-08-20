@@ -116,7 +116,7 @@ const columns: TableProps<DataType>["columns"] = [
   },
 ];
 
-const Component = ({ data }: Props) => {
+const PatientList = ({ data }: Props) => {
   const router = useRouter();
   // console.log(data);
 
@@ -141,4 +141,4 @@ const Component = ({ data }: Props) => {
   );
 };
 
-export const PatientList = memo(Component);
+export default memo(PatientList);

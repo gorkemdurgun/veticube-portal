@@ -16,24 +16,24 @@ type Props = {
   loading?: boolean;
   pet: {
     name?: string;
-    gender: string;
-    species: string;
-    breed: string;
-    birthDate: string;
-    isNeutered: boolean;
-    microchip: string;
-    owner: string;
-    ownerPhone: string;
-    ownerEmail: string;
+    gender?: string;
+    species?: string;
+    breed?: string;
+    birthDate?: string;
+    isNeutered?: boolean;
+    microchip?: string;
+    owner?: string;
+    ownerPhone?: string;
+    ownerEmail?: string;
   };
 };
 
-const Component: React.FC<Props> = ({ loading, pet }) => {
+const PatientOverviewCard: React.FC<Props> = ({ loading, pet }) => {
   let classColor = pet.gender === "M" ? "bg-blue-200 text-blue-800" : "bg-pink-200 text-pink-800";
   let genderIcon =
     pet.gender === "M" ? <GenderMaleIcon className="w-4 h-4 text-blue-800" /> : <GenderFemaleIcon className="w-4 h-4 text-pink-800" />;
   let species = pet.species === "Cat" ? <CatIcon className="w-8 h-8" /> : <DogIcon className="w-8 h-8" />;
-  let age = new Date().getFullYear() - new Date(pet.birthDate).getFullYear();
+  // let age = new Date().getFullYear() - new Date(pet?.birthDate).getFullYear();
 
   const items: DescriptionsProps["items"] = [
     {
@@ -102,7 +102,7 @@ const Component: React.FC<Props> = ({ loading, pet }) => {
               </div>
             </div>
             <div className="ml-auto flex flex-col items-end justify-around">
-              <h2 className="text-3xl font-semibold">{age + " years"}</h2>
+              {/* <h2 className="text-3xl font-semibold">{age + " years"}</h2> */}
               <span className="text-gray-500">{`(${pet.birthDate})`}</span>
             </div>
           </div>
@@ -114,4 +114,4 @@ const Component: React.FC<Props> = ({ loading, pet }) => {
   );
 };
 
-export const PatientOverviewCard = memo(Component);
+export default memo(PatientOverviewCard);

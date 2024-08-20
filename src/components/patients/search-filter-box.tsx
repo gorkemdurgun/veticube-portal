@@ -8,10 +8,10 @@ type Props = {
   onFilterChange: (filters: Record<string, string | undefined>) => void;
 };
 
-export const SearchFilterBox = ({ onFilterChange }: Props) => {
+const SearchFilterBox = ({ onFilterChange }: Props) => {
   const [filters, setFilters] = useState({
     date: undefined,
-    where: undefined,
+    whereabout: undefined,
     species: undefined,
     gender: undefined,
     age: undefined,
@@ -43,11 +43,11 @@ export const SearchFilterBox = ({ onFilterChange }: Props) => {
         <DatePicker className="w-full" format="DD/MM/YYYY" onChange={(date) => handleFilterChange("date", dayjs(date).format("YYYY-MM-DD"))} />
       </div>
       <Divider className="my-2" />
-      <Radio.Group value={filters.where} onChange={(e) => handleFilterChange("where", e.target.value)}>
+      <Radio.Group disabled value={filters.whereabout} onChange={(e) => handleFilterChange("whereabout", e.target.value)}>
         <div className="flex justify-between items-center mb-1">
-          <h5 className="text-sm text-gray-500">Where</h5>
-          {filters.where && (
-            <CustomButton size="xs" variant="neutral-text" icon={ClearIcon} onClick={() => handleFilterClear("where")}>
+          <h5 className="text-sm text-gray-500">Whereabout</h5>
+          {filters.whereabout && (
+            <CustomButton size="xs" variant="neutral-text" icon={ClearIcon} onClick={() => handleFilterClear("whereabout")}>
               Clear Filter
             </CustomButton>
           )}
@@ -111,3 +111,5 @@ export const SearchFilterBox = ({ onFilterChange }: Props) => {
     </div>
   );
 };
+
+export default SearchFilterBox;

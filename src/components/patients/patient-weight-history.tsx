@@ -11,7 +11,7 @@ type Props = {
   weightHistory: WeightHistory[];
 };
 
-const Component: React.FC<Props> = ({ weightHistory }) => {
+const PatientWeightHistory: React.FC<Props> = ({ weightHistory }) => {
   return (
     <ComponentCard
       bodyClassName="h-64"
@@ -68,4 +68,4 @@ const Component: React.FC<Props> = ({ weightHistory }) => {
   );
 };
 
-export const PatientWeightHistory = React.memo(Component);
+export default PatientWeightHistory;

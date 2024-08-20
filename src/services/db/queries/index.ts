@@ -1,5 +1,5 @@
 import { GET_CLINIC_AND_BRANCHES } from "./clinic";
-import { GET_CLINIC_PETS, GET_PET_DETAIL, GET_REGISTERED_PATIENTS_CHART_DATA } from "./pet";
+import { GET_CLINIC_PETS, GET_PET_OVERVIEW, GET_REGISTERED_PATIENTS_CHART_DATA } from "./pet";
 
 export const queries = {
   clinic: {
@@ -7,7 +7,7 @@ export const queries = {
   },
   pet: {
     GetClinicPets: GET_CLINIC_PETS,
-    GetPetDetail: GET_PET_DETAIL,
+    GetPetOverview: GET_PET_OVERVIEW,
     GetRegisteredPatientsChartData: GET_REGISTERED_PATIENTS_CHART_DATA,
   },
 };

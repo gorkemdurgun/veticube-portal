@@ -1,13 +1,17 @@
 "use client";
 
 import { svg } from "@/assets";
-import { PatientList, PatientListHeaderCard, SearchFilterBox, SearchPatientInput } from "@/components/patients";
+
 import { useCustomAppQuery } from "@/hooks";
 import { queries } from "@/services/db";
 import { useEffect, useState } from "react";
 import { PiPlusCircleDuotone as AddIcon, PiMagnifyingGlassDuotone as ViewIcon } from "react-icons/pi";
 import dayjs from "dayjs";
 import { chartDataGenerator } from "@/utils/chartDataGenerator";
+import PatientList from "@/components/patients/patient-list";
+import PatientListHeaderCard from "@/components/patients/patient-list-header-card";
+import SearchFilterBox from "@/components/patients/search-filter-box";
+import SearchPatientInput from "@/components/patients/search-patient-input";
 
 const PatientsPage = () => {
   const [searchResults, setSearchResults] = useState<string[]>([]);
@@ -65,7 +69,7 @@ const PatientsPage = () => {
             button={{ icon: ViewIcon, onClick: () => console.log("View patients in ICU") }}
           />
         </div>
-        <div className="overflow-y-auto grid grid-cols-[1fr,160px] lg:grid-cols-[1fr,200px] gap-4">
+        <div className="overflow-y-auto grid grid-cols-[1fr,240px] gap-4">
           <div className="flex flex-col gap-4">
             <SearchPatientInput onSearchDone={setSearchResults} />
             <PatientList data={data?.petList} />

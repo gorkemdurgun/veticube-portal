@@ -7,7 +7,7 @@ import { message } from "antd";
 import { auth } from "@/services/auth";
 
 const httpLink = new HttpLink({
-  uri: "http://52.59.222.78:8080/v1/graphql",
+  uri: "http://3.71.108.46:8080/v1/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {

@@ -19,7 +19,7 @@ type Props = {
   }[];
 };
 
-export const PatientListHeaderCard = ({ className, image, label, count, button, chartData }: Props) => {
+const PatientListHeaderCard = ({ className, image, label, count, button, chartData }: Props) => {
   return (
     <div className={`grid grid-cols-2 gap-4 pl-2 p-4 rounded-md bg-white shadow-basic ${className || ""}`}>
       <div className="flex items-center justify-start gap-4 ">
@@ -49,3 +49,5 @@ export const PatientListHeaderCard = ({ className, image, label, count, button, 
     </div>
   );
 };
+
+export default PatientListHeaderCard;

@@ -1,3 +1,3 @@
 export * from "./getClinicPets";
-export * from "./getPetDetail";
+export * from "./getPetOverview";
 export * from "./getRegisteredPatientsChartData";

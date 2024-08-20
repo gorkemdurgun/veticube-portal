@@ -1,7 +1,8 @@
 "use client";
 
 import { TranslatedText } from "@/components/common";
-import { PatientOverviewCard, PatientWeightHistory } from "@/components/patients";
+import PatientOverviewCard from "@/components/patients/patient-overview-card";
+import PatientWeightHistory from "@/components/patients/patient-weight-history";
 import { useCustomAppQuery } from "@/hooks";
 import { queries } from "@/services/db";
 import { BreadcrumbProps } from "antd";
@@ -54,7 +55,7 @@ const PatientsIDPage = () => {
   const { id: petId } = useParams();
 
   const { loading, data } = useCustomAppQuery({
-    query: queries.pet.GetPetDetail,
+    query: queries.pet.GetPetOverview,
     options: { variables: { petId } },
   });
   // console.log("Pet data", data?.pet[0].name);
@@ -64,10 +65,10 @@ const PatientsIDPage = () => {
       {/* <Breadcrumb items={breadcrumbItems} /> */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <PatientOverviewCard
-        loading={loading} 
+          loading={loading}
           pet={{
-            name: data?.pet[0].name,
-            gender: "F",
+            name: data?.pet[0]?.name,
+            gender: data?.pet[0]?.gender,
             species: "Cat",
             breed: "Siamese",
             birthDate: "2020-01-01",

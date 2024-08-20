@@ -6,7 +6,7 @@ type Props = {
   onSearchDone: (list: string[]) => void;
 };
 
-export const Component = ({ onSearchDone }: Props) => {
+const SearchPatientInput = ({ onSearchDone }: Props) => {
   const [activeValue, setActiveValue] = useState<string | undefined>(undefined);
 
   const onSearch = (searchText: string) => {
@@ -33,4 +33,4 @@ export const Component = ({ onSearchDone }: Props) => {
   );
 };
 
-export const SearchPatientInput = memo(Component);
+export default memo(SearchPatientInput);
