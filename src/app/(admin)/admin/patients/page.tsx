@@ -27,7 +27,6 @@ const PatientsPage = () => {
   const { data: chartData } = useCustomAppQuery({
     query: queries.pet.GetRegisteredPatientsChartData,
     options: {
-      skip: true,
       variables: {
         untilDate: last7Days,
       },

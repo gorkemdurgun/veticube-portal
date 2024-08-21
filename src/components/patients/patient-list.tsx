@@ -42,19 +42,20 @@ const columns: TableProps<DataType>["columns"] = [
   },
   {
     title: "Pet",
-
+    align: "center",
     children: [
       {
         title: "Name",
         dataIndex: ["name"],
         key: "name",
+        align: "center",
         sorter: (a, b) => a.name.localeCompare(b.name),
       },
       {
         title: "Age",
         dataIndex: ["birth_date"],
         key: "age",
-
+        align: "center",
         sorter: (a, b) => a.birth_date.localeCompare(b.birth_date),
         render(value, record, index) {
           return (
