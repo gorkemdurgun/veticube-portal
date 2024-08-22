@@ -9,7 +9,7 @@ import type { SelectProps } from "antd";
 
 
 export interface SearchPatientBoxProps<ValueType = any> extends Omit<SelectProps<ValueType | ValueType[]>, "options" | "children"> {
-  fetchOptions: (search: string) => Promise<ValueType[]>;
+  fetchOptions?: (search: string) => Promise<ValueType[]>;
   debounceTimeout?: number;
 }
 
@@ -29,6 +29,9 @@ export function SearchPatientBox<ValueType extends { key?: string; label: React.
       setOptions([]);
       setFetching(true);
 
+      if (!fetchOptions) {
+        return;
+      }
       fetchOptions(value).then((newOptions) => {
         if (fetchId !== fetchRef.current) {
           // for fetch callback order
