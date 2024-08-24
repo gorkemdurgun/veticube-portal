@@ -152,17 +152,9 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
                 headerClass: "text-sm !text-gray-700",
                 label: "Hasta Bilgileri",
                 children: (
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                  <div className="grid grid-cols-1 gap-x-4 gap-y-2">
                     <Form.Item label="Patient" name="patient" rules={[{ required: true, message: "Please select a patient" }]}>
                       <SearchPatientBox size="large" placeholder="Search patient" />
-                    </Form.Item>
-                    <Form.Item label="Client" name="client" rules={[{ required: true, message: "Please select a client" }]}>
-                      <Select
-                        size="large"
-                        disabled={createForm.getFieldValue("patient") === undefined}
-                        options={dummyPets}
-                        placeholder="Select a owner"
-                      />
                     </Form.Item>
                   </div>
                 ),
