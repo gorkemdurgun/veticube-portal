@@ -38,6 +38,10 @@ div > .ant-picker-calendar-date-content {
   margin-bottom: 16px;
 }
 
+* > .ant-collapse-item-disabled .ant-collapse-header {
+  color: #7e7d85 !important; /* gray-700 */
+}
+
 .button {
   display: flex;
   justify-content: center;

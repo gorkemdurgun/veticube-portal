@@ -1,6 +1,12 @@
-import { Drawer, Form, Input, DatePicker, TimePicker, Select } from "antd";
+import { createRef, useState } from "react";
+
+import { PiXCircleDuotone as CloseIcon } from "react-icons/pi";
+
+import { Drawer, Form, Input, DatePicker, TimePicker, Select, Collapse, Divider, TimePickerProps, Skeleton } from "antd";
 
 import { SearchPatientBox } from "@/components/appointments";
+import SelectorDate from "@/components/appointments/selector-date";
+import SelectorTime from "@/components/appointments/selector-time";
 import { CustomButton } from "@/components/common";
 
 import type { SelectProps } from "antd";
@@ -50,75 +56,161 @@ type Props = {
 type FormValues = {
   date: string;
   time: string;
+  patient: string;
+  process: string;
+  client: string;
   clinic: string;
   veterinarians: string[];
   staffs: string[];
-  client: string;
 };
 
 const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
-  const [createForm] = Form.useForm();
+  const [createForm] = Form.useForm<FormValues>();
+  const [disabledMinuteList, setDisabledMinuteList] = useState<{ hour: number; minute: number[] }[]>([]);
+  const [disabledMinutesLoading, setDisabledMinutesLoading] = useState(false);
 
   const handleCreate = () => {
-    createForm.validateFields().then((values) => {
-      console.log(values);
-    });
+    // createForm.validateFields().then((values) => {
+    console.log(createForm.getFieldsValue());
+    // });
   };
 
   return (
     <Drawer
-      title="Create Appointment"
       placement="right"
+      classNames={{
+        body: "!p-0",
+      }}
+      closeIcon={<CloseIcon className="text-gray-700 text-2xl" />}
+      title={
+        <div className="flex items-center gap-2">
+          <span className="text-md font-semibold">Create Appointment</span>
+          <Select className="ml-auto w-1/2" showSearch options={dummyClinics} placeholder="Select a clinic" />
+        </div>
+      }
       keyboard={false}
       maskClosable={false}
-      width={600}
+      width={540}
       open={visible}
       onClose={() => setVisible(false)}
     >
       <Form form={createForm} layout="vertical" onFinish={handleCreate}>
-        <div className="flex flex-col gap-3">
-          <div className="flex flex-col gap-2">
-            <h5 className="text-sm text-gray-400 border-b border-gray-200 pb-1">Tarih ve Yer Bilgileri</h5>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2 p-4 bg-gray-50 rounded-md">
-              <Form.Item label="Date" name="date" rules={[{ required: true, message: "Please select a date" }]}>
-                <DatePicker className="w-full" />
-              </Form.Item>
-              <Form.Item label="Time" name="time" rules={[{ required: true, message: "Please select a time" }]}>
-                <TimePicker className="w-full" showNow={false} format={"HH:mm"} />
-              </Form.Item>
-              <Form.Item className="col-span-2" label="Clinic" name="clinic" rules={[{ required: true, message: "Please enter a clinic" }]}>
-                <Select showSearch options={dummyClinics} placeholder="Select a clinic" />
-              </Form.Item>
-            </div>
-          </div>
-          <div className="flex flex-col gap-2">
-            <h5 className="text-sm text-gray-400 border-b border-gray-200 pb-1">İşlem Bilgileri</h5>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2 p-4 bg-gray-50 rounded-md">
-              <Form.Item label="Pet" name="pet" rules={[{ required: true, message: "Please select a pet" }]}>
-                <SearchPatientBox />
-              </Form.Item>
-              <Form.Item label="Client" name="client" rules={[{ required: true, message: "Please enter a client" }]}>
-                <Select
-                  showSearch
-                  disabled={createForm.getFieldValue("pet") === undefined}
-                  options={dummyPets.map((pet) => ({ value: pet.owner }))}
-                  placeholder="Select a client"
-                />
-              </Form.Item>
-            </div>
-          </div>
-          <div className="flex flex-col gap-2">
-            <h5 className="text-sm text-gray-400 border-b border-gray-200 pb-1">Katılımcılar</h5>
-            <div className="grid grid-cols-1 gap-x-4 gap-y-2 p-4 bg-gray-50 rounded-md">
-              <Form.Item label="Veterinarians" name="veterinarians" rules={[{ required: true, message: "Please select a veterinarian" }]}>
-                <Select mode="multiple" options={dummyVeterinarians} placeholder="Select a veterinarian" />
-              </Form.Item>
-              <Form.Item label="Staffs" name="staffs" rules={[{ required: true, message: "Please select a staff" }]}>
-                <Select mode="multiple" options={dummyStaffs} placeholder="Select a staff" />
-              </Form.Item>
-            </div>
-          </div>
-          <CustomButton variant="primary-faded" onClick={handleCreate}>
+        <div className="flex flex-col">
+          <Collapse
+            bordered={false}
+            defaultActiveKey={["date"]}
+            // collapsible={createForm.getFieldValue("patient") === undefined ? "disabled" : "header"}
+            items={[
+              {
+                key: "date",
+                headerClass: "text-sm !text-gray-700",
+                label: "Tarih ve Zaman",
+                children: (
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                    <Form.Item label="Date" name="date" rules={[{ required: true, message: "Please select a date" }]}>
+                      <SelectorDate
+                        className="w-full"
+                        size="large"
+                        disabledTimesLoading={(loading) => setDisabledMinutesLoading(loading)}
+                        onDateChange={(formattedDate, getDisabledMinuteList) => {
+                          createForm.setFieldsValue({ date: formattedDate, time: undefined });
+                          setDisabledMinuteList(getDisabledMinuteList);
+                        }}
+                      />
+                    </Form.Item>
+                    <Form.Item label="Time" name="time" rules={[{ required: true, message: "Please select a time" }]}>
+                      <SelectorTime
+                        className="w-full"
+                        size="large"
+                        needConfirm={false}
+                        loading={disabledMinutesLoading}
+                        disabled={createForm.getFieldValue("date") === undefined}
+                        onChangeTime={(formattedTime) => createForm.setFieldsValue({ time: formattedTime })}
+                        disabledTime={(date) => {
+                          return {
+                            disabledMinutes(hour) {
+                              const found = disabledMinuteList.find((item) => item.hour === hour);
+                              return found ? found.minute : [];
+                            },
+                          };
+                        }}
+                      />
+                    </Form.Item>
+                  </div>
+                ),
+              },
+            ]}
+          />
+          <Divider className="my-0" />
+          <Collapse
+            bordered={false}
+            // defaultActiveKey={["patient"]}
+            // collapsible={createForm.getFieldValue("date") === undefined ? "disabled" : "header"}
+            items={[
+              {
+                key: "patient",
+                headerClass: "text-sm !text-gray-700",
+                label: "Hasta Bilgileri",
+                children: (
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                    <Form.Item label="Patient" name="patient" rules={[{ required: true, message: "Please select a patient" }]}>
+                      <SearchPatientBox size="large" placeholder="Search patient" />
+                    </Form.Item>
+                    <Form.Item label="Client" name="client" rules={[{ required: true, message: "Please select a client" }]}>
+                      <Select
+                        size="large"
+                        disabled={createForm.getFieldValue("patient") === undefined}
+                        options={dummyPets}
+                        placeholder="Select a owner"
+                      />
+                    </Form.Item>
+                  </div>
+                ),
+              },
+            ]}
+          />
+          <Divider className="my-0" />
+          <Collapse
+            bordered={false}
+            // defaultActiveKey={["process"]}
+            // collapsible={createForm.getFieldValue("patient") === undefined ? "disabled" : "header"}
+            items={[
+              {
+                key: "process",
+                headerClass: "text-sm !text-gray-700",
+                label: "İşlem Bilgileri",
+                children: (
+                  <Form.Item label="Process" name="process" rules={[{ required: true, message: "Please select a process" }]}>
+                    <Select options={dummyPets} placeholder="Select a process" />
+                  </Form.Item>
+                ),
+              },
+            ]}
+          />
+          <Divider className="my-0" />
+          <Collapse
+            bordered={false}
+            // defaultActiveKey={["participants"]}
+            // collapsible={createForm.getFieldValue("clinic") === undefined ? "disabled" : "header"}
+            items={[
+              {
+                key: "participants",
+                headerClass: "text-sm !text-gray-700",
+                label: "Katılımcılar",
+                children: (
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                    <Form.Item label="Veterinarians" name="veterinarians" rules={[{ required: true, message: "Please select a veterinarian" }]}>
+                      <Select mode="multiple" options={dummyVeterinarians} placeholder="Select a veterinarian" />
+                    </Form.Item>
+                    <Form.Item label="Staffs" name="staffs" rules={[{ required: true, message: "Please select a staff" }]}>
+                      <Select mode="multiple" options={dummyStaffs} placeholder="Select a staff" />
+                    </Form.Item>
+                  </div>
+                ),
+              },
+            ]}
+          />
+          <CustomButton className="m-4" variant="primary-faded" onClick={handleCreate}>
             Create
           </CustomButton>
         </div>
