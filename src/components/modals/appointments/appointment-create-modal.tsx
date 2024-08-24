@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 
 import type { CheckboxProps, SelectProps, TimePickerProps } from "antd";
 
-import { CustomTimePicker, SearchPatientBox } from "../../appointments";
+import { CustomTimePicker, SearchPatientInput } from "../../appointments";
 import { TranslatedText } from "../../common";
 
 type AppointmentCreateeModalProps = {
@@ -72,7 +72,7 @@ export const AppointmentCreateModal: React.FC<AppointmentCreateeModalProps> = ({
       ]}
     >
       <div className="flex flex-col gap-4 py-4">
-        <SearchPatientBox
+        <SearchPatientInput
           className="w-full"
           placeholder="Select a pet & owner"
           popupMatchSelectWidth={500}

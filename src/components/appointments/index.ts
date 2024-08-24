@@ -4,4 +4,4 @@ export * from "./selected-day-list";
 export * from "./selected-day-list-card";
 export * from "./custom-date-picker";
 export * from "./custom-time-picker";
-export * from "./search-patient-box";
+export * from "./search-patient-input";

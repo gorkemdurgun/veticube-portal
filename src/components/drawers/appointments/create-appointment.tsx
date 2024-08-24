@@ -4,7 +4,7 @@ import { PiXCircleDuotone as CloseIcon } from "react-icons/pi";
 
 import { Drawer, Form, Input, DatePicker, TimePicker, Select, Collapse, Divider, TimePickerProps, Skeleton } from "antd";
 
-import { SearchPatientBox } from "@/components/appointments";
+import { SearchPatientInput } from "@/components/appointments";
 import SelectorDate from "@/components/appointments/selector-date";
 import SelectorTime from "@/components/appointments/selector-time";
 import { CustomButton } from "@/components/common";
@@ -154,7 +154,7 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
                 children: (
                   <div className="grid grid-cols-1 gap-x-4 gap-y-2">
                     <Form.Item label="Patient" name="patient" rules={[{ required: true, message: "Please select a patient" }]}>
-                      <SearchPatientBox size="large" placeholder="Search patient" />
+                      <SearchPatientInput size="large" placeholder="Search patient" />
                     </Form.Item>
                   </div>
                 ),

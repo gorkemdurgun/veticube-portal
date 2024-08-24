@@ -10,11 +10,11 @@ import { useCustomAppQuery } from "@/hooks";
 import { queries } from "@/services/db";
 import { SearchPetResponse } from "@/services/db/queries/pet/searchPet";
 
-export interface SearchPatientBoxProps<ValueType = any> extends Omit<SelectProps<ValueType | ValueType[]>, "options" | "children"> {}
+export interface SearchPatientInputProps<ValueType = any> extends Omit<SelectProps<ValueType | ValueType[]>, "options" | "children"> {}
 
-export function SearchPatientBox<ValueType extends { key?: string; label: React.ReactNode; value: string | number } = any>({
+export function SearchPatientInput<ValueType extends { key?: string; label: React.ReactNode; value: string | number } = any>({
   ...props
-}: SearchPatientBoxProps<ValueType>) {
+}: SearchPatientInputProps<ValueType>) {
   const [searchValue, setSearchValue] = useState("");
   const [options, setOptions] = useState<ValueType[]>([]);
   const fetchRef = useRef(0);
