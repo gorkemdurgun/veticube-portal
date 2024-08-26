@@ -64,10 +64,7 @@ type LoginRequestPayload = {
   onError?: (error: string) => void;
 };
 
-type LoginSuccessPayload = {
-  idToken: string;
-  accessToken: string;
-  refreshToken: string;
+type LoginSuccessPayload = CognitoLoginResponse & {
   user?: GetUserResponse["user"];
 };
 

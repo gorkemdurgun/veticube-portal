@@ -13,7 +13,8 @@ const httpLink = new HttpLink({
 
 const authLink = setContext((_, { headers }) => {
   const state = store.getState();
-  const token = state.auth?.clientSession?.idToken;
+  const token = state.auth?.clientSession?.idToken?.jwtToken;
+  console.log("Token", token);
 
   return {
     headers: {

@@ -20,7 +20,7 @@ const PatientsPage = () => {
   const [searchResults, setSearchResults] = useState<string[]>([]);
   const [filters, setFilters] = useState<Record<string, string | undefined>>();
 
-  const last7Days = dayjs().subtract(7, "day").format("YYYY-MM-DD");
+  const last30Days = dayjs().subtract(30, "day").format("YYYY-MM-DD");
   const { data } = useCustomAppQuery({
     query: queries.pet.GetClinicPets,
   });
@@ -28,7 +28,7 @@ const PatientsPage = () => {
     query: queries.pet.GetRegisteredPatientsChartData,
     options: {
       variables: {
-        untilDate: last7Days,
+        untilDate: last30Days,
       },
     },
   });

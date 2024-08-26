@@ -22,9 +22,10 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
 
     yield put(
       loginSuccess({
-        idToken: authResponse.idToken.jwtToken,
-        refreshToken: authResponse.refreshToken.token,
-        accessToken: authResponse.accessToken.jwtToken,
+        idToken: authResponse.idToken,
+        accessToken: authResponse.accessToken,
+        refreshToken: authResponse.refreshToken,
+        clockDrift: authResponse.clockDrift,
       })
     );
 
