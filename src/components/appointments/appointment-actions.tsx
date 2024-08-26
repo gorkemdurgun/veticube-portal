@@ -7,8 +7,6 @@ import { Button, Card } from "antd";
 import { CustomButton, TranslatedText } from "@/components/common";
 import CreateAppointmentDrawer from "@/components/drawers/appointments/create-appointment";
 
-import { AppointmentCreateModal } from "../modals";
-
 type AppointmentActionsProps = {};
 
 export const AppointmentActions: React.FC<AppointmentActionsProps> = () => {

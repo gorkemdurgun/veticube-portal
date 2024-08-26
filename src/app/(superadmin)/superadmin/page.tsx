@@ -8,7 +8,7 @@ import { Button, Card, Divider, Form, Input, message } from "antd";
 import { useRouter } from "next/navigation";
 
 import { countries } from "@/constants/countries";
-import userPool from "@/services/auth/userpool";
+import userPool from "@/services/cognito/userpool";
 
 import { CountrySelector } from "@/components/common";
 

@@ -12,7 +12,7 @@ export function* createClinic(action: ReturnType<typeof createClinicRequest>): G
   const { name, branches, onSuccess, onError } = action.payload;
   // console.log("saga payload", action.payload);
   try {
-    const userId = store.getState().auth.clientSession?.user.id;
+    const userId = store.getState().auth.clientSession?.user?.id;
 
     if (!userId) {
       throw new Error("User ID is not available");

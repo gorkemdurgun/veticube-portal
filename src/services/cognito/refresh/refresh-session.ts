@@ -17,6 +17,7 @@ export const refreshSession = () => {
           return;
         }
 
+        /*
         cognitoUser.refreshSession(session.getRefreshToken(), (err: any, session: CognitoUserSession) => {
           if (err) {
             reject(err);
@@ -24,6 +25,8 @@ export const refreshSession = () => {
             return;
           }
 
+          
+        
           store.dispatch(
             loginSuccess({
               idToken: session.getIdToken().getJwtToken(),
@@ -38,8 +41,10 @@ export const refreshSession = () => {
             })
           );
           message.success("Session refreshed!!!");
+       
           resolve(session);
         });
+              */
       });
     } else {
       reject("No user found");

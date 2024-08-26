@@ -6,7 +6,7 @@ import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Divider, Form, Input, message } from "antd";
 
 import type { GetProps } from "antd";
-// import { verifyEmail } from "@/services/auth/authenticate";
+// import { verifyEmail } from "@/services/cognito/authenticate";
 
 type OTPProps = GetProps<typeof Input.OTP>;
 

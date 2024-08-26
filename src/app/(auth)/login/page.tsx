@@ -6,8 +6,9 @@ import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Descriptions, Divider, Form, Input, message } from "antd";
 import { useRouter } from "next/navigation";
 
-import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector, useCustomAppQuery } from "@/hooks";
 import { loginRequest } from "@/redux/slices/authSlice";
+import { queries } from "@/services/db";
 
 import { VerifyUserModal } from "@/components/modals";
 
@@ -23,25 +24,25 @@ const Login: React.FC = () => {
   const { loading } = useAppSelector((state) => state.auth);
 
   const [loginForm] = Form.useForm<LoginForm>();
+  const [userId, setUserId] = useState<string | null>(null);
   const [isNotConfirmed, setIsNotConfirmed] = useState(false);
 
+  const { data: userData } = useCustomAppQuery({
+    query: queries.user.GetUser,
+    options: {
+      skip: !userId,
+      variables: {
+        id: userId,
+      },
+    },
+  });
+
   const handleSubmit = () => {
-    // console.log("handleSubmit", loginForm.getFieldsValue());
     loginForm.validateFields().then(() => {
       dispatch(
         loginRequest({
           email: loginForm.getFieldValue("email"),
           password: loginForm.getFieldValue("password"),
-          onSuccess: () => {
-            router.push("/admin");
-          },
-          onError(error) {
-            if (error === "User is not confirmed.") {
-              setIsNotConfirmed(true);
-            } else {
-              message.error(error);
-            }
-          },
         })
       );
     });
@@ -93,7 +94,7 @@ const Login: React.FC = () => {
             </Form.Item>
             <Form.Item>
               <div className="flex flex-col text-center">
-                <Button loading={loading} type="primary" htmlType="submit" className="login-form-button">
+                <Button loading={undefined} type="primary" htmlType="submit" className="login-form-button">
                   Log in
                 </Button>
                 <Divider>

@@ -4,6 +4,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import rootSaga from "@/redux/sagas";
+import appointmentReducer from "@/redux/slices/appointmentSlice";
 import authReducer from "@/redux/slices/authSlice";
 import clinicReducer from "@/redux/slices/clinicSlice";
 import languageReducer from "@/redux/slices/languageSlice";
@@ -22,6 +23,7 @@ const reducers = combineReducers({
   lang: languageReducer,
   auth: authReducer,
   clinic: clinicReducer,
+  appointment: appointmentReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

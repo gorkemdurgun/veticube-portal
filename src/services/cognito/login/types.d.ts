@@ -43,6 +43,20 @@ type CognitoLoginResponse = {
   clockDrift: number;
 };
 
+type GetUserResponse = {
+  user: {
+    id: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+    default_role: string;
+    allowed_roles: string;
+    country_code: string;
+    phone_number: string;
+    is_verified: boolean;
+  };
+};
+
 type LoginRequestPayload = {
   email: string;
   password: string;
@@ -54,23 +68,19 @@ type LoginSuccessPayload = {
   idToken: string;
   accessToken: string;
   refreshToken: string;
-  user: {
-    id: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-  };
+  user?: GetUserResponse["user"];
 };
 
-type SignUpVetAccountRequestPayload = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  countryCode: string;
-  phoneNumber: string;
-  clinicBranchId: string;
-  specilization?: string;
-  onSuccess?: (email: string) => void;
-  onError?: (error: string) => void;
+type GetUserSuccessPayload = {
+  user: GetUserResponse["user"];
 };
+
+type RefreshSessionRequestPayload = any;
+/* {
+  refreshToken: string;
+  onSuccess: (response: CognitoLoginResponse) => void;
+  onError: (error: string) => void;
+};
+  */
+
+export type { LoginRequestPayload, LoginSuccessPayload, RefreshSessionRequestPayload };

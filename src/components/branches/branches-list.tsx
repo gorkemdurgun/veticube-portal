@@ -12,7 +12,7 @@ import {
 import { Badge, Button, Divider, List, message, Popconfirm, Table, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
 
-import { auth } from "@/services/auth";
+import { auth } from "@/services/cognito";
 import { queries } from "@/services/db";
 
 import type { TableProps } from "antd";

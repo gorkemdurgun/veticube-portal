@@ -1,8 +1,7 @@
 import { call } from "redux-saga/effects";
 
-
 import { signUpVetAccountRequest } from "@/redux/slices/authSlice";
-import { auth } from "@/services/auth";
+import { auth } from "@/services/cognito";
 import { mutations } from "@/services/db";
 import toErrorMessage from "@/utils/toError";
 

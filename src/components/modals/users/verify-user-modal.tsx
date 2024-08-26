@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button, Form, Input, message, Modal, Select } from "antd";
 
 import { useCustomAppQuery } from "@/hooks";
-import { auth } from "@/services/auth";
+import { auth } from "@/services/cognito";
 import { queries } from "@/services/db";
 
 import { TranslatedText } from "../../common";

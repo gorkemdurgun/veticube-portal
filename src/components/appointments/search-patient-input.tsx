@@ -5,14 +5,18 @@ import { PiCat as CatIcon, PiDog as DogIcon } from "react-icons/pi";
 import { Avatar, Select, Spin } from "antd";
 import debounce from "lodash/debounce";
 
-import type { SelectProps } from "antd";
 import { useCustomAppQuery } from "@/hooks";
 import { queries } from "@/services/db";
 import { SearchPetResponse } from "@/services/db/queries/pet/searchPet";
 
-export interface SearchPatientInputProps<ValueType = any> extends Omit<SelectProps<ValueType | ValueType[]>, "options" | "children"> {}
+import type { SelectProps } from "antd";
+
+export interface SearchPatientInputProps<ValueType = any> extends Omit<SelectProps<ValueType | ValueType[]>, "options" | "children"> {
+  onChangeValue: (value: ValueType | ValueType[]) => void;
+}
 
 export function SearchPatientInput<ValueType extends { key?: string; label: React.ReactNode; value: string | number } = any>({
+  onChangeValue,
   ...props
 }: SearchPatientInputProps<ValueType>) {
   const [searchValue, setSearchValue] = useState("");
@@ -49,10 +53,12 @@ export function SearchPatientInput<ValueType extends { key?: string; label: Reac
       {...props}
       labelInValue
       showSearch
+      allowClear
       filterOption={false}
       onSearch={(value) => debouncedSearch(value)}
       notFoundContent={loading ? <Spin size="small" /> : null}
       options={options}
+      onChange={(value) => onChangeValue(value)}
       labelRender={(option) => (
         <div className="flex items-center gap-2">
           <span className="font-semibold">{option.label}</span>

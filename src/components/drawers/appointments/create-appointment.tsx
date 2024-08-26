@@ -1,8 +1,8 @@
-import { createRef, useState } from "react";
+import { createRef, useEffect, useState } from "react";
 
 import { PiXCircleDuotone as CloseIcon } from "react-icons/pi";
 
-import { Drawer, Form, Input, DatePicker, TimePicker, Select, Collapse, Divider, TimePickerProps, Skeleton } from "antd";
+import { Drawer, Form, Input, DatePicker, TimePicker, Select, Collapse, Divider, Skeleton } from "antd";
 
 import { SearchPatientInput } from "@/components/appointments";
 import SelectorDate from "@/components/appointments/selector-date";
@@ -48,6 +48,7 @@ const dummyVeterinarians = [
   { value: "Veterinarian 5" },
 ];
 const dummyStaffs = [{ value: "Staff 1" }, { value: "Staff 2" }, { value: "Staff 3" }, { value: "Staff 4" }, { value: "Staff 5" }];
+const dummyProcesses = [{ value: "Surgery" }, { value: "Vaccination" }, { value: "Checkup" }, { value: "Treatment" }, { value: "Other" }];
 
 type Props = {
   visible: boolean;
@@ -67,7 +68,6 @@ type FormValues = {
 const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
   const [createForm] = Form.useForm<FormValues>();
   const [disabledMinuteList, setDisabledMinuteList] = useState<{ hour: number; minute: number[] }[]>([]);
-  const [disabledMinutesLoading, setDisabledMinutesLoading] = useState(false);
 
   const handleCreate = () => {
     // createForm.validateFields().then((values) => {
@@ -98,9 +98,24 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
         <div className="flex flex-col">
           <Collapse
             bordered={false}
-            defaultActiveKey={["date"]}
-            // collapsible={createForm.getFieldValue("patient") === undefined ? "disabled" : "header"}
+            defaultActiveKey={["patient", "date", "process", "participants"]}
             items={[
+              {
+                key: "patient",
+                headerClass: "text-sm !text-gray-700",
+                label: "Hasta Bilgileri",
+                children: (
+                  <div className="grid grid-cols-1 gap-x-4 gap-y-2">
+                    <Form.Item label="Patient" name="patient" rules={[{ required: true, message: "Please select a patient" }]}>
+                      <SearchPatientInput
+                        size="large"
+                        placeholder="Search patient"
+                        onChangeValue={(value) => createForm.setFieldsValue({ patient: value })}
+                      />
+                    </Form.Item>
+                  </div>
+                ),
+              },
               {
                 key: "date",
                 headerClass: "text-sm !text-gray-700",
@@ -111,7 +126,7 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
                       <SelectorDate
                         className="w-full"
                         size="large"
-                        disabledTimesLoading={(loading) => setDisabledMinutesLoading(loading)}
+                        disabled={createForm.getFieldValue("patient") === undefined}
                         onDateChange={(formattedDate, getDisabledMinuteList) => {
                           createForm.setFieldsValue({ date: formattedDate, time: undefined });
                           setDisabledMinuteList(getDisabledMinuteList);
@@ -123,7 +138,6 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
                         className="w-full"
                         size="large"
                         needConfirm={false}
-                        loading={disabledMinutesLoading}
                         disabled={createForm.getFieldValue("date") === undefined}
                         onChangeTime={(formattedTime) => createForm.setFieldsValue({ time: formattedTime })}
                         disabledTime={(date) => {
@@ -139,52 +153,16 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
                   </div>
                 ),
               },
-            ]}
-          />
-          <Divider className="my-0" />
-          <Collapse
-            bordered={false}
-            // defaultActiveKey={["patient"]}
-            // collapsible={createForm.getFieldValue("date") === undefined ? "disabled" : "header"}
-            items={[
-              {
-                key: "patient",
-                headerClass: "text-sm !text-gray-700",
-                label: "Hasta Bilgileri",
-                children: (
-                  <div className="grid grid-cols-1 gap-x-4 gap-y-2">
-                    <Form.Item label="Patient" name="patient" rules={[{ required: true, message: "Please select a patient" }]}>
-                      <SearchPatientInput size="large" placeholder="Search patient" />
-                    </Form.Item>
-                  </div>
-                ),
-              },
-            ]}
-          />
-          <Divider className="my-0" />
-          <Collapse
-            bordered={false}
-            // defaultActiveKey={["process"]}
-            // collapsible={createForm.getFieldValue("patient") === undefined ? "disabled" : "header"}
-            items={[
               {
                 key: "process",
                 headerClass: "text-sm !text-gray-700",
                 label: "İşlem Bilgileri",
                 children: (
                   <Form.Item label="Process" name="process" rules={[{ required: true, message: "Please select a process" }]}>
-                    <Select options={dummyPets} placeholder="Select a process" />
+                    <Select options={dummyProcesses} placeholder="Select a process" />
                   </Form.Item>
                 ),
               },
-            ]}
-          />
-          <Divider className="my-0" />
-          <Collapse
-            bordered={false}
-            // defaultActiveKey={["participants"]}
-            // collapsible={createForm.getFieldValue("clinic") === undefined ? "disabled" : "header"}
-            items={[
               {
                 key: "participants",
                 headerClass: "text-sm !text-gray-700",
@@ -202,6 +180,7 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
               },
             ]}
           />
+
           <CustomButton className="m-4" variant="primary-faded" onClick={handleCreate}>
             Create
           </CustomButton>

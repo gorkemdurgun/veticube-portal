@@ -5,16 +5,15 @@ import dayjs, { Dayjs } from "dayjs";
 
 import { useCustomAppQuery } from "@/hooks";
 import { queries } from "@/services/db";
-
 import type { GetSelectedDateReservationsResponse } from "@/services/db/queries/clinic";
+
 import type { DatePickerProps } from "antd";
 
 type Props = DatePickerProps & {
   onDateChange: (formattedDate: string, getDisabledMinuteList: { hour: number; minute: number[] }[]) => void;
-  disabledTimesLoading: (loading: boolean) => void;
 };
 
-const SelectorDate: React.FC<Props> = ({ disabledTimesLoading, onDateChange, ...props }) => {
+const SelectorDate: React.FC<Props> = ({ onDateChange, ...props }) => {
   const [date, setDate] = useState<dayjs.Dayjs | undefined>(undefined);
   const { data, loading, refetch } = useCustomAppQuery({
     query: queries.clinic.GetSelectedDateReservations,
@@ -55,17 +54,12 @@ const SelectorDate: React.FC<Props> = ({ disabledTimesLoading, onDateChange, ...
 
   useEffect(() => {
     if (!date) return;
-    console.log("date changed", date);
     refetch().then(({ data }) => {
       const formattedDate = date?.format("YYYY-MM-DD") ?? "";
       const formattedDisabledMinutes = parseMinutes(data?.reservations);
       onDateChange(formattedDate, formattedDisabledMinutes);
     });
   }, [date]);
-
-  useEffect(() => {
-    disabledTimesLoading(loading);
-  }, [loading]);
 
   return <DatePicker {...props} allowClear={false} value={date} onChange={setDate} />;
 };

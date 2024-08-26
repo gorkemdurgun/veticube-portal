@@ -8,10 +8,7 @@ import { TranslatedText } from "@/components/common";
 
 import type { TourProps } from "antd";
 
-
-import { AppointmentCreateModal, CreateClinicBranchModal, CreateClinicChooseModal } from "../modals";
-
-
+import { CreateClinicBranchModal, CreateClinicChooseModal } from "../modals";
 
 type BranchesActionsProps = {
   isLoading?: boolean;

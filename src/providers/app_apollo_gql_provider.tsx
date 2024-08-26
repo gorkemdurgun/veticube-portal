@@ -5,7 +5,7 @@ import { message } from "antd";
 
 import { logout } from "@/redux/slices/authSlice";
 import { store } from "@/redux/store";
-import { auth } from "@/services/auth";
+import { auth } from "@/services/cognito";
 
 const httpLink = new HttpLink({
   uri: "http://3.71.108.46:8080/v1/graphql",
@@ -30,7 +30,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
       console.log(`[GraphQL error]: ${errMessage}`); // GraphQL hatalarını logla
       if (errMessage.includes("Could not verify JWT")) {
         message.error("Your session has expired. Please login again.");
-        auth.login.refreshSession(); // Oturum süresi dolmuşsa oturumu yenile
+        // auth.login.refreshSession(); // Oturum süresi dolmuşsa oturumu yenile
       }
     });
   }

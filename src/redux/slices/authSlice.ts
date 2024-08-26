@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+import type { LoginRequestPayload, LoginSuccessPayload, RefreshSessionRequestPayload } from "../../services/cognito/login/types";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthState {
