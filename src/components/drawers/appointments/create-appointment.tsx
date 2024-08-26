@@ -126,7 +126,7 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
                       <SelectorDate
                         className="w-full"
                         size="large"
-                        disabled={createForm.getFieldValue("patient") === undefined}
+                        // disabled={createForm.getFieldValue("patient") === undefined}
                         onDateChange={(formattedDate, getDisabledMinuteList) => {
                           createForm.setFieldsValue({ date: formattedDate, time: undefined });
                           setDisabledMinuteList(getDisabledMinuteList);
@@ -138,7 +138,7 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
                         className="w-full"
                         size="large"
                         needConfirm={false}
-                        disabled={createForm.getFieldValue("date") === undefined}
+                        // disabled={createForm.getFieldValue("date") === undefined}
                         onChangeTime={(formattedTime) => createForm.setFieldsValue({ time: formattedTime })}
                         disabledTime={(date) => {
                           return {

@@ -61,7 +61,15 @@ const SelectorDate: React.FC<Props> = ({ onDateChange, ...props }) => {
     });
   }, [date]);
 
-  return <DatePicker {...props} allowClear={false} value={date} onChange={setDate} />;
+  return (
+    <DatePicker
+      {...props}
+      disabledDate={(current) => current && current < dayjs().startOf("day")}
+      allowClear={false}
+      value={date}
+      onChange={setDate}
+    />
+  );
 };
 
 export default SelectorDate;
