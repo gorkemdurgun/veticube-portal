@@ -2,8 +2,11 @@ import React, { useEffect, useMemo, useState } from "react";
 
 import { PiXCircleDuotone as CloseIcon } from "react-icons/pi";
 
-import { Divider, Drawer, Form, Select } from "antd";
+import { Divider, Drawer, Form, Input, Select } from "antd";
 import dayjs from "dayjs";
+
+import { useAppDispatch } from "@/hooks";
+import { createAppointmentRequest } from "@/redux/slices/appointmentSlice";
 
 import { SearchPatientInput } from "@/components/appointments";
 import SelectorDate from "@/components/appointments/selector-date";
@@ -43,22 +46,38 @@ type FormValues = {
   date?: string;
   time?: string;
   patientId?: string;
-  process?: string;
+  process?: AppointmentType;
   client?: string;
   clinic?: string;
   veterinarians?: string[];
   staffs?: string[];
+  notes?: string;
 };
 
 const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
+  const dispatch = useAppDispatch();
   const [createForm] = Form.useForm<FormValues>();
 
   let disabledMinuteList: { hour: number; minute: number[] }[] = [];
 
   const handleCreate = () => {
-    // createForm.validateFields().then((values) => {
-    console.log(createForm.getFieldsValue());
-    // });
+    const values = createForm.getFieldsValue();
+    if (!values.date || !values.time || !values.patientId || !values.process) return;
+
+    dispatch(
+      createAppointmentRequest({
+        data: {
+          pet_id: values.patientId,
+          clinic_branch_id: "445d3c8a-5556-4e0c-a241-b0f253390087",
+          appointment_date: values.date,
+          appointment_time: values.time,
+          appointment_type: values.process,
+          notes: values.notes,
+          appointment_staffs: [],
+          appointment_veterinarians: [],
+        },
+      })
+    );
   };
 
   const FormSection = ({ label, formItems, extras }: { label: string; formItems: JSX.Element[]; extras?: React.ReactNode }) => {
@@ -78,6 +97,7 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
 
   return (
     <Drawer
+      destroyOnClose
       placement="right"
       classNames={{
         body: "!p-0",
@@ -96,7 +116,7 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
       onClose={() => setVisible(false)}
     >
       {/* <ProgressBar percent={percent} loadingSection={loadingSection} /> */}
-      <Form form={createForm} className="m-4" layout="vertical" onFinish={handleCreate}>
+      <Form form={createForm} className="m-4" layout="vertical">
         <div className="flex flex-col gap-2">
           <FormSection
             label="Hasta Bilgileri"
@@ -246,7 +266,7 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
               </div>
             }
           />
-          <FormSection
+          {/* <FormSection
             label="Participants"
             formItems={[
               <Form.Item key="veterinarians" name="veterinarians" rules={[{ required: true, message: "Please select a veterinarian" }]}>
@@ -254,6 +274,14 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
               </Form.Item>,
               <Form.Item key="staffs" name="staffs" rules={[{ required: true, message: "Please select a staff" }]}>
                 <Select className="w-full" size="large" mode="multiple" placeholder="Select a staff" />
+              </Form.Item>,
+            ]}
+          /> */}
+          <FormSection
+            label="Notlar"
+            formItems={[
+              <Form.Item key="notes" name="notes">
+                <Input.TextArea className="w-full" placeholder="Add notes" />
               </Form.Item>,
             ]}
           />

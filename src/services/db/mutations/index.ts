@@ -1,3 +1,4 @@
+import { createAppointment } from "./appointments";
 import { insertVeterinarian, updateVetRole, insertManager } from "./auth";
 import { createClinic, createBranch } from "./clinics";
 
@@ -14,5 +15,8 @@ export const mutations = {
   clinics: {
     createClinic,
     createBranch,
+  },
+  appointments: {
+    createAppointment,
   },
 };
