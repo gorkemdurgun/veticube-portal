@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
-import { PiCat as CatIcon, PiDog as DogIcon } from "react-icons/pi";
+import { PiSpinnerGapDuotone as LoadingIcon } from "react-icons/pi";
 
 import { Avatar, Select, Spin } from "antd";
 import debounce from "lodash/debounce";
@@ -12,21 +12,21 @@ import { SearchPetResponse } from "@/services/db/queries/pet/searchPet";
 import type { SelectProps } from "antd";
 
 export interface SearchPatientInputProps<ValueType = any> extends Omit<SelectProps<ValueType | ValueType[]>, "options" | "children"> {
-  onChangeValue: (value: ValueType | ValueType[]) => void;
+  onSelectedValue?: (value: string | number | undefined) => void;
 }
 
 export function SearchPatientInput<ValueType extends { key?: string; label: React.ReactNode; value: string | number } = any>({
-  onChangeValue,
+  onSelectedValue,
   ...props
 }: SearchPatientInputProps<ValueType>) {
   const [searchValue, setSearchValue] = useState("");
+  const [selectedValue, setSelectedValue] = useState<string | number | undefined>();
   const [options, setOptions] = useState<ValueType[]>([]);
-  const fetchRef = useRef(0);
 
   const { data, loading } = useCustomAppQuery({
     query: queries.pet.SearchPet,
     options: {
-      skip: !searchValue || searchValue.length < 3,
+      skip: !searchValue || searchValue.length < 2,
       variables: {
         _ilike: `%${searchValue}%`,
       },
@@ -36,8 +36,8 @@ export function SearchPatientInput<ValueType extends { key?: string; label: Reac
   const formatData = (data?: SearchPetResponse["searchResults"]): ValueType[] => {
     return data?.map((pet) => ({
       key: pet?.id,
-      label: pet?.name,
-      value: pet?.clients?.[0]?.client?.user?.first_name + " " + pet?.clients?.[0]?.client?.user?.last_name,
+      value: pet?.id,
+      label: pet?.name + " (" + pet?.clients?.[0]?.client?.user?.first_name + " " + pet?.clients?.[0]?.client?.user?.last_name + ")",
     })) as ValueType[];
   };
 
@@ -48,6 +48,12 @@ export function SearchPatientInput<ValueType extends { key?: string; label: Reac
     }
   }, [data]);
 
+  const onSelect = (value: string | number | undefined) => {
+    console.log(value);
+    setSelectedValue(value);
+    onSelectedValue?.(value);
+  };
+
   return (
     <Select
       {...props}
@@ -56,23 +62,14 @@ export function SearchPatientInput<ValueType extends { key?: string; label: Reac
       allowClear
       filterOption={false}
       onSearch={(value) => debouncedSearch(value)}
-      notFoundContent={loading ? <Spin size="small" /> : null}
+      notFoundContent={loading ? <Spin className="w-full" indicator={<LoadingIcon className="animate-spin" />} /> : null}
       options={options}
-      onChange={(value) => onChangeValue(value)}
-      labelRender={(option) => (
-        <div className="flex items-center gap-2">
-          <span className="font-semibold">{option.label}</span>
-          <span className="text-xs text-gray-500">{`(${option.value})`}</span>
-        </div>
-      )}
+      onSelect={(item) => onSelect(item.value)}
+      labelRender={(option) => <span>{option.label}</span>}
       optionRender={(option) => {
         return (
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="font-semibold">{option.label}</span>
-              <span className="text-xs text-gray-500">{`(${option.value})`}</span>
-            </div>
-
+            <span>{option.label}</span>
             {/* {option.data.data.type === "cat" ? <CatIcon className="text-yellow-800" /> : <DogIcon className="text-amber-800" />} */}
           </div>
         );

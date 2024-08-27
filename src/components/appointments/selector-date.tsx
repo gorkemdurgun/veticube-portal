@@ -10,7 +10,7 @@ import type { GetSelectedDateReservationsResponse } from "@/services/db/queries/
 import type { DatePickerProps } from "antd";
 
 type Props = DatePickerProps & {
-  onDateChange: (formattedDate: string, getDisabledMinuteList: { hour: number; minute: number[] }[]) => void;
+  onDateChange: (formattedDate: string, unavailableMinutes: { hour: number; minute: number[] }[]) => void;
 };
 
 const SelectorDate: React.FC<Props> = ({ onDateChange, ...props }) => {

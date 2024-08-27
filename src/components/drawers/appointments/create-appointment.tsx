@@ -1,23 +1,17 @@
-import { createRef, useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import { PiXCircleDuotone as CloseIcon } from "react-icons/pi";
 
-import { Drawer, Form, Input, DatePicker, TimePicker, Select, Collapse, Divider, Skeleton } from "antd";
+import { Divider, Drawer, Form, Select } from "antd";
+import dayjs from "dayjs";
 
 import { SearchPatientInput } from "@/components/appointments";
 import SelectorDate from "@/components/appointments/selector-date";
 import SelectorTime from "@/components/appointments/selector-time";
 import { CustomButton } from "@/components/common";
 
-import type { SelectProps } from "antd";
+import type { SelectProps, FormRule } from "antd";
 
-const dummyPets = [
-  { value: "Pet 1", owner: "Owner 1" },
-  { value: "Pet 2", owner: "Owner 2" },
-  { value: "Pet 3", owner: "Owner 3" },
-  { value: "Pet 4", owner: "Owner 4" },
-  { value: "Pet 5", owner: "Owner 5" },
-];
 const dummyClinics: SelectProps["options"] = [
   {
     key: "clinic-1",
@@ -40,39 +34,46 @@ const dummyClinics: SelectProps["options"] = [
     value: "Clinic 5",
   },
 ];
-const dummyVeterinarians = [
-  { value: "Veterinarian 1" },
-  { value: "Veterinarian 2" },
-  { value: "Veterinarian 3" },
-  { value: "Veterinarian 4" },
-  { value: "Veterinarian 5" },
-];
-const dummyStaffs = [{ value: "Staff 1" }, { value: "Staff 2" }, { value: "Staff 3" }, { value: "Staff 4" }, { value: "Staff 5" }];
-const dummyProcesses = [{ value: "Surgery" }, { value: "Vaccination" }, { value: "Checkup" }, { value: "Treatment" }, { value: "Other" }];
 
 type Props = {
   visible: boolean;
   setVisible: (visible: boolean) => void;
 };
 type FormValues = {
-  date: string;
-  time: string;
-  patient: string;
-  process: string;
-  client: string;
-  clinic: string;
-  veterinarians: string[];
-  staffs: string[];
+  date?: string;
+  time?: string;
+  patientId?: string;
+  process?: string;
+  client?: string;
+  clinic?: string;
+  veterinarians?: string[];
+  staffs?: string[];
 };
 
 const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
   const [createForm] = Form.useForm<FormValues>();
-  const [disabledMinuteList, setDisabledMinuteList] = useState<{ hour: number; minute: number[] }[]>([]);
+
+  let disabledMinuteList: { hour: number; minute: number[] }[] = [];
 
   const handleCreate = () => {
     // createForm.validateFields().then((values) => {
     console.log(createForm.getFieldsValue());
     // });
+  };
+
+  const FormSection = ({ label, formItems, extras }: { label: string; formItems: JSX.Element[]; extras?: React.ReactNode }) => {
+    const memoizedFormItems = useMemo(() => formItems, [formItems]);
+    let formItemsParentClass = formItems.length > 1 ? "grid grid-cols-2 gap-4" : "flex flex-col";
+
+    return (
+      <div className="flex flex-col gap-1 py-1 px-4 rounded-md">
+        <Divider className="!my-1" orientation="center">
+          {label}
+        </Divider>
+        <div className={formItemsParentClass}>{memoizedFormItems.map((item) => item)}</div>
+        {extras && extras}
+      </div>
+    );
   };
 
   return (
@@ -91,100 +92,175 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
       keyboard={false}
       maskClosable={false}
       width={540}
-      open={visible}
+      open={true}
       onClose={() => setVisible(false)}
     >
-      <Form form={createForm} layout="vertical" onFinish={handleCreate}>
-        <div className="flex flex-col">
-          <Collapse
-            bordered={false}
-            defaultActiveKey={["patient", "date", "process", "participants"]}
-            items={[
-              {
-                key: "patient",
-                headerClass: "text-sm !text-gray-700",
-                label: "Hasta Bilgileri",
-                children: (
-                  <div className="grid grid-cols-1 gap-x-4 gap-y-2">
-                    <Form.Item label="Patient" name="patient" rules={[{ required: true, message: "Please select a patient" }]}>
-                      <SearchPatientInput
-                        size="large"
-                        placeholder="Search patient"
-                        onChangeValue={(value) => createForm.setFieldsValue({ patient: value })}
-                      />
-                    </Form.Item>
-                  </div>
-                ),
-              },
-              {
-                key: "date",
-                headerClass: "text-sm !text-gray-700",
-                label: "Tarih ve Zaman",
-                children: (
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-                    <Form.Item label="Date" name="date" rules={[{ required: true, message: "Please select a date" }]}>
-                      <SelectorDate
-                        className="w-full"
-                        size="large"
-                        // disabled={createForm.getFieldValue("patient") === undefined}
-                        onDateChange={(formattedDate, getDisabledMinuteList) => {
-                          createForm.setFieldsValue({ date: formattedDate, time: undefined });
-                          setDisabledMinuteList(getDisabledMinuteList);
-                        }}
-                      />
-                    </Form.Item>
-                    <Form.Item label="Time" name="time" rules={[{ required: true, message: "Please select a time" }]}>
-                      <SelectorTime
-                        className="w-full"
-                        size="large"
-                        needConfirm={false}
-                        // disabled={createForm.getFieldValue("date") === undefined}
-                        onChangeTime={(formattedTime) => createForm.setFieldsValue({ time: formattedTime })}
-                        disabledTime={(date) => {
-                          return {
-                            disabledMinutes(hour) {
-                              const found = disabledMinuteList.find((item) => item.hour === hour);
-                              return found ? found.minute : [];
-                            },
-                          };
-                        }}
-                      />
-                    </Form.Item>
-                  </div>
-                ),
-              },
-              {
-                key: "process",
-                headerClass: "text-sm !text-gray-700",
-                label: "İşlem Bilgileri",
-                children: (
-                  <Form.Item label="Process" name="process" rules={[{ required: true, message: "Please select a process" }]}>
-                    <Select options={dummyProcesses} placeholder="Select a process" />
-                  </Form.Item>
-                ),
-              },
-              {
-                key: "participants",
-                headerClass: "text-sm !text-gray-700",
-                label: "Katılımcılar",
-                children: (
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-                    <Form.Item label="Veterinarians" name="veterinarians" rules={[{ required: true, message: "Please select a veterinarian" }]}>
-                      <Select mode="multiple" options={dummyVeterinarians} placeholder="Select a veterinarian" />
-                    </Form.Item>
-                    <Form.Item label="Staffs" name="staffs" rules={[{ required: true, message: "Please select a staff" }]}>
-                      <Select mode="multiple" options={dummyStaffs} placeholder="Select a staff" />
-                    </Form.Item>
-                  </div>
-                ),
-              },
+      {/* <ProgressBar percent={percent} loadingSection={loadingSection} /> */}
+      <Form form={createForm} className="m-4" layout="vertical" onFinish={handleCreate}>
+        <div className="flex flex-col gap-2">
+          <FormSection
+            label="Hasta Bilgileri"
+            formItems={[
+              <Form.Item key="patientId" name="patientId" rules={[{ required: true, message: "Please select a patient" }]}>
+                <SearchPatientInput
+                  key="search-patient"
+                  className="w-full"
+                  size="large"
+                  placeholder="Hasta ara..."
+                  onSelectedValue={(value) => {
+                    console.log("Selected Patient: ", value);
+                    createForm.setFieldValue("patientId", value);
+                  }}
+                />
+              </Form.Item>,
+            ]}
+            /*
+            extras={
+              <div className="flex flex-col gap-2">
+                <span className="text-sm font-semibold text-gray-800">Quick Add Patient</span>
+                <div className="overflow-x-auto flex gap-2">
+                  <CustomButton
+                    key="1"
+                    variant="neutral-faded"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      createForm.setFieldValue("patient", "Veras");
+                    }}
+                  >
+                    Veras
+                  </CustomButton>
+                  <CustomButton
+                    key="2"
+                    variant="neutral-faded"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      createForm.setFieldValue("patient", "Lime");
+                    }}
+                  >
+                    Lime
+                  </CustomButton>
+                  <CustomButton
+                    key="3"
+                    variant="neutral-faded"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      createForm.setFieldValue("patient", "Milo");
+                    }}
+                  >
+                    Milo
+                  </CustomButton>
+                  <CustomButton
+                    key="4"
+                    variant="neutral-faded"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      createForm.setFieldValue("patient", "Bella");
+                    }}
+                  >
+                    Bella
+                  </CustomButton>
+                </div>
+              </div>
+            }
+            */
+          />
+          <FormSection
+            label="Randevu Tarihi"
+            formItems={[
+              <Form.Item key="date" name="date" rules={[{ required: true, message: "Please select a date" }]}>
+                <SelectorDate
+                  className="w-full"
+                  size="large"
+                  onDateChange={(formattedDate, unavailableMinutes) => {
+                    createForm.setFieldsValue({ date: formattedDate });
+                    createForm.resetFields(["time"]);
+                    disabledMinuteList = unavailableMinutes;
+                  }}
+                />
+              </Form.Item>,
+              <Form.Item key="time" name="time" rules={[{ required: true, message: "Please select a time" }]}>
+                <SelectorTime
+                  className="w-full"
+                  size="large"
+                  needConfirm={false}
+                  onChangeTime={(formattedTime) => createForm.setFieldValue("time", formattedTime)}
+                  disabledTime={(date) => {
+                    return {
+                      disabledMinutes(hour) {
+                        const found = disabledMinuteList.find((item) => item.hour === hour);
+                        return found ? found.minute : [];
+                      },
+                    };
+                  }}
+                />
+              </Form.Item>,
             ]}
           />
-
-          <CustomButton className="m-4" variant="primary-faded" onClick={handleCreate}>
-            Create
-          </CustomButton>
+          <FormSection
+            label="Process"
+            formItems={[
+              <Form.Item key="process" name="process" rules={[{ required: true, message: "Please select a process" }]}>
+                <Select
+                  className="w-full"
+                  size="large"
+                  placeholder="Select a process"
+                  options={[
+                    { label: "Surgery", value: "surgery" },
+                    { label: "Vaccination", value: "vaccination" },
+                    { label: "Consultation", value: "consultation" },
+                    { label: "Grooming", value: "grooming" },
+                    { label: "Dental", value: "dental" },
+                    { label: "Hospitalization", value: "hospitalization" },
+                  ]}
+                />
+              </Form.Item>,
+            ]}
+            extras={
+              <div className="flex flex-col gap-2">
+                <span className="text-sm font-semibold text-gray-800">Quick Add Process</span>
+                <div className="overflow-x-auto flex gap-2">
+                  <CustomButton
+                    key="1"
+                    variant="neutral-faded"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      createForm.setFieldValue("process", "surgery");
+                    }}
+                  >
+                    Surgery
+                  </CustomButton>
+                  <CustomButton
+                    key="2"
+                    variant="neutral-faded"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      createForm.setFieldValue("process", "vaccination");
+                    }}
+                  >
+                    Vaccination
+                  </CustomButton>
+                  <CustomButton key="3" variant="neutral-faded" onClick={() => createForm.setFieldValue("process", "consultation")}>
+                    Consultation
+                  </CustomButton>
+                </div>
+              </div>
+            }
+          />
+          <FormSection
+            label="Participants"
+            formItems={[
+              <Form.Item key="veterinarians" name="veterinarians" rules={[{ required: true, message: "Please select a veterinarian" }]}>
+                <Select className="w-full" size="large" mode="multiple" placeholder="Select a veterinarian" />
+              </Form.Item>,
+              <Form.Item key="staffs" name="staffs" rules={[{ required: true, message: "Please select a staff" }]}>
+                <Select className="w-full" size="large" mode="multiple" placeholder="Select a staff" />
+              </Form.Item>,
+            ]}
+          />
         </div>
+        <CustomButton variant="primary-faded" className="w-full mt-4" onClick={handleCreate}>
+          Create
+        </CustomButton>
       </Form>
     </Drawer>
   );
