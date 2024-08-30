@@ -46,7 +46,7 @@ export default function AdminLayout({
   const items: MenuItem[] = [
     {
       type: "item",
-      disabled: true,
+      // disabled: true,
       className: "!h-12 py-2 text-sm",
       key: "/admin",
       label: t("sidebar.overview"),
@@ -55,7 +55,7 @@ export default function AdminLayout({
     },
     {
       type: "item",
-      disabled: true,
+      // disabled: true,
       className: "!h-12 py-2 text-sm",
       key: "/admin/devices",
       label: t("sidebar.devices"),
@@ -68,7 +68,7 @@ export default function AdminLayout({
     },
     {
       type: "item",
-      // disabled: true,
+      disabled: true,
       className: "!h-12 py-2 text-sm border-gray-200",
       key: "/admin/appointments",
       label: t("sidebar.appointments"),
@@ -86,7 +86,7 @@ export default function AdminLayout({
     },
     {
       type: "item",
-      disabled: true,
+      // disabled: true,
       className: "!h-12 py-2 text-sm",
       key: "/admin/clients",
       label: t("sidebar.clients"),

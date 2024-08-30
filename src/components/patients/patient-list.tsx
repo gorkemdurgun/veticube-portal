@@ -82,6 +82,7 @@ const columns: TableProps<DataType>["columns"] = [
     ],
   },
   {
+    hidden: true,
     title: "Appointment",
     align: "center",
     children: [
@@ -112,12 +113,13 @@ const columns: TableProps<DataType>["columns"] = [
     ],
   },
   {
-    title: "Actions",
+    hidden: true,
+    title: "",
     key: "actions",
     align: "center",
     render: (_, record) => (
       <Space size="middle">
-        <CustomButton variant="primary-text" icon={AppointmentIcon} />
+        {/* <CustomButton variant="primary-text" icon={AppointmentIcon} /> */}
         {/* <Divider type="vertical" className="mx-0" /> */}
         {/* <CustomButton variant="primary-text" icon={WhatsAppIcon} /> */}
       </Space>
