@@ -6,6 +6,7 @@ const config: Config = {
     fontFamily: {
       inter: ["Inter", "sans-serif"],
       oswald: ["Oswald", "sans-serif"],
+      raleway: ["Raleway", "sans-serif"],
     },
     fontSize: {
       xs: "0.75rem",
@@ -75,6 +76,19 @@ const config: Config = {
         "900": "#134b70",
         "950": "#0c2c45",
       },
+      teal: {
+        "50": "#f1f9fa",
+        "100": "#dceef1",
+        "200": "#bddfe4",
+        "300": "#90c7d0",
+        "400": "#64abb9",
+        "500": "#408a9a",
+        "600": "#387282",
+        "700": "#325d6c",
+        "800": "#304f5a",
+        "900": "#2c434d",
+        "950": "#192b33",
+      },
       pink: {
         "50": "#fef1fa",
         "100": "#fee5f6",
@@ -135,6 +149,7 @@ const config: Config = {
       },
       boxShadow: {
         basic: "0 5px 15px -10px rgba(150,170,180,0.5)",
+        high: "0 5px 15px -10px rgba(150,170,180,0.5)",
       },
     },
   },

@@ -23,6 +23,12 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
+
+  .heading-gradient {
+    background: linear-gradient(90deg, #065f43 0%, #047854 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 div {
