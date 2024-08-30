@@ -112,7 +112,7 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
       keyboard={false}
       maskClosable={false}
       width={540}
-      open={true}
+      open={visible}
       onClose={() => setVisible(false)}
     >
       {/* <ProgressBar percent={percent} loadingSection={loadingSection} /> */}
@@ -202,6 +202,7 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
                 <SelectorTime
                   className="w-full"
                   size="large"
+                  disabled={!createForm.getFieldValue("date")}
                   needConfirm={false}
                   onChangeTime={(formattedTime) => createForm.setFieldValue("time", formattedTime)}
                   disabledTime={(date) => {

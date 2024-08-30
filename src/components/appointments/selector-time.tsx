@@ -21,7 +21,7 @@ const SelectorTime: React.FC<Props> = ({ onChangeTime, loading, ...props }) => {
 
   return (
     <div className="relative">
-      <TimePicker {...props} disabled={loading} format={"HH:mm"} showNow={false} minuteStep={10} value={time} onChange={setTime} />
+      <TimePicker {...props} format={"HH:mm"} showNow={false} minuteStep={10} value={time} onChange={setTime} />
     </div>
   );
 };
