@@ -26,11 +26,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks";
 import { setLanguage } from "@/redux/slices/languageSlice";
 import { setMode, toggleDarkMode } from "@/redux/slices/themeSlice";
 
-
-
-
 import { Navbar } from "@/components/common";
-
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -138,6 +134,10 @@ export default function AdminLayout({
   const dispatch = useAppDispatch();
   const router = useRouter();
   const path = usePathname();
+
+  if (process.env.NODE_ENV !== "development") {
+    return null;
+  }
 
   return (
     <Layout>

@@ -1,11 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
-import { Button } from "antd";
-
-import { queries } from "@/services/db";
-
 const AdminPage = () => {
   return (
     <span>

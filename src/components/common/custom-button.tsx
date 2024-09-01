@@ -10,7 +10,7 @@ type Props = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElemen
   icon?: IconType;
 };
 
-const Component: React.FC<Props> = ({ size, variant, icon, ...props }) => {
+const CustomButton: React.FC<Props> = ({ size, variant, icon, ...props }) => {
   const selectedSize = size || "sm";
   const selectedVariant = variant || "primary-opaque";
   let buttonClass = "flex items-center justify-center gap-1 py-2 px-2 button button-" + selectedVariant;
@@ -43,4 +43,4 @@ const Component: React.FC<Props> = ({ size, variant, icon, ...props }) => {
   );
 };
 
-export const CustomButton = memo(Component);
+export default memo(CustomButton);

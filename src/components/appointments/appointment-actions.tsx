@@ -4,7 +4,8 @@ import { PiPlusBold as AddIcon } from "react-icons/pi";
 
 import { Button, Card } from "antd";
 
-import { CustomButton, TranslatedText } from "@/components/common";
+import { TranslatedText } from "@/components/common";
+import CustomButton from "@/components/common/custom-button";
 import CreateAppointmentDrawer from "@/components/drawers/appointments/create-appointment";
 
 type AppointmentActionsProps = {};

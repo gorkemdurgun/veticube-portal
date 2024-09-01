@@ -3,7 +3,7 @@ import Image from "next/image";
 import { IconType } from "react-icons";
 import { Line, LineChart, ResponsiveContainer, Tooltip } from "recharts";
 
-import { CustomButton } from "../common";
+import CustomButton from "../common/custom-button";
 
 type Props = {
   className?: string;

@@ -11,7 +11,7 @@ import { createAppointmentRequest } from "@/redux/slices/appointmentSlice";
 import { SearchPatientInput } from "@/components/appointments";
 import SelectorDate from "@/components/appointments/selector-date";
 import SelectorTime from "@/components/appointments/selector-time";
-import { CustomButton } from "@/components/common";
+import CustomButton from "@/components/common/custom-button";
 
 import type { SelectProps, FormRule } from "antd";
 

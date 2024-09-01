@@ -19,7 +19,7 @@ import { IconType } from "react-icons";
 import citiesJson from "@/constants/cities.json";
 import { mutations } from "@/services/db";
 
-import { CustomButton } from "@/components/common";
+import CustomButton from "@/components/common/custom-button";
 
 type RequestDemoFormStep0 = {
   clinic_name: string;

@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 
-
 import { PiX as ClearIcon } from "react-icons/pi";
 
 import { Radio, Space, Divider, DatePicker } from "antd";
 import dayjs from "dayjs";
 
-import { CustomButton } from "../common";
-
+import CustomButton from "../common/custom-button";
 
 type Props = {
   onFilterChange: (filters: Record<string, string | undefined>) => void;

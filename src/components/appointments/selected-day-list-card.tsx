@@ -5,7 +5,7 @@ import { PiClockClockwise as RescheduleIcon, PiCheckCircle as CompleteIcon, PiXC
 import { Divider, Button, Avatar, Tooltip } from "antd";
 import { t } from "i18next";
 
-import { CustomButton } from "../common";
+import CustomButton from "../common/custom-button";
 import { AppointmentCancelModal, AppointmentCompleteModal, AppointmentRescheduleModal } from "../modals";
 
 const Component: React.FC<{ item: Appointment }> = ({ item }) => {
