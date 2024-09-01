@@ -1,0 +1,4332 @@
+{
+  "turkey": {
+    "cities": [
+      {
+        "label": "İstanbul",
+        "value": "istanbul",
+        "districts": [
+          {
+            "label": "Adalar",
+            "value": "adalar"
+          },
+          {
+            "label": "Arnavutköy",
+            "value": "arnavutköy"
+          },
+          {
+            "label": "Ataşehir",
+            "value": "ataşehir"
+          },
+          {
+            "label": "Avcılar",
+            "value": "avcılar"
+          },
+          {
+            "label": "Bağcılar",
+            "value": "bağcılar"
+          },
+          {
+            "label": "Bahçelievler",
+            "value": "bahçelievler"
+          },
+          {
+            "label": "Bakırköy",
+            "value": "bakırköy"
+          },
+          {
+            "label": "Başakşehir",
+            "value": "başakşehir"
+          },
+          {
+            "label": "Bayrampaşa",
+            "value": "bayrampaşa"
+          },
+          {
+            "label": "Beşiktaş",
+            "value": "beşiktaş"
+          },
+          {
+            "label": "Beykoz",
+            "value": "beykoz"
+          },
+          {
+            "label": "Beylikdüzü",
+            "value": "beylikdüzü"
+          },
+          {
+            "label": "Beyoğlu",
+            "value": "beyoğlu"
+          },
+          {
+            "label": "Büyükçekmece",
+            "value": "büyükçekmece"
+          },
+          {
+            "label": "Çatalca",
+            "value": "çatalca"
+          },
+          {
+            "label": "Çekmeköy",
+            "value": "çekmeköy"
+          },
+          {
+            "label": "Esenler",
+            "value": "esenler"
+          },
+          {
+            "label": "Esenyurt",
+            "value": "esenyurt"
+          },
+          {
+            "label": "Eyüp",
+            "value": "eyüp"
+          },
+          {
+            "label": "Fatih",
+            "value": "fatih"
+          },
+          {
+            "label": "Gaziosmanpaşa",
+            "value": "gaziosmanpaşa"
+          },
+          {
+            "label": "Güngören",
+            "value": "güngören"
+          },
+          {
+            "label": "Kadıköy",
+            "value": "kadıköy"
+          },
+          {
+            "label": "Kağıthane",
+            "value": "kağıthane"
+          },
+          {
+            "label": "Kartal",
+            "value": "kartal"
+          },
+          {
+            "label": "Küçükçekmece",
+            "value": "küçükçekmece"
+          },
+          {
+            "label": "Maltepe",
+            "value": "maltepe"
+          },
+          {
+            "label": "Pendik",
+            "value": "pendik"
+          },
+          {
+            "label": "Sancaktepe",
+            "value": "sancaktepe"
+          },
+          {
+            "label": "Sarıyer",
+            "value": "sarıyer"
+          },
+          {
+            "label": "Silivri",
+            "value": "silivri"
+          },
+          {
+            "label": "Sultanbeyli",
+            "value": "sultanbeyli"
+          },
+          {
+            "label": "Sultangazi",
+            "value": "sultangazi"
+          },
+          {
+            "label": "Şile",
+            "value": "şile"
+          },
+          {
+            "label": "Şişli",
+            "value": "şişli"
+          },
+          {
+            "label": "Tuzla",
+            "value": "tuzla"
+          },
+          {
+            "label": "Ümraniye",
+            "value": "ümraniye"
+          },
+          {
+            "label": "Üsküdar",
+            "value": "üsküdar"
+          },
+          {
+            "label": "Zeytinburnu",
+            "value": "zeytinburnu"
+          }
+        ]
+      },
+      {
+        "label": "Ankara",
+        "value": "ankara",
+        "districts": [
+          {
+            "label": "Akyurt",
+            "value": "akyurt"
+          },
+          {
+            "label": "Altındağ",
+            "value": "altindag"
+          },
+          {
+            "label": "Ayaş",
+            "value": "ayas"
+          },
+          {
+            "label": "Bala",
+            "value": "bala"
+          },
+          {
+            "label": "Beypazarı",
+            "value": "beypazari"
+          },
+          {
+            "label": "Çamlıdere",
+            "value": "camlidere"
+          },
+          {
+            "label": "Çankaya",
+            "value": "cankaya"
+          },
+          {
+            "label": "Çubuk",
+            "value": "cubuk"
+          },
+          {
+            "label": "Elmadağ",
+            "value": "elmadag"
+          },
+          {
+            "label": "Etimesgut",
+            "value": "etimesgut"
+          },
+          {
+            "label": "Evren",
+            "value": "evren"
+          },
+          {
+            "label": "Gölbaşı",
+            "value": "golbasi"
+          },
+          {
+            "label": "Güdül",
+            "value": "gudul"
+          },
+          {
+            "label": "Haymana",
+            "value": "haymana"
+          },
+          {
+            "label": "Kalecik",
+            "value": "kalecik"
+          },
+          {
+            "label": "Kazan",
+            "value": "kazan"
+          },
+          {
+            "label": "Keçiören",
+            "value": "kecioren"
+          },
+          {
+            "label": "Kızılcahamam",
+            "value": "kizilcahamam"
+          },
+          {
+            "label": "Mamak",
+            "value": "mamak"
+          },
+          {
+            "label": "Nallıhan",
+            "value": "nallihan"
+          },
+          {
+            "label": "Polatlı",
+            "value": "polatli"
+          },
+          {
+            "label": "Pursaklar",
+            "value": "pursaklar"
+          },
+          {
+            "label": "Sincan",
+            "value": "sincan"
+          },
+          {
+            "label": "Şereflikoçhisar",
+            "value": "sereflikochisar"
+          },
+          {
+            "label": "Yenimahalle",
+            "value": "yenimahalle"
+          }
+        ]
+      },
+      {
+        "label": "İzmir",
+        "value": "izmir",
+        "districts": [
+          {
+            "label": "Aliağa",
+            "value": "aliağa"
+          },
+          {
+            "label": "Balçova",
+            "value": "balçova"
+          },
+          {
+            "label": "Bayındır",
+            "value": "bayındır"
+          },
+          {
+            "label": "Bayraklı",
+            "value": "bayraklı"
+          },
+          {
+            "label": "Bergama",
+            "value": "bergama"
+          },
+          {
+            "label": "Beydağ",
+            "value": "beydağ"
+          },
+          {
+            "label": "Bornova",
+            "value": "bornova"
+          },
+          {
+            "label": "Buca",
+            "value": "buca"
+          },
+          {
+            "label": "Çeşme",
+            "value": "çeşme"
+          },
+          {
+            "label": "Çiğli",
+            "value": "çiğli"
+          },
+          {
+            "label": "Dikili",
+            "value": "dikili"
+          },
+          {
+            "label": "Foça",
+            "value": "foça"
+          },
+          {
+            "label": "Gaziemir",
+            "value": "gaziemir"
+          },
+          {
+            "label": "Güzelbahçe",
+            "value": "güzelbahçe"
+          },
+          {
+            "label": "Karabağlar",
+            "value": "karabağlar"
+          },
+          {
+            "label": "Karaburun",
+            "value": "karaburun"
+          },
+          {
+            "label": "Karşıyaka",
+            "value": "karşıyaka"
+          },
+          {
+            "label": "Kemalpaşa",
+            "value": "kemalpaşa"
+          },
+          {
+            "label": "Kınık",
+            "value": "kınık"
+          },
+          {
+            "label": "Kiraz",
+            "value": "kiraz"
+          },
+          {
+            "label": "Konak",
+            "value": "konak"
+          },
+          {
+            "label": "Menderes",
+            "value": "menderes"
+          },
+          {
+            "label": "Menemen",
+            "value": "menemen"
+          },
+          {
+            "label": "Narlıdere",
+            "value": "narlıdere"
+          },
+          {
+            "label": "Ödemiş",
+            "value": "ödemiş"
+          },
+          {
+            "label": "Seferihisar",
+            "value": "seferihisar"
+          },
+          {
+            "label": "Selçuk",
+            "value": "selçuk"
+          },
+          {
+            "label": "Tire",
+            "value": "tire"
+          },
+          {
+            "label": "Torbalı",
+            "value": "torbalı"
+          },
+          {
+            "label": "Urla",
+            "value": "urla"
+          }
+        ]
+      },
+      {
+        "label": "Adana",
+        "value": "adana",
+        "districts": [
+          {
+            "label": "Aladağ",
+            "value": "aladag"
+          },
+          {
+            "label": "Ceyhan",
+            "value": "ceyhan"
+          },
+          {
+            "label": "Çukurova",
+            "value": "cukurova"
+          },
+          {
+            "label": "Feke",
+            "value": "feke"
+          },
+          {
+            "label": "İmamoğlu",
+            "value": "imamoglu"
+          },
+          {
+            "label": "Karaisalı",
+            "value": "karaisali"
+          },
+          {
+            "label": "Karataş",
+            "value": "karatas"
+          },
+          {
+            "label": "Kozan",
+            "value": "kozan"
+          },
+          {
+            "label": "Pozantı",
+            "value": "pozanti"
+          },
+          {
+            "label": "Saimbeyli",
+            "value": "saimbeyli"
+          },
+          {
+            "label": "Sarıçam",
+            "value": "saricam"
+          },
+          {
+            "label": "Seyhan",
+            "value": "seyhan"
+          },
+          {
+            "label": "Tufanbeyli",
+            "value": "tufanbeyli"
+          },
+          {
+            "label": "Yumurtalık",
+            "value": "yumurtalik"
+          },
+          {
+            "label": "Yüreğir",
+            "value": "yuregir"
+          }
+        ]
+      },
+      {
+        "label": "Adıyaman",
+        "value": "adiyaman",
+        "districts": [
+          {
+            "label": "Besni",
+            "value": "besni"
+          },
+          {
+            "label": "Çelikhan",
+            "value": "celikhan"
+          },
+          {
+            "label": "Gerger",
+            "value": "gerger"
+          },
+          {
+            "label": "Gölbaşı",
+            "value": "golbasi"
+          },
+          {
+            "label": "Kahta",
+            "value": "kahta"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Samsat",
+            "value": "samsat"
+          },
+          {
+            "label": "Sincik",
+            "value": "sincik"
+          },
+          {
+            "label": "Tut",
+            "value": "tut"
+          }
+        ]
+      },
+      {
+        "label": "Afyonkarahisar",
+        "value": "afyonkarahisar",
+        "districts": [
+          {
+            "label": "Başmakçı",
+            "value": "basmakci"
+          },
+          {
+            "label": "Bayat",
+            "value": "bayat"
+          },
+          {
+            "label": "Bolvadin",
+            "value": "bolvadin"
+          },
+          {
+            "label": "Çay",
+            "value": "cay"
+          },
+          {
+            "label": "Çobanlar",
+            "value": "cobanlar"
+          },
+          {
+            "label": "Dazkırı",
+            "value": "dazkiri"
+          },
+          {
+            "label": "Dinar",
+            "value": "dinar"
+          },
+          {
+            "label": "Emirdağ",
+            "value": "emirdag"
+          },
+          {
+            "label": "Evciler",
+            "value": "evciler"
+          },
+          {
+            "label": "Hocalar",
+            "value": "hocalar"
+          },
+          {
+            "label": "İhsaniye",
+            "value": "ihsaniye"
+          },
+          {
+            "label": "İscehisar",
+            "value": "iscehisar"
+          },
+          {
+            "label": "Kızılören",
+            "value": "kiziloren"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Sandıklı",
+            "value": "sandikli"
+          },
+          {
+            "label": "Sinanpaşa",
+            "value": "sinanpasa"
+          },
+          {
+            "label": "Sultandağı",
+            "value": "sultandagi"
+          },
+          {
+            "label": "Şuhut",
+            "value": "suhut"
+          }
+        ]
+      },
+      {
+        "label": "Ağrı",
+        "value": "agri",
+        "districts": [
+          {
+            "label": "Diyadin",
+            "value": "diyadin"
+          },
+          {
+            "label": "Doğubayazıt",
+            "value": "dogubayazit"
+          },
+          {
+            "label": "Eleşkirt",
+            "value": "eleskirt"
+          },
+          {
+            "label": "Hamur",
+            "value": "hamur"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Patnos",
+            "value": "patnos"
+          },
+          {
+            "label": "Taşlıçay",
+            "value": "taslicay"
+          },
+          {
+            "label": "Tutak",
+            "value": "tutak"
+          }
+        ]
+      },
+      {
+        "label": "Aksaray",
+        "value": "aksaray",
+        "districts": [
+          {
+            "label": "Ağaçören",
+            "value": "agacoren"
+          },
+          {
+            "label": "Eskil",
+            "value": "eskil"
+          },
+          {
+            "label": "Gülağaç",
+            "value": "gulagac"
+          },
+          {
+            "label": "Güzelyurt",
+            "value": "guzelyurt"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Ortaköy",
+            "value": "ortakoy"
+          },
+          {
+            "label": "Sarıyahşi",
+            "value": "sariyahsi"
+          }
+        ]
+      },
+      {
+        "label": "Amasya",
+        "value": "amasya",
+        "districts": [
+          {
+            "label": "Göynücek",
+            "value": "goynucek"
+          },
+          {
+            "label": "Gümüşhacıköy",
+            "value": "gumushacikoy"
+          },
+          {
+            "label": "Hamamözü",
+            "value": "hamamozu"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Merzifon",
+            "value": "merzifon"
+          },
+          {
+            "label": "Suluova",
+            "value": "suluova"
+          },
+          {
+            "label": "Taşova",
+            "value": "tasova"
+          }
+        ]
+      },
+      {
+        "label": "Antalya",
+        "value": "antalya",
+        "districts": [
+          {
+            "label": "Akseki",
+            "value": "akseki"
+          },
+          {
+            "label": "Aksu",
+            "value": "aksu"
+          },
+          {
+            "label": "Alanya",
+            "value": "alanya"
+          },
+          {
+            "label": "Demre",
+            "value": "demre"
+          },
+          {
+            "label": "Döşemealtı",
+            "value": "dosemealti"
+          },
+          {
+            "label": "Elmalı",
+            "value": "elmalı"
+          },
+          {
+            "label": "Finike",
+            "value": "finike"
+          },
+          {
+            "label": "Gazipaşa",
+            "value": "gazipasa"
+          },
+          {
+            "label": "Gündoğmuş",
+            "value": "gundogmus"
+          },
+          {
+            "label": "İbradı",
+            "value": "ibradi"
+          },
+          {
+            "label": "Kale",
+            "value": "kale"
+          },
+          {
+            "label": "Kaş",
+            "value": "kas"
+          },
+          {
+            "label": "Kemer",
+            "value": "kemer"
+          },
+          {
+            "label": "Kepez",
+            "value": "kepez"
+          },
+          {
+            "label": "Konyaaltı",
+            "value": "konyaalti"
+          },
+          {
+            "label": "Korkuteli",
+            "value": "korkuteli"
+          },
+          {
+            "label": "Kumluca",
+            "value": "kumluca"
+          },
+          {
+            "label": "Manavgat",
+            "value": "manavgat"
+          },
+          {
+            "label": "Muratpaşa",
+            "value": "muratpasa"
+          },
+          {
+            "label": "Serik",
+            "value": "serik"
+          }
+        ]
+      },
+      {
+        "label": "Ardahan",
+        "value": "ardahan",
+        "districts": [
+          {
+            "label": "Çıldır",
+            "value": "cildir"
+          },
+          {
+            "label": "Damal",
+            "value": "damal"
+          },
+          {
+            "label": "Göle",
+            "value": "gole"
+          },
+          {
+            "label": "Hanak",
+            "value": "hanak"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Posof",
+            "value": "posof"
+          }
+        ]
+      },
+      {
+        "label": "Artvin",
+        "value": "artvin",
+        "districts": [
+          {
+            "label": "Ardanuç",
+            "value": "ardanuc"
+          },
+          {
+            "label": "Arhavi",
+            "value": "arhavi"
+          },
+          {
+            "label": "Borçka",
+            "value": "borcka"
+          },
+          {
+            "label": "Hopa",
+            "value": "hopa"
+          },
+          {
+            "label": "Kemalpaşa",
+            "value": "kemalpasa"
+          },
+          {
+            "label": "Murgul",
+            "value": "murgul"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Şavşat",
+            "value": "savsat"
+          },
+          {
+            "label": "Yusufeli",
+            "value": "yusufeli"
+          }
+        ]
+      },
+      {
+        "label": "Aydın",
+        "value": "aydin",
+        "districts": [
+          {
+            "label": "Bozdoğan",
+            "value": "bozdogan"
+          },
+          {
+            "label": "Buharkent",
+            "value": "buharkent"
+          },
+          {
+            "label": "Çine",
+            "value": "cine"
+          },
+          {
+            "label": "Didim",
+            "value": "didim"
+          },
+          {
+            "label": "Efeler",
+            "value": "efeler"
+          },
+          {
+            "label": "Germencik",
+            "value": "germencik"
+          },
+          {
+            "label": "İncirliova",
+            "value": "incirliova"
+          },
+          {
+            "label": "Karacasu",
+            "value": "karacasu"
+          },
+          {
+            "label": "Karpuzlu",
+            "value": "karpuzlu"
+          },
+          {
+            "label": "Koçarlı",
+            "value": "kocarli"
+          },
+          {
+            "label": "Köşk",
+            "value": "kosk"
+          },
+          {
+            "label": "Kuşadası",
+            "value": "kusadasi"
+          },
+          {
+            "label": "Kuyucak",
+            "value": "kuyucak"
+          },
+          {
+            "label": "Nazilli",
+            "value": "nazilli"
+          },
+          {
+            "label": "Söke",
+            "value": "soke"
+          },
+          {
+            "label": "Sultanhisar",
+            "value": "sultanhisar"
+          },
+          {
+            "label": "Yenipazar",
+            "value": "yenipazar"
+          }
+        ]
+      },
+      {
+        "label": "Balıkesir",
+        "value": "balikesir",
+        "districts": [
+          {
+            "label": "Altıeylül",
+            "value": "altieylul"
+          },
+          {
+            "label": "Ayvalık",
+            "value": "ayvalik"
+          },
+          {
+            "label": "Balya",
+            "value": "balya"
+          },
+          {
+            "label": "Bandırma",
+            "value": "bandirma"
+          },
+          {
+            "label": "Bigadiç",
+            "value": "bigadic"
+          },
+          {
+            "label": "Burhaniye",
+            "value": "burhaniye"
+          },
+          {
+            "label": "Dursunbey",
+            "value": "dursunbey"
+          },
+          {
+            "label": "Edremit",
+            "value": "edremit"
+          },
+          {
+            "label": "Erdek",
+            "value": "erdek"
+          },
+          {
+            "label": "Gömeç",
+            "value": "gomec"
+          },
+          {
+            "label": "Gönen",
+            "value": "gonen"
+          },
+          {
+            "label": "Havran",
+            "value": "havran"
+          },
+          {
+            "label": "İvrindi",
+            "value": "ivrindi"
+          },
+          {
+            "label": "Karesi",
+            "value": "karesi"
+          },
+          {
+            "label": "Kepsut",
+            "value": "kepsut"
+          },
+          {
+            "label": "Manyas",
+            "value": "manyas"
+          },
+          {
+            "label": "Marmara",
+            "value": "marmara"
+          },
+          {
+            "label": "Savaştepe",
+            "value": "savastepe"
+          },
+          {
+            "label": "Sındırgı",
+            "value": "sındırgı"
+          },
+          {
+            "label": "Susurluk",
+            "value": "susurluk"
+          }
+        ]
+      },
+      {
+        "label": "Bartın",
+        "value": "bartin",
+        "districts": [
+          {
+            "label": "Amasra",
+            "value": "amasra"
+          },
+          {
+            "label": "Kurucaşile",
+            "value": "kurucaşile"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Ulus",
+            "value": "ulus"
+          }
+        ]
+      },
+      {
+        "label": "Batman",
+        "value": "batman",
+        "districts": [
+          {
+            "label": "Beşiri",
+            "value": "besiri"
+          },
+          {
+            "label": "Gercüş",
+            "value": "gercus"
+          },
+          {
+            "label": "Hasankeyf",
+            "value": "hasankeyf"
+          },
+          {
+            "label": "Kozluk",
+            "value": "kozluk"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Sason",
+            "value": "sason"
+          }
+        ]
+      },
+      {
+        "label": "Bayburt",
+        "value": "bayburt",
+        "districts": [
+          {
+            "label": "Aydıntepe",
+            "value": "aydıntepe"
+          },
+          {
+            "label": "Demirözü",
+            "value": "demirözü"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          }
+        ]
+      },
+      {
+        "label": "Bilecik",
+        "value": "bilecik",
+        "districts": [
+          {
+            "label": "Bozüyük",
+            "value": "bozüyük"
+          },
+          {
+            "label": "Gölpazarı",
+            "value": "gölpazarı"
+          },
+          {
+            "label": "İnhisar",
+            "value": "inhisar"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Osmaneli",
+            "value": "osmaneli"
+          },
+          {
+            "label": "Pazaryeri",
+            "value": "pazaryeri"
+          },
+          {
+            "label": "Söğüt",
+            "value": "söğüt"
+          },
+          {
+            "label": "Yenipazar",
+            "value": "yenipazar"
+          }
+        ]
+      },
+      {
+        "label": "Bingöl",
+        "value": "bingol",
+        "districts": [
+          {
+            "label": "Adaklı",
+            "value": "adaklı"
+          },
+          {
+            "label": "Genç",
+            "value": "genç"
+          },
+          {
+            "label": "Karlıova",
+            "value": "karlıova"
+          },
+          {
+            "label": "Kiğı",
+            "value": "kiğı"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Solhan",
+            "value": "solhan"
+          },
+          {
+            "label": "Yayladere",
+            "value": "yayladere"
+          },
+          {
+            "label": "Yedisu",
+            "value": "yedisu"
+          }
+        ]
+      },
+      {
+        "label": "Bitlis",
+        "value": "bitlis",
+        "districts": [
+          {
+            "label": "Adilcevaz",
+            "value": "adilcevaz"
+          },
+          {
+            "label": "Ahlat",
+            "value": "ahlat"
+          },
+          {
+            "label": "Güroymak",
+            "value": "güroymak"
+          },
+          {
+            "label": "Hizan",
+            "value": "hizan"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Mutki",
+            "value": "mutki"
+          },
+          {
+            "label": "Tatvan",
+            "value": "tatvan"
+          }
+        ]
+      },
+      {
+        "label": "Bolu",
+        "value": "bolu",
+        "districts": [
+          {
+            "label": "Dörtdivan",
+            "value": "dörtdivan"
+          },
+          {
+            "label": "Gerede",
+            "value": "gerede"
+          },
+          {
+            "label": "Göynük",
+            "value": "goynuk"
+          },
+          {
+            "label": "Kıbrıscık",
+            "value": "kıbrıscık"
+          },
+          {
+            "label": "Mengen",
+            "value": "mengen"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Mudurnu",
+            "value": "mudurnu"
+          },
+          {
+            "label": "Seben",
+            "value": "seben"
+          },
+          {
+            "label": "Yeniçağa",
+            "value": "yenicağa"
+          }
+        ]
+      },
+      {
+        "label": "Burdur",
+        "value": "burdur",
+        "districts": [
+          {
+            "label": "Ağlasun",
+            "value": "aglasun"
+          },
+          {
+            "label": "Altınyayla",
+            "value": "altinyayla"
+          },
+          {
+            "label": "Bucak",
+            "value": "bucak"
+          },
+          {
+            "label": "Çavdır",
+            "value": "cavdir"
+          },
+          {
+            "label": "Çeltikçi",
+            "value": "celtikci"
+          },
+          {
+            "label": "Gölhisar",
+            "value": "golhisar"
+          },
+          {
+            "label": "Karamanlı",
+            "value": "karamanli"
+          },
+          {
+            "label": "Kemer",
+            "value": "kemer"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Tefenni",
+            "value": "tefenni"
+          },
+          {
+            "label": "Yeşilova",
+            "value": "yesilova"
+          }
+        ]
+      },
+      {
+        "label": "Bursa",
+        "value": "bursa",
+        "districts": [
+          {
+            "label": "Büyükorhan",
+            "value": "buyukorhan"
+          },
+          {
+            "label": "Gemlik",
+            "value": "gemlik"
+          },
+          {
+            "label": "Gürsu",
+            "value": "gürsu"
+          },
+          {
+            "label": "Harmancık",
+            "value": "harmancık"
+          },
+          {
+            "label": "İnegöl",
+            "value": "inegöl"
+          },
+          {
+            "label": "İznik",
+            "value": "iznik"
+          },
+          {
+            "label": "Karacabey",
+            "value": "karacabey"
+          },
+          {
+            "label": "Keles",
+            "value": "keles"
+          },
+          {
+            "label": "Kestel",
+            "value": "kestel"
+          },
+          {
+            "label": "Mudanya",
+            "value": "mudanya"
+          },
+          {
+            "label": "Mustafakemalpaşa",
+            "value": "mustafakemalpaşa"
+          },
+          {
+            "label": "Nilüfer",
+            "value": "nilufer"
+          },
+          {
+            "label": "Orhaneli",
+            "value": "orhaneli"
+          },
+          {
+            "label": "Orhangazi",
+            "value": "orhangazi"
+          },
+          {
+            "label": "Osmangazi",
+            "value": "osmangazi"
+          },
+          {
+            "label": "Yenişehir",
+            "value": "yenişehir"
+          },
+          {
+            "label": "Yıldırım",
+            "value": "yildirim"
+          }
+        ]
+      },
+      {
+        "label": "Çanakkale",
+        "value": "canakkale",
+        "districts": [
+          {
+            "label": "Ayvacık",
+            "value": "ayvacık"
+          },
+          {
+            "label": "Bayramiç",
+            "value": "bayramiç"
+          },
+          {
+            "label": "Biga",
+            "value": "biga"
+          },
+          {
+            "label": "Bozcaada",
+            "value": "bozcaada"
+          },
+          {
+            "label": "Çan",
+            "value": "can"
+          },
+          {
+            "label": "Eceabat",
+            "value": "eceabat"
+          },
+          {
+            "label": "Ezine",
+            "value": "ezine"
+          },
+          {
+            "label": "Gelibolu",
+            "value": "gelibolu"
+          },
+          {
+            "label": "Gökçeada",
+            "value": "gokceada"
+          },
+          {
+            "label": "Lapseki",
+            "value": "lapseki"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Yenice",
+            "value": "yenice"
+          }
+        ]
+      },
+      {
+        "label": "Çankırı",
+        "value": "cankiri",
+        "districts": [
+          {
+            "label": "Atkaracalar",
+            "value": "atkaracalar"
+          },
+          {
+            "label": "Bayramören",
+            "value": "bayramören"
+          },
+          {
+            "label": "Çerkeş",
+            "value": "cerkes"
+          },
+          {
+            "label": "Eldivan",
+            "value": "eldivan"
+          },
+          {
+            "label": "Ilgaz",
+            "value": "ilgaz"
+          },
+          {
+            "label": "Kızılırmak",
+            "value": "kizilirmak"
+          },
+          {
+            "label": "Korgun",
+            "value": "korgun"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Orta",
+            "value": "orta"
+          },
+          {
+            "label": "Şabanözü",
+            "value": "şabanözü"
+          },
+          {
+            "label": "Yapraklı",
+            "value": "yapraklı"
+          }
+        ]
+      },
+      {
+        "label": "Çorum",
+        "value": "corum",
+        "districts": [
+          {
+            "label": "Alaca",
+            "value": "alaca"
+          },
+          {
+            "label": "Bayat",
+            "value": "bayat"
+          },
+          {
+            "label": "Boğazkale",
+            "value": "boğazkale"
+          },
+          {
+            "label": "Dodurga",
+            "value": "dodurga"
+          },
+          {
+            "label": "İskilip",
+            "value": "iskilip"
+          },
+          {
+            "label": "Kargı",
+            "value": "kargı"
+          },
+          {
+            "label": "Laçin",
+            "value": "laçin"
+          },
+          {
+            "label": "Mecitözü",
+            "value": "mecitözü"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Oğuzlar",
+            "value": "oğuzlar"
+          },
+          {
+            "label": "Ortaköy",
+            "value": "ortaköy"
+          },
+          {
+            "label": "Osmancık",
+            "value": "osmancık"
+          },
+          {
+            "label": "Sungurlu",
+            "value": "sungurlu"
+          },
+          {
+            "label": "Uğurludağ",
+            "value": "uğurludağ"
+          }
+        ]
+      },
+      {
+        "label": "Denizli",
+        "value": "denizli",
+        "districts": [
+          {
+            "label": "Acıpayam",
+            "value": "acipayam"
+          },
+          {
+            "label": "Babadağ",
+            "value": "babadağ"
+          },
+          {
+            "label": "Baklan",
+            "value": "baklan"
+          },
+          {
+            "label": "Bekilli",
+            "value": "bekilli"
+          },
+          {
+            "label": "Beyağaç",
+            "value": "beyağaç"
+          },
+          {
+            "label": "Bozkurt",
+            "value": "bozkurt"
+          },
+          {
+            "label": "Buldan",
+            "value": "buldan"
+          },
+          {
+            "label": "Çal",
+            "value": "çal"
+          },
+          {
+            "label": "Çameli",
+            "value": "çameli"
+          },
+          {
+            "label": "Çardak",
+            "value": "çardak"
+          },
+          {
+            "label": "Çivril",
+            "value": "çivril"
+          },
+          {
+            "label": "Güney",
+            "value": "güney"
+          },
+          {
+            "label": "Honaz",
+            "value": "honaz"
+          },
+          {
+            "label": "Kale",
+            "value": "kale"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Pamukkale",
+            "value": "pamukkale"
+          },
+          {
+            "label": "Sarayköy",
+            "value": "sarayköy"
+          },
+          {
+            "label": "Serinhisar",
+            "value": "serinhisar"
+          },
+          {
+            "label": "Tavas",
+            "value": "tavas"
+          }
+        ]
+      },
+      {
+        "label": "Diyarbakır",
+        "value": "diyarbakir",
+        "districts": [
+          {
+            "label": "Bağlar",
+            "value": "baglar"
+          },
+          {
+            "label": "Bismil",
+            "value": "bismil"
+          },
+          {
+            "label": "Çermik",
+            "value": "çermik"
+          },
+          {
+            "label": "Çınar",
+            "value": "çınar"
+          },
+          {
+            "label": "Çüngüş",
+            "value": "çüngüş"
+          },
+          {
+            "label": "Dicle",
+            "value": "dicle"
+          },
+          {
+            "label": "Eğil",
+            "value": "eğil"
+          },
+          {
+            "label": "Ergani",
+            "value": "ergani"
+          },
+          {
+            "label": "Hani",
+            "value": "hani"
+          },
+          {
+            "label": "Hazro",
+            "value": "hazro"
+          },
+          {
+            "label": "Kayapınar",
+            "value": "kayapınar"
+          },
+          {
+            "label": "Kocaköy",
+            "value": "kocaköy"
+          },
+          {
+            "label": "Kulp",
+            "value": "kulp"
+          },
+          {
+            "label": "Lice",
+            "value": "lice"
+          },
+          {
+            "label": "Silvan",
+            "value": "silvan"
+          },
+          {
+            "label": "Sur",
+            "value": "sur"
+          },
+          {
+            "label": "Yenişehir",
+            "value": "yenişehir"
+          }
+        ]
+      },
+      {
+        "label": "Düzce",
+        "value": "duzce",
+        "districts": [
+          {
+            "label": "Akçakoca",
+            "value": "akçakoca"
+          },
+          {
+            "label": "Cumayeri",
+            "value": "cumayeri"
+          },
+          {
+            "label": "Çilimli",
+            "value": "çilimli"
+          },
+          {
+            "label": "Gölyaka",
+            "value": "gölyaka"
+          },
+          {
+            "label": "Gümüşova",
+            "value": "gümüşova"
+          },
+          {
+            "label": "Kaynaşlı",
+            "value": "kaynaşlı"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Yığılca",
+            "value": "yığılca"
+          }
+        ]
+      },
+      {
+        "label": "Edirne",
+        "value": "edirne",
+        "districts": [
+          {
+            "label": "Enez",
+            "value": "enez"
+          },
+          {
+            "label": "Havsa",
+            "value": "havsa"
+          },
+          {
+            "label": "İpsala",
+            "value": "ipsala"
+          },
+          {
+            "label": "Keşan",
+            "value": "keşan"
+          },
+          {
+            "label": "Lalapaşa",
+            "value": "lalapaşa"
+          },
+          {
+            "label": "Meriç",
+            "value": "meriç"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Süloğlu",
+            "value": "süloğlu"
+          },
+          {
+            "label": "Uzunköprü",
+            "value": "uzunköprü"
+          }
+        ]
+      },
+      {
+        "label": "Elazığ",
+        "value": "elazig",
+        "districts": [
+          {
+            "label": "Ağın",
+            "value": "agin"
+          },
+          {
+            "label": "Alacakaya",
+            "value": "alacakaya"
+          },
+          {
+            "label": "Arıcak",
+            "value": "arıcak"
+          },
+          {
+            "label": "Baskil",
+            "value": "baskil"
+          },
+          {
+            "label": "Karakoçan",
+            "value": "karakoçan"
+          },
+          {
+            "label": "Keban",
+            "value": "keban"
+          },
+          {
+            "label": "Kovancılar",
+            "value": "kovancılar"
+          },
+          {
+            "label": "Maden",
+            "value": "maden"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Palu",
+            "value": "palu"
+          },
+          {
+            "label": "Sivrice",
+            "value": "sivrice"
+          }
+        ]
+      },
+      {
+        "label": "Erzincan",
+        "value": "erzincan",
+        "districts": [
+          {
+            "label": "Çayırlı",
+            "value": "çayırlı"
+          },
+          {
+            "label": "İliç",
+            "value": "iliç"
+          },
+          {
+            "label": "Kemah",
+            "value": "kemah"
+          },
+          {
+            "label": "Kemaliye",
+            "value": "kemaliye"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Otlukbeli",
+            "value": "otlukbeli"
+          },
+          {
+            "label": "Refahiye",
+            "value": "refahiye"
+          },
+          {
+            "label": "Tercan",
+            "value": "tercan"
+          },
+          {
+            "label": "Üzümlü",
+            "value": "üzümlü"
+          }
+        ]
+      },
+      {
+        "label": "Erzurum",
+        "value": "erzurum",
+        "districts": [
+          {
+            "label": "Aşkale",
+            "value": "aşkale"
+          },
+          {
+            "label": "Aziziye",
+            "value": "aziziye"
+          },
+          {
+            "label": "Çat",
+            "value": "çat"
+          },
+          {
+            "label": "Hınıs",
+            "value": "hınıs"
+          },
+          {
+            "label": "Horasan",
+            "value": "horasan"
+          },
+          {
+            "label": "İspir",
+            "value": "ispir"
+          },
+          {
+            "label": "Karaçoban",
+            "value": "karaçoban"
+          },
+          {
+            "label": "Karayazı",
+            "value": "karayazı"
+          },
+          {
+            "label": "Köprüköy",
+            "value": "köprüköy"
+          },
+          {
+            "label": "Narman",
+            "value": "narman"
+          },
+          {
+            "label": "Oltu",
+            "value": "oltu"
+          },
+          {
+            "label": "Olur",
+            "value": "olur"
+          },
+          {
+            "label": "Palandöken",
+            "value": "palandöken"
+          },
+          {
+            "label": "Pasinler",
+            "value": "pasinler"
+          },
+          {
+            "label": "Pazaryolu",
+            "value": "pazaryolu"
+          },
+          {
+            "label": "Şenkaya",
+            "value": "şenkaya"
+          },
+          {
+            "label": "Tekman",
+            "value": "tekman"
+          },
+          {
+            "label": "Tortum",
+            "value": "tortum"
+          },
+          {
+            "label": "Uzundere",
+            "value": "uzundere"
+          },
+          {
+            "label": "Yakutiye",
+            "value": "yakutiye"
+          }
+        ]
+      },
+      {
+        "label": "Eskişehir",
+        "value": "eskisehir",
+        "districts": [
+          {
+            "label": "Alpu",
+            "value": "alpu"
+          },
+          {
+            "label": "Beylikova",
+            "value": "beylikova"
+          },
+          {
+            "label": "Çifteler",
+            "value": "çifteler"
+          },
+          {
+            "label": "Günyüzü",
+            "value": "günyüzü"
+          },
+          {
+            "label": "Han",
+            "value": "han"
+          },
+          {
+            "label": "İnönü",
+            "value": "inönü"
+          },
+          {
+            "label": "Mahmudiye",
+            "value": "mahmudiye"
+          },
+          {
+            "label": "Mihalıççık",
+            "value": "mihalıççık"
+          },
+          {
+            "label": "Mihalgazi",
+            "value": "mihalgazi"
+          },
+          {
+            "label": "Odunpazarı",
+            "value": "odunpazarı"
+          },
+          {
+            "label": "Sarıcakaya",
+            "value": "sarıcakaya"
+          },
+          {
+            "label": "Seyitgazi",
+            "value": "seyitgazi"
+          },
+          {
+            "label": "Sivrihisar",
+            "value": "sivrihisar"
+          },
+          {
+            "label": "Tepebaşı",
+            "value": "tepebaşı"
+          }
+        ]
+      },
+      {
+        "label": "Gaziantep",
+        "value": "gaziantep",
+        "districts": [
+          {
+            "label": "Araban",
+            "value": "araban"
+          },
+          {
+            "label": "İslahiye",
+            "value": "islahiye"
+          },
+          {
+            "label": "Karkamış",
+            "value": "karkamış"
+          },
+          {
+            "label": "Nizip",
+            "value": "nizip"
+          },
+          {
+            "label": "Nurdağı",
+            "value": "nurdağı"
+          },
+          {
+            "label": "Oğuzeli",
+            "value": "oğuzeli"
+          },
+          {
+            "label": "Şahinbey",
+            "value": "şahinbey"
+          },
+          {
+            "label": "Şehitkamil",
+            "value": "şehitkamil"
+          },
+          {
+            "label": "Yavuzeli",
+            "value": "yavuzeli"
+          }
+        ]
+      },
+      {
+        "label": "Giresun",
+        "value": "giresun",
+        "districts": [
+          {
+            "label": "Alucra",
+            "value": "alucra"
+          },
+          {
+            "label": "Bulancak",
+            "value": "bulancak"
+          },
+          {
+            "label": "Çamoluk",
+            "value": "çamoluk"
+          },
+          {
+            "label": "Çanakçı",
+            "value": "çanakçı"
+          },
+          {
+            "label": "Dereli",
+            "value": "dereli"
+          },
+          {
+            "label": "Doğankent",
+            "value": "doğankent"
+          },
+          {
+            "label": "Espiye",
+            "value": "espiye"
+          },
+          {
+            "label": "Eynesil",
+            "value": "eynesil"
+          },
+          {
+            "label": "Görele",
+            "value": "görele"
+          },
+          {
+            "label": "Güce",
+            "value": "güce"
+          },
+          {
+            "label": "Keşap",
+            "value": "keşap"
+          },
+          {
+            "label": "Piraziz",
+            "value": "piraziz"
+          },
+          {
+            "label": "Şebinkarahisar",
+            "value": "şebinkarahisar"
+          },
+          {
+            "label": "Tirebolu",
+            "value": "tirebolu"
+          },
+          {
+            "label": "Yağlıdere",
+            "value": "yağlıdere"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          }
+        ]
+      },
+      {
+        "label": "Gümüşhane",
+        "value": "gumushane",
+        "districts": [
+          {
+            "label": "Kelkit",
+            "value": "kelkit"
+          },
+          {
+            "label": "Köse",
+            "value": "köse"
+          },
+          {
+            "label": "Kürtün",
+            "value": "kürtün"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Şiran",
+            "value": "şiran"
+          },
+          {
+            "label": "Torul",
+            "value": "torul"
+          }
+        ]
+      },
+      {
+        "label": "Hakkari",
+        "value": "hakkari",
+        "districts": [
+          {
+            "label": "Çukurca",
+            "value": "çukurca"
+          },
+          {
+            "label": "Şemdinli",
+            "value": "şemdinli"
+          },
+          {
+            "label": "Yüksekova",
+            "value": "yüksekova"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          }
+        ]
+      },
+      {
+        "label": "Hatay",
+        "value": "hatay",
+        "districts": [
+          {
+            "label": "Altınözü",
+            "value": "altınözü"
+          },
+          {
+            "label": "Antakya",
+            "value": "antakya"
+          },
+          {
+            "label": "Arsuz",
+            "value": "arsuz"
+          },
+          {
+            "label": "Belen",
+            "value": "belen"
+          },
+          {
+            "label": "Defne",
+            "value": "defne"
+          },
+          {
+            "label": "Dörtyol",
+            "value": "dörtyol"
+          },
+          {
+            "label": "Erzin",
+            "value": "erzin"
+          },
+          {
+            "label": "Hassa",
+            "value": "hassa"
+          },
+          {
+            "label": "İskenderun",
+            "value": "iskenderun"
+          },
+          {
+            "label": "Kırıkhan",
+            "value": "kırıkhan"
+          },
+          {
+            "label": "Kumlu",
+            "value": "kumlu"
+          },
+          {
+            "label": "Payas",
+            "value": "payas"
+          },
+          {
+            "label": "Reyhanlı",
+            "value": "reyhanlı"
+          },
+          {
+            "label": "Samandağ",
+            "value": "samandağ"
+          },
+          {
+            "label": "Yayladağı",
+            "value": "yayladağı"
+          }
+        ]
+      },
+      {
+        "label": "Iğdır",
+        "value": "igdir",
+        "districts": [
+          {
+            "label": "Aralık",
+            "value": "aralık"
+          },
+          {
+            "label": "Karakoyunlu",
+            "value": "karakoyunlu"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Tuzluca",
+            "value": "tuzluca"
+          }
+        ]
+      },
+      {
+        "label": "Isparta",
+        "value": "isparta",
+        "districts": [
+          {
+            "label": "Aksu",
+            "value": "aksu"
+          },
+          {
+            "label": "Atabey",
+            "value": "atabey"
+          },
+          {
+            "label": "Eğirdir",
+            "value": "eğirdir"
+          },
+          {
+            "label": "Gelendost",
+            "value": "gelendost"
+          },
+          {
+            "label": "Gönen",
+            "value": "gönen"
+          },
+          {
+            "label": "Keçiborlu",
+            "value": "keçiborlu"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Senirkent",
+            "value": "senirkent"
+          },
+          {
+            "label": "Sütçüler",
+            "value": "sütçüler"
+          },
+          {
+            "label": "Şarkikaraağaç",
+            "value": "şarkikaraağaç"
+          },
+          {
+            "label": "Uluborlu",
+            "value": "uluborlu"
+          },
+          {
+            "label": "Yalvaç",
+            "value": "yalvaç"
+          },
+          {
+            "label": "Yenişarbademli",
+            "value": "yenişarbademli"
+          }
+        ]
+      },
+      {
+        "label": "Kahramanmaraş",
+        "value": "kahramanmaras",
+        "districts": [
+          {
+            "label": "Afşin",
+            "value": "afşin"
+          },
+          {
+            "label": "Andırın",
+            "value": "andırın"
+          },
+          {
+            "label": "Çağlayancerit",
+            "value": "çağlayancerit"
+          },
+          {
+            "label": "Dulkadiroğlu",
+            "value": "dulkadiroğlu"
+          },
+          {
+            "label": "Ekinözü",
+            "value": "ekinözü"
+          },
+          {
+            "label": "Elbistan",
+            "value": "elbistan"
+          },
+          {
+            "label": "Göksun",
+            "value": "göksun"
+          },
+          {
+            "label": "Nurhak",
+            "value": "nurhak"
+          },
+          {
+            "label": "Onikişubat",
+            "value": "onikişubat"
+          },
+          {
+            "label": "Pazarcık",
+            "value": "pazarcık"
+          },
+          {
+            "label": "Türkoğlu",
+            "value": "türkoğlu"
+          }
+        ]
+      },
+      {
+        "label": "Karabük",
+        "value": "karabük",
+        "districts": [
+          {
+            "label": "Eflani",
+            "value": "eflani"
+          },
+          {
+            "label": "Eskipazar",
+            "value": "eskipazar"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Ovacık",
+            "value": "ovacık"
+          },
+          {
+            "label": "Safranbolu",
+            "value": "safranbolu"
+          },
+          {
+            "label": "Yenice",
+            "value": "yenice"
+          }
+        ]
+      },
+      {
+        "label": "Karaman",
+        "value": "karaman",
+        "districts": [
+          {
+            "label": "Ayrancı",
+            "value": "ayrancı"
+          },
+          {
+            "label": "Başyayla",
+            "value": "başyayla"
+          },
+          {
+            "label": "Ermenek",
+            "value": "ermenek"
+          },
+          {
+            "label": "Kazımkarabekir",
+            "value": "kazımkarabekir"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Sarıveliler",
+            "value": "sarıveliler"
+          }
+        ]
+      },
+      {
+        "label": "Kars",
+        "value": "kars",
+        "districts": [
+          {
+            "label": "Akyaka",
+            "value": "akyaka"
+          },
+          {
+            "label": "Arpaçay",
+            "value": "arpaçay"
+          },
+          {
+            "label": "Digor",
+            "value": "digor"
+          },
+          {
+            "label": "Kağızman",
+            "value": "kağızman"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Sarıkamış",
+            "value": "sarıkamış"
+          },
+          {
+            "label": "Selim",
+            "value": "selim"
+          },
+          {
+            "label": "Susuz",
+            "value": "susuz"
+          }
+        ]
+      },
+      {
+        "label": "Kastamonu",
+        "value": "kastamonu",
+        "districts": [
+          {
+            "label": "Abana",
+            "value": "abana"
+          },
+          {
+            "label": "Ağlı",
+            "value": "ağlı"
+          },
+          {
+            "label": "Araç",
+            "value": "araç"
+          },
+          {
+            "label": "Azdavay",
+            "value": "azdavay"
+          },
+          {
+            "label": "Bozkurt",
+            "value": "bozkurt"
+          },
+          {
+            "label": "Cide",
+            "value": "cide"
+          },
+          {
+            "label": "Çatalzeytin",
+            "value": "çatalzeytin"
+          },
+          {
+            "label": "Daday",
+            "value": "daday"
+          },
+          {
+            "label": "Devrekani",
+            "value": "devrekani"
+          },
+          {
+            "label": "Doğanyurt",
+            "value": "doğanyurt"
+          },
+          {
+            "label": "Hanönü",
+            "value": "hanönü"
+          },
+          {
+            "label": "İhsangazi",
+            "value": "ihsangazi"
+          },
+          {
+            "label": "İnebolu",
+            "value": "inebolu"
+          },
+          {
+            "label": "Küre",
+            "value": "küre"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Pınarbaşı",
+            "value": "pınarbaşı"
+          },
+          {
+            "label": "Seydiler",
+            "value": "seydiler"
+          },
+          {
+            "label": "Şenpazar",
+            "value": "şenpazar"
+          },
+          {
+            "label": "Taşköprü",
+            "value": "taşköprü"
+          },
+          {
+            "label": "Tosya",
+            "value": "tosya"
+          }
+        ]
+      },
+      {
+        "label": "Kayseri",
+        "value": "kayseri",
+        "districts": [
+          {
+            "label": "Akkışla",
+            "value": "akkışla"
+          },
+          {
+            "label": "Bünyan",
+            "value": "bünyan"
+          },
+          {
+            "label": "Develi",
+            "value": "develi"
+          },
+          {
+            "label": "Felahiye",
+            "value": "felahiye"
+          },
+          {
+            "label": "Hacılar",
+            "value": "hacılar"
+          },
+          {
+            "label": "İncesu",
+            "value": "incesu"
+          },
+          {
+            "label": "Kocasinan",
+            "value": "kocasinan"
+          },
+          {
+            "label": "Melikgazi",
+            "value": "melikgazi"
+          },
+          {
+            "label": "Özvatan",
+            "value": "özvatan"
+          },
+          {
+            "label": "Pınarbaşı",
+            "value": "pınarbaşı"
+          },
+          {
+            "label": "Sarıoğlan",
+            "value": "sarıoğlan"
+          },
+          {
+            "label": "Sarız",
+            "value": "sarız"
+          },
+          {
+            "label": "Talas",
+            "value": "talas"
+          },
+          {
+            "label": "Tomarza",
+            "value": "tomarza"
+          },
+          {
+            "label": "Yahyalı",
+            "value": "yahyalı"
+          },
+          {
+            "label": "Yeşilhisar",
+            "value": "yeşilhisar"
+          }
+        ]
+      },
+      {
+        "label": "Kırıkkale",
+        "value": "kırıkkale",
+        "districts": [
+          {
+            "label": "Bahşili",
+            "value": "bahşili"
+          },
+          {
+            "label": "Balışeyh",
+            "value": "balışeyh"
+          },
+          {
+            "label": "Çelebi",
+            "value": "çelebi"
+          },
+          {
+            "label": "Delice",
+            "value": "delice"
+          },
+          {
+            "label": "Karakeçili",
+            "value": "karakeçili"
+          },
+          {
+            "label": "Keskin",
+            "value": "keskin"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Sulakyurt",
+            "value": "sulakyurt"
+          },
+          {
+            "label": "Yahşihan",
+            "value": "yahşihan"
+          }
+        ]
+      },
+      {
+        "label": "Kırklareli",
+        "value": "kırklareli",
+        "districts": [
+          {
+            "label": "Babaeski",
+            "value": "babaeski"
+          },
+          {
+            "label": "Demirköy",
+            "value": "demirköy"
+          },
+          {
+            "label": "Kofçaz",
+            "value": "kofçaz"
+          },
+          {
+            "label": "Lüleburgaz",
+            "value": "lüleburgaz"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Pehlivanköy",
+            "value": "pehlivanköy"
+          },
+          {
+            "label": "Pınarhisar",
+            "value": "pınarhisar"
+          }
+        ]
+      },
+      {
+        "label": "Kırşehir",
+        "value": "kırşehir",
+        "districts": [
+          {
+            "label": "Akpınar",
+            "value": "akpınar"
+          },
+          {
+            "label": "Aşıkpaşa",
+            "value": "aşıkpaşa"
+          },
+          {
+            "label": "Boztepe",
+            "value": "boztepe"
+          },
+          {
+            "label": "Çiçekdağı",
+            "value": "çiçekdağı"
+          },
+          {
+            "label": "Kaman",
+            "value": "kaman"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Mucur",
+            "value": "mucur"
+          }
+        ]
+      },
+      {
+        "label": "Kilis",
+        "value": "kilis",
+        "districts": [
+          {
+            "label": "Elbeyli",
+            "value": "elbeyli"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Musabeyli",
+            "value": "musabeyli"
+          },
+          {
+            "label": "Polateli",
+            "value": "polateli"
+          }
+        ]
+      },
+      {
+        "label": "Kocaeli",
+        "value": "kocaeli",
+        "districts": [
+          {
+            "label": "Başiskele",
+            "value": "başiskele"
+          },
+          {
+            "label": "Çayırova",
+            "value": "çayırova"
+          },
+          {
+            "label": "Darıca",
+            "value": "darıca"
+          },
+          {
+            "label": "Derince",
+            "value": "derince"
+          },
+          {
+            "label": "Dilovası",
+            "value": "dilovası"
+          },
+          {
+            "label": "Gebze",
+            "value": "gebze"
+          },
+          {
+            "label": "Gölcük",
+            "value": "gölcük"
+          },
+          {
+            "label": "İzmit",
+            "value": "izmit"
+          },
+          {
+            "label": "Kandıra",
+            "value": "kandıra"
+          },
+          {
+            "label": "Karamürsel",
+            "value": "karamürsel"
+          },
+          {
+            "label": "Kartepe",
+            "value": "kartepe"
+          }
+        ]
+      },
+      {
+        "label": "Konya",
+        "value": "konya",
+        "districts": [
+          {
+            "label": "Ahırlı",
+            "value": "ahırlı"
+          },
+          {
+            "label": "Akören",
+            "value": "akören"
+          },
+          {
+            "label": "Akşehir",
+            "value": "akşehir"
+          },
+          {
+            "label": "Altınekin",
+            "value": "altınekin"
+          },
+          {
+            "label": "Beyşehir",
+            "value": "beyşehir"
+          },
+          {
+            "label": "Bozkır",
+            "value": "bozkır"
+          },
+          {
+            "label": "Cihanbeyli",
+            "value": "cihanbeyli"
+          },
+          {
+            "label": "Çeltik",
+            "value": "çeltik"
+          },
+          {
+            "label": "Çumra",
+            "value": "çumra"
+          },
+          {
+            "label": "Derbent",
+            "value": "derbent"
+          },
+          {
+            "label": "Derebucak",
+            "value": "derebucak"
+          },
+          {
+            "label": "Doğanhisar",
+            "value": "doğanhisar"
+          },
+          {
+            "label": "Emirgazi",
+            "value": "emirgazi"
+          },
+          {
+            "label": "Ereğli",
+            "value": "ereğli"
+          },
+          {
+            "label": "Güneysınır",
+            "value": "güneysınır"
+          },
+          {
+            "label": "Hadim",
+            "value": "hadim"
+          },
+          {
+            "label": "Halkapınar",
+            "value": "halkapınar"
+          },
+          {
+            "label": "Hüyük",
+            "value": "hüyük"
+          },
+          {
+            "label": "Ilgın",
+            "value": "ilgın"
+          },
+          {
+            "label": "Kadınhanı",
+            "value": "kadınhanı"
+          },
+          {
+            "label": "Karapınar",
+            "value": "karapınar"
+          },
+          {
+            "label": "Karatay",
+            "value": "karatay"
+          },
+          {
+            "label": "Kulu",
+            "value": "kulu"
+          },
+          {
+            "label": "Meram",
+            "value": "meram"
+          },
+          {
+            "label": "Sarayönü",
+            "value": "sarayönü"
+          },
+          {
+            "label": "Selçuklu",
+            "value": "selçuklu"
+          },
+          {
+            "label": "Seydişehir",
+            "value": "seydişehir"
+          },
+          {
+            "label": "Taşkent",
+            "value": "taşkent"
+          },
+          {
+            "label": "Tuzlukçu",
+            "value": "tuzlukçu"
+          },
+          {
+            "label": "Yalıhüyük",
+            "value": "yalıhüyük"
+          },
+          {
+            "label": "Yunak",
+            "value": "yunak"
+          }
+        ]
+      },
+      {
+        "label": "Kütahya",
+        "value": "kütahya",
+        "districts": [
+          {
+            "label": "Altıntaş",
+            "value": "altıntaş"
+          },
+          {
+            "label": "Aslanapa",
+            "value": "aslanapa"
+          },
+          {
+            "label": "Çavdarhisar",
+            "value": "çavdarhisar"
+          },
+          {
+            "label": "Domaniç",
+            "value": "domaniç"
+          },
+          {
+            "label": "Dumlupınar",
+            "value": "dumlupınar"
+          },
+          {
+            "label": "Emet",
+            "value": "emet"
+          },
+          {
+            "label": "Gediz",
+            "value": "gediz"
+          },
+          {
+            "label": "Hisarcık",
+            "value": "hisarcık"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Pazarlar",
+            "value": "pazarlar"
+          },
+          {
+            "label": "Şaphane",
+            "value": "şaphane"
+          },
+          {
+            "label": "Simav",
+            "value": "simav"
+          },
+          {
+            "label": "Tavşanlı",
+            "value": "tavşanlı"
+          }
+        ]
+      },
+      {
+        "label": "Malatya",
+        "value": "malatya",
+        "districts": [
+          {
+            "label": "Akçadağ",
+            "value": "akçadağ"
+          },
+          {
+            "label": "Arapgir",
+            "value": "arapgir"
+          },
+          {
+            "label": "Arguvan",
+            "value": "arguvan"
+          },
+          {
+            "label": "Battalgazi",
+            "value": "battalgazi"
+          },
+          {
+            "label": "Darende",
+            "value": "darende"
+          },
+          {
+            "label": "Doğanşehir",
+            "value": "doğanşehir"
+          },
+          {
+            "label": "Doğanyol",
+            "value": "doğanyol"
+          },
+          {
+            "label": "Hekimhan",
+            "value": "hekimhan"
+          },
+          {
+            "label": "Kale",
+            "value": "kale"
+          },
+          {
+            "label": "Kuluncak",
+            "value": "kuluncak"
+          },
+          {
+            "label": "Pütürge",
+            "value": "pütürge"
+          },
+          {
+            "label": "Yazıhan",
+            "value": "yazıhan"
+          },
+          {
+            "label": "Yeşilyurt",
+            "value": "yeşilyurt"
+          },
+          {
+            "label": "Yakınca",
+            "value": "yakınca"
+          }
+        ]
+      },
+      {
+        "label": "Manisa",
+        "value": "manisa",
+        "districts": [
+          {
+            "label": "Ahmetli",
+            "value": "ahmetli"
+          },
+          {
+            "label": "Akhisar",
+            "value": "akhisar"
+          },
+          {
+            "label": "Alaşehir",
+            "value": "alaşehir"
+          },
+          {
+            "label": "Demirci",
+            "value": "demirci"
+          },
+          {
+            "label": "Gölmarmara",
+            "value": "gölmarmara"
+          },
+          {
+            "label": "Gördes",
+            "value": "gördes"
+          },
+          {
+            "label": "Kırkağaç",
+            "value": "kırkağaç"
+          },
+          {
+            "label": "Köprübaşı",
+            "value": "köprübaşı"
+          },
+          {
+            "label": "Kula",
+            "value": "kula"
+          },
+          {
+            "label": "Salihli",
+            "value": "salihli"
+          },
+          {
+            "label": "Sarıgöl",
+            "value": "sarıgöl"
+          },
+          {
+            "label": "Saruhanlı",
+            "value": "saruhanlı"
+          },
+          {
+            "label": "Selendi",
+            "value": "selendi"
+          },
+          {
+            "label": "Soma",
+            "value": "soma"
+          },
+          {
+            "label": "Şehzadeler",
+            "value": "şehzadeler"
+          },
+          {
+            "label": "Turgutlu",
+            "value": "turgutlu"
+          },
+          {
+            "label": "Yunusemre",
+            "value": "yunusemre"
+          }
+        ]
+      },
+      {
+        "label": "Mardin",
+        "value": "mardin",
+        "districts": [
+          {
+            "label": "Artuklu",
+            "value": "artuklu"
+          },
+          {
+            "label": "Dargeçit",
+            "value": "dargeçit"
+          },
+          {
+            "label": "Derik",
+            "value": "derik"
+          },
+          {
+            "label": "Kızıltepe",
+            "value": "kızıltepe"
+          },
+          {
+            "label": "Mazıdağı",
+            "value": "mazıdağı"
+          },
+          {
+            "label": "Midyat",
+            "value": "midyat"
+          },
+          {
+            "label": "Nusaybin",
+            "value": "nusaybin"
+          },
+          {
+            "label": "Ömerli",
+            "value": "ömerli"
+          },
+          {
+            "label": "Savur",
+            "value": "savur"
+          },
+          {
+            "label": "Yeşilli",
+            "value": "yeşilli"
+          }
+        ]
+      },
+      {
+        "label": "Mersin",
+        "value": "mersin",
+        "districts": [
+          {
+            "label": "Akdeniz",
+            "value": "akdeniz"
+          },
+          {
+            "label": "Anamur",
+            "value": "anamur"
+          },
+          {
+            "label": "Aydıncık",
+            "value": "aydıncık"
+          },
+          {
+            "label": "Bozyazı",
+            "value": "bozyazı"
+          },
+          {
+            "label": "Çamlıyayla",
+            "value": "çamlıyayla"
+          },
+          {
+            "label": "Erdemli",
+            "value": "erdemli"
+          },
+          {
+            "label": "Gülnar",
+            "value": "gülnar"
+          },
+          {
+            "label": "Mezitli",
+            "value": "mezitli"
+          },
+          {
+            "label": "Mut",
+            "value": "mut"
+          },
+          {
+            "label": "Silifke",
+            "value": "silifke"
+          },
+          {
+            "label": "Tarsus",
+            "value": "tarsus"
+          },
+          {
+            "label": "Toroslar",
+            "value": "toroslar"
+          },
+          {
+            "label": "Yenişehir",
+            "value": "yenişehir"
+          }
+        ]
+      },
+      {
+        "label": "Muğla",
+        "value": "muğla",
+        "districts": [
+          {
+            "label": "Bodrum",
+            "value": "bodrum"
+          },
+          {
+            "label": "Dalaman",
+            "value": "dalaman"
+          },
+          {
+            "label": "Datça",
+            "value": "datça"
+          },
+          {
+            "label": "Fethiye",
+            "value": "fethiye"
+          },
+          {
+            "label": "Kavaklıdere",
+            "value": "kavaklıdere"
+          },
+          {
+            "label": "Köyceğiz",
+            "value": "köyceğiz"
+          },
+          {
+            "label": "Marmaris",
+            "value": "marmaris"
+          },
+          {
+            "label": "Menteşe",
+            "value": "menteşe"
+          },
+          {
+            "label": "Milas",
+            "value": "milas"
+          },
+          {
+            "label": "Ortaca",
+            "value": "ortaca"
+          },
+          {
+            "label": "Seydikemer",
+            "value": "seydikemer"
+          },
+          {
+            "label": "Ula",
+            "value": "ula"
+          },
+          {
+            "label": "Yatağan",
+            "value": "yatağan"
+          }
+        ]
+      },
+      {
+        "label": "Muş",
+        "value": "muş",
+        "districts": [
+          {
+            "label": "Bulanık",
+            "value": "bulanık"
+          },
+          {
+            "label": "Hasköy",
+            "value": "hasköy"
+          },
+          {
+            "label": "Korkut",
+            "value": "korkut"
+          },
+          {
+            "label": "Malazgirt",
+            "value": "malazgirt"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Varto",
+            "value": "varto"
+          }
+        ]
+      },
+      {
+        "label": "Nevşehir",
+        "value": "nevşehir",
+        "districts": [
+          {
+            "label": "Acıgöl",
+            "value": "acıgöl"
+          },
+          {
+            "label": "Avanos",
+            "value": "avanos"
+          },
+          {
+            "label": "Derinkuyu",
+            "value": "derinkuyu"
+          },
+          {
+            "label": "Gülşehir",
+            "value": "gülşehir"
+          },
+          {
+            "label": "Hacıbektaş",
+            "value": "hacıbektaş"
+          },
+          {
+            "label": "Kozaklı",
+            "value": "kozaklı"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Ürgüp",
+            "value": "ürgüp"
+          }
+        ]
+      },
+      {
+        "label": "Niğde",
+        "value": "niğde",
+        "districts": [
+          {
+            "label": "Altunhisar",
+            "value": "altunhisar"
+          },
+          {
+            "label": "Bor",
+            "value": "bor"
+          },
+          {
+            "label": "Çamardı",
+            "value": "çamardı"
+          },
+          {
+            "label": "Çiftlik",
+            "value": "çiftlik"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Ulukışla",
+            "value": "ulukışla"
+          }
+        ]
+      },
+      {
+        "label": "Ordu",
+        "value": "ordu",
+        "districts": [
+          {
+            "label": "Akkuş",
+            "value": "akkuş"
+          },
+          {
+            "label": "Altınordu",
+            "value": "altınordu"
+          },
+          {
+            "label": "Aybastı",
+            "value": "aybastı"
+          },
+          {
+            "label": "Çamaş",
+            "value": "çamaş"
+          },
+          {
+            "label": "Çatalpınar",
+            "value": "çatalpınar"
+          },
+          {
+            "label": "Çaybaşı",
+            "value": "çaybaşı"
+          },
+          {
+            "label": "Fatsa",
+            "value": "fatsa"
+          },
+          {
+            "label": "Gölköy",
+            "value": "gölköy"
+          },
+          {
+            "label": "Gülyalı",
+            "value": "gülyalı"
+          },
+          {
+            "label": "Gürgentepe",
+            "value": "gürgentepe"
+          },
+          {
+            "label": "İkizce",
+            "value": "ikizce"
+          },
+          {
+            "label": "Kabadüz",
+            "value": "kabadüz"
+          },
+          {
+            "label": "Kabataş",
+            "value": "kabataş"
+          },
+          {
+            "label": "Korgan",
+            "value": "korgan"
+          },
+          {
+            "label": "Kumru",
+            "value": "kumru"
+          },
+          {
+            "label": "Mesudiye",
+            "value": "mesudiye"
+          },
+          {
+            "label": "Perşembe",
+            "value": "perşembe"
+          },
+          {
+            "label": "Ulubey",
+            "value": "ulubey"
+          },
+          {
+            "label": "Ünye",
+            "value": "ünüye"
+          }
+        ]
+      },
+      {
+        "label": "Osmaniye",
+        "value": "osmaniye",
+        "districts": [
+          {
+            "label": "Bahçe",
+            "value": "bahce"
+          },
+          {
+            "label": "Düziçi",
+            "value": "duzici"
+          },
+          {
+            "label": "Hasanbeyli",
+            "value": "hasanbeyli"
+          },
+          {
+            "label": "Kadirli",
+            "value": "kadirli"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Sumbas",
+            "value": "sumbas"
+          }
+        ]
+      },
+      {
+        "label": "Rize",
+        "value": "rize",
+        "districts": [
+          {
+            "label": "Ardeşen",
+            "value": "ardesen"
+          },
+          {
+            "label": "Çamlıhemşin",
+            "value": "camlihemsin"
+          },
+          {
+            "label": "Çayeli",
+            "value": "çayeli"
+          },
+          {
+            "label": "Derepazarı",
+            "value": "derepazarı"
+          },
+          {
+            "label": "Fındıklı",
+            "value": "fındıklı"
+          },
+          {
+            "label": "Güneysu",
+            "value": "güneysu"
+          },
+          {
+            "label": "Hemşin",
+            "value": "hemşin"
+          },
+          {
+            "label": "İkizdere",
+            "value": "ikizdere"
+          },
+          {
+            "label": "İyidere",
+            "value": "iyidere"
+          },
+          {
+            "label": "Kalkandere",
+            "value": "kalkandere"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Pazar",
+            "value": "pazar"
+          }
+        ]
+      },
+      {
+        "label": "Sakarya",
+        "value": "sakarya",
+        "districts": [
+          {
+            "label": "Akyazı",
+            "value": "akyazı"
+          },
+          {
+            "label": "Arifiye",
+            "value": "arifiye"
+          },
+          {
+            "label": "Erenler",
+            "value": "erenler"
+          },
+          {
+            "label": "Ferizli",
+            "value": "ferizli"
+          },
+          {
+            "label": "Geyve",
+            "value": "geyve"
+          },
+          {
+            "label": "Hendek",
+            "value": "hendek"
+          },
+          {
+            "label": "Karapürçek",
+            "value": "karapürçek"
+          },
+          {
+            "label": "Karasu",
+            "value": "karasu"
+          },
+          {
+            "label": "Kaynarca",
+            "value": "kaynarca"
+          },
+          {
+            "label": "Kocaali",
+            "value": "kocaali"
+          },
+          {
+            "label": "Pamukova",
+            "value": "pamukova"
+          },
+          {
+            "label": "Sapanca",
+            "value": "sapanca"
+          },
+          {
+            "label": "Serdivan",
+            "value": "serdivan"
+          },
+          {
+            "label": "Taraklı",
+            "value": "taraklı"
+          }
+        ]
+      },
+      {
+        "label": "Samsun",
+        "value": "samsun",
+        "districts": [
+          {
+            "label": "Alaçam",
+            "value": "alaçam"
+          },
+          {
+            "label": "Asarcık",
+            "value": "asarcık"
+          },
+          {
+            "label": "Atakum",
+            "value": "atakum"
+          },
+          {
+            "label": "Ayvacık",
+            "value": "ayvacık"
+          },
+          {
+            "label": "Bafra",
+            "value": "bafra"
+          },
+          {
+            "label": "Canik",
+            "value": "canik"
+          },
+          {
+            "label": "Çarşamba",
+            "value": "çarşamba"
+          },
+          {
+            "label": "Havza",
+            "value": "havza"
+          },
+          {
+            "label": "İlkadım",
+            "value": "ilkadım"
+          },
+          {
+            "label": "Kavak",
+            "value": "kavak"
+          },
+          {
+            "label": "Ladik",
+            "value": "ladik"
+          },
+          {
+            "label": "Salıpazarı",
+            "value": "salıpazarı"
+          },
+          {
+            "label": "Tekkeköy",
+            "value": "tekkeköy"
+          },
+          {
+            "label": "Terme",
+            "value": "terme"
+          },
+          {
+            "label": "Vezirköprü",
+            "value": "vezirköprü"
+          },
+          {
+            "label": "Yakakent",
+            "value": "yakakent"
+          }
+        ]
+      },
+      {
+        "label": "Siirt",
+        "value": "siirt",
+        "districts": [
+          {
+            "label": "Baykan",
+            "value": "baykan"
+          },
+          {
+            "label": "Eruh",
+            "value": "eruh"
+          },
+          {
+            "label": "Kurtalan",
+            "value": "kurtalan"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Pervari",
+            "value": "pervari"
+          },
+          {
+            "label": "Şirvan",
+            "value": "şirvan"
+          }
+        ]
+      },
+      {
+        "label": "Sinop",
+        "value": "sinop",
+        "districts": [
+          {
+            "label": "Ayancık",
+            "value": "ayancık"
+          },
+          {
+            "label": "Boyabat",
+            "value": "boyabat"
+          },
+          {
+            "label": "Dikmen",
+            "value": "dikmen"
+          },
+          {
+            "label": "Durağan",
+            "value": "durağan"
+          },
+          {
+            "label": "Erfelek",
+            "value": "erfelek"
+          },
+          {
+            "label": "Gerze",
+            "value": "gerze"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Saraydüzü",
+            "value": "saraydüzü"
+          },
+          {
+            "label": "Türkeli",
+            "value": "türkeli"
+          }
+        ]
+      },
+      {
+        "label": "Sivas",
+        "value": "sivas",
+        "districts": [
+          {
+            "label": "Akıncılar",
+            "value": "akıncılar"
+          },
+          {
+            "label": "Altınyayla",
+            "value": "altınyayla"
+          },
+          {
+            "label": "Divriği",
+            "value": "divriği"
+          },
+          {
+            "label": "Doğan",
+            "value": "doğan"
+          },
+          {
+            "label": "Gemerek",
+            "value": "gemerek"
+          },
+          {
+            "label": "Gölova",
+            "value": "gölova"
+          },
+          {
+            "label": "Gürün",
+            "value": "gürün"
+          },
+          {
+            "label": "Hafik",
+            "value": "hafik"
+          },
+          {
+            "label": "İmranlı",
+            "value": "imranlı"
+          },
+          {
+            "label": "Kangal",
+            "value": "kangal"
+          },
+          {
+            "label": "Koyulhisar",
+            "value": "koyulhisar"
+          },
+          {
+            "label": "Suşehri",
+            "value": "suşehri"
+          },
+          {
+            "label": "Şarkışla",
+            "value": "şarkışla"
+          },
+          {
+            "label": "Ulaş",
+            "value": "ulaş"
+          },
+          {
+            "label": "Yıldızeli",
+            "value": "yıldızeli"
+          },
+          {
+            "label": "Zara",
+            "value": "zara"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          }
+        ]
+      },
+      {
+        "label": "Şanlıurfa",
+        "value": "şanlıurfa",
+        "districts": [
+          {
+            "label": "Akçakale",
+            "value": "akçakale"
+          },
+          {
+            "label": "Birecik",
+            "value": "birecik"
+          },
+          {
+            "label": "Bozova",
+            "value": "bozova"
+          },
+          {
+            "label": "Ceylanpınar",
+            "value": "ceylanpınar"
+          },
+          {
+            "label": "Eyyübiye",
+            "value": "eyyübiye"
+          },
+          {
+            "label": "Halfeti",
+            "value": "halfeti"
+          },
+          {
+            "label": "Haliliye",
+            "value": "haliliye"
+          },
+          {
+            "label": "Harran",
+            "value": "harran"
+          },
+          {
+            "label": "Hilvan",
+            "value": "hilvan"
+          },
+          {
+            "label": "Karaköprü",
+            "value": "karaköprü"
+          },
+          {
+            "label": "Siverek",
+            "value": "siverek"
+          },
+          {
+            "label": "Suruç",
+            "value": "suruç"
+          },
+          {
+            "label": "Viranşehir",
+            "value": "viranşehir"
+          }
+        ]
+      },
+      {
+        "label": "Şırnak",
+        "value": "şırnak",
+        "districts": [
+          {
+            "label": "Beytüşşebap",
+            "value": "beytüşşebap"
+          },
+          {
+            "label": "Cizre",
+            "value": "cizre"
+          },
+          {
+            "label": "Güçlükonak",
+            "value": "güçlükonak"
+          },
+          {
+            "label": "İdil",
+            "value": "idil"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Silopi",
+            "value": "silopi"
+          },
+          {
+            "label": "Uludere",
+            "value": "uludere"
+          }
+        ]
+      },
+      {
+        "label": "Tekirdağ",
+        "value": "tekirdağ",
+        "districts": [
+          {
+            "label": "Çerkezköy",
+            "value": "çerkezköy"
+          },
+          {
+            "label": "Çorlu",
+            "value": "çorlu"
+          },
+          {
+            "label": "Ergene",
+            "value": "ergene"
+          },
+          {
+            "label": "Hayrabolu",
+            "value": "hayrabolu"
+          },
+          {
+            "label": "Kapaklı",
+            "value": "kapaklı"
+          },
+          {
+            "label": "Malkara",
+            "value": "malkara"
+          },
+          {
+            "label": "Marmaraereğlisi",
+            "value": "marmaraereğlisi"
+          },
+          {
+            "label": "Muratlı",
+            "value": "muratlı"
+          },
+          {
+            "label": "Saray",
+            "value": "saray"
+          },
+          {
+            "label": "Şarköy",
+            "value": "şarköy"
+          },
+          {
+            "label": "Süleymanpaşa",
+            "value": "süleymanpaşa"
+          }
+        ]
+      },
+      {
+        "label": "Tokat",
+        "value": "tokat",
+        "districts": [
+          {
+            "label": "Almus",
+            "value": "almus"
+          },
+          {
+            "label": "Artova",
+            "value": "artova"
+          },
+          {
+            "label": "Başçiftlik",
+            "value": "başçiftlik"
+          },
+          {
+            "label": "Erbaa",
+            "value": "erbaa"
+          },
+          {
+            "label": "Niksar",
+            "value": "niksar"
+          },
+          {
+            "label": "Pazar",
+            "value": "pazar"
+          },
+          {
+            "label": "Reşadiye",
+            "value": "reşadiye"
+          },
+          {
+            "label": "Sulusaray",
+            "value": "sulusaray"
+          },
+          {
+            "label": "Turhal",
+            "value": "turhal"
+          },
+          {
+            "label": "Yeşilyurt",
+            "value": "yeşilyurt"
+          },
+          {
+            "label": "Zile",
+            "value": "zile"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          }
+        ]
+      },
+      {
+        "label": "Trabzon",
+        "value": "trabzon",
+        "districts": [
+          {
+            "label": "Akçaabat",
+            "value": "akçaabat"
+          },
+          {
+            "label": "Araklı",
+            "value": "araklı"
+          },
+          {
+            "label": "Arsin",
+            "value": "arsin"
+          },
+          {
+            "label": "Beşikdüzü",
+            "value": "beşikdüzü"
+          },
+          {
+            "label": "Çarşıbaşı",
+            "value": "çarşıbaşı"
+          },
+          {
+            "label": "Çaykara",
+            "value": "çaykara"
+          },
+          {
+            "label": "Dernekpazarı",
+            "value": "dernekpazarı"
+          },
+          {
+            "label": "Düzköy",
+            "value": "düzköy"
+          },
+          {
+            "label": "Hayrat",
+            "value": "hayrat"
+          },
+          {
+            "label": "Köprübaşı",
+            "value": "köprübaşı"
+          },
+          {
+            "label": "Maçka",
+            "value": "maçka"
+          },
+          {
+            "label": "Of",
+            "value": "of"
+          },
+          {
+            "label": "Ortahisar",
+            "value": "ortahisar"
+          },
+          {
+            "label": "Sürmene",
+            "value": "sürmene"
+          },
+          {
+            "label": "Şalpazarı",
+            "value": "şalpazarı"
+          },
+          {
+            "label": "Tonya",
+            "value": "tonya"
+          },
+          {
+            "label": "Vakfıkebir",
+            "value": "vakfıkebir"
+          },
+          {
+            "label": "Yomra",
+            "value": "yomra"
+          }
+        ]
+      },
+      {
+        "label": "Tunceli",
+        "value": "tunceli",
+        "districts": [
+          {
+            "label": "Çemişgezek",
+            "value": "cemisgezek"
+          },
+          {
+            "label": "Hozat",
+            "value": "hozat"
+          },
+          {
+            "label": "Mazgirt",
+            "value": "mazgirt"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Nazımiye",
+            "value": "nazımiye"
+          },
+          {
+            "label": "Ovacık",
+            "value": "ovacık"
+          },
+          {
+            "label": "Pertek",
+            "value": "pertek"
+          },
+          {
+            "label": "Pülümür",
+            "value": "pülümür"
+          }
+        ]
+      },
+      {
+        "label": "Uşak",
+        "value": "uşak",
+        "districts": [
+          {
+            "label": "Banaz",
+            "value": "banaz"
+          },
+          {
+            "label": "Eşme",
+            "value": "eşme"
+          },
+          {
+            "label": "Karahallı",
+            "value": "karahallı"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Sivaslı",
+            "value": "sivaslı"
+          }
+        ]
+      },
+      {
+        "label": "Van",
+        "value": "van",
+        "districts": [
+          {
+            "label": "Bahçesaray",
+            "value": "bahçesaray"
+          },
+          {
+            "label": "Başkale",
+            "value": "başkale"
+          },
+          {
+            "label": "Çaldıran",
+            "value": "çaldıran"
+          },
+          {
+            "label": "Çatak",
+            "value": "çatak"
+          },
+          {
+            "label": "Edremit",
+            "value": "edremit"
+          },
+          {
+            "label": "Erciş",
+            "value": "erciş"
+          },
+          {
+            "label": "Gevaş",
+            "value": "gevaş"
+          },
+          {
+            "label": "Gürpınar",
+            "value": "gürpınar"
+          },
+          {
+            "label": "İpekyolu",
+            "value": "ipekyolu"
+          },
+          {
+            "label": "Muradiye",
+            "value": "muradiye"
+          },
+          {
+            "label": "Özalp",
+            "value": "özalp"
+          }
+        ]
+      },
+      {
+        "label": "Yalova",
+        "value": "yalova",
+        "districts": [
+          {
+            "label": "Altınova",
+            "value": "altınova"
+          },
+          {
+            "label": "Armutlu",
+            "value": "armutlu"
+          },
+          {
+            "label": "Çınarcık",
+            "value": "çınarcık"
+          },
+          {
+            "label": "Çiftlikköy",
+            "value": "çiftlikköy"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Termal",
+            "value": "termal"
+          }
+        ]
+      },
+      {
+        "label": "Yozgat",
+        "value": "yozgat",
+        "districts": [
+          {
+            "label": "Akdağmadeni",
+            "value": "akdağmadeni"
+          },
+          {
+            "label": "Aydıncık",
+            "value": "aydıncık"
+          },
+          {
+            "label": "Boğazlıyan",
+            "value": "boğazlıyan"
+          },
+          {
+            "label": "Çandır",
+            "value": "çandır"
+          },
+          {
+            "label": "Çayıralan",
+            "value": "çayıralan"
+          },
+          {
+            "label": "Çekerek",
+            "value": "çekerek"
+          },
+          {
+            "label": "Kadışehri",
+            "value": "kadışehri"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          },
+          {
+            "label": "Saraykent",
+            "value": "saraykent"
+          },
+          {
+            "label": "Sarıkaya",
+            "value": "sarıkaya"
+          },
+          {
+            "label": "Sorgun",
+            "value": "sorgun"
+          },
+          {
+            "label": "Şefaatli",
+            "value": "şefaatli"
+          },
+          {
+            "label": "Yenifakılı",
+            "value": "yenifakılı"
+          }
+        ]
+      },
+      {
+        "label": "Zonguldak",
+        "value": "zonguldak",
+        "districts": [
+          {
+            "label": "Alaplı",
+            "value": "alaplı"
+          },
+          {
+            "label": "Çaycuma",
+            "value": "çaycuma"
+          },
+          {
+            "label": "Devrek",
+            "value": "devrek"
+          },
+          {
+            "label": "Ereğli",
+            "value": "ereğli"
+          },
+          {
+            "label": "Gökçebey",
+            "value": "gökçebey"
+          },
+          {
+            "label": "Kilimli",
+            "value": "kilimli"
+          },
+          {
+            "label": "Merkez",
+            "value": "merkez"
+          }
+        ]
+      }
+    ]
+  }
+}
