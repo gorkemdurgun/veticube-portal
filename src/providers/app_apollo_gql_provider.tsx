@@ -8,7 +8,7 @@ import { store } from "@/redux/store";
 import { auth } from "@/services/cognito";
 
 const httpLink = new HttpLink({
-  uri: "https://3.71.108.46:8080/v1/graphql",
+  uri: "http://3.71.108.46:8080/v1/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
