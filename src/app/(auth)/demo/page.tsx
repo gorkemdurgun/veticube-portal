@@ -211,7 +211,7 @@ const RequestDemoPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row items-stretch justify-between gap-8 lg:gap-32 p-6 lg:p-16 bg-gradient-to-tr from-green-50 to-green-100">
+    <div className="min-h-screen flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-8 xl:gap-32 p-6 lg:p-16 bg-gradient-to-tr from-green-50 to-green-100">
       <div className="flex flex-col gap-6 text-center lg:text-start">
         <span className="flex flex-col gap-2 lg:gap-0">
           <h5 className="text-3xl xl:text-4xl heading-gradient font-bold">Ücretsiz 30 Gün Deneme: Taahhüt Yok</h5>
@@ -224,7 +224,7 @@ const RequestDemoPage: React.FC = () => {
           <div className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-col gap-2">
             <FeatureCard
               title="Kolayca müşterilerinizi yönetin"
-              description="Müşterilerinizi kaydedin ve düzenleyin, yaptığı işlemleri görüntüleyin"
+              description="Müşterilerinizi kaydedin ve düzenleyin, işlemlerini görüntüleyin"
               icon={ManageClientsIcon}
             />
             <FeatureCard
