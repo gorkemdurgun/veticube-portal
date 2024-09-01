@@ -9,15 +9,17 @@ import {
   PiDeviceTabletDuotone as DevicesIcon,
   PiHeadCircuitDuotone as AiIcon,
   PiCalendarDotsDuotone as AppointmentsIcon,
+  PiPackageDuotone as StockIcon,
   PiChartBarDuotone as ReportsIcon,
 } from "react-icons/pi";
 
 import { Badge, Card, Checkbox, Divider, Form, Input, Image, Steps, message, Select } from "antd";
 import { IconType } from "react-icons";
 
-import { CustomButton } from "@/components/common";
-import { mutations } from "@/services/db";
 import citiesJson from "@/constants/cities.json";
+import { mutations } from "@/services/db";
+
+import { CustomButton } from "@/components/common";
 
 type RequestDemoFormStep0 = {
   clinic_name: string;
@@ -92,13 +94,13 @@ const RequestDemoPage: React.FC = () => {
     let iconClass = "w-5 h-5 text-blue-900 group-hover:scale-110 transition-transform duration-300";
     return (
       <Badge.Ribbon className={`${soon ? "" : "hidden"}`} text="Soon" color="geekblue">
-        <div className={`group cursor-pointer w-full flex flex-col gap-1 py-2 px-4 rounded-xl bg-gradient-to-r from-white to-teal-50`}>
-          <div className="flex gap-1 items-center">
+        <div className={`group cursor-pointer w-full h-full flex flex-col gap-1 py-2 px-4 rounded-xl bg-gradient-to-r from-white to-teal-50`}>
+          <div className="flex flex-col lg:flex-row gap-1 items-center">
             {icon({ className: iconClass })}
-            <Divider type="vertical" className="h-4 !border-blue-900" />
-            <h5 className="text-md text-blue-900">{title}</h5>
+            <Divider type="vertical" className="h-0 lg:h-4 !border-blue-900" />
+            <h5 className="lg:text-start text-sm lg:text-md text-blue-900">{title}</h5>
           </div>
-          <p className="text-sm text-gray-800 transition-all duration-300">{description}</p>
+          <p className="lg:text-start text-xs lg:text-sm text-gray-800 mt-auto">{description}</p>
         </div>
       </Badge.Ribbon>
     );
@@ -109,15 +111,15 @@ const RequestDemoPage: React.FC = () => {
         <div className="flex flex-col">
           <h5 className="text-xl text-gray-800">Klinik Bilgileri</h5>
           <Divider className="mt-2 mb-6" />
-          <Form.Item name="clinic_name" label="Klinik Adı" rules={[{ required: true, message: "Please input your Email!" }]}>
-            <Input variant="filled" placeholder="Clinic Name" name="clinic_name" />
+          <Form.Item name="clinic_name" label="Klinik Adı" rules={[{ required: true, message: "Lütfen kliniğinizin adını girin" }]}>
+            <Input variant="filled" placeholder="Kliniğinizin adını girin" name="clinic_name" />
           </Form.Item>
           <div className="grid grid-cols-2 gap-2">
-            <Form.Item name="city" label="Şehir" rules={[{ required: true, message: "Please input your City!" }]}>
+            <Form.Item name="city" label="Şehir" rules={[{ required: true, message: "Lütfen bir şehir seçin" }]}>
               <Select
                 showSearch
                 variant="filled"
-                placeholder="City"
+                placeholder="Şehir"
                 options={citiesJson.turkey.cities.map((city) => ({ label: city.label, value: city.value }))}
                 filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
                 onChange={(value) => {
@@ -126,11 +128,11 @@ const RequestDemoPage: React.FC = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item name="district" label="İlçe" rules={[{ required: true, message: "Please input your District!" }]}>
+            <Form.Item name="district" label="İlçe" rules={[{ required: true, message: "Lütfen bir ilçe seçin" }]}>
               <Select
                 showSearch
                 variant="filled"
-                placeholder="District"
+                placeholder="İlçe"
                 filterOption={(input, option) => (option?.label ?? "").toLowerCase().includes(input.toLowerCase())}
                 options={
                   selectedCity
@@ -145,14 +147,14 @@ const RequestDemoPage: React.FC = () => {
               />
             </Form.Item>
           </div>
-          <Form.Item name="address" label="Açık Adres" rules={[{ required: true, message: "Please input your Address!" }]}>
-            <Input.TextArea variant="filled" placeholder="Address" name="address" rows={3} />
+          <Form.Item name="address" label="Açık Adres" rules={[{ required: true, message: "Lütfen açık adresinizi girin" }]}>
+            <Input.TextArea variant="filled" placeholder="Açık adresinizi yazın" name="address" rows={3} />
           </Form.Item>
           <Divider className="mt-2 mb-4" />
           <Form.Item
             name="services_offered"
             label="Bu hizmetlerden hangilerini sunuyorsunuz?"
-            rules={[{ required: true, message: "Please select at least one service!" }]}
+            rules={[{ required: true, message: "Lütfen en az bir hizmet seçin" }]}
           >
             <Checkbox.Group
               className="grid grid-cols-2 gap-1"
@@ -170,26 +172,26 @@ const RequestDemoPage: React.FC = () => {
           <h5 className="text-xl text-gray-800">Kişisel Bilgiler</h5>
           <Divider className="mt-2 mb-6" />
           <div className="grid grid-cols-2 gap-2">
-            <Form.Item name="first_name" label="Ad" rules={[{ required: true, message: "Please input your First Name!" }]}>
-              <Input variant="filled" placeholder="First Name" name="first_name" />
+            <Form.Item name="first_name" label="Ad" rules={[{ required: true, message: "Lütfen adınızı girin" }]}>
+              <Input variant="filled" placeholder="Adınız" name="first_name" />
             </Form.Item>
-            <Form.Item name="last_name" label="Soyad" rules={[{ required: true, message: "Please input your Last Name!" }]}>
-              <Input variant="filled" placeholder="Last Name" name="last_name" />
+            <Form.Item name="last_name" label="Soyad" rules={[{ required: true, message: "Lütfen soyadınızı girin" }]}>
+              <Input variant="filled" placeholder="Soyadınız" name="last_name" />
             </Form.Item>
           </div>
-          <Form.Item name="email" label="Email Adresi" rules={[{ required: true, message: "Please input your Email!" }]}>
-            <Input variant="filled" placeholder="Email" name="email" />
+          <Form.Item name="email" label="Email Adresi" rules={[{ required: true, message: "Lütfen email adresinizi girin" }]}>
+            <Input variant="filled" placeholder="Email adresiniz" name="email" />
           </Form.Item>
-          <Form.Item name="phone" label="Telefon Numarası" rules={[{ required: true, message: "Please input your Phone!" }]}>
-            <Input variant="filled" placeholder="Phone" name="phone" addonBefore="+90" />
+          <Form.Item name="phone" label="Telefon Numarası" rules={[{ required: true, message: "Lütfen telefon numaranızı girin" }]}>
+            <Input variant="filled" placeholder="Telefon Numaranız" name="phone" addonBefore="+90" />
           </Form.Item>
         </div>
         <Divider className="mt-2 mb-4" />
         <div className="flex flex-col gap-2">
           <Form.Item
             name="feedback_channel"
-            label="Size ulaşabileceğimiz kanallar"
-            rules={[{ required: true, message: "Please select at least one channel!" }]}
+            label="Size ulaşabileceğimiz iletişim araçları"
+            rules={[{ required: true, message: "Lütfen en az bir iletişim aracı seçin" }]}
           >
             <Checkbox.Group className="grid grid-cols-2 gap-1" options={["Email", "SMS", "Telefon", "WhatsApp"]} />
           </Form.Item>
@@ -205,84 +207,99 @@ const RequestDemoPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-stretch justify-between gap-32 p-16 bg-gradient-to-tr from-green-50 to-green-100">
-      <div className="flex flex-col gap-6">
-        <span>
-          <h5 className="text-5xl heading-gradient font-bold">Request demo, start today</h5>
-          <p className="text-2xl text-green-500">Fill in the form right away, and we will get back to you shortly</p>
+    <div className="min-h-screen flex flex-col lg:flex-row items-stretch justify-between gap-8 lg:gap-32 p-6 lg:p-16 bg-gradient-to-tr from-green-50 to-green-100">
+      <div className="flex flex-col gap-6 text-center lg:text-start">
+        <span className="flex flex-col gap-2 lg:gap-0">
+          <h5 className="text-3xl xl:text-4xl heading-gradient font-bold">Ücretsiz 30 Gün Deneme: Taahhüt Yok</h5>
+          <p className="text-xl xl:text-2xl text-green-500">Formu doldurun, hemen kullanmaya başlayın. Ücretsiz ve taahhütsüz.</p>
         </span>
         <div className="flex flex-col">
-          <Divider orientation="left" className="!border-gray-600">
-            <h2 className="text-lg text-gray-600 font-raleway">What we offer you</h2>
+          <Divider orientation="left" className="!hidden lg:!flex !border-gray-600">
+            <h2 className="text-lg text-gray-600 font-raleway">Size Neler Sunuyoruz?</h2>
           </Divider>
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-col gap-2">
             <FeatureCard
-              title="Easily manage your clients"
-              description="Easily manage your clients and their transactions and more"
+              title="Kolayca müşterilerinizi yönetin"
+              description="Müşterilerinizi kaydedin ve düzenleyin, yaptığı işlemleri görüntüleyin"
               icon={ManageClientsIcon}
             />
             <FeatureCard
-              title="Record your patients data"
-              description="Record and edit your patients data, display their medical history"
+              title="Hasta kayıtlarınızı tutun"
+              description="Hasta kayıtlarınızı oluşturun, düzenleyin ve takip edin"
               icon={ManagePatientsIcon}
             />
             <FeatureCard
-              title="Direct your employees"
-              description="Create new branches, manage employees and their roles"
+              title="Çalışanlarınızı ve şubelerinizi yönetin"
+              description="Çalışanlarınızı ve şubelerinizi ekleyin, tek bir yerden yönetin"
               icon={BranchesIcon}
             />
             <FeatureCard
-              title="Track your devices"
-              description="You are in control, track and manage your devices and their status"
+              title="Cihazlarınızı kontrol edin"
+              description="Kontrol sizde, cihazlarınızı uzaktan yönetin ve izleyin"
               icon={DevicesIcon}
             />
-            <FeatureCard title="AI powered features" description="AI powered features to help you make better decisions" icon={AiIcon} />
+            <FeatureCard
+              title="Yapay zeka destekli özellikler"
+              description="İşlemlerinizi yapay zeka ile hızlandırın ve kolaylaştırın"
+              icon={AiIcon}
+            />
             <FeatureCard
               soon
-              title="Advanced appointment system"
-              description="Schedule, reschedule, or cancel appointments"
+              title="Gelişmiş randevu sistemi"
+              description="Randevu oluşturun, yönetin ve müşterilerinize bildirin"
               icon={AppointmentsIcon}
             />
-            <FeatureCard soon title="Detailed reports" description="Generate detailed reports for your clinic" icon={ReportsIcon} />
+            <FeatureCard
+              soon
+              title="Stok takibi"
+              description="Stoklarınızı takip edin, siparişlerinizi oluşturun ve yönetin"
+              icon={StockIcon}
+            />
+            <FeatureCard
+              soon
+              title="Detaylı raporlar"
+              description="Detaylı raporlar ile verimliliğinizi arttırın ve işlerinizi analiz edin"
+              icon={ReportsIcon}
+            />
           </div>
         </div>
       </div>
-      <div className="relative m-auto flex flex-col gap-4 p-8 h-[680px] w-[480px] bg-gradient-to-br from-green-50/75 to-white rounded-lg shadow-lg ">
+      <div className="relative m-auto flex flex-col gap-4 p-8 h-[750px] lg:h-[680px] w-full lg:w-[480px] bg-gradient-to-br from-green-50/75 to-white rounded-lg shadow-lg ">
         <Steps
           size="small"
           current={activeTab}
           onChange={onChange}
           items={[
             {
-              title: "Clinic Information",
+              title: "Klinik Bilgileri",
             },
             {
-              title: "User Information",
+              title: "Kişisel Bilgiler",
             },
           ]}
         />
         {activeTab === 0 ? <ClinicForm /> : <UserForm />}
         {activeTab === 0 && (
           <CustomButton className="w-full mt-auto" onClick={handleCompleteStep0}>
-            Next
+            Devam Et
           </CustomButton>
         )}
         {activeTab === 1 && (
           <div className="mt-auto flex gap-4 bg-red-100">
             <CustomButton className="w-full" onClick={() => setActiveTab((prev) => prev - 1)}>
-              Previous
+              Geri
             </CustomButton>
             <CustomButton className="w-full" type="submit" disabled={sendError} onClick={handleCompleteStep1}>
-              Submit
+              Gönder
             </CustomButton>
           </div>
         )}
         {sendSuccess && (
-          <div className="absolute z-50 user-events-none top-0 right-0 w-full h-full bg-gradient-to-b from-green-200/95 to-green-300/95 rounded-lg">
+          <div className="absolute z-50 user-events-none top-0 right-0 w-full h-full p-4 bg-gradient-to-b from-green-200/95 to-green-300/95 rounded-lg">
             <div className="w-full h-full flex flex-col items-center justify-center text-center gap-1">
-              <h4 className="text-2xl text-black font-bold mb-1">Başvurunu aldık</h4>
-              <p className="text-lg text-green-900">Hızlı bir şekilde ücretsiz üyeliğini oluşturacağız</p>
-              <p className="text-lg text-green-900">Lütfen email adresini kontrol etmeyi unutma</p>
+              <h4 className="text-xl lg:text-2xl text-black font-bold mb-1">Başvurunu aldık</h4>
+              <p className="text-sm lg:text-lg text-green-900">Hızlı bir şekilde ücretsiz üyeliğini oluşturacağız</p>
+              <p className="text-sm lg:text-lg text-green-900">Lütfen email adresini kontrol etmeyi unutma</p>
             </div>
           </div>
         )}
