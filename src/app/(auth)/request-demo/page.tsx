@@ -93,7 +93,11 @@ const RequestDemoPage: React.FC = () => {
   }> = ({ title, description, icon, soon }) => {
     let iconClass = "w-5 h-5 text-blue-900 group-hover:scale-110 transition-transform duration-300";
     return (
-      <Badge.Ribbon className={`${soon ? "" : "hidden"}`} text="Soon" color="geekblue">
+      <Badge.Ribbon
+        className={`${soon ? "" : "hidden"}`}
+        text={<span className="text-xs text-white font-semibold font-raleway">Yakında</span>}
+        color="geekblue"
+      >
         <div className={`group cursor-pointer w-full h-full flex flex-col gap-1 py-2 px-4 rounded-xl bg-gradient-to-r from-white to-teal-50`}>
           <div className="flex flex-col lg:flex-row gap-1 items-center">
             {icon({ className: iconClass })}
