@@ -8,9 +8,10 @@ import { useRouter } from "next/navigation";
 
 import type { GetClinicPetsResponse } from "@/services/db/queries/pet/getClinicPets";
 
+import CustomButton from "@/components/common/custom-button";
+
 import PatientOwnersButton from "./patient-owners-button";
 
-import CustomButton from "../common/custom-button";
 
 type Props = {
   data?: GetClinicPetsResponse["pet_list"];

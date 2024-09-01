@@ -1,3 +1,5 @@
+"use server";
+
 import {
   PiDotDuotone as MatterIcon,
   PiCheckCircleDuotone as VerifyIcon,

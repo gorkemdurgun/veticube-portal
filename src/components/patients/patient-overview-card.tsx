@@ -15,11 +15,13 @@ import { Avatar, Descriptions, Divider, Skeleton } from "antd";
 import { GetPetOverviewResponse } from "@/services/db/queries/pet";
 import { calculator, converter } from "@/utils";
 
+import CustomButton from "@/components/common/custom-button";
+
 import PatientOwnersButton from "./patient-owners-button";
 
 import type { DescriptionsProps } from "antd";
 
-import { ComponentCard, CustomButton, TranslatedText } from "../common";
+import { ComponentCard, TranslatedText } from "../common";
 
 type Props = {
   loading?: boolean;

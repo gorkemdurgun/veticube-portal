@@ -4,7 +4,7 @@ import { Popover } from "antd";
 
 import { GetPetOverviewResponse } from "@/services/db/queries/pet";
 
-import CustomButton from "../common/custom-button";
+import CustomButton from "@/components/common/custom-button";
 
 type Props = {
   clientList?: {
