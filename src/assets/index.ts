@@ -1,40 +1,4 @@
 // SVG
-
-// Pack 2
-/*
-import Analysis from "./svg/pack-2/analysis.svg";
-import Cage from "./svg/pack-2/cage.svg";
-import Chat from "./svg/pack-2/chat.svg";
-import Clinic from "./svg/pack-2/clinic.svg";
-import Collar from "./svg/pack-2/collar.svg";
-import Dog from "./svg/pack-2/dog.svg";
-import Drop from "./svg/pack-2/drop.svg";
-import Groom from "./svg/pack-2/groom.svg";
-import Icu from "./svg/pack-2/icu.svg";
-import Injury from "./svg/pack-2/injury.svg";
-import Medicine from "./svg/pack-2/medicine.svg";
-import Microscope from "./svg/pack-2/microscope.svg";
-import Monitor from "./svg/pack-2/monitor.svg";
-import MR from "./svg/pack-2/mr.svg";
-import Operated from "./svg/pack-2/operated.svg";
-import PetBox from "./svg/pack-2/pet-box.svg";
-import PetCheck from "./svg/pack-2/pet-check.svg";
-import PetHouse from "./svg/pack-2/pet-house.svg";
-import Radiography from "./svg/pack-2/radiography.svg";
-import Scale from "./svg/pack-2/scale.svg";
-import Shave from "./svg/pack-2/shave.svg";
-import Spray from "./svg/pack-2/spray.svg";
-import Stethoscope from "./svg/pack-2/stethoscope.svg";
-import Stretcher from "./svg/pack-2/stretcher.svg";
-import Surgery from "./svg/pack-2/surgery.svg";
-import Thermometer from "./svg/pack-2/thermometer.svg";
-import Transfusion from "./svg/pack-2/transfusion.svg";
-import Vaccine from "./svg/pack-2/vaccine.svg";
-import VetMen from "./svg/pack-2/vet-men.svg";
-import VetWomen from "./svg/pack-2/vet-women.svg";
-import Virus from "./svg/pack-2/virus.svg";
-*/
-
 // Pack 3
 import Hours24 from "./svg/pack-3/24-hours.svg";
 import Achievemnt from "./svg/pack-3/achievement.svg";
@@ -79,6 +43,13 @@ import Stethoscope from "./svg/pack-3/stethoscope.svg";
 import Syringe from "./svg/pack-3/syringe.svg";
 import Thermometer from "./svg/pack-3/thermometer.svg";
 import TodoList from "./svg/pack-3/todo-list.svg";
+
+// PNG
+import Logo from "./png/logo-hd.png";
+
+export const png = {
+  Logo,
+};
 
 export const svg = {
   pack3: {

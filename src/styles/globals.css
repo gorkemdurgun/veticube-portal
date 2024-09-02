@@ -145,3 +145,31 @@ div > .ant-picker-calendar-date-content {
     background-color: rgba(5, 150, 105, 0.3) !important; /* green-100 with opacity 30% */
   }
 }
+
+/* Secondary buttons */
+.button-secondary-text {
+  background-color: transparent;
+  color: #387282; /* teal-600 */
+  &:hover {
+    text-decoration: underline;
+  }
+  &:active {
+    color: #325d6c; /* teal-700 */
+  }
+}
+
+.button-secondary-opaque {
+  background-color: #387282 !important; /* teal-600 */
+  color: #f1f9fa !important; /* teal-50 */
+  &:active {
+    background-color: #325d6c !important; /* teal-700 */
+  }
+}
+
+.button-secondary-faded {
+  background-color: rgba(64, 138, 154, 0.25) !important; /* teal-500 with opacity 25% */
+  color: #387282 !important; /* teal-600 */
+  &:active {
+    background-color: rgba(64, 138, 154, 0.3) !important; /* teal-500 with opacity 30% */
+  }
+}
