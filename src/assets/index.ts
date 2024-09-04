@@ -45,7 +45,7 @@ import Thermometer from "./svg/pack-3/thermometer.svg";
 import TodoList from "./svg/pack-3/todo-list.svg";
 
 // PNG
-import Logo from "./png/logo-hd.png";
+import Logo from "./png/veticube-logo-transparent.png";
 
 export const png = {
   Logo,

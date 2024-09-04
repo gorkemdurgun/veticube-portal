@@ -214,7 +214,7 @@ const RequestDemoPage: React.FC = () => {
     <div className="min-h-screen flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-8 xl:gap-32 p-6 lg:p-16 bg-gradient-to-tr from-green-50 to-green-100">
       <div className="flex flex-col gap-6 text-center lg:text-start">
         <span className="flex flex-col gap-2 lg:gap-0">
-          <h5 className="text-3xl xl:text-4xl heading-gradient font-bold">Ücretsiz 30 Gün Deneme: Taahhüt Yok</h5>
+          <h5 className="text-3xl xl:text-4xl heading-gradient-green-1 font-bold">Ücretsiz 30 Gün Deneme: Taahhüt Yok</h5>
           <p className="text-xl xl:text-2xl text-green-500">Formu doldurun, hemen kullanmaya başlayın. Ücretsiz ve taahhütsüz.</p>
         </span>
         <div className="flex flex-col">

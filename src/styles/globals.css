@@ -24,8 +24,46 @@
     -ms-overflow-style: none;
   }
 
-  .heading-gradient {
+  .heading-gradient-green-1 {
     background: linear-gradient(90deg, #065f43 0%, #047854 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .heading-gradient-green-2 {
+    background: linear-gradient(90deg, #10b985 0%, #34d3a2 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .heading-gradient-magenta-1 {
+    background: linear-gradient(90deg, #6f2c91 0%, #6f2c91 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .heading-gradient-magenta-2 {
+    background: linear-gradient(90deg, #9b2c8a 0%, #9b2c8a 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .heading-gradient-blue-1 {
+    background: linear-gradient(90deg, #0a6ebd 0%, #0a7ec4 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .heading-gradient-blue-2 {
+    background: linear-gradient(90deg, #0f9ae0 0%, #0f9ae0 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .heading-gradient-geekblue-1 {
+    background: linear-gradient(90deg, #0c4b78 0%, #0c4b78 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .heading-gradient-geekblue-2 {
+    background: linear-gradient(90deg, #0f6ebd 0%, #0f6ebd 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }

@@ -146,6 +146,28 @@ const config: Config = {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+
+        "gradient-green-50-100": "linear-gradient(0deg, #ecfdf8 0%, #d1faed 100%)",
+        "gradient-green-50-100-reverse": "linear-gradient(0deg, #d1faed 0%, #ecfdf8 100%)",
+        "gradient-green-50-200": "linear-gradient(0deg, #ecfdf8 0%, #a7f3db 100%)",
+        "gradient-green-50-200-reverse": "linear-gradient(0deg, #a7f3db 0%, #ecfdf8 100%)",
+        "gradient-green-100-200": "linear-gradient(0deg, #d1faed 0%, #a7f3db 100%)",
+        "gradient-green-100-200-reverse": "linear-gradient(0deg, #a7f3db 0%, #d1faed 100%)",
+        "gradient-green-100-300": "linear-gradient(0deg, #d1faed 0%, #6ee7c1 100%)",
+        "gradient-green-100-300-reverse": "linear-gradient(0deg, #6ee7c1 0%, #d1faed 100%)",
+        "gradient-green-200-300": "linear-gradient(0deg, #a7f3db 0%, #6ee7c1 100%)",
+        "gradient-green-200-300-reverse": "linear-gradient(0deg, #6ee7c1 0%, #a7f3db 100%)",
+        
+        "gradient-teal-50-100": "linear-gradient(0deg, #f1f9fa 0%, #dceef1 100%)",
+        "gradient-teal-50-100-reverse": "linear-gradient(0deg, #dceef1 0%, #f1f9fa 100%)",
+        "gradient-teal-50-200": "linear-gradient(0deg, #f1f9fa 0%, #bddfe4 100%)",
+        "gradient-teal-50-200-reverse": "linear-gradient(0deg, #bddfe4 0%, #f1f9fa 100%)",
+        "gradient-teal-100-200": "linear-gradient(0deg, #dceef1 0%, #bddfe4 100%)",
+        "gradient-teal-100-200-reverse": "linear-gradient(0deg, #bddfe4 0%, #dceef1 100%)",
+        "gradient-teal-100-300": "linear-gradient(0deg, #dceef1 0%, #90c7d0 100%)",
+        "gradient-teal-100-300-reverse": "linear-gradient(0deg, #90c7d0 0%, #dceef1 100%)",
+        "gradient-teal-200-300": "linear-gradient(0deg, #bddfe4 0%, #90c7d0 100%)",
+        "gradient-teal-200-300-reverse": "linear-gradient(0deg, #90c7d0 0%, #bddfe4 100%)",
       },
       boxShadow: {
         basic: "0 5px 15px -10px rgba(150,170,180,0.5)",

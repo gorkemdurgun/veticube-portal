@@ -12,7 +12,7 @@ import {
   PiEnvelopeSimpleDuotone as MailIcon,
 } from "react-icons/pi";
 
-import { FloatButton, Tooltip } from "antd";
+import { Card, FloatButton, Tooltip } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -189,142 +189,57 @@ const WhatsappButton = () => {
 const Navbar = () => {
   return (
     <nav className="w-full flex flex-row items-center justify-between gap-4 p-4 bg-green-50 shadow-md">
-      <div className="w-full flex flex-col md:flex-row items-center justify-between px-8 md:px-24">
-        <div className="w-1/2 flex flex-row items-center justify-center md:justify-start gap-4">
-          <Image width={48} height={48} className="rounded-full" src={png.Logo} alt="veticube-logo" />
-          <span className="text-3xl text-green-900 font-semibold font-oswald">VETICUBE</span>
+      <div className="w-full grid grid-cols-3 px-8 md:px-24">
+        <div className="flex flex-row items-center justify-center md:justify-start gap-2">
+          <Image width={64} height={64} src={png.Logo} alt="veticube-logo" />
+          <span className="text-3xl text-green-600 font-semibold font-oswald">VETICUBE</span>
         </div>
-        <Link href="/demo" className="hidden md:flex">
-          <span className="text-sm text-teal-700 font-raleway">Ücretsiz deneyin; taahhüt yok, kredi kartı yok!</span>
-        </Link>
+        <div className="flex flex-row items-center justify-center gap-6">
+          <Link href="#">
+            <span className="text-sm text-green-900 font-raleway">Özellikler</span>
+          </Link>
+          <Link href="#">
+            <span className="text-sm text-green-900 font-raleway">Fiyatlandırma</span>
+          </Link>
+          <Link href="#">
+            <span className="text-sm text-green-900 font-raleway">Blog</span>
+          </Link>
+          <Link href="#">
+            <span className="text-sm text-green-900 font-raleway">İletişim</span>
+          </Link>
+        </div>
+        <div className="flex items-center justify-end">
+          <Link href="/demo">
+            <CustomButton className="px-12" variant="primary-faded">
+              Ücretsiz Dene!
+            </CustomButton>
+          </Link>
+        </div>
       </div>
     </nav>
   );
 };
 const WelcomeSection = () => {
   return (
-    <section className="w-full flex flex-col items-center justify-start gap-4 p-8 pt-4 md:pt-12 bg-gradient-to-b from-green-50 to-green-100 ">
-      <div className="w-full md:max-w-7xl grid grid-cols-1 gap-4 md:gap-12 md:grid-cols-[2fr,3fr]">
-        <div className="flex flex-col items-center md:items-start justify-center text-start gap-4 md:gap-6 md:pt-8 md:pt-0 pb-2 md:pb-0 px-2 md:px-0 bg-transparent rounded-md">
-          <span className="w-full flex flex-col items-center md:items-start">
-            <h1 className="text-3xl md:text-5xl text-green-500">Ne mi yapıyoruz?</h1>
-            <h1 className="hidden md:flex text-6xl font-bold heading-gradient bg-gradient-to-r from-green-800 to-green-600">Veticube</h1>
+    <section className="min-h-screen w-full flex flex-col items-center justify-start gap-4 pt-4 md:pt-12 bg-gradient-green-50-200-reverse">
+      <div className="w-full flex px-8 md:px-24">
+        <div className="w-full flex flex-col items-center justify-center text-center py-6 px-4 bg-white rounded-2xl">
+          <span className="text-5xl text-teal-900 font-semibold font-oswald">
+            Kliniğini
+            <span className="heading-gradient-geekblue-1"> son teknolojiler ile</span>&nbsp;
+            <span className="heading-gradient-blue-2 border-b-4 border-blue-400">en verimli haliyle</span>&nbsp;yönet
           </span>
-          <span className="w-full max-w-xl flex flex-col text-justify items-center md:items-start gap-2">
-            <p className="text-sm md:text-lg text-green-800 text-center md:text-start">
-              Veterinerlik sektörünü akıllı sistemlerle donatmak için yola çıktık! Şu anda aşağıdaki hizmetleri sunuyoruz:
-            </p>
-          </span>
-          <div className="w-full flex flex-col items-center md:items-start gap-1 md:gap-3">
-            {doingList.map((item, index) => (
-              <div
-                key={index}
-                id={item.section}
-                className="w-full max-w-xl flex flex-row justify-start items-center gap-1 p-2 border border-green-100 rounded-lg bg-green-50"
-              >
-                <MatterIcon className="w-8 h-8 text-green-900" />
-                <span className="w-full text-sm md:text-md text-green-800">{item.title}</span>
-              </div>
-            ))}
-          </div>
-          <Link href="/demo" className="w-full">
-            <CustomButton size="lg" variant="secondary-faded" className="w-full mt-auto py-3 bg-teal-300">
-              Ücretsiz denemeye başla
-            </CustomButton>
-          </Link>
-        </div>
-        <div className="relative h-[300px] md:h-[440px]">
-          <Image
-            priority
-            layout="fill"
-            className="object-cover z-10 border-4 border-white shadow-xl rounded-2xl"
-            src="https://imgtr.ee/images/2024/09/02/19a88dbe26db6f97d3b94fb07870a0e9.png"
-            alt="veticube-machine"
-          />
-          {/* <div className="absolute top-16 right-0 z-1 rounded-2xl shadow-xl lg:flex hidden">
-            <Image
-              className="w-[400px] h-[400px] object-cover z-10 border-4 border-white shadow-xl"
-              src="https://plus.unsplash.com/premium_photo-1661809024468-6fbc83533d1b?q=80&w=3271&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="veticube-machine"
-            />
-          </div>
-          <div className="absolute top-8 left-12 z-0 rounded-2xl shadow-xl">
-            <Image
-              className="w-[100vw] lg:w-[300px] h-[300px] object-cover border-4 border-white"
-              src="https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=3348&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="veticube-clinic-management"
-            />
-          </div>
-          <div className="absolute -bottom-12 sm:-bottom-24 -left-0 z-1 rounded-2xl shadow-xl">
-            <Image
-              className="w-[400px] h-[200px] object-cover border-4 border-white"
-              src="https://plus.unsplash.com/premium_photo-1677165653243-ac963970822b?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="veticube-machine"
-            />
-          </div> */}
+          <p className="w-full text-lg text-gray-700 font-raleway py-4">
+            Veteriner kliniğinizin yönetimini kolaylaştırmak ve iş süreçlerinizi geliştirmek için size özel çözümler sunuyoruz.
+          </p>
         </div>
       </div>
     </section>
   );
 };
-/*
-const PricingSection = () => {
-  return (
-    <section className="w-full flex flex-col items-center justify-start gap-4 pt-16 md:pt-24  bg-gradient-to-b from-gray-100 to-cyan-50 ">
-      <div className="w-full max-w-7xl flex flex-col items-center justify-center gap-8 px-8 md:px-0">
-        <h1 className="text-center text-cyan-500">Packages and Pricing</h1>
-        <motion.div
-          initial={{ scale: 0.9, y: -100, opacity: 0 }}
-          whileInView={{
-            scale: 1,
-            y: 0,
-            opacity: 1,
-          }}
-          transition={{ duration: 1 }}
-          className="w-full gap-2 md:gap-4 md:px-8 xl:px-0 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4"
-        >
-          {pricingList.map((item, index) => (
-            <Card
-              key={index}
-              className="w-full flex flex-col items-start justify-start mx-auto gap-4 p-4 bg-white rounded-none md:rounded-2xl shadow-md h-[auto] md:h-[560px]"
-            >
-              <span
-                className={`w-full flex flex-col items-start justify-center w-min py-2 px-8 rounded-lg ${
-                  item.plan === "Custom" ? "bg-yellow-400 text-yellow-800" : "bg-cyan-100 text-cyan-800"
-                }`}
-              >
-                {item.plan}
-              </span>
-              <span className="flex flex-row items-end justify-start gap-2">
-                <span className="text-3xl lg:text-4xl text-default-700 font-bold">${item.price}</span>
-                <span className="text-lg text-default-700">/ {item.period}</span>
-              </span>
-              <span className="text-lg text-cyan-800">{item.description}</span>
-
-              <div className="w-full flex flex-col items-start justify-center gap-2">
-                {item.features.map((feature, index) => (
-                  <span key={index} className="w-full flex flex-row items-start justify-start gap-2">
-                    <VerifyIcon className="w-6 h-6 text-cyan-700" />
-                    <span className="text-md text-cyan-800">{feature}</span>
-                  </span>
-                ))}
-              </div>
-              <Button
-                className={`w-full mt-auto mb-0 text-md text-white ${item.plan === "Custom" ? "bg-yellow-600 animate-jump" : "bg-cyan-600"}`}
-              >
-                Get started
-              </Button>
-            </Card>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
-};
-*/
 const Footer = () => {
   return (
-    <div className="w-full flex flex-col items-center justify-center bg-gradient-to-b from-green-100 to-green-50 pt-8 md:pt-12">
+    <div className="w-full flex flex-col items-center justify-center pt-8 md:pt-12 bg-green-200">
       <div className="w-full flex items-center justify-between px-4 md:px-24 pb-2 border-b border-teal-200">
         <h5 className="text-sm md:text-md text-teal-800 font-raleway">Bizimle iletişime geçin</h5>
         <div className="grid grid-cols-4 gap-3">
@@ -389,10 +304,7 @@ function Home() {
     <main className="w-full flex flex-col items-center justify-start">
       <WhatsappButton />
       <Navbar />
-      <section className="w-full flex flex-col items-center justify-start">
-        <WelcomeSection />
-        {/* <PricingSection /> */}
-      </section>
+      <WelcomeSection />
       <Footer />
     </main>
   );
