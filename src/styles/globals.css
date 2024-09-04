@@ -35,6 +35,17 @@
     -webkit-text-fill-color: transparent;
   }
 
+  .heading-gradient-teal-1 {
+    background: linear-gradient(90deg, #304f5a 0%, #325d6c 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .heading-gradient-teal-2 {
+    background: linear-gradient(90deg, #408a9a 0%, #64abb9 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
   .heading-gradient-magenta-1 {
     background: linear-gradient(90deg, #6f2c91 0%, #6f2c91 50%);
     -webkit-background-clip: text;

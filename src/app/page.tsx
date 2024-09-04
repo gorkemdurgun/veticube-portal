@@ -1,15 +1,16 @@
 "use server";
 
 import {
-  PiDotDuotone as MatterIcon,
-  PiCheckCircleDuotone as VerifyIcon,
-  PiArrowRightLight as ViewAllIcon,
-  PiArrowLeftBold as BlogLeftIcon,
-  PiArrowRightBold as BlogRightIcon,
   PiInstagramLogo as InstagramIcon,
   PiWhatsappLogo as WhatsappIcon,
   PiYoutubeLogo as YoutubeIcon,
   PiEnvelopeSimple as MailIcon,
+  PiCalendarDotsDuotone as CalendarIcon,
+  PiRocketLaunchDuotone as RocketIcon,
+  PiGlobeHemisphereWestDuotone as GlobeIcon,
+  PiRankingDuotone as RankingIcon,
+  PiHeadCircuitDuotone as AIIcon,
+  PiPackageDuotone as StockIcon,
 } from "react-icons/pi";
 
 import { Card, FloatButton, Tooltip } from "antd";
@@ -19,6 +20,9 @@ import Link from "next/link";
 import { png, svg } from "@/assets";
 
 import CustomButton from "@/components/common/custom-button";
+
+import type { TooltipProps } from "antd";
+import type { IconType } from "react-icons";
 
 const doingList: {
   section: string;
@@ -179,13 +183,6 @@ const blogList: {
   },
 ];
 
-const WhatsappButton = () => {
-  return (
-    <Tooltip arrow={false} title="Whatsapp ile iletişime geçin" placement="left" color="#059669">
-      <FloatButton type="primary" icon={<WhatsappIcon className="text-green-100" />} />
-    </Tooltip>
-  );
-};
 const Navbar = () => {
   return (
     <nav className="w-full flex flex-row items-center justify-between gap-4 p-4 bg-green-50 shadow-md">
@@ -210,7 +207,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center justify-end">
           <Link href="/demo">
-            <CustomButton className="px-12" variant="primary-faded">
+            <CustomButton className="!px-12" variant="primary-faded">
               Ücretsiz Dene!
             </CustomButton>
           </Link>
@@ -220,26 +217,108 @@ const Navbar = () => {
   );
 };
 const WelcomeSection = () => {
+  const FeatureTooltip = ({
+    icon,
+    title,
+    iconClassName,
+    placement,
+  }: {
+    icon: IconType;
+    title: string;
+    iconClassName: string;
+    placement: TooltipProps["placement"];
+  }) => {
+    return (
+      <Tooltip
+        className="cursor-pointer"
+        placement={placement}
+        arrow={false}
+        title={title}
+        overlayInnerStyle={{
+          width: "fit-content",
+          padding: "8px 16px",
+          textAlign: "center",
+          backgroundColor: "#fff",
+          color: "#67676c",
+          font: "normal normal 600 14px/16px Raleway",
+        }}
+      >
+        {icon && icon({ className: `absolute w-20 h-20 text-gray-500 bg-gray-50/50 p-3 rounded-full shadow-xl ${iconClassName}` })}
+      </Tooltip>
+    );
+  };
+
   return (
-    <section className="min-h-screen w-full flex flex-col items-center justify-start gap-4 pt-4 md:pt-12 bg-gradient-green-50-200">
-      <div className="w-full flex px-8 md:px-24">
+    <section className="w-full flex flex-col items-center justify-start gap-4 pt-4 md:pt-12 bg-gradient-green-50-200">
+      <div className="relative w-full flex px-8 md:px-24">
+        <FeatureTooltip
+          placement="bottom"
+          icon={RankingIcon}
+          iconClassName="-top-8 left-64"
+          title="Rakiplerinizden önde olun, işletmenizi geliştirin"
+        />
+        <FeatureTooltip
+          placement="rightBottom"
+          icon={CalendarIcon}
+          iconClassName="top-8 left-16"
+          title="Takvim yönetimi ile işlerinizi kolayca organize edin"
+        />
+        <FeatureTooltip
+          placement="top"
+          icon={AIIcon}
+          iconClassName="-bottom-8 left-48"
+          title="Yapay zeka destekli çözümler ile günlük işlerinizi hızlandırın"
+        />
+        <FeatureTooltip
+          placement="bottom"
+          icon={GlobeIcon}
+          iconClassName="-top-8 right-48"
+          title="Geleneksel çözümleri aşın, güncel teknolojileri kullanın"
+        />
+        <FeatureTooltip
+          placement="right"
+          icon={RocketIcon}
+          iconClassName="bottom-8 right-16"
+          title="Verimliliğinizi artırın, maliyetlerinizi düşürün"
+        />
+        <FeatureTooltip
+          placement="left"
+          icon={StockIcon}
+          iconClassName="-bottom-8 right-64"
+          title="Stoklarınızı ve envanterinizi kolayca yönetin, kayıpları azaltın"
+        />
         <div className="w-full flex flex-col items-center justify-center text-center py-6 px-4 bg-white rounded-2xl">
           <span className="text-5xl text-teal-900 font-semibold font-oswald">
             Kliniğini
-            <span className="heading-gradient-geekblue-1"> son teknolojiler ile</span>&nbsp;
-            <span className="heading-gradient-blue-2 border-b-4 border-blue-400">en verimli haliyle</span>&nbsp;yönet
+            <span className="heading-gradient-teal-1"> üst düzey teknoloji ile</span>&nbsp;
+            <span className="heading-gradient-green-2 border-b-4 border-green-400">en verimli şekilde</span>&nbsp;yönet!
           </span>
           <p className="w-full text-lg text-gray-700 font-raleway py-4">
             Veteriner kliniğinizin yönetimini kolaylaştırmak ve iş süreçlerinizi geliştirmek için size özel çözümler sunuyoruz.
+            <br />
+            Hemen başlayın, ücretsiz deneme fırsatını kaçırmayın!
           </p>
+          <CustomButton size="md" className="mt-4 px-8 md:px-24 !font-[500] shadow-xl" variant="secondary-faded">
+            Hemen Başla, Ücretsiz Dene!
+          </CustomButton>
         </div>
+      </div>
+    </section>
+  );
+};
+const FeaturesSection = () => {
+  return (
+    <section className="w-full flex flex-col items-center justify-start gap-4 py-8 md:py-12 bg-green-200">
+      <div className="w-full flex flex-col items-center justify-center gap-4">
+        <h2 className="text-3xl text-teal-900 font-semibold font-oswald">Neler Yapıyoruz?</h2>
+        <p className="text-lg text-gray-700 font-raleway">Veteriner kliniğiniz için size özel çözümler sunuyoruz.</p>
       </div>
     </section>
   );
 };
 const Footer = () => {
   return (
-    <div className="w-full flex flex-col items-center justify-center pt-8 md:pt-12 bg-gradient-green-200-400">
+    <div className="w-full flex flex-col items-center justify-center pt-8 md:pt-12 bg-white">
       <div className="w-full flex items-center justify-between px-4 md:px-24 pb-2 border-b border-green-200">
         <h5 className="text-sm md:text-md text-teal-800 font-raleway">Bizimle iletişime geçin</h5>
         <div className="grid grid-cols-4 gap-3">
@@ -302,9 +381,12 @@ const Footer = () => {
 function Home() {
   return (
     <main className="w-full flex flex-col items-center justify-start">
-      <WhatsappButton />
+      <FloatButton type="primary" icon={<WhatsappIcon className="text-green-100" />} />
       <Navbar />
-      <WelcomeSection />
+      <div className="min-h-screen w-full flex flex-col">
+        <WelcomeSection />
+        <FeaturesSection />
+      </div>
       <Footer />
     </main>
   );
