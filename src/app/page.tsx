@@ -6,10 +6,10 @@ import {
   PiArrowRightLight as ViewAllIcon,
   PiArrowLeftBold as BlogLeftIcon,
   PiArrowRightBold as BlogRightIcon,
-  PiInstagramLogoDuotone as InstagramIcon,
-  PiWhatsappLogoDuotone as WhatsappIcon,
-  PiYoutubeLogoDuotone as YoutubeIcon,
-  PiEnvelopeSimpleDuotone as MailIcon,
+  PiInstagramLogo as InstagramIcon,
+  PiWhatsappLogo as WhatsappIcon,
+  PiYoutubeLogo as YoutubeIcon,
+  PiEnvelopeSimple as MailIcon,
 } from "react-icons/pi";
 
 import { Card, FloatButton, Tooltip } from "antd";
@@ -221,7 +221,7 @@ const Navbar = () => {
 };
 const WelcomeSection = () => {
   return (
-    <section className="min-h-screen w-full flex flex-col items-center justify-start gap-4 pt-4 md:pt-12 bg-gradient-green-50-200-reverse">
+    <section className="min-h-screen w-full flex flex-col items-center justify-start gap-4 pt-4 md:pt-12 bg-gradient-green-50-200">
       <div className="w-full flex px-8 md:px-24">
         <div className="w-full flex flex-col items-center justify-center text-center py-6 px-4 bg-white rounded-2xl">
           <span className="text-5xl text-teal-900 font-semibold font-oswald">
@@ -239,8 +239,8 @@ const WelcomeSection = () => {
 };
 const Footer = () => {
   return (
-    <div className="w-full flex flex-col items-center justify-center pt-8 md:pt-12 bg-green-200">
-      <div className="w-full flex items-center justify-between px-4 md:px-24 pb-2 border-b border-teal-200">
+    <div className="w-full flex flex-col items-center justify-center pt-8 md:pt-12 bg-gradient-green-200-400">
+      <div className="w-full flex items-center justify-between px-4 md:px-24 pb-2 border-b border-green-200">
         <h5 className="text-sm md:text-md text-teal-800 font-raleway">Bizimle iletişime geçin</h5>
         <div className="grid grid-cols-4 gap-3">
           <a href="https://wa.me/905301493599" target="_blank" rel="noreferrer">
@@ -257,7 +257,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-      <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 px-4 md:px-24 py-6 border-b border-teal-200">
+      <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 px-4 md:px-24 py-6 border-b border-green-200">
         <div className="w-full flex flex-col items-start justify-center gap-4">
           <h5 className="text-sm md:text-md text-teal-900">Hakkımızda</h5>
           <ul className="w-full flex flex-col items-start justify-start gap-2 font-raleway">
