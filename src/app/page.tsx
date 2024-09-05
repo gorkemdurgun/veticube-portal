@@ -53,11 +53,12 @@ const Navbar = () => {
             <span className="text-sm text-green-900 font-raleway">İletişim</span>
           </Link>
         </div>
-        <div className="hidden md:flex items-center justify-end">
+        <div className="hidden md:flex items-center justify-end gap-3">
           <Link href="/demo">
-            <CustomButton className="!px-12" variant="primary-faded">
-              Ücretsiz Dene!
-            </CustomButton>
+            <CustomButton variant="primary-text">Üye Ol</CustomButton>
+          </Link>
+          <Link href="/login">
+            <CustomButton variant="primary-text">Giriş Yap</CustomButton>
           </Link>
         </div>
       </div>
