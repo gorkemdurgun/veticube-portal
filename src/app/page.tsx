@@ -1,6 +1,8 @@
 "use server";
 
 import {
+  PiUserPlus as RegisterIcon,
+  PiSignIn as LoginIcon,
   PiInstagramLogo as InstagramIcon,
   PiWhatsappLogo as WhatsappIcon,
   PiYoutubeLogo as YoutubeIcon,
@@ -32,12 +34,12 @@ import type { IconType } from "react-icons";
 const Navbar = () => {
   return (
     <nav className="w-full flex flex-row items-center justify-between gap-4 p-4 bg-white shadow-md">
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-8 lg:px-32">
-        <div className="flex flex-row items-center justify-center lg:justify-start gap-2">
-          <div className="relative w-16 h-16">
+      <div className="w-full grid grid-cols-2 sm:grid-cols-3 px-4 lg:px-32">
+        <div className="flex flex-row items-center justify-start lg:justify-start gap-2">
+          <div className="relative w-8 h-8 sm:w-16 sm:h-16">
             <Image src={png.Logo} alt="veticube-logo" layout="fill" />
           </div>
-          <span className="text-3xl text-green-600 font-semibold font-oswald">VETICUBE</span>
+          <span className="text-lg sm:text-3xl text-green-600 font-semibold font-oswald">VETICUBE</span>
         </div>
         <div className="hidden sm:flex flex-row items-center justify-center gap-6">
           <Link href="#">
@@ -53,12 +55,18 @@ const Navbar = () => {
             <span className="text-sm text-green-900 font-raleway">İletişim</span>
           </Link>
         </div>
-        <div className="hidden md:flex items-center justify-end gap-3">
+        <div className="flex items-center justify-end gap-0 sm:gap-3">
           <Link href="/demo">
-            <CustomButton variant="primary-text">Üye Ol</CustomButton>
+            <CustomButton variant="primary-text">
+              <RegisterIcon className="w-5 h-5 mr-1" />
+              <span className="hidden sm:block">Kayıt Ol</span>
+            </CustomButton>
           </Link>
           <Link href="/login">
-            <CustomButton variant="primary-text">Giriş Yap</CustomButton>
+            <CustomButton variant="primary-text">
+              <LoginIcon className="w-5 h-5 mr-1" />
+              <span className="hidden sm:block">Giriş Yap</span>
+            </CustomButton>
           </Link>
         </div>
       </div>
@@ -101,8 +109,8 @@ const WelcomeSection = () => {
   };
 
   return (
-    <section className="w-full pb-4 pt-8 lg:pb-12 lg:pt-24 bg-gradient-green-0-50">
-      <div className="w-full relative flex px-8 lg:px-32">
+    <section className="w-full pb-4 pt-6 lg:pb-12 lg:pt-24 bg-gradient-green-0-50">
+      <div className="w-full relative flex px-4 lg:px-32">
         <FeatureTooltip
           placement="bottom"
           icon={RankingIcon}
@@ -139,18 +147,18 @@ const WelcomeSection = () => {
           iconClassName="bottom-auto lg:-bottom-8 -top-6 lg:top-auto right-auto lg:right-64 left-52 lg:left-auto"
           title="Stoklarınızı ve envanterinizi kolayca yönetin, kayıpları azaltın"
         />
-        <div className="w-full flex flex-col items-center justify-center text-center py-4 lg:py-6 px-4 bg-green-600/10 rounded-2xl">
-          <span className="mt-4 lg:mt-0 text-2xl sm:text-4xl md:text-5xl text-teal-900 font-semibold font-oswald">
+        <div className="w-full flex flex-col items-center justify-center text-center py-6 px-4 bg-green-600/10 rounded-2xl">
+          <span className="text-2xl sm:text-4xl md:text-5xl text-teal-900 font-semibold font-oswald">
             Kliniğini
             <span className="heading-gradient-teal-1"> üst düzey teknoloji ile</span>&nbsp;
             <br className="flex lg:hidden" />
             <span className="heading-gradient-green-2 border-b-4 border-green-400">en verimli şekilde</span>&nbsp;yönet!
           </span>
-          <p className="w-full text-xs sm:text-lg text-teal-700 font-raleway py-4">
+          <p className="w-full text-xs sm:text-lg text-teal-700 font-raleway py-6 sm:py-4">
             Veteriner kliniğinizdeki iş süreçlerini geliştirmek için size özel çözümler sunuyoruz.
             <br className="hidden lg:flex" /> Hemen başlayın, ücretsiz deneme fırsatını kaçırmayın!
           </p>
-          <CustomButton className="mt-0 lg:mt-4 px-8 lg:px-32 shadow-xl" variant="secondary-opaque">
+          <CustomButton className="mt-0 lg:mt-4 px-8 sm:px-32 shadow-xl" variant="secondary-opaque">
             Hemen Başla, Ücretsiz Dene!
           </CustomButton>
         </div>
@@ -160,16 +168,17 @@ const WelcomeSection = () => {
 };
 const FeaturesSection = () => {
   return (
-    <section className="w-full pb-4 pt-8 lg:pb-12 lg:pt-12 bg-gradient-green-0-50-reverse">
-      <div className="relative w-full flex flex-col items-center justify-center text-center px-8 lg:px-32">
+    <section className="w-full pb-4 pt-6 lg:pb-12 lg:pt-12 bg-gradient-green-0-50-reverse">
+      <div className="relative w-full flex flex-col items-center justify-center text-center px-4 lg:px-32">
         <h5 className="text-lg sm:text-3xl text-teal-900 font-raleway font-semibold mb-2 mt-4 lg:mt-12">Tedavi sürecini baştan sona yönetin</h5>
         <p className="text-xs sm:text-lg text-teal-700 font-raleway text-center mb-4 lg:mb-8">
           Tedavi sürecinin her aşamasını adım adım takip edin, süreci tam anlamıyla kontrol edin.
-          <br className="hidden lg:flex" /> Hasta kabulünden muayeneye, tedavi planından ürün satışına, tüm süreci senkronize ilerletin.
+          <br className="hidden lg:flex" />
+          <span className="hidden sm:block">Hasta kabulünden muayeneye, tedavi planından ürün satışına, tüm süreci senkronize ilerletin.</span>
         </p>
-        <div className="w-full grid grid-cols-1 sm:grid-cols-1 gap-2 sm:gap-4 p-2 sm:p-3 rounded-t-xl bg-white">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-1 gap-2 sm:gap-4 p-2 sm:p-3 mt-2rounded-t-xl bg-white">
           <Timeline
-            className="mt-8 -mb-4 text-teal-800"
+            className="mt-8 -mb-8 text-teal-800"
             mode="left"
             items={[
               {
@@ -229,13 +238,11 @@ const FeaturesSection = () => {
 };
 const ScreenshotsSection = () => {
   return (
-    <section className="w-full pb-4 pt-8 lg:pb-12 lg:pt-12 bg-gradient-green-0-100">
-      <div className="relative w-full flex flex-col items-center justify-center text-center px-8 lg:px-32">
-        <h5 className="text-lg sm:text-3xl text-teal-900 font-raleway font-semibold mb-2 mt-4 lg:mt-12">
-          Ekran görüntülerine hızlıca göz gezdirin
-        </h5>
-        <p className="text-xs sm:text-lg text-teal-700 font-raleway text-center mb-8">
-          Ürünümüzün sunduğu özellikleri keşfetmek için aşağıdaki ekran görüntülerine göz atın ve nasıl çalıştığını görün.
+    <section className="w-full pb-4 pt-6 lg:pb-12 lg:pt-12 bg-gradient-green-0-100">
+      <div className="relative w-full flex flex-col items-center justify-center text-center px-4 lg:px-32">
+        <h5 className="text-lg sm:text-3xl text-teal-900 font-raleway font-semibold mb-2 mt-4 lg:mt-12">Uygulama içine göz gezdirin</h5>
+        <p className="text-xs sm:text-lg text-teal-700 font-raleway text-center mb-4 lg:mb-8">
+          Ürünümüzün sunduğu özellikleri keşfetmek için ekran görüntülerine göz atın ve nasıl çalıştığını görün.
         </p>
         <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 p-2 sm:p-3 rounded-t-xl bg-white">
           <div className="relative flex items-center rounded-md bg-gray-100">
@@ -277,59 +284,60 @@ const ScreenshotsSection = () => {
 };
 const TrustedBrands = () => {
   return (
-    <section className="w-full pb-4 pt-8 lg:pb-12 lg:pt-12 bg-green-100">
+    <section className="w-full pb-4 pt-6 lg:pb-12 lg:pt-12 bg-green-100">
       <div className="relative w-full flex flex-col items-center justify-center px-0">
-        <div className="w-full flex flex-col items-center justify-center px-8 lg:px-32">
+        <div className="w-full flex flex-col items-center justify-center px-4 lg:px-32">
           <h5 className="text-lg sm:text-3xl text-teal-900 font-raleway font-semibold mb-2 mt-4 lg:mt-12">İş ortaklarımız ve müşterilerimiz</h5>
-          <span className="text-xs sm:text-lg text-teal-700 font-raleway text-center mb-8">
-            Veticube, birçok marka ve klinik tarafından tercih edilmektedir. Siz de Veticube ailesine katılın, lider markalar arasında yerinizi
-            alın.
+          <span className="text-xs sm:text-lg text-teal-700 font-raleway text-center mb-4 lg:mb-8">
+            Kaliteli çözümler ile, sektördeki en güçlü klinikler arasında siz de hemen yerinizi alın.
             <br />
-            Güvenilir, lider markalar
+            <span className="hidden sm:block">
+              Veticube ailesine katılarak, yenilikçi ve gelişmiş çözümlerimizle iş süreçlerinizi optimize edin, farkınızı ortaya koyun.
+            </span>
           </span>
         </div>
         <div className="group w-full overflow-x-auto scrollbar-hide flex items-center justify-around gap-4 sm:gap-12 pt-0 sm:pt-4">
           <Image
-            width={108}
-            height={108}
+            width={96}
+            height={96}
             src={png.Brand1}
             alt="brand-1"
-            className="scale-75 sm:scale-100 grayscale group-hover:grayscale-0 transition-all duration-300"
+            className="scale-[0.6] sm:scale-100 grayscale group-hover:grayscale-0 transition-all duration-300"
           />
           <Image
-            width={108}
-            height={108}
+            width={96}
+            height={96}
             src={png.Brand2}
             alt="brand-2"
-            className="scale-75 sm:scale-100 grayscale group-hover:grayscale-0 transition-all duration-300"
+            className="scale-[0.6] sm:scale-100 grayscale group-hover:grayscale-0 transition-all duration-300"
           />
           <Image
-            width={108}
-            height={108}
+            width={96}
+            height={96}
             src={png.Brand3}
             alt="brand-3"
-            className="scale-75 sm:scale-100 grayscale group-hover:grayscale-0 transition-all duration-300"
+            className="scale-[0.6] sm:scale-100 grayscale group-hover:grayscale-0 transition-all duration-300"
           />
           <Image
-            width={108}
-            height={108}
+            width={96}
+            height={96}
             src={png.Brand4}
             alt="brand-4"
-            className="scale-75 sm:scale-100 grayscale group-hover:grayscale-0 transition-all duration-300"
+            className="scale-[0.6] sm:scale-100 grayscale group-hover:grayscale-0 transition-all duration-300"
           />
           <Image
-            width={108}
-            height={108}
+            width={96}
+            height={96}
             src={png.Brand5}
             alt="brand-5"
-            className="scale-75 sm:scale-100 grayscale group-hover:grayscale-0 transition-all duration-300"
+            className="scale-[0.6] sm:scale-100 grayscale group-hover:grayscale-0 transition-all duration-300"
           />
           <Image
-            width={108}
-            height={108}
+            width={96}
+            height={96}
             src={png.Brand6}
             alt="brand-6"
-            className="scale-75 sm:scale-100 grayscale group-hover:grayscale-0 transition-all duration-300"
+            className="scale-[0.6] sm:scale-100 grayscale group-hover:grayscale-0 transition-all duration-300"
           />
         </div>
       </div>
