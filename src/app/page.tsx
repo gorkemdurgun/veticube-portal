@@ -11,9 +11,14 @@ import {
   PiRankingDuotone as RankingIcon,
   PiHeadCircuitDuotone as AIIcon,
   PiPackageDuotone as StockIcon,
+  PiSyringe as StepsVaccinationIcon,
+  PiTestTube as StepsTestIcon,
+  PiTable as StepsTableIcon,
+  PiPackage as StepsPackageIcon,
+  PiCalendarDot as StepsCalendarIcon,
 } from "react-icons/pi";
 
-import { Card, FloatButton, Tooltip, Image as AntdImage, Divider } from "antd";
+import { Card, FloatButton, Tooltip, Image as AntdImage, Calendar, Timeline } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -73,7 +78,7 @@ const WelcomeSection = () => {
   }) => {
     return (
       <Tooltip
-        className="pointer-events-none lg:cursor-pointer"
+        className="hidden lg:flex pointer-events-none lg:cursor-pointer"
         placement={placement}
         arrow={false}
         title={title}
@@ -95,7 +100,7 @@ const WelcomeSection = () => {
   };
 
   return (
-    <section className="w-full pb-4 pt-6 lg:pb-12 lg:pt-24 bg-gradient-green-0-50">
+    <section className="w-full pb-4 pt-8 lg:pb-12 lg:pt-24 bg-gradient-green-0-50">
       <div className="w-full relative flex px-8 lg:px-32">
         <FeatureTooltip
           placement="bottom"
@@ -140,11 +145,11 @@ const WelcomeSection = () => {
             <br className="flex lg:hidden" />
             <span className="heading-gradient-green-2 border-b-4 border-green-400">en verimli şekilde</span>&nbsp;yönet!
           </span>
-          <p className="w-full text-sm sm:text-lg text-gray-700 font-raleway py-4">
+          <p className="w-full text-xs sm:text-lg text-teal-700 font-raleway py-4">
             Veteriner kliniğinizdeki iş süreçlerini geliştirmek için size özel çözümler sunuyoruz.
             <br className="hidden lg:flex" /> Hemen başlayın, ücretsiz deneme fırsatını kaçırmayın!
           </p>
-          <CustomButton className="mt-0 lg:mt-4 px-8 lg:px-32 !font-[500] shadow-xl" variant="secondary-opaque">
+          <CustomButton className="mt-0 lg:mt-4 px-8 lg:px-32 shadow-xl" variant="secondary-opaque">
             Hemen Başla, Ücretsiz Dene!
           </CustomButton>
         </div>
@@ -152,9 +157,126 @@ const WelcomeSection = () => {
     </section>
   );
 };
+const FeaturesSection = () => {
+  return (
+    <section className="w-full pb-4 pt-8 lg:pb-12 lg:pt-12 bg-gradient-green-0-50-reverse">
+      <div className="relative w-full flex flex-col items-center justify-center text-center px-8 lg:px-32">
+        <h5 className="text-lg sm:text-3xl text-teal-900 font-raleway font-semibold mb-2 mt-4 lg:mt-12">Tedavi sürecini baştan sona yönetin</h5>
+        <p className="text-xs sm:text-lg text-teal-700 font-raleway text-center mb-4 lg:mb-8">
+          Tedavi sürecinin her aşamasını adım adım takip edin, süreci tam anlamıyla kontrol edin.
+          <br className="hidden lg:flex" /> Hasta kabulünden muayeneye, tedavi planından ürün satışına, tüm süreci senkronize ilerletin.
+        </p>
+        <div className="w-full grid grid-cols-1 sm:grid-cols-1 gap-2 sm:gap-4 p-2 sm:p-3 rounded-t-xl bg-white">
+          <Timeline
+            className="mt-8 -mb-4 text-teal-800"
+            mode="left"
+            items={[
+              {
+                className: "!text-xs sm:!text-md",
+                color: "gray",
+                label: "06/09/2024 - 13:30",
+                children: "Hasta kliniğe getirildi",
+              },
+              {
+                className: "!text-xs sm:!text-md",
+                color: "green",
+                label: "06/09/2024 - 13:45",
+                children: "Muayene tamamlandı",
+              },
+              {
+                className: "!text-xs sm:!text-md",
+                dot: <StepsVaccinationIcon />,
+                label: "06/09/2024 - 14:00",
+                children: "Tahlil için kan alındı",
+              },
+              {
+                className: "!text-xs sm:!text-md",
+                dot: <StepsTestIcon />,
+                label: "06/09/2024 - 14:40",
+                children: "Kan tahlili sonuçları çıktı",
+              },
+              {
+                className: "!text-xs sm:!text-md",
+                dot: <StepsTableIcon />,
+                label: "06/09/2024 - 15:00",
+                children: "Tedavi programı oluşturuldu",
+              },
+              {
+                className: "!text-xs sm:!text-md",
+                dot: <StepsPackageIcon />,
+                label: "06/09/2024 - 15:20",
+                children: "Ürün satışı yapıldı, stoktan düşüldü",
+              },
+              {
+                className: "!text-xs sm:!text-md",
+                dot: <StepsCalendarIcon />,
+                label: "06/09/2024 - 15:30",
+                children: "Kontrol muayenesi için randevu alındı",
+              },
+              {
+                className: "!text-xs sm:!text-md",
+                color: "green",
+                label: "06/09/2024 - 15:40",
+                children: "Tedavi tamamlandı",
+              },
+            ]}
+          />
+        </div>
+      </div>
+    </section>
+  );
+};
+const ScreenshotsSection = () => {
+  return (
+    <section className="w-full pb-4 pt-8 lg:pb-12 lg:pt-12 bg-gradient-green-0-100">
+      <div className="relative w-full flex flex-col items-center justify-center text-center px-8 lg:px-32">
+        <h5 className="text-lg sm:text-3xl text-teal-900 font-raleway font-semibold mb-2 mt-4 lg:mt-12">
+          Ekran görüntülerine hızlıca göz gezdirin
+        </h5>
+        <p className="text-xs sm:text-lg text-teal-700 font-raleway text-center mb-8">
+          Ürünümüzün sunduğu özellikleri keşfetmek için aşağıdaki ekran görüntülerine göz atın ve nasıl çalıştığını görün.
+        </p>
+        <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 p-2 sm:p-3 rounded-t-xl bg-white">
+          <div className="relative flex items-center rounded-md bg-gray-100">
+            <AntdImage
+              alt="screenshot-1"
+              src="https://cdn.dribbble.com/userupload/6457402/file/original-39d52d099d770ddab2f098db46f008d1.png?resize=1024x768&vertical=center"
+            />
+          </div>
+          <div className="relative flex items-center rounded-md bg-gray-100">
+            <AntdImage
+              alt="screenshot-2"
+              src="https://cdn.dribbble.com/userupload/6457404/file/original-9e44e82dd0a3f236113331bd7bc298ff.png?resize=1024x768&vertical=center"
+            />
+          </div>
+          <div className="relative flex items-center rounded-md bg-gray-100">
+            <AntdImage
+              alt="screenshot-3"
+              src="https://cdn.dribbble.com/userupload/6457405/file/original-bb57507e8c98a3f06cf58ae5d9bef090.png?resize=1024x768&vertical=center"
+            />
+          </div>
+        </div>
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 p-2 sm:p-3 rounded-b-xl bg-white">
+          <div className="relative flex items-center rounded-md bg-gray-100">
+            <AntdImage
+              alt="screenshot-4"
+              src="https://cdn.dribbble.com/userupload/6019897/file/original-ab082e26bcdc4ca092ac3499ace67b3b.png?resize=1024x768&vertical=center"
+            />
+          </div>
+          <div className="relative flex items-center rounded-md bg-gray-100">
+            <AntdImage
+              alt="screenshot-5"
+              src="https://cdn.dribbble.com/userupload/6019895/file/original-348d4f9a547fe9012ff443acf1f59c0e.png?resize=1024x768&vertical=center"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 const TrustedBrands = () => {
   return (
-    <section className="w-full gap-4 pb-4 pt-6 lg:pb-4 lg:pt-12 bg-green-50">
+    <section className="w-full pb-4 pt-8 lg:pb-12 lg:pt-12 bg-green-100">
       <div className="relative w-full flex flex-col items-center justify-center px-0">
         <div className="w-full flex flex-col items-center justify-center px-8 lg:px-32">
           <h5 className="text-lg sm:text-3xl text-teal-900 font-raleway font-semibold mb-2 mt-4 lg:mt-12">İş ortaklarımız ve müşterilerimiz</h5>
@@ -208,54 +330,6 @@ const TrustedBrands = () => {
             alt="brand-6"
             className="scale-75 sm:scale-100 grayscale group-hover:grayscale-0 transition-all duration-300"
           />
-        </div>
-      </div>
-    </section>
-  );
-};
-const ScreenshotsSection = () => {
-  return (
-    <section className="w-full pb-4 pt-6 lg:pb-42 lg:pt-12 bg-gradient-green-50-100">
-      <div className="relative w-full flex flex-col items-center justify-center text-center px-8 lg:px-32">
-        <h5 className="text-lg sm:text-3xl text-teal-900 font-raleway font-semibold mb-2 mt-4 lg:mt-12">
-          Ekran görüntülerine hızlıca göz gezdirin
-        </h5>
-        <p className="text-xs sm:text-lg text-teal-700 font-raleway text-center mb-8">
-          Veticube ile kliniğinizin yönetimini kolaylaştırın, iş süreçlerinizi hızlandırın ve verimliliğinizi artırın.
-        </p>
-        <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 p-2 sm:p-3 rounded-t-xl bg-white">
-          <div className="relative flex items-center rounded-md bg-gray-100">
-            <AntdImage
-              alt="screenshot-1"
-              src="https://cdn.dribbble.com/userupload/6457402/file/original-39d52d099d770ddab2f098db46f008d1.png?resize=1024x768&vertical=center"
-            />
-          </div>
-          <div className="relative flex items-center rounded-md bg-gray-100">
-            <AntdImage
-              alt="screenshot-2"
-              src="https://cdn.dribbble.com/userupload/6457404/file/original-9e44e82dd0a3f236113331bd7bc298ff.png?resize=1024x768&vertical=center"
-            />
-          </div>
-          <div className="relative flex items-center rounded-md bg-gray-100">
-            <AntdImage
-              alt="screenshot-3"
-              src="https://cdn.dribbble.com/userupload/6457405/file/original-bb57507e8c98a3f06cf58ae5d9bef090.png?resize=1024x768&vertical=center"
-            />
-          </div>
-        </div>
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 p-2 sm:p-3 rounded-b-xl bg-white">
-          <div className="relative flex items-center rounded-md bg-gray-100">
-            <AntdImage
-              alt="screenshot-4"
-              src="https://cdn.dribbble.com/userupload/6019897/file/original-ab082e26bcdc4ca092ac3499ace67b3b.png?resize=1024x768&vertical=center"
-            />
-          </div>
-          <div className="relative flex items-center rounded-md bg-gray-100">
-            <AntdImage
-              alt="screenshot-5"
-              src="https://cdn.dribbble.com/userupload/6019895/file/original-348d4f9a547fe9012ff443acf1f59c0e.png?resize=1024x768&vertical=center"
-            />
-          </div>
         </div>
       </div>
     </section>
@@ -330,8 +404,9 @@ function Home() {
       <Navbar />
       <div className="min-h-screen w-full flex flex-col">
         <WelcomeSection />
-        <TrustedBrands />
+        <FeaturesSection />
         <ScreenshotsSection />
+        <TrustedBrands />
       </div>
       <Footer />
     </main>
