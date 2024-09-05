@@ -45,10 +45,22 @@ import Thermometer from "./svg/pack-3/thermometer.svg";
 import TodoList from "./svg/pack-3/todo-list.svg";
 
 // PNG
-import Logo from "./png/veticube-logo-transparent.png";
+import Logo from "./png/logo/veticube-logo-transparent.png";
+import Brand1 from "./png/brands/brand-1.png";
+import Brand2 from "./png/brands/brand-2.png";
+import Brand3 from "./png/brands/brand-3.png";
+import Brand4 from "./png/brands/brand-4.png";
+import Brand5 from "./png/brands/brand-5.png";
+import Brand6 from "./png/brands/brand-6.png";
 
 export const png = {
   Logo,
+  Brand1,
+  Brand2,
+  Brand3,
+  Brand4,
+  Brand5,
+  Brand6,
 };
 
 export const svg = {
