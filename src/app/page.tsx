@@ -13,14 +13,16 @@ import {
   PiRankingDuotone as RankingIcon,
   PiHeadCircuitDuotone as AIIcon,
   PiPackageDuotone as StockIcon,
+  PiMapPin as StepsStartIcon,
+  PiStethoscope as StepsHealthIcon,
   PiSyringe as StepsVaccinationIcon,
   PiTestTube as StepsTestIcon,
   PiTable as StepsTableIcon,
-  PiPackage as StepsPackageIcon,
-  PiCalendarDot as StepsCalendarIcon,
+  PiCalendarDots as StepsCalendarIcon,
+  PiCaretRight as ArrowIcon,
 } from "react-icons/pi";
 
-import { Card, FloatButton, Tooltip, Image as AntdImage, Calendar, Timeline } from "antd";
+import { Card, FloatButton, Tooltip, Image as AntdImage, Calendar, Timeline, Tag, Divider } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -176,61 +178,108 @@ const FeaturesSection = () => {
           <br className="hidden lg:flex" />
           <span className="hidden sm:block">Hasta kabulünden muayeneye, tedavi planından ürün satışına, tüm süreci senkronize ilerletin.</span>
         </p>
-        <div className="w-full grid grid-cols-1 sm:grid-cols-1 gap-2 sm:gap-4 p-2 sm:p-3 mt-2rounded-t-xl bg-white">
-          <Timeline
-            className="mt-8 -mb-8 text-teal-800"
-            mode="left"
-            items={[
-              {
-                className: "!text-xs sm:!text-md",
-                color: "gray",
-                label: "06/09/2024 - 13:30",
-                children: "Hasta kliniğe getirildi",
-              },
-              {
-                className: "!text-xs sm:!text-md",
-                color: "green",
-                label: "06/09/2024 - 13:45",
-                children: "Muayene tamamlandı",
-              },
-              {
-                className: "!text-xs sm:!text-md",
-                dot: <StepsVaccinationIcon />,
-                label: "06/09/2024 - 14:00",
-                children: "Tahlil için kan alındı",
-              },
-              {
-                className: "!text-xs sm:!text-md",
-                dot: <StepsTestIcon />,
-                label: "06/09/2024 - 14:40",
-                children: "Kan tahlili sonuçları çıktı",
-              },
-              {
-                className: "!text-xs sm:!text-md",
-                dot: <StepsTableIcon />,
-                label: "06/09/2024 - 15:00",
-                children: "Tedavi programı oluşturuldu",
-              },
-              {
-                className: "!text-xs sm:!text-md",
-                dot: <StepsPackageIcon />,
-                label: "06/09/2024 - 15:20",
-                children: "Ürün satışı yapıldı, stoktan düşüldü",
-              },
-              {
-                className: "!text-xs sm:!text-md",
-                dot: <StepsCalendarIcon />,
-                label: "06/09/2024 - 15:30",
-                children: "Kontrol muayenesi için randevu alındı",
-              },
-              {
-                className: "!text-xs sm:!text-md",
-                color: "green",
-                label: "06/09/2024 - 15:40",
-                children: "Tedavi tamamlandı",
-              },
-            ]}
-          />
+        <div className="w-full flex flex-col gap-4 p-6 mt-2 rounded-t-xl bg-white">
+          {/* Feature 1 */}
+          <div className="grid grid-cols-1 xl:grid-cols-[1fr_600px] items-center gap-6 sm:gap-12">
+            <div className="flex flex-col items-center gap-4">
+              <span className="heading-gradient-green-1 text-lg sm:text-2xl font-semibold">
+                Otonom Sistem
+                <br />
+                <span className="heading-gradient-green-2">Kliniğinizin yönetimini kolaylaştırın</span>
+              </span>
+              <p className="lg:max-w-[600px] text-xs sm:text-md text-gray-600 font-raleway">
+                Her adımı tek tek yönetmenize gerek kalmadan, kliniğinizdeki süreçleri otomatik hale getirin. Bu sayede operasyonel verimliliği
+                artırırken, zamandan tasarruf edebilirsiniz. Sistemimiz, gereksiz iş yükünü azaltarak kliniğinizin sorunsuz çalışmasını sağlar.
+              </p>
+            </div>
+            <div className="pointer-events-none flex items-center justify-center p-4 bg-gray-50 rounded-2xl">
+              <Timeline
+                className=" mt-8 -mb-8 text-start text-teal-800"
+                mode="left"
+                items={[
+                  {
+                    dot: <StepsStartIcon className="w-5 h-5" />,
+                    children: (
+                      <span className="inline-flex flex-col sm:flex-row items-start sm:items-center gap-2 mt-1">
+                        (06/09/2024 - 12:00)
+                        <ArrowIcon className="hidden sm:block" />
+                        <span className="font-semibold"> Hasta kliniğe getirildi</span>
+                      </span>
+                    ),
+                  },
+                  {
+                    dot: <StepsHealthIcon className="w-5 h-5" />,
+                    children: (
+                      <span className="inline-flex flex-col sm:flex-row items-start sm:items-center gap-2 mt-1">
+                        (06/09/2024 - 13:30)
+                        <ArrowIcon className="hidden sm:block" />
+                        <span className="font-semibold"> Genel muayene edildi</span>
+                      </span>
+                    ),
+                  },
+                  {
+                    dot: <StepsVaccinationIcon className="w-5 h-5" />,
+                    children: (
+                      <span className="inline-flex flex-col sm:flex-row items-start sm:items-center gap-2 mt-1">
+                        (06/09/2024 - 14:00)
+                        <ArrowIcon className="hidden sm:block" />
+                        <span className="font-semibold"> İç - Dış Parazit aşısı yapıldı</span>
+                      </span>
+                    ),
+                  },
+                  {
+                    dot: <StepsTestIcon className="w-5 h-5" />,
+                    children: (
+                      <span className="inline-flex flex-col sm:flex-row items-start sm:items-center  gap-2 mt-1">
+                        (06/09/2024 - 14:40)
+                        <ArrowIcon className="hidden sm:block" />
+                        <span className="font-semibold"> Biyokimya için kan alındı</span>
+                      </span>
+                    ),
+                  },
+                  {
+                    dot: <StepsTableIcon className="w-5 h-5" />,
+                    children: (
+                      <span className="inline-flex flex-col sm:flex-row items-start sm:items-center gap-2 mt-1">
+                        (06/09/2024 - 15:00)
+                        <ArrowIcon className="hidden sm:block" />
+                        <span className="font-semibold"> Tedavi programı oluşturuldu</span>
+                      </span>
+                    ),
+                  },
+                  {
+                    dot: <StepsCalendarIcon className="w-5 h-5" />,
+                    children: (
+                      <span className="inline-flex flex-col sm:flex-row items-start sm:items-center  gap-2 mt-1">
+                        (06/09/2024 - 15:30)
+                        <ArrowIcon className="hidden sm:block" />
+                        <span className="font-semibold"> Kontrol için randevu alındı</span>
+                      </span>
+                    ),
+                  },
+                ]}
+              />
+            </div>
+          </div>
+          <Divider />
+          {/* Feature 2 */}
+          <div className="grid grid-cols-1 xl:grid-cols-[600px_1fr] items-center gap-6 sm:gap-12">
+            <div className="order-unset xl:order-1 flex flex-col items-center gap-4">
+              <span className="heading-gradient-green-1 text-lg sm:text-2xl font-semibold">
+                Verilerin Gücünü Keşfedin
+                <br />
+                <span className="heading-gradient-green-2">Karmaşık verileri anlamlandırın</span>
+              </span>
+              <p className="lg:max-w-[600px] text-xs sm:text-md text-gray-600 font-raleway">
+                Verilerinizi etkili ve anlaşılır grafiklere dönüştürüyoruz, böylece istatistiksel bilgileri kolayca analiz edebilir ve stratejik
+                kararlar alabilirsiniz. Gelişmiş görselleştirme araçlarımızla, karmaşık verileri sadeleştirerek, iş süreçlerinize netlik ve hız
+                kazandırıyoruz.
+              </p>
+            </div>
+            <div className="pointer-events-none flex items-center justify-center p-4 bg-gray-50 rounded-2xl">
+              <Image src={png.FeaturesChart} alt="feature-2" className="w-full max-w-[500px] h-auto" />
+            </div>
+          </div>
         </div>
       </div>
     </section>

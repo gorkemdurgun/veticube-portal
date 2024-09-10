@@ -52,6 +52,7 @@ import Brand3 from "./png/brands/brand-3.png";
 import Brand4 from "./png/brands/brand-4.png";
 import Brand5 from "./png/brands/brand-5.png";
 import Brand6 from "./png/brands/brand-6.png";
+import FeaturesChart from "./png/landing/features-chart.png";
 
 export const png = {
   Logo,
@@ -61,6 +62,7 @@ export const png = {
   Brand4,
   Brand5,
   Brand6,
+  FeaturesChart,
 };
 
 export const svg = {

@@ -97,6 +97,10 @@ div > .ant-picker-calendar-date-content {
   color: #7e7d85 !important; /* gray-700 */
 }
 
+* > .ant-timeline-item-head {
+  background-color: transparent !important;
+}
+
 .button {
   display: flex;
   justify-content: center;
