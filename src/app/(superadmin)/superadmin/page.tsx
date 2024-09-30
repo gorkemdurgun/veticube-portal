@@ -12,7 +12,6 @@ import userPool from "@/services/cognito/userpool";
 
 import { CountrySelector } from "@/components/common";
 
-
 type RegisterFormValues = {
   first_name: string;
   last_name: string;
@@ -37,32 +36,26 @@ const Register: React.FC = () => {
     );
     attributes.push(
       new CognitoUserAttribute({
-        Name: "custom:firstName",
+        Name: "name",
         Value: registerForm.getFieldValue("first_name"),
       })
     );
     attributes.push(
       new CognitoUserAttribute({
-        Name: "custom:lastName",
+        Name: "family_name",
         Value: registerForm.getFieldValue("last_name"),
       })
     );
     attributes.push(
       new CognitoUserAttribute({
-        Name: "custom:countryCode",
-        Value: registerForm.getFieldValue("country_code"),
-      })
-    );
-    attributes.push(
-      new CognitoUserAttribute({
-        Name: "custom:phoneNumber",
-        Value: registerForm.getFieldValue("phone_number"),
+        Name: "phone_number",
+        Value: registerForm.getFieldValue("country_code") + registerForm.getFieldValue("phone_number"),
       })
     );
 
     console.log(attributes);
 
-    userPool.signUp(registerForm.getFieldValue("email"), registerForm.getFieldValue("password"), attributes, [], (err, data) => {
+    userPool.signUp(registerForm.getFieldValue("email").split("@")[0], registerForm.getFieldValue("password"), attributes, [], (err, data) => {
       if (err) {
         console.error(err);
         return;
@@ -111,7 +104,10 @@ const Register: React.FC = () => {
             >
               <CountrySelector
                 value={registerForm.getFieldValue("country_code")}
-                onChange={(value) => registerForm.setFieldsValue({ country_code: value })}
+                onChange={(value) => {
+                  console.log(value);
+                  registerForm.setFieldsValue({ country_code: value });
+                }}
               />
             </Form.Item>
             <Form.Item name="phone_number" label="Phone Number" rules={[{ required: true, message: "Please input phone number!" }]}>

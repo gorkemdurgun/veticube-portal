@@ -27,7 +27,7 @@ export const CountrySelector: React.FC<Props> = ({ value, onChange }) => {
       labelRender={(s) => (
         <div className="flex items-center space-x-2">
           <FlagIcon className="text-xl" />
-          <span>{s.value}</span>
+          <span>{s.label}</span>
         </div>
       )}
       options={countries.map((item, index) => {

@@ -20,19 +20,19 @@ export const signupUser = (
     Value: email,
   };
   const dataFirstName = {
-    Name: "custom:firstName",
+    Name: "name",
     Value: firstName,
   };
   const dataLastName = {
-    Name: "custom:lastName",
+    Name: "family_name",
     Value: lastName,
   };
   const dataCountryCode = {
-    Name: "custom:countryCode",
+    Name: "locale",
     Value: countryCode,
   };
   const dataPhoneNumber = {
-    Name: "custom:phoneNumber",
+    Name: "phone_number",
     Value: phoneNumber,
   };
 
