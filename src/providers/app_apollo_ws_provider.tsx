@@ -1,12 +1,22 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { WebSocketLink } from "@apollo/client/link/ws";
 
-const apolloWsClient = new ApolloClient({
+import { store } from "@/redux/store";
+
+export const apolloWsClient = new ApolloClient({
   cache: new InMemoryCache(),
   link: new WebSocketLink({
-    uri: "wss://nearby-weevil-32.hasura.app/v1/graphql",
+    uri: "ws://35.158.95.5:8080/v1/graphql",
     options: {
-      reconnect: true,
+      lazy: true,
+      connectionCallback: (error) => {
+        if (error) {
+          console.error("Failed to connect to the server", error);
+        } else {
+          console.log("Connected to the server");
+        }
+      },
+      // reconnect: true,
       connectionParams: {
         headers: {
           // "x-hasura-admin-secret": adminSecret,
@@ -15,6 +25,24 @@ const apolloWsClient = new ApolloClient({
     },
   }),
 });
+
+// set connectionParams for apolloWsClient with store
+apolloWsClient.setLink(
+  new WebSocketLink({
+    uri: "ws://35.158.95.5:8080/v1/graphql",
+    options: {
+      connectionParams: () => {
+        const state = store.getState();
+        const token = state.auth?.clientSession?.idToken?.jwtToken;
+        return {
+          headers: {
+            Authorization: token ? `Bearer ${token}` : "",
+          },
+        };
+      },
+    },
+  })
+);
 
 export default function AppApolloWSProvider({
   children,
