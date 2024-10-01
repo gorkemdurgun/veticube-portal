@@ -6,13 +6,10 @@ export type GetUserResponse = {
   user: {
     id: string;
     email: string;
-    first_name: string;
-    last_name: string;
-    default_role: string;
-    allowed_roles: string;
-    country_code: string;
+    name: string;
     phone_number: string;
-    is_verified: boolean;
+    created_at: string;
+    updated_at: string;
   };
 };
 
@@ -21,13 +18,10 @@ export const GET_USER: TypedDocumentNode<GetUserResponse> = gql`
     user: auth_users_by_pk(id: $id) {
       id
       email
-      first_name
-      last_name
-      default_role
-      allowed_roles
-      country_code
+      name
       phone_number
-      is_verified
+      created_at
+      updated_at
     }
   }
 `;

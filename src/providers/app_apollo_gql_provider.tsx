@@ -8,13 +8,13 @@ import { store } from "@/redux/store";
 import { auth } from "@/services/cognito";
 
 const httpLink = new HttpLink({
-  uri: "http://3.71.108.46:8080/v1/graphql",
+  uri: "http://35.158.95.5:8080/v1/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
   const state = store.getState();
   const token = state.auth?.clientSession?.idToken?.jwtToken;
-  const role = state.auth?.clientSession?.user?.allowed_roles[0];
+  // const role = state.auth?.clientSession?.user?.allowed_roles[0];
   // console.log("Token", token);
 
   if (token) {
@@ -22,14 +22,14 @@ const authLink = setContext((_, { headers }) => {
       headers: {
         ...headers,
         Authorization: token ? `Bearer ${token}` : "",
-        "x-hasura-role": role || "public",
+        // "x-hasura-role": role || "public",
       },
     };
   }
   return {
     headers: {
       ...headers,
-      "x-hasura-role": role || "public",
+      // "x-hasura-role": role || "public",
     },
   };
 });

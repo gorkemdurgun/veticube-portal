@@ -37,13 +37,7 @@ const Register: React.FC = () => {
     attributes.push(
       new CognitoUserAttribute({
         Name: "name",
-        Value: registerForm.getFieldValue("first_name"),
-      })
-    );
-    attributes.push(
-      new CognitoUserAttribute({
-        Name: "family_name",
-        Value: registerForm.getFieldValue("last_name"),
+        Value: registerForm.getFieldValue("first_name") + " " + registerForm.getFieldValue("last_name"),
       })
     );
     attributes.push(
@@ -55,7 +49,7 @@ const Register: React.FC = () => {
 
     console.log(attributes);
 
-    userPool.signUp(registerForm.getFieldValue("email").split("@")[0], registerForm.getFieldValue("password"), attributes, [], (err, data) => {
+    userPool.signUp(registerForm.getFieldValue("email"), registerForm.getFieldValue("password"), attributes, [], (err, data) => {
       if (err) {
         console.error(err);
         return;

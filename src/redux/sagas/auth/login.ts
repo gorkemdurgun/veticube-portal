@@ -16,6 +16,8 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
     const authResponse = yield call(auth.login.loginUser, email, password);
     const userId = authResponse?.idToken?.payload?.sub;
 
+    console.log("authResponse", authResponse);
+
     if (!userId) {
       throw new Error("No user ID found in response");
     }
@@ -31,12 +33,16 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
 
     message.success("Login successful");
 
+    
     const { data: userData } = yield call([apolloGqlClient, apolloGqlClient.query], {
       query: queries.user.GetUser,
       variables: {
         id: userId,
       },
     });
+
+    console.log("userData", userData);
+
 
     if (!userData) {
       throw new Error("No user data found");
@@ -48,6 +54,7 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
         user: userData.user as GetUserResponse["user"],
       })
     );
+        
 
     message.success("User data fetched");
 
