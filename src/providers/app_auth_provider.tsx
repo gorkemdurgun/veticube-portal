@@ -14,12 +14,11 @@ export const AppAuthProvider: React.FC<AppAuthProviderProps> = ({ children }) =>
   const { isAuthenticated } = useAppSelector((state) => state.auth);
 
   // const unprotectedRoutes = ["/", "/login", "/register", "/forgot-password"];
+  console.log("isAuthenticated", isAuthenticated);
 
   useEffect(() => {
     if (!isAuthenticated) {
-      // router.push("/login");
-    } else if (isAuthenticated) {
-      // router.push("/admin");
+      router.push("/login");
     } else {
       return;
     }

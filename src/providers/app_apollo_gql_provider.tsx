@@ -40,6 +40,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
       console.log(`[GraphQL error]: ${errMessage}`); // GraphQL hatalarını logla
       if (errMessage.includes("Could not verify JWT")) {
         message.error("Your session has expired. Please login again.");
+        store.dispatch(logout());
         // auth.login.refreshSession(); // Oturum süresi dolmuşsa oturumu yenile
       }
     });

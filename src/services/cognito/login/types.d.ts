@@ -36,13 +36,10 @@ type GetUserResponse = {
   user: {
     id: string;
     email: string;
-    first_name: string;
-    last_name: string;
-    default_role: string;
-    allowed_roles: string;
-    country_code: string;
+    name: string;
     phone_number: string;
-    is_verified: boolean;
+    updated_at: string;
+    created_at: string;
   };
 };
 

@@ -11,6 +11,7 @@ import type { GetProps } from "antd";
 type OTPProps = GetProps<typeof Input.OTP>;
 
 const RegisterVerify: React.FC = () => {
+  const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [timer, setTimer] = useState(() => {
     const savedTimer = localStorage.getItem("otp-timer");
@@ -33,7 +34,7 @@ const RegisterVerify: React.FC = () => {
   };
 
   const onSubmit = async () => {
-    // await verifyEmail("gorkemdurgunn@gmail.com", otp);
+    // await verifyEmail(email, otp);
   };
 
   const onChange: OTPProps["onChange"] = (text) => {
@@ -71,7 +72,13 @@ const RegisterVerify: React.FC = () => {
           title: "text-2xl text-center",
         }}
       >
-        <div className="flex items-center justify-center">
+        <div className="flex flex-col items-center justify-center gap-2">
+          <Input
+            prefix={<UserOutlined className="text-gray-400" />}
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <Input.OTP {...sharedProps} length={6} value={otp} onChange={setOtp} />
         </div>
         <Button type="primary" className="w-full mt-4" onClick={onSubmit}>

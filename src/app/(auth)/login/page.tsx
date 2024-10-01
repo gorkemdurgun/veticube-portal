@@ -43,6 +43,9 @@ const Login: React.FC = () => {
         loginRequest({
           email: loginForm.getFieldValue("email"),
           password: loginForm.getFieldValue("password"),
+          onSuccess: () => {
+            router.push("/admin");
+          },
         })
       );
     });
