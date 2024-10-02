@@ -14,8 +14,8 @@ export type GetDeviceDataResponse = {
 };
 
 export const GET_DEVICE_DATA: TypedDocumentNode<GetDeviceDataResponse> = gql`
-  subscription GetDeviceSnapData {
-    logs: devices_logs {
+  subscription GetDeviceSnapData($deviceId: String = "") {
+    logs: devices_logs(where: { device_id: { _eq: $deviceId } }) {
       device_id
       data
       created_at

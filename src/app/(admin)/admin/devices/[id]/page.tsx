@@ -2,26 +2,25 @@
 
 import { useEffect, useState } from "react";
 
-import dayjs from "dayjs";
+import { useParams } from "next/navigation";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 import { apolloWsClient } from "@/providers/app_apollo_ws_provider";
 import { subscriptions } from "@/services/db";
+import { convertTime } from "@/utils/timer";
 
 const DeviceIdPage = () => {
+  const { id: device_id } = useParams();
   const [dataArr, setDataArr] = useState<{ hum: number; temp: number }[] | undefined>([]);
 
-  // 2024-10-01T16:06:35.819703+00:00 to local time like 19:06
-  const convertTime = (time: string) => {
-    return dayjs(time).format("HH:mm");
-  };
-
   useEffect(() => {
+    if (!device_id) return;
     const subscription = apolloWsClient.subscribe({
       query: subscriptions.devices.getDeviceData,
+      variables: {
+        deviceId: device_id,
+      },
     });
-
-    // t
 
     const subscriptionObserver = subscription.subscribe({
       next: ({ data }) => {
@@ -43,10 +42,14 @@ const DeviceIdPage = () => {
     return () => {
       subscriptionObserver.unsubscribe();
     };
-  }, []);
+  }, [device_id]);
+
+  if (!device_id) {
+    return <div>Device not found</div>;
+  }
 
   return (
-    <div>
+    <div className="w-full">
       <h1>DeviceIdPage</h1>
 
       <div>
@@ -58,7 +61,7 @@ const DeviceIdPage = () => {
         </ul>
       </div>
 
-      <div className="w-[500px] h-96 mt-8">
+      <div className="w-full h-96 mt-8">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             width={500}
