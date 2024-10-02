@@ -30,9 +30,9 @@ const TemperatureCard: React.FC<TemperatureCardProps> = ({ temperatureData }) =>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" />
             <YAxis />
-            <Tooltip />
+            {/* <Tooltip /> */}
             <Legend />
-            <Line type="monotone" dataKey="t" stroke="#8884d8" />
+            <Line type="monotone" dataKey="t" stroke="#059669" strokeWidth={2} />
           </LineChart>
         </ResponsiveContainer>
       </div>

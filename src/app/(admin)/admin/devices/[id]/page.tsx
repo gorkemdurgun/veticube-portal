@@ -8,7 +8,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 
 import { apolloWsClient } from "@/providers/app_apollo_ws_provider";
 import { subscriptions } from "@/services/db";
-import { convertTime } from "@/utils/timer";
+import { convertDateTime, convertTime } from "@/utils/timer";
 
 import SensorOverview from "@/components/devices/SensorOverview";
 import TemperatureCard from "@/components/devices/TemperatureCard";
@@ -33,7 +33,7 @@ const DeviceIdPage = () => {
           return {
             h: log.data.h,
             t: log.data.t,
-            date: convertTime(log.created_at),
+            date: convertDateTime(log.created_at),
           };
         });
         setDataArr(logsArr);
