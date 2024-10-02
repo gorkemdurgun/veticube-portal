@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+import { t } from "i18next";
 import { useParams } from "next/navigation";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
@@ -10,10 +11,11 @@ import { subscriptions } from "@/services/db";
 import { convertTime } from "@/utils/timer";
 
 import SensorOverview from "@/components/devices/SensorOverview";
+import TemperatureCard from "@/components/devices/TemperatureCard";
 
 const DeviceIdPage = () => {
   const { id: device_id } = useParams();
-  const [dataArr, setDataArr] = useState<{ hum: number; temp: number }[] | undefined>([]);
+  const [dataArr, setDataArr] = useState<{ t: number; h: number; date: string }[] | undefined>([]);
 
   useEffect(() => {
     if (!device_id) return;
@@ -29,9 +31,9 @@ const DeviceIdPage = () => {
         const logs = data?.logs;
         const logsArr = logs?.map((log) => {
           return {
-            hum: log.data.h,
-            temp: log.data.t,
-            created_at: convertTime(log.created_at),
+            h: log.data.h,
+            t: log.data.t,
+            date: convertTime(log.created_at),
           };
         });
         setDataArr(logsArr);
@@ -51,31 +53,17 @@ const DeviceIdPage = () => {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col gap-4">
       <SensorOverview temperature={30} humidity={40} oxygen={50} carbon={60} lambLevel={2} isIR={true} isUV={false} />
-
-      <div className="w-full h-96 mt-8">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart
-            width={500}
-            height={300}
-            data={dataArr}
-            margin={{
-              top: 5,
-              right: 30,
-              left: 20,
-              bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="created_at" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="hum" stroke="#8884d8" activeDot={{ r: 8 }} />
-            <Line type="monotone" dataKey="temp" stroke="#82ca9d" />
-          </LineChart>
-        </ResponsiveContainer>
+      <div className="grid grid-cols-2 gap-4">
+        <TemperatureCard
+          temperatureData={dataArr?.map((data) => {
+            return {
+              t: data.t,
+              date: data.date,
+            };
+          })}
+        />
       </div>
     </div>
   );

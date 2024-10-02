@@ -1,15 +1,42 @@
+import { Tooltip } from "antd";
+import { ResponsiveContainer, LineChart, CartesianGrid, XAxis, YAxis, Legend, Line } from "recharts";
+
+import { ComponentCard } from "../common";
+
 type TemperatureCardProps = {
-  temperature: number;
-  time: string;
+  temperatureData?: {
+    t: number;
+    date: string;
+  }[];
 };
 
-const TemperatureCard: React.FC<TemperatureCardProps> = ({ temperature, time }) => {
+const TemperatureCard: React.FC<TemperatureCardProps> = ({ temperatureData }) => {
+  console.log("temperatureData", temperatureData);
+
   return (
-    <div className="w-full">
-      <h1>TemperatureCard</h1>
-      <h2>Temperature: {temperature}</h2>
-      <h3>Time: {time}</h3>
-    </div>
+    <ComponentCard title="Sıcaklık">
+      <div className="w-full h-96 mt-8">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart
+            data={temperatureData}
+            defaultShowTooltip={true}
+            margin={{
+              top: 5,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line type="monotone" dataKey="t" stroke="#8884d8" />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </ComponentCard>
   );
 };
 

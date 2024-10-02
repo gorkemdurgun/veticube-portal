@@ -17,10 +17,10 @@ type SensorOverviewProps = {
 
 const SensorOverview: React.FC<SensorOverviewProps> = ({ temperature, humidity, oxygen, carbon, lambLevel, isIR, isUV }) => {
   return (
-    <ComponentCard className="w-full" bodyClassName="flex flex-col gap-2">
-      <div className="flex items-end justify-between p-2 rounded-lg bg-gray-50/50">
+    <ComponentCard className="w-full" bodyClassName="flex flex-col gap-4">
+      <div className="flex items-center justify-between p-2 rounded-lg bg-gray-50/50">
         <h5 className="text-sm text-gray-500">
-          <span className="mr-2 text-md text-blue-900">{dayjs().format("HH:mm")}</span>
+          <span className="mr-2 text-md text-gray-900">{dayjs().format("HH:mm")}</span>
           {`(Son Güncelleme)`}
         </h5>
         <span className="text-sm text-gray-500">{dayjs().format("DD/MM/YYYY")}</span>
