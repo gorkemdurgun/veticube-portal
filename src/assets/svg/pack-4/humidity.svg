@@ -3,13 +3,13 @@
 <g transform="matrix(3.14 0 0 3.14 24 24)">
 <g style="">
 <g transform="matrix(1 0 0 1 0 -1.38)">
-<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(135,206,250); fill-rule: nonzero; opacity: 1;" transform=" translate(-7, -5.63)" d="M 10.799 7.06731 C 10.799 3.375 6.99985 0.9375 6.99985 0.9375 C 6.99985 0.9375 3.20068 3.375 3.20068 7.06731 C 3.20068 7.92799 3.60095 8.75341 4.31343 9.362 C 5.02592 9.9706 5.99225 10.3125 6.99985 10.3125 C 8.00745 10.3125 8.97379 9.9706 9.68627 9.362 C 10.3988 8.75341 10.799 7.92799 10.799 7.06731 Z" stroke-linecap="round"/>
+<path style="stroke: none; stroke-width: 0.7; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(135,206,250); fill-rule: nonzero; opacity: 1;" transform=" translate(-7, -5.63)" d="M 10.799 7.06731 C 10.799 3.375 6.99985 0.9375 6.99985 0.9375 C 6.99985 0.9375 3.20068 3.375 3.20068 7.06731 C 3.20068 7.92799 3.60095 8.75341 4.31343 9.362 C 5.02592 9.9706 5.99225 10.3125 6.99985 10.3125 C 8.00745 10.3125 8.97379 9.9706 9.68627 9.362 C 10.3988 8.75341 10.799 7.92799 10.799 7.06731 Z" stroke-linecap="round"/>
 </g>
 <g transform="matrix(1 0 0 1 -0.26 -1.64)">
-<path style="stroke: rgb(70,130,180); stroke-width: 1; stroke-dasharray: none; stroke-linecap: round; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 4; fill: none; fill-rule: nonzero; opacity: 1;" transform=" translate(-7, -5.63)" d="M 10.799 7.06731 C 10.799 3.375 6.99985 0.9375 6.99985 0.9375 C 6.99985 0.9375 3.20068 3.375 3.20068 7.06731 C 3.20068 7.92799 3.60095 8.75341 4.31343 9.362 C 5.02592 9.9706 5.99225 10.3125 6.99985 10.3125 C 8.00745 10.3125 8.97379 9.9706 9.68627 9.362 C 10.3988 8.75341 10.799 7.92799 10.799 7.06731 Z" stroke-linecap="round"/>
+<path style="stroke: rgb(70,130,180); stroke-width: 0.7; stroke-dasharray: none; stroke-linecap: round; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 4; fill: none; fill-rule: nonzero; opacity: 1;" transform=" translate(-7, -5.63)" d="M 10.799 7.06731 C 10.799 3.375 6.99985 0.9375 6.99985 0.9375 C 6.99985 0.9375 3.20068 3.375 3.20068 7.06731 C 3.20068 7.92799 3.60095 8.75341 4.31343 9.362 C 5.02592 9.9706 5.99225 10.3125 6.99985 10.3125 C 8.00745 10.3125 8.97379 9.9706 9.68627 9.362 C 10.3988 8.75341 10.799 7.92799 10.799 7.06731 Z" stroke-linecap="round"/>
 </g>
 <g transform="matrix(1 0 0 1 -0.26 4.39)">
-<path style="stroke: rgb(70,130,180); stroke-width: 1; stroke-dasharray: none; stroke-linecap: round; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 4; fill: none; fill-rule: nonzero; opacity: 1;" transform=" translate(-7, -11.65)" d="M 12.9983 10.3125 C 11.8084 12.0561 9.76747 12.9902 7.00001 12.9902 C 4.23255 12.9902 2.1916 12.0561 1.00171 10.3125" stroke-linecap="round"/>
+<path style="stroke: rgb(70,130,180); stroke-width: 0.7; stroke-dasharray: none; stroke-linecap: round; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 4; fill: none; fill-rule: nonzero; opacity: 1;" transform=" translate(-7, -11.65)" d="M 12.9983 10.3125 C 11.8084 12.0561 9.76747 12.9902 7.00001 12.9902 C 4.23255 12.9902 2.1916 12.0561 1.00171 10.3125" stroke-linecap="round"/>
 </g>
 </g>
 </g>
