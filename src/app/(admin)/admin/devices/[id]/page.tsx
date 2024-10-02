@@ -9,6 +9,8 @@ import { apolloWsClient } from "@/providers/app_apollo_ws_provider";
 import { subscriptions } from "@/services/db";
 import { convertTime } from "@/utils/timer";
 
+import SensorOverview from "@/components/devices/SensorOverview";
+
 const DeviceIdPage = () => {
   const { id: device_id } = useParams();
   const [dataArr, setDataArr] = useState<{ hum: number; temp: number }[] | undefined>([]);
@@ -50,16 +52,7 @@ const DeviceIdPage = () => {
 
   return (
     <div className="w-full">
-      <h1>DeviceIdPage</h1>
-
-      <div>
-        <h2>Logs</h2>
-        <ul>
-          {dataArr?.map((data, index) => (
-            <li key={index}>{`Hum: ${data.hum}, Temp: ${data.temp}`}</li>
-          ))}
-        </ul>
-      </div>
+      <SensorOverview temperature={30} humidity={40} oxygen={50} carbon={60} lambLevel={2} isIR={true} isUV={false} />
 
       <div className="w-full h-96 mt-8">
         <ResponsiveContainer width="100%" height="100%">

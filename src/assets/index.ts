@@ -44,6 +44,12 @@ import Syringe from "./svg/pack-3/syringe.svg";
 import Thermometer from "./svg/pack-3/thermometer.svg";
 import TodoList from "./svg/pack-3/todo-list.svg";
 
+// PACK 4
+import TemperatureIcon from "./svg/pack-4/temperature.svg";
+import HumidityIcon from "./svg/pack-4/humidity.svg";
+import OxygenIcon from "./svg/pack-4/oxygen.svg";
+import CarbonIcon from "./svg/pack-4/carbon.svg";
+
 // PNG
 import Logo from "./png/logo/veticube-logo-transparent.png";
 import Brand1 from "./png/brands/brand-1.png";
@@ -110,5 +116,11 @@ export const svg = {
     Syringe,
     Thermometer,
     TodoList,
+  },
+  pack4: {
+    TemperatureIcon,
+    HumidityIcon,
+    OxygenIcon,
+    CarbonIcon,
   },
 };
