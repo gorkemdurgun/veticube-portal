@@ -1,0 +1,1 @@
+type UserRole = "admin" | "veterinarian" | "nurse" | "secretary" | "customer";

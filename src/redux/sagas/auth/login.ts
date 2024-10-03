@@ -33,6 +33,7 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
 
     message.success("Login successful");
 
+    /*
     const { data: userData } = yield call([apolloGqlClient, apolloGqlClient.query], {
       query: queries.user.GetUser,
       variables: {
@@ -58,6 +59,8 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
     if (onSuccess) {
       onSuccess();
     }
+
+    */
   } catch (error) {
     console.error(error);
     const strError = toErrorMessage(error);
