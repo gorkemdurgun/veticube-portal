@@ -1,18 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import type { LoginRequestPayload, LoginSuccessPayload, RefreshSessionRequestPayload } from "../../services/cognito/login/types";
+import type {
+  CognitoLoginSuccessResponse,
+  GetUserSuccessResponse,
+  LoginRequestPayload,
+  RefreshSessionRequestPayload,
+} from "../../services/cognito/login/types";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthState {
   isAuthenticated: boolean;
-  clientSession: LoginSuccessPayload | null;
+  session: CognitoLoginSuccessResponse | null;
+  user: GetUserSuccessResponse | null;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: AuthState = {
   isAuthenticated: false,
-  clientSession: null,
+  session: null,
+  user: null,
   loading: false,
   error: null,
 };
@@ -24,9 +31,9 @@ const authSlice = createSlice({
     loginRequest: (state, action: PayloadAction<LoginRequestPayload>) => {
       state.loading = true;
     },
-    loginSuccess: (state, action: PayloadAction<LoginSuccessPayload>) => {
+    loginSuccess: (state, action: PayloadAction<CognitoLoginSuccessResponse>) => {
       state.isAuthenticated = true;
-      state.clientSession = action.payload;
+      state.session = action.payload;
       state.loading = false;
       state.error = null;
     },
@@ -36,16 +43,17 @@ const authSlice = createSlice({
     },
     logout: (state) => {
       state.isAuthenticated = false;
-      state.clientSession = null;
+      state.session = null;
+      state.user = null;
       state.loading = false;
       state.error = null;
     },
     refreshSessionRequest: (state, action: PayloadAction<RefreshSessionRequestPayload>) => {
       state.loading = true;
     },
-    refreshSessionSuccess: (state, action: PayloadAction<LoginSuccessPayload>) => {
+    refreshSessionSuccess: (state, action: PayloadAction<CognitoLoginSuccessResponse>) => {
       state.isAuthenticated = true;
-      state.clientSession = action.payload;
+      state.session = action.payload;
       state.loading = false;
       state.error = null;
     },
@@ -55,6 +63,18 @@ const authSlice = createSlice({
     },
     signUpVetAccountRequest: (state, action: PayloadAction<SignUpVetAccountRequestPayload>) => {
       state.loading = true;
+    },
+    getUserRequest: (state) => {
+      state.loading = true;
+    },
+    getUserSuccess: (state, action: PayloadAction<GetUserSuccessResponse>) => {
+      state.user = action.payload;
+      state.loading = false;
+      state.error = null;
+    },
+    getUserFailure: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = action.payload;
     },
   },
 });
@@ -68,6 +88,9 @@ export const {
   refreshSessionSuccess,
   refreshSessionFailure,
   signUpVetAccountRequest,
+  getUserRequest,
+  getUserSuccess,
+  getUserFailure,
 } = authSlice.actions;
 
 export default authSlice.reducer;

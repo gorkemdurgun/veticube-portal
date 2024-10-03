@@ -2,7 +2,7 @@ import { message } from "antd";
 import { call, put } from "redux-saga/effects";
 
 import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
-import { loginRequest, loginSuccess, loginFailure } from "@/redux/slices/authSlice";
+import { loginRequest, loginSuccess, loginFailure, getUserSuccess } from "@/redux/slices/authSlice";
 import { auth } from "@/services/cognito";
 import { queries } from "@/services/db";
 import { GetUserResponse } from "@/services/db/queries/user";
@@ -33,11 +33,13 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
 
     message.success("Login successful");
 
-    /*
     const { data: userData } = yield call([apolloGqlClient, apolloGqlClient.query], {
       query: queries.user.GetUser,
-      variables: {
-        id: userId,
+      fetchPolicy: "no-cache",
+      context: {
+        headers: {
+          Authorization: `Bearer ${authResponse.idToken.jwtToken}`,
+        },
       },
     });
 
@@ -47,10 +49,23 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
       throw new Error("No user data found");
     }
 
+    const dataOfUser = userData.user[0] as GetUserResponse["user"][0];
+
+    if (!dataOfUser) {
+      throw new Error("No user data found");
+    }
+
+    console.log("dataOfUser", dataOfUser);
+
     yield put(
-      loginSuccess({
-        ...authResponse,
-        user: userData.user as GetUserResponse["user"],
+      getUserSuccess({
+        id: dataOfUser.id,
+        email: dataOfUser.email,
+        name: dataOfUser.name,
+        role: dataOfUser.role,
+        phone_number: dataOfUser.phone_number,
+        created_at: dataOfUser.created_at,
+        updated_at: dataOfUser.updated_at,
       })
     );
 
@@ -59,8 +74,6 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
     if (onSuccess) {
       onSuccess();
     }
-
-    */
   } catch (error) {
     console.error(error);
     const strError = toErrorMessage(error);

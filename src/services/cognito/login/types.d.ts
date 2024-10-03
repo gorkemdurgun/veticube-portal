@@ -1,4 +1,4 @@
-type CognitoLoginResponse = {
+type CognitoLoginSuccessResponse = {
   idToken: {
     jwtToken: string;
     payload: {
@@ -32,15 +32,14 @@ type CognitoLoginResponse = {
   clockDrift: number;
 };
 
-type GetUserResponse = {
-  user: {
-    id: string;
-    email: string;
-    name: string;
-    phone_number: string;
-    updated_at: string;
-    created_at: string;
-  };
+type GetUserSuccessResponse = {
+  id: string;
+  email: string;
+  name: string;
+  role: UserRole;
+  phone_number?: string;
+  created_at: string;
+  updated_at: string;
 };
 
 type LoginRequestPayload = {
@@ -48,14 +47,6 @@ type LoginRequestPayload = {
   password: string;
   onSuccess?: () => void;
   onError?: (error: string) => void;
-};
-
-type LoginSuccessPayload = CognitoLoginResponse & {
-  user?: GetUserResponse["user"];
-};
-
-type GetUserSuccessPayload = {
-  user: GetUserResponse["user"];
 };
 
 type RefreshSessionRequestPayload = any;
@@ -66,4 +57,4 @@ type RefreshSessionRequestPayload = any;
 };
   */
 
-export type { LoginRequestPayload, LoginSuccessPayload, RefreshSessionRequestPayload };
+export type { CognitoLoginSuccessResponse, GetUserSuccessResponse, LoginRequestPayload, RefreshSessionRequestPayload };
