@@ -3,11 +3,12 @@
 import React, { useEffect, useState } from "react";
 
 import { LockOutlined, UserOutlined, MailOutlined, FlagOutlined, PhoneOutlined } from "@ant-design/icons";
-import { CognitoUserAttribute } from "amazon-cognito-identity-js";
 import { Button, Card, Divider, Form, Input, message } from "antd";
 import { useRouter } from "next/navigation";
 
 import { countries } from "@/constants/countries";
+import { useAppDispatch } from "@/hooks";
+import { signUpRequest } from "@/redux/slices/auth/authSlice";
 import userPool from "@/services/cognito/userpool";
 
 import { CountrySelector } from "@/components/common";
@@ -23,41 +24,18 @@ type SignupFormValues = {
 
 const Signup: React.FC = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [registerForm] = Form.useForm<SignupFormValues>();
 
   const handleSubmit = () => {
-    let attributes: CognitoUserAttribute[] = [];
-
-    attributes.push(
-      new CognitoUserAttribute({
-        Name: "email",
-        Value: registerForm.getFieldValue("email"),
+    dispatch(
+      signUpRequest({
+        email: registerForm.getFieldValue("email"),
+        password: registerForm.getFieldValue("password"),
+        name: `${registerForm.getFieldValue("first_name")} ${registerForm.getFieldValue("last_name")}`,
+        phone_number: registerForm.getFieldValue("country_code") + registerForm.getFieldValue("phone_number"),
       })
     );
-    attributes.push(
-      new CognitoUserAttribute({
-        Name: "name",
-        Value: registerForm.getFieldValue("first_name") + " " + registerForm.getFieldValue("last_name"),
-      })
-    );
-    attributes.push(
-      new CognitoUserAttribute({
-        Name: "phone_number",
-        Value: registerForm.getFieldValue("country_code") + registerForm.getFieldValue("phone_number"),
-      })
-    );
-
-    console.log("signUp attributes", attributes);
-
-    /*
-    userPool.signUp(registerForm.getFieldValue("email"), registerForm.getFieldValue("password"), attributes, [], (err, data) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      console.log(data);
-    });
-    */
   };
 
   return (

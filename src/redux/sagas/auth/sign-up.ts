@@ -2,7 +2,7 @@ import { message } from "antd";
 import { call, put } from "redux-saga/effects";
 
 import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
-import { loginRequest, loginSuccess, loginFailure } from "@/redux/slices/auth/authSlice";
+import { signUpRequest, signUpSuccess, signUpFailure } from "@/redux/slices/auth/authSlice";
 import { getUserSuccess } from "@/redux/slices/user/userSlice";
 import { auth } from "@/services/cognito";
 import { queries } from "@/services/db";
@@ -11,17 +11,17 @@ import toErrorMessage from "@/utils/toError";
 
 import type { CallEffect, PutEffect } from "redux-saga/effects";
 
-export function* login(action: ReturnType<typeof loginRequest>): Generator<CallEffect<any> | PutEffect<any>, void, any> {
-  const { email, password, onSuccess, onError } = action.payload;
+export function* signUp(action: ReturnType<typeof signUpRequest>): Generator<CallEffect<any> | PutEffect<any>, void, any> {
+  const { name, phone_number, email, password, onSuccess, onError } = action.payload;
+
+  console.log("signUp action", action);
   try {
-    const authResponse = yield call(auth.login.loginUser, email, password);
-    const userId = authResponse?.idToken?.payload?.sub;
+    /*
+    const signupResponse = yield call(auth.signup.signupUser, name, email, password, phone_number);
 
-    console.log("authResponse", authResponse);
-
-    if (!userId) {
-      throw new Error("No user ID found in response");
-    }
+    console.log("signupResponse", signupResponse);
+    */
+    /*
 
     yield put(
       loginSuccess({
@@ -75,11 +75,13 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
     if (onSuccess) {
       onSuccess();
     }
+
+    */
   } catch (error) {
     console.error(error);
     const strError = toErrorMessage(error);
     message.error(strError);
-    yield put(loginFailure(strError));
+    yield put(signUpFailure(strError));
     if (onError) {
       onError(strError);
     }

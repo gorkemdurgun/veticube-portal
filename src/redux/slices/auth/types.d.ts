@@ -46,8 +46,10 @@ type LoginSuccessPayload = {
 /* SIGN UP */
 
 type SignUpRequestPayload = {
+  name: string;
   email: string;
   password: string;
+  phone_number?: string;
   onSuccess?: () => void;
   onError?: (error: string) => void;
 };

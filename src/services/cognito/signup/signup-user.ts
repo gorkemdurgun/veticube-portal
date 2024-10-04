@@ -3,12 +3,10 @@ import { AuthenticationDetails, CognitoUser, CognitoUserAttribute, CognitoUserSe
 import userPool from "@/services/cognito/userpool";
 
 export const signupUser = (
+  name: string,
   email: string,
   password: string,
-  firstName: string,
-  lastName: string,
-  countryCode: string,
-  phoneNumber: string
+  phone_number?: string
 ): Promise<{
   user: CognitoUser | undefined;
   userId?: string;
@@ -19,33 +17,20 @@ export const signupUser = (
     Name: "email",
     Value: email,
   };
-  const dataFirstName = {
+  const dataName = {
     Name: "name",
-    Value: firstName,
-  };
-  const dataLastName = {
-    Name: "family_name",
-    Value: lastName,
-  };
-  const dataCountryCode = {
-    Name: "locale",
-    Value: countryCode,
+    Value: name,
   };
   const dataPhoneNumber = {
     Name: "phone_number",
-    Value: phoneNumber,
+    Value: phone_number || "",
   };
 
   const attributeEmail = new CognitoUserAttribute(dataEmail);
-  const attributeFirstName = new CognitoUserAttribute(dataFirstName);
-  const attributeLastName = new CognitoUserAttribute(dataLastName);
-  const attributeCountryCode = new CognitoUserAttribute(dataCountryCode);
+  const attributeName = new CognitoUserAttribute(dataName);
   const attributePhoneNumber = new CognitoUserAttribute(dataPhoneNumber);
-
   attributeList.push(attributeEmail);
-  attributeList.push(attributeFirstName);
-  attributeList.push(attributeLastName);
-  attributeList.push(attributeCountryCode);
+  attributeList.push(attributeName);
   attributeList.push(attributePhoneNumber);
 
   return new Promise((resolve, reject) => {
