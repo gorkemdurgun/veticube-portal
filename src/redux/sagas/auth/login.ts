@@ -40,6 +40,7 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
       context: {
         headers: {
           Authorization: `Bearer ${authResponse.idToken.jwtToken}`,
+          "x-hasura-role": "user",
         },
       },
     });
@@ -71,6 +72,53 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
     );
 
     message.success("User data fetched");
+
+    const userRole = dataOfUser.role;
+    const apolloQueryOptions: any = {
+      variables: {
+        id: dataOfUser.id,
+      },
+      fetchPolicy: "no-cache",
+      context: {
+        headers: {
+          Authorization: `Bearer ${authResponse.idToken.jwtToken}`,
+        },
+      },
+    };
+
+    if (userRole === "manager") {
+      const { data: managerData } = yield call([apolloGqlClient, apolloGqlClient.query], {
+        query: queries.user.GetManager,
+        ...apolloQueryOptions,
+      });
+      console.log("managerData", managerData);
+    } else if (userRole === "veterinarian") {
+      const { data: veterinarianData } = yield call([apolloGqlClient, apolloGqlClient.query], {
+        query: queries.user.GetVeterinarian,
+        ...apolloQueryOptions,
+      });
+      console.log("veterinarianData", veterinarianData);
+    } else if (userRole === "nurse") {
+      const { data: nurseData } = yield call([apolloGqlClient, apolloGqlClient.query], {
+        query: queries.user.GetNurse,
+        ...apolloQueryOptions,
+      });
+      console.log("nurseData", nurseData);
+    } else if (userRole === "secretary") {
+      const { data: secretaryData } = yield call([apolloGqlClient, apolloGqlClient.query], {
+        query: queries.user.GetSecretary,
+        ...apolloQueryOptions,
+      });
+      console.log("secretaryData", secretaryData);
+    } else if (userRole === "client") {
+      const { data: clientData } = yield call([apolloGqlClient, apolloGqlClient.query], {
+        query: queries.user.GetClient,
+        ...apolloQueryOptions,
+      });
+      console.log("clientData", clientData);
+    } else {
+      throw new Error("Unknown user role");
+    }
 
     if (onSuccess) {
       onSuccess();

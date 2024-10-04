@@ -13,23 +13,14 @@ const httpLink = new HttpLink({
 
 const authLink = setContext((_, { headers }) => {
   const state = store.getState();
-  const token = state.auth?.clientSession?.idToken?.jwtToken;
-  // const role = state.auth?.clientSession?.user?.allowed_roles[0];
-  // console.log("Token", token);
+  const token = state.auth?.session?.idToken.jwtToken;
+  const role = state.user?.user?.role;
 
-  if (token) {
-    return {
-      headers: {
-        ...headers,
-        Authorization: token ? `Bearer ${token}` : "",
-        // "x-hasura-role": role || "public",
-      },
-    };
-  }
   return {
     headers: {
       ...headers,
-      // "x-hasura-role": role || "public",
+      Authorization: token ? `Bearer ${token}` : "",
+      "x-hasura-role": role || "user",
     },
   };
 });
