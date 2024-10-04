@@ -17,10 +17,9 @@ export const confirmUser = (
     });
 
     user.confirmRegistration(otp, true, (err, result) => {
-      // console.log("confirming user", err, result);
       if (err) {
         onError(err);
-        reject(err);
+        // reject(err);
         return;
       }
 

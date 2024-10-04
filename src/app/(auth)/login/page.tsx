@@ -46,6 +46,13 @@ const Login: React.FC = () => {
           onSuccess: () => {
             router.push("/admin");
           },
+          onError(error) {
+            if (error === "User is not confirmed.") {
+              setIsNotConfirmed(true);
+            } else {
+              message.error(error);
+            }
+          },
         })
       );
     });

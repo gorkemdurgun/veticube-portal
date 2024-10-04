@@ -14,44 +14,53 @@ type Props = {
   data: {
     userEmail: string;
   };
+  onSuccess?: () => void;
+  onClosed?: () => void;
 };
 
-export const VerifyUserModal: React.FC<Props> = ({ visible, setVisible, data }) => {
+export const VerifyUserModal: React.FC<Props> = ({ visible, setVisible, data, onSuccess, onClosed }) => {
+  const [loading, setLoading] = useState(false);
   const [otp, setOtp] = useState("");
-
-  const { refetch: refetchClinics } = useCustomAppQuery({
-    query: queries.clinic.GetClinicAndBranches,
-  });
 
   const handleOk = () => {
     if (!data.userEmail) {
-      console.error("Vet email is required");
+      console.error("Email not found in data");
       return;
     }
+    setLoading(true);
     auth.signup.confirmUser(
       otp,
       data.userEmail,
       () => {
         message.success("User verified successfully");
-        refetchClinics();
         setVisible(false);
+        setLoading(false);
+        if (onSuccess) {
+          onSuccess();
+        }
       },
       (error) => {
         message.error(error.message);
+        setLoading(false);
       }
     );
   };
 
   const handleCancel = () => {
     setVisible(false);
+    if (onClosed) {
+      onClosed();
+    }
   };
 
   return (
     <Modal
+      closable={false}
       open={visible}
       onOk={handleOk}
       onCancel={handleCancel}
       title={<TranslatedText tPrefix="components" tKey="modals.verify-user.title" />}
+      confirmLoading={loading}
       okButtonProps={{
         disabled: otp.length !== 6,
         onClick: handleOk,
