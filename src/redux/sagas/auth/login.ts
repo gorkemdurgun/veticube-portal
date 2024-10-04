@@ -2,8 +2,8 @@ import { message } from "antd";
 import { call, put } from "redux-saga/effects";
 
 import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
-import { loginRequest, loginSuccess, loginFailure } from "@/redux/slices/authSlice";
-import { getUserSuccess } from "@/redux/slices/userSlice";
+import { loginRequest, loginSuccess, loginFailure } from "@/redux/slices/auth/authSlice";
+import { getUserSuccess } from "@/redux/slices/user/userSlice";
 import { auth } from "@/services/cognito";
 import { queries } from "@/services/db";
 import { GetUserResponse } from "@/services/db/queries/user";

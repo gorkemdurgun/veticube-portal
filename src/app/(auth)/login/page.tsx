@@ -7,7 +7,7 @@ import { Button, Card, Descriptions, Divider, Form, Input, message } from "antd"
 import { useRouter } from "next/navigation";
 
 import { useAppDispatch, useAppSelector, useCustomAppQuery } from "@/hooks";
-import { loginRequest } from "@/redux/slices/authSlice";
+import { loginRequest } from "@/redux/slices/auth/authSlice";
 import { queries } from "@/services/db";
 
 import { VerifyUserModal } from "@/components/modals";

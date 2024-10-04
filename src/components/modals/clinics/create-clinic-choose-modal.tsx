@@ -5,7 +5,7 @@ import { PiWarehouseDuotone as OneBranchIcon, PiBuildingOfficeDuotone as MultiBr
 import { Card, Checkbox, Divider, Form, Input, InputNumber, Modal } from "antd";
 
 import { useAppDispatch } from "@/hooks";
-import { createClinicRequest } from "@/redux/slices/clinicSlice";
+import { createClinicRequest } from "@/redux/slices/clinic/clinicSlice";
 import { mutations } from "@/services/db";
 
 import { CreateClinicMultipleModal } from "./create-clinic-multiple-modal";

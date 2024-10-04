@@ -23,8 +23,8 @@ import { Router } from "next/router";
 import { useTranslation } from "react-i18next";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { setLanguage } from "@/redux/slices/languageSlice";
-import { setMode, toggleDarkMode } from "@/redux/slices/themeSlice";
+import { setLanguage } from "@/redux/slices/language/languageSlice";
+import { setMode, toggleDarkMode } from "@/redux/slices/theme/themeSlice";
 
 import { Navbar } from "@/components/common";
 

@@ -1,6 +1,6 @@
 import { call, put } from "redux-saga/effects";
 
-import { createAppointmentRequest, createAppointmentSuccess, createAppointmentFailure } from "@/redux/slices/appointmentSlice";
+import { createAppointmentRequest, createAppointmentSuccess, createAppointmentFailure } from "@/redux/slices/appointment/appointmentSlice";
 import { store } from "@/redux/store";
 import { mutations } from "@/services/db";
 import toErrorMessage from "@/utils/toError";

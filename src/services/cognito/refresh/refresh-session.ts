@@ -1,7 +1,7 @@
 import { CognitoUserSession } from "amazon-cognito-identity-js";
 import { message } from "antd";
 
-import { loginSuccess } from "@/redux/slices/authSlice";
+import { loginSuccess } from "@/redux/slices/auth/authSlice";
 import { store } from "@/redux/store";
 
 import userPool from "../userpool";

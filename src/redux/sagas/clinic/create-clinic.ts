@@ -1,7 +1,6 @@
 import { call, put } from "redux-saga/effects";
 
-
-import { createClinicRequest, createClinicSuccess, createClinicFailure } from "@/redux/slices/clinicSlice";
+import { createClinicRequest, createClinicSuccess, createClinicFailure } from "@/redux/slices/clinic/clinicSlice";
 import { store } from "@/redux/store";
 import { mutations } from "@/services/db";
 import toErrorMessage from "@/utils/toError";

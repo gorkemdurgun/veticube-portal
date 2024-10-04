@@ -1,4 +1,15 @@
-type CognitoLoginSuccessResponse = {
+/* eslint-disable no-unused-vars */
+
+/* LOGIN */
+
+type LoginRequestPayload = {
+  email: string;
+  password: string;
+  onSuccess?: () => void;
+  onError?: (error: string) => void;
+};
+
+type LoginSuccessPayload = {
   idToken: {
     jwtToken: string;
     payload: {
@@ -32,29 +43,11 @@ type CognitoLoginSuccessResponse = {
   clockDrift: number;
 };
 
-type GetUserSuccessResponse = {
-  id: string;
-  email: string;
-  name: string;
-  role: UserRole;
-  phone_number?: string;
-  created_at: string;
-  updated_at: string;
-};
+/* SIGN UP */
 
-type LoginRequestPayload = {
+type SignUpRequestPayload = {
   email: string;
   password: string;
   onSuccess?: () => void;
   onError?: (error: string) => void;
 };
-
-type RefreshSessionRequestPayload = any;
-/* {
-  refreshToken: string;
-  onSuccess: (response: CognitoLoginResponse) => void;
-  onError: (error: string) => void;
-};
-  */
-
-export type { CognitoLoginSuccessResponse, GetUserSuccessResponse, LoginRequestPayload, RefreshSessionRequestPayload };

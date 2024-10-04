@@ -4,12 +4,12 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import rootSaga from "@/redux/sagas";
-import appointmentReducer from "@/redux/slices/appointmentSlice";
-import authReducer from "@/redux/slices/authSlice";
-import clinicReducer from "@/redux/slices/clinicSlice";
-import languageReducer from "@/redux/slices/languageSlice";
-import themeReducer from "@/redux/slices/themeSlice";
-import userReducer from "@/redux/slices/userSlice";
+import appointmentReducer from "@/redux/slices/appointment/appointmentSlice";
+import authReducer from "@/redux/slices/auth/authSlice";
+import clinicReducer from "@/redux/slices/clinic/clinicSlice";
+import languageReducer from "@/redux/slices/language/languageSlice";
+import themeReducer from "@/redux/slices/theme/themeSlice";
+import userReducer from "@/redux/slices/user/userSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 

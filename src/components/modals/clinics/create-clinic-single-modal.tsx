@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Checkbox, Divider, Form, Input, InputNumber, message, Modal } from "antd";
 
 import { useAppDispatch, useAppSelector, useCustomAppQuery } from "@/hooks";
-import { createClinicRequest } from "@/redux/slices/clinicSlice";
+import { createClinicRequest } from "@/redux/slices/clinic/clinicSlice";
 import { mutations, queries } from "@/services/db";
 
 import { TranslatedText } from "../../common";

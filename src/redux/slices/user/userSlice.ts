@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import type { GetUserSuccessResponse } from "../../services/cognito/login/types";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface UserState {
-  user: GetUserSuccessResponse | null;
+  user: GetUserSuccessPayload | null;
   loading: boolean;
   error: string | null;
 }
@@ -22,7 +21,7 @@ const userSlice = createSlice({
     getUserRequest: (state) => {
       state.loading = true;
     },
-    getUserSuccess: (state, action: PayloadAction<GetUserSuccessResponse>) => {
+    getUserSuccess: (state, action: PayloadAction<GetUserSuccessPayload>) => {
       state.user = action.payload;
       state.loading = false;
       state.error = null;

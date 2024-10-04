@@ -3,7 +3,7 @@ import { PiSignOutDuotone as SignOutIcon } from "react-icons/pi";
 import { Avatar, Button, Divider, Popconfirm } from "antd";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { logout } from "@/redux/slices/authSlice";
+import { logout } from "@/redux/slices/auth/authSlice";
 
 export const UserAvatar: React.FC<{}> = () => {
   const dispatch = useAppDispatch();

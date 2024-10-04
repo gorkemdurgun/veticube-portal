@@ -6,7 +6,7 @@ import { Divider, Drawer, Form, Input, Select } from "antd";
 import dayjs from "dayjs";
 
 import { useAppDispatch } from "@/hooks";
-import { createAppointmentRequest } from "@/redux/slices/appointmentSlice";
+import { createAppointmentRequest } from "@/redux/slices/appointment/appointmentSlice";
 
 import { SearchPatientInput } from "@/components/appointments";
 import SelectorDate from "@/components/appointments/selector-date";

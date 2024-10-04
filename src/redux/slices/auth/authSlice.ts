@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import type { CognitoLoginSuccessResponse, LoginRequestPayload, RefreshSessionRequestPayload } from "../../services/cognito/login/types";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthState {
   isAuthenticated: boolean;
-  session: CognitoLoginSuccessResponse | null;
+  session: LoginSuccessPayload | null;
   loading: boolean;
   error: string | null;
 }
@@ -24,7 +23,7 @@ const authSlice = createSlice({
     loginRequest: (state, action: PayloadAction<LoginRequestPayload>) => {
       state.loading = true;
     },
-    loginSuccess: (state, action: PayloadAction<CognitoLoginSuccessResponse>) => {
+    loginSuccess: (state, action: PayloadAction<LoginSuccessPayload>) => {
       state.isAuthenticated = true;
       state.session = action.payload;
       state.loading = false;
@@ -40,6 +39,18 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = null;
     },
+    signUpRequest: (state, action: PayloadAction<SignUpRequestPayload>) => {
+      state.loading = true;
+    },
+    signUpSuccess: (state) => {
+      state.loading = false;
+      state.error = null;
+    },
+    signUpFailure: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    /*
     refreshSessionRequest: (state, action: PayloadAction<RefreshSessionRequestPayload>) => {
       state.loading = true;
     },
@@ -56,18 +67,10 @@ const authSlice = createSlice({
     signUpVetAccountRequest: (state, action: PayloadAction<SignUpVetAccountRequestPayload>) => {
       state.loading = true;
     },
+    */
   },
 });
 
-export const {
-  loginRequest,
-  loginSuccess,
-  loginFailure,
-  logout,
-  refreshSessionRequest,
-  refreshSessionSuccess,
-  refreshSessionFailure,
-  signUpVetAccountRequest,
-} = authSlice.actions;
+export const { loginRequest, loginSuccess, loginFailure, logout, signUpRequest, signUpSuccess, signUpFailure } = authSlice.actions;
 
 export default authSlice.reducer;

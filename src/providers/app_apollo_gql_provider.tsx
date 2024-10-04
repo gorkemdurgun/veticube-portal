@@ -3,7 +3,7 @@ import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import { message } from "antd";
 
-import { logout } from "@/redux/slices/authSlice";
+import { logout } from "@/redux/slices/auth/authSlice";
 import { store } from "@/redux/store";
 import { auth } from "@/services/cognito";
 

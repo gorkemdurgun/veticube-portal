@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button, Divider, Form, Input, Modal, Select } from "antd";
 
 import { useAppDispatch, useCustomAppQuery } from "@/hooks";
-import { signUpVetAccountRequest } from "@/redux/slices/authSlice";
+// import { signUpVetAccountRequest } from "@/redux/slices/auth/authSlice";
 import { queries } from "@/services/db";
 
 import { VerifyUserModal } from "./verify-user-modal";
@@ -53,6 +53,7 @@ export const AddVeterinaryModal: React.FC<Props> = ({ visible, setVisible, data 
       // console.log(values, data);
     });
 
+    /*
     dispatch(
       signUpVetAccountRequest({
         clinicBranchId: data.clinicId,
@@ -75,6 +76,7 @@ export const AddVeterinaryModal: React.FC<Props> = ({ visible, setVisible, data 
         },
       })
     );
+    */
   };
 
   return (

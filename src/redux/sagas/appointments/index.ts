@@ -1,6 +1,6 @@
 import { takeLatest, takeEvery } from "redux-saga/effects";
 
-import { createAppointmentRequest } from "@/redux/slices/appointmentSlice";
+import { createAppointmentRequest } from "@/redux/slices/appointment/appointmentSlice";
 
 import { createAppointment } from "./create-appointment";
 

@@ -1,7 +1,6 @@
 import { takeLatest, takeEvery } from "redux-saga/effects";
 
-
-import { createClinicRequest } from "@/redux/slices/clinicSlice";
+import { createClinicRequest } from "@/redux/slices/clinic/clinicSlice";
 
 import { createClinic } from "./create-clinic";
 
