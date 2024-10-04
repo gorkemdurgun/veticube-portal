@@ -9,19 +9,21 @@ import authReducer from "@/redux/slices/authSlice";
 import clinicReducer from "@/redux/slices/clinicSlice";
 import languageReducer from "@/redux/slices/languageSlice";
 import themeReducer from "@/redux/slices/themeSlice";
+import userReducer from "@/redux/slices/userSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["theme", "lang", "auth"],
+  whitelist: ["theme", "lang", "auth", "user"],
 };
 
 const reducers = combineReducers({
   theme: themeReducer,
   lang: languageReducer,
   auth: authReducer,
+  user: userReducer,
   clinic: clinicReducer,
   appointment: appointmentReducer,
 });

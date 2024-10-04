@@ -1,17 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import type {
-  CognitoLoginSuccessResponse,
-  GetUserSuccessResponse,
-  LoginRequestPayload,
-  RefreshSessionRequestPayload,
-} from "../../services/cognito/login/types";
+import type { CognitoLoginSuccessResponse, LoginRequestPayload, RefreshSessionRequestPayload } from "../../services/cognito/login/types";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface AuthState {
   isAuthenticated: boolean;
   session: CognitoLoginSuccessResponse | null;
-  user: GetUserSuccessResponse | null;
   loading: boolean;
   error: string | null;
 }
@@ -19,7 +13,6 @@ interface AuthState {
 const initialState: AuthState = {
   isAuthenticated: false,
   session: null,
-  user: null,
   loading: false,
   error: null,
 };
@@ -44,7 +37,6 @@ const authSlice = createSlice({
     logout: (state) => {
       state.isAuthenticated = false;
       state.session = null;
-      state.user = null;
       state.loading = false;
       state.error = null;
     },
@@ -64,18 +56,6 @@ const authSlice = createSlice({
     signUpVetAccountRequest: (state, action: PayloadAction<SignUpVetAccountRequestPayload>) => {
       state.loading = true;
     },
-    getUserRequest: (state) => {
-      state.loading = true;
-    },
-    getUserSuccess: (state, action: PayloadAction<GetUserSuccessResponse>) => {
-      state.user = action.payload;
-      state.loading = false;
-      state.error = null;
-    },
-    getUserFailure: (state, action: PayloadAction<string>) => {
-      state.loading = false;
-      state.error = action.payload;
-    },
   },
 });
 
@@ -88,9 +68,6 @@ export const {
   refreshSessionSuccess,
   refreshSessionFailure,
   signUpVetAccountRequest,
-  getUserRequest,
-  getUserSuccess,
-  getUserFailure,
 } = authSlice.actions;
 
 export default authSlice.reducer;

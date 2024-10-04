@@ -8,7 +8,7 @@ import { logout } from "@/redux/slices/authSlice";
 export const UserAvatar: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
   const { darkMode } = useAppSelector((state) => state.theme);
-  const { session, user } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.user);
 
   return (
     <div
