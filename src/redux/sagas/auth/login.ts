@@ -14,8 +14,10 @@ import type { CallEffect, PutEffect } from "redux-saga/effects";
 export function* login(action: ReturnType<typeof loginRequest>): Generator<CallEffect<any> | PutEffect<any>, void, any> {
   const { email, password, onSuccess, onError } = action.payload;
   try {
+    // Cognito login
     const authResponse = yield call(auth.login.loginUser, email, password);
     const userId = authResponse?.idToken?.payload?.sub;
+    const userRole = authResponse?.idToken?.payload["custom:role"];
 
     console.log("authResponse", authResponse);
 
@@ -23,6 +25,67 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
       throw new Error("No user ID found in response");
     }
 
+    // Hasura query for user data
+    const { data: userResponse } = yield call([apolloGqlClient, apolloGqlClient.query], {
+      query: queries.user.GetUser,
+      fetchPolicy: "no-cache",
+      context: {
+        headers: {
+          Authorization: `Bearer ${authResponse.idToken.jwtToken}`,
+          "x-hasura-role": userRole,
+        },
+      },
+      variables: {
+        id: userId,
+      },
+    });
+
+    if (!userResponse) {
+      throw new Error("No user data found");
+    }
+
+    const userData = userResponse.user as GetUserResponse["user"];
+
+    if (!userData) {
+      throw new Error("No user data found at index 0");
+    }
+
+    if (process.env.NODE_ENV === "development") {
+      message.success(`Welcome, ${userData.name}!. You are logged in as ${userData.role}`);
+    }
+
+    /*
+    const apolloQueryOptions: any = {
+      fetchPolicy: "no-cache",
+      context: {
+        headers: {
+          Authorization: `Bearer ${authResponse.idToken.jwtToken}`,
+        },
+      },
+    };
+
+    const roleQueryMap = {
+      manager: queries.user.GetManager,
+      veterinarian: queries.user.GetVeterinarian,
+      nurse: queries.user.GetNurse,
+      secretary: queries.user.GetSecretary,
+      client: queries.user.GetClient,
+    };
+
+    const query = roleQueryMap[userRole];
+
+    if (query) {
+      const { data } = yield call([apolloGqlClient, apolloGqlClient.query], {
+        query,
+        ...apolloQueryOptions,
+      });
+      console.log(`${userRole}Data`, data);
+    } else {
+      throw new Error("Unknown user role");
+    }
+    */
+
+    // Session data to Redux
     yield put(
       loginSuccess({
         idToken: authResponse.idToken,
@@ -32,93 +95,18 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
       })
     );
 
-    message.success("Login successful");
-
-    const { data: userData } = yield call([apolloGqlClient, apolloGqlClient.query], {
-      query: queries.user.GetUser,
-      fetchPolicy: "no-cache",
-      context: {
-        headers: {
-          Authorization: `Bearer ${authResponse.idToken.jwtToken}`,
-          "x-hasura-role": "user",
-        },
-      },
-    });
-
-    console.log("userData", userData);
-
-    if (!userData) {
-      throw new Error("No user data found");
-    }
-
-    const dataOfUser = userData.user[0] as GetUserResponse["user"][0];
-
-    if (!dataOfUser) {
-      throw new Error("No user data found");
-    }
-
-    console.log("dataOfUser", dataOfUser);
-
+    // User data to Redux
     yield put(
       getUserSuccess({
-        id: dataOfUser.id,
-        email: dataOfUser.email,
-        name: dataOfUser.name,
-        role: dataOfUser.role,
-        phone_number: dataOfUser.phone_number,
-        created_at: dataOfUser.created_at,
-        updated_at: dataOfUser.updated_at,
+        id: userData.id,
+        email: userData.email,
+        name: userData.name,
+        role: userData.role,
+        phone_number: userData.phone_number,
+        created_at: userData.created_at,
+        updated_at: userData.updated_at,
       })
     );
-
-    message.success("User data fetched");
-
-    const userRole = dataOfUser.role;
-    const apolloQueryOptions: any = {
-      variables: {
-        id: dataOfUser.id,
-      },
-      fetchPolicy: "no-cache",
-      context: {
-        headers: {
-          Authorization: `Bearer ${authResponse.idToken.jwtToken}`,
-        },
-      },
-    };
-
-    if (userRole === "manager") {
-      const { data: managerData } = yield call([apolloGqlClient, apolloGqlClient.query], {
-        query: queries.user.GetManager,
-        ...apolloQueryOptions,
-      });
-      console.log("managerData", managerData);
-    } else if (userRole === "veterinarian") {
-      const { data: veterinarianData } = yield call([apolloGqlClient, apolloGqlClient.query], {
-        query: queries.user.GetVeterinarian,
-        ...apolloQueryOptions,
-      });
-      console.log("veterinarianData", veterinarianData);
-    } else if (userRole === "nurse") {
-      const { data: nurseData } = yield call([apolloGqlClient, apolloGqlClient.query], {
-        query: queries.user.GetNurse,
-        ...apolloQueryOptions,
-      });
-      console.log("nurseData", nurseData);
-    } else if (userRole === "secretary") {
-      const { data: secretaryData } = yield call([apolloGqlClient, apolloGqlClient.query], {
-        query: queries.user.GetSecretary,
-        ...apolloQueryOptions,
-      });
-      console.log("secretaryData", secretaryData);
-    } else if (userRole === "client") {
-      const { data: clientData } = yield call([apolloGqlClient, apolloGqlClient.query], {
-        query: queries.user.GetClient,
-        ...apolloQueryOptions,
-      });
-      console.log("clientData", clientData);
-    } else {
-      throw new Error("Unknown user role");
-    }
 
     if (onSuccess) {
       onSuccess();

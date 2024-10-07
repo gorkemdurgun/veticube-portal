@@ -5,18 +5,18 @@ import type { TypedDocumentNode } from "@apollo/client";
 export type GetUserResponse = {
   user: {
     id: string;
-    email: string;
     name: string;
+    phone_number: string;
     role: UserRole;
-    phone_number?: string;
+    email: string;
     created_at: string;
     updated_at: string;
-  }[];
+  };
 };
 
 export const GET_USER: TypedDocumentNode<GetUserResponse> = gql`
-  query GetUser {
-    user: auth_users {
+  query GetUser($id: uuid = "") {
+    user: auth_users_by_pk(id: $id) {
       id
       name
       phone_number
