@@ -2,17 +2,8 @@ import { GET_CLINIC_AND_BRANCHES, GET_SELECTED_DATE_RESERVATIONS, GET_CLINIC_BRA
 import { GET_USER_DEVICES } from "./device";
 import { GET_CLINIC_PETS, GET_PET_OVERVIEW, GET_REGISTERED_PATIENTS_CHART_DATA } from "./pet";
 import { SEARCH_PET } from "./pet/searchPet";
-import { GET_USER, GET_MANAGER, GET_VETERINARIAN, GET_NURSE, GET_SECRETARY, GET_CLIENT } from "./user";
 
 export const queries = {
-  user: {
-    GetUser: GET_USER,
-    GetManager: GET_MANAGER,
-    GetVeterinarian: GET_VETERINARIAN,
-    GetNurse: GET_NURSE,
-    GetSecretary: GET_SECRETARY,
-    GetClient: GET_CLIENT,
-  },
   clinic: {
     GetClinicAndBranches: GET_CLINIC_AND_BRANCHES,
     GetSelectedDateReservations: GET_SELECTED_DATE_RESERVATIONS,

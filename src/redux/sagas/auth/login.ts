@@ -5,7 +5,7 @@ import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
 import { loginRequest, loginSuccess, loginFailure } from "@/redux/slices/auth/authSlice";
 import { getUserSuccess } from "@/redux/slices/user/userSlice";
 import { auth } from "@/services/cognito";
-import { queries } from "@/services/db";
+import { rest } from "@/services/db";
 import { GetUserResponse } from "@/services/db/queries/user";
 import toErrorMessage from "@/utils/toError";
 
@@ -25,66 +25,6 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
       throw new Error("No user ID found in response");
     }
 
-    // Hasura query for user data
-    const { data: userResponse } = yield call([apolloGqlClient, apolloGqlClient.query], {
-      query: queries.user.GetUser,
-      fetchPolicy: "no-cache",
-      context: {
-        headers: {
-          Authorization: `Bearer ${authResponse.idToken.jwtToken}`,
-          "x-hasura-role": userRole,
-        },
-      },
-      variables: {
-        id: userId,
-      },
-    });
-
-    if (!userResponse) {
-      throw new Error("No user data found");
-    }
-
-    const userData = userResponse.user as GetUserResponse["user"];
-
-    if (!userData) {
-      throw new Error("No user data found at index 0");
-    }
-
-    if (process.env.NODE_ENV === "development") {
-      message.success(`Welcome, ${userData.name}!. You are logged in as ${userData.role}`);
-    }
-
-    /*
-    const apolloQueryOptions: any = {
-      fetchPolicy: "no-cache",
-      context: {
-        headers: {
-          Authorization: `Bearer ${authResponse.idToken.jwtToken}`,
-        },
-      },
-    };
-
-    const roleQueryMap = {
-      manager: queries.user.GetManager,
-      veterinarian: queries.user.GetVeterinarian,
-      nurse: queries.user.GetNurse,
-      secretary: queries.user.GetSecretary,
-      client: queries.user.GetClient,
-    };
-
-    const query = roleQueryMap[userRole];
-
-    if (query) {
-      const { data } = yield call([apolloGqlClient, apolloGqlClient.query], {
-        query,
-        ...apolloQueryOptions,
-      });
-      console.log(`${userRole}Data`, data);
-    } else {
-      throw new Error("Unknown user role");
-    }
-    */
-
     // Session data to Redux
     yield put(
       loginSuccess({
@@ -94,6 +34,36 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
         clockDrift: authResponse.clockDrift,
       })
     );
+
+    // Hasura rest req for user data
+    const { user: getUserResponse } = yield call(rest.user.getUser, userId);
+    console.log("getUserResponse", getUserResponse);
+
+    if (!getUserResponse) {
+      throw new Error("No user data found at index 0");
+    }
+
+    if (process.env.NODE_ENV === "development") {
+      message.success(`Welcome, ${getUserResponse.name}!. You are logged in as ${getUserResponse.role}`);
+    }
+
+    let roleSpecificData = null;
+    // Get role specific data
+    switch (userRole) {
+      case "manager":
+        roleSpecificData = yield call(rest.user.getManager, userId);
+        break;
+      case "manager":
+        break;
+      case "user":
+        break;
+      default:
+        break;
+    }
+
+    console.log("roleSpecificData", roleSpecificData);
+
+    /*
 
     // User data to Redux
     yield put(
@@ -111,6 +81,8 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
     if (onSuccess) {
       onSuccess();
     }
+
+    */
   } catch (error) {
     console.error(error);
     const strError = toErrorMessage(error);

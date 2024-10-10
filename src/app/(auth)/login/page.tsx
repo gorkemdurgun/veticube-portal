@@ -27,16 +27,6 @@ const Login: React.FC = () => {
   const [userId, setUserId] = useState<string | null>(null);
   const [isNotConfirmed, setIsNotConfirmed] = useState(false);
 
-  const { data: userData } = useCustomAppQuery({
-    query: queries.user.GetUser,
-    options: {
-      skip: !userId,
-      variables: {
-        id: userId,
-      },
-    },
-  });
-
   const handleSubmit = () => {
     loginForm.validateFields().then(() => {
       dispatch(
