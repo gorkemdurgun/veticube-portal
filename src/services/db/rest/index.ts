@@ -2,8 +2,7 @@ import axios from "axios";
 
 import { store } from "@/redux/store";
 
-import { getManager } from "./user/getManager";
-import { getUser } from "./user/getUser";
+import { getUser, getManager, getVeterinarian, getNurse, getSecretary, getClient } from "./user";
 
 export const axiosInstance = axios.create({
   baseURL: "http://35.158.95.5:8080/api/rest",
@@ -24,5 +23,9 @@ export const rest = {
   user: {
     getUser,
     getManager,
+    getVeterinarian,
+    getNurse,
+    getSecretary,
+    getClient,
   },
 };

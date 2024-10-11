@@ -6,7 +6,6 @@ import { loginRequest, loginSuccess, loginFailure } from "@/redux/slices/auth/au
 import { getUserSuccess } from "@/redux/slices/user/userSlice";
 import { auth } from "@/services/cognito";
 import { rest } from "@/services/db";
-import { GetUserResponse } from "@/services/db/queries/user";
 import toErrorMessage from "@/utils/toError";
 
 import type { CallEffect, PutEffect } from "redux-saga/effects";
@@ -44,45 +43,25 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
     }
 
     if (process.env.NODE_ENV === "development") {
-      message.success(`Welcome, ${getUserResponse.name}!. You are logged in as ${getUserResponse.role}`);
+      message.success(`Welcome, ${getUserResponse.name}!`);
     }
-
-    let roleSpecificData = null;
-    // Get role specific data
-    switch (userRole) {
-      case "manager":
-        roleSpecificData = yield call(rest.user.getManager, userId);
-        break;
-      case "manager":
-        break;
-      case "user":
-        break;
-      default:
-        break;
-    }
-
-    console.log("roleSpecificData", roleSpecificData);
-
-    /*
 
     // User data to Redux
     yield put(
       getUserSuccess({
-        id: userData.id,
-        email: userData.email,
-        name: userData.name,
-        role: userData.role,
-        phone_number: userData.phone_number,
-        created_at: userData.created_at,
-        updated_at: userData.updated_at,
+        id: getUserResponse.id,
+        name: getUserResponse.name,
+        email: getUserResponse.email,
+        role: userRole,
+        phone_number: getUserResponse.phone_number,
+        created_at: getUserResponse.created_at,
+        updated_at: getUserResponse.updated_at,
       })
     );
 
     if (onSuccess) {
       onSuccess();
     }
-
-    */
   } catch (error) {
     console.error(error);
     const strError = toErrorMessage(error);

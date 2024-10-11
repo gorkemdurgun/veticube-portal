@@ -100,8 +100,8 @@ const Login: React.FC = () => {
                 <Divider>
                   <span className="font-normal text-gray-500">or</span>
                 </Divider>
-                <Button disabled type="link" href="/register">
-                  Register
+                <Button  type="link" href="/sign-up">
+                  Sign up
                 </Button>
               </div>
             </Form.Item>

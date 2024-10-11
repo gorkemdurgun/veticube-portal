@@ -17,6 +17,7 @@ export const UserAvatar: React.FC<{}> = () => {
     >
       <Avatar size="small" shape="square" className="w-5 h-5 capitalize bg-gray-200 text-gray-500" icon={user?.name?.charAt(0)} />
       <span className="text-sm text-gray-500">{`${user?.name}`}</span>
+      <span className="text-xs text-gray-400">{`(${user?.role})`}</span>
       <Divider type="vertical" className="mx-0" />
       <Popconfirm icon={null} title="Are you sure you want to sign out?" okButtonProps={{ danger: true }} onConfirm={() => dispatch(logout())}>
         <Button danger type="link" className="mx-0 p-0">
