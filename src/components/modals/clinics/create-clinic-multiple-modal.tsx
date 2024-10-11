@@ -37,10 +37,11 @@ export const CreateClinicMultipleModal: React.FC<CreateClinicMultipleModalProps>
 
     // console.log(clinicValues, branchValues);
 
+    /*
     dispatch(
       createClinicRequest({
         name: clinicValues.name,
-        branches: branchValues.branch.map((branch) => ({
+        branch: branchValues.branch.map((branch) => ({
           name: branch.name,
           city: branch.city,
           address: branch.address,
@@ -51,6 +52,7 @@ export const CreateClinicMultipleModal: React.FC<CreateClinicMultipleModalProps>
         },
       })
     );
+    */
   };
 
   const handleCancel = () => {

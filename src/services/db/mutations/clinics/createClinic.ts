@@ -3,24 +3,26 @@ import { gql } from "@apollo/client";
 import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
 
 const GQL = gql`
-  mutation InsertClinic($name: String = "") {
-    clinic: insert_clinic_clinics(objects: { name: $name }) {
+  mutation InsertClinic($clinic_name: String) {
+    insert_clinic: insert_clinic_management_clinics(objects: { clinic_name: $clinic_name }) {
+      affected_rows
       returning {
         id
-        name
+        clinic_name
+        created_at
+        updated_at
       }
     }
   }
 `;
 
-export const service = async (name: string) => {
-  // console.log("createClinic", name);
+export const service = async (clinic_name: string) => {
   const { data, errors } = await apolloGqlClient.mutate<{
-    clinic: { returning: { id: string; name: string }[] };
+    clinic: { returning: { id: string; clinic_name: string }[] };
   }>({
     mutation: GQL,
     variables: {
-      name,
+      clinic_name,
     },
     context: {
       headers: {

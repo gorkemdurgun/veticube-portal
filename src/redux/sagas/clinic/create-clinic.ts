@@ -8,48 +8,42 @@ import toErrorMessage from "@/utils/toError";
 import type { CallEffect, PutEffect } from "redux-saga/effects";
 
 export function* createClinic(action: ReturnType<typeof createClinicRequest>): Generator<CallEffect<any> | PutEffect<any>, void, any> {
-  const { name, branches, onSuccess, onError } = action.payload;
-  // console.log("saga payload", action.payload);
+  const { name, branch, onSuccess, onError } = action.payload;
+
   try {
-    const userId = store.getState().auth.clientSession?.user?.id;
+    // Ana kliniği oluştur
+    const createdClinic = yield call(mutations.clinics.createClinic, name);
+    console.log("createdClinic", createdClinic);
 
-    if (!userId) {
-      throw new Error("User ID is not available");
-    }
-
-    // console.log("userid", userId);
-
-    // Kullanıcıdan alınan verileri kullanarak yeni bir klinik oluştur
-    const response = yield call(mutations.clinics.createClinic, name);
-    const clinicId = response.clinic.returning[0].id;
-
-    // console.log("saga response", response, clinicId);
-
+    const clinicId = createdClinic.insert_clinic.returning[0].id;
     if (!clinicId) {
       throw new Error("Failed to create clinic");
     }
 
-    // Kullanıcıyı bu clinicle bağlantılı olarak managers tablosuna ekle
-    // console.log("saga uids", userId, clinicId);
-    const responseManager = yield call(mutations.auth.managers.insertManager, userId, clinicId);
+    // Ana kliniğe bağlı bir branch oluştur
+    const createdBranch = yield call(mutations.clinics.createBranch, clinicId, branch.name, branch.city, branch.address, branch.phone_number);
+    console.log("createdBranch", createdBranch);
 
-    // Otomatik olarak clinic_branches tablosuna branchlar eklenmesi
-    if (!branches || branches.length === 0) {
-      throw new Error("Branches are not defined");
+    if (!createdBranch) {
+      throw new Error("Failed to create branch");
     }
 
-    // console.log("saga branches", branches);
-    for (const branch of branches) {
-      yield call(mutations.clinics.createBranch, clinicId, branch.name, branch.city, branch.address, branch.phone);
+    // Kullanıcı ile kliniği ilişkilendir
+    const userId = store.getState().user.user?.id;
+    if (!userId) {
+      throw new Error("User ID is not available");
     }
+    // const relatedManager = yield call(mutations.auth.managers.insertManager, userId, clinicId);
+
+    /*
+    // Başarılı olunduğunda Redux state güncelleme
+    yield put(createClinicSuccess(clinicId));
 
     // Başarılı olunduğunda onSuccess callback fonksiyonunu çağırma
     if (onSuccess) {
       onSuccess(clinicId);
     }
-
-    // Başarılı olunduğunda Redux state güncelleme
-    yield put(createClinicSuccess(clinicId));
+    */
   } catch (error) {
     const strError = toErrorMessage(error);
 

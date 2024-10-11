@@ -3,23 +3,28 @@ import { gql } from "@apollo/client";
 import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
 
 export const GQL = gql`
-  mutation InsertClinicBranches($address: String, $branch_name: String, $city: String, $phone: String, $clinic_id: uuid) {
-    branch: insert_clinic_clinic_branches(
-      objects: { address: $address, branch_name: $branch_name, city: $city, phone: $phone, clinic_id: $clinic_id }
+  mutation InsertBranch($clinic_id: uuid, $branch_name: String, $city: String, $address: String, $phone_number: String) {
+    insert_branch: insert_clinic_management_branches(
+      objects: { clinic_id: $clinic_id, branch_name: $branch_name, address: $address, city: $city, phone_number: $phone_number }
     ) {
       affected_rows
       returning {
         id
+        clinic_id
         branch_name
+        city
+        address
+        phone_number
+        created_at
+        updated_at
       }
     }
   }
 `;
 
-const service = async (clinic_id: string, branch_name: string, city?: string, address?: string, phone?: string) => {
-  const reqRole = "manager";
+const service = async (clinic_id: string, branch_name: string, city: string, address?: string, phone_number?: string) => {
   const { data } = await apolloGqlClient.mutate<{
-    branch: { returning: { id: string; branch_name: string }[]; affected_rows: number };
+    branch: { returning: { id: string; clinic_id: string; branch_name: string; city: string; address: string; phone_number: string }[] };
   }>({
     mutation: GQL,
     variables: {
@@ -27,11 +32,11 @@ const service = async (clinic_id: string, branch_name: string, city?: string, ad
       branch_name,
       city,
       address,
-      phone,
+      phone_number,
     },
     context: {
       headers: {
-        "x-hasura-role": reqRole,
+        "x-hasura-role": "manager",
       },
     },
   });

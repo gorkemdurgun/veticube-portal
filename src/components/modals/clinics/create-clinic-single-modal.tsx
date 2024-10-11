@@ -15,12 +15,12 @@ type CreateClinicSingleModalProps = {
 
 type ClinicFormValues = {
   name: string;
-  branches: {
+  branch: {
     name: string;
-    city?: string;
+    city: string;
     address?: string;
-    phone?: string;
-  }[];
+    phone_number?: string;
+  };
 };
 
 export const CreateClinicSingleModal: React.FC<CreateClinicSingleModalProps> = ({ visible, setVisible }) => {
@@ -28,29 +28,29 @@ export const CreateClinicSingleModal: React.FC<CreateClinicSingleModalProps> = (
   const { loading, error } = useAppSelector((state) => state.clinic);
   const [createClinicForm] = Form.useForm<ClinicFormValues>();
 
+  /*
   const { refetch: refetchClinics } = useCustomAppQuery({
     query: queries.clinic.GetClinicAndBranches,
   });
+  */
 
   const handleOk = () => {
     const clinicValues = createClinicForm.getFieldsValue();
-    const branchValues = clinicValues.branches[0];
+    const branchValues = clinicValues.branch;
 
     createClinicForm.validateFields().then(() => {
       dispatch(
         createClinicRequest({
           name: clinicValues.name,
-          branches: [
-            {
-              name: clinicValues?.name + " - (Base)",
-              city: branchValues?.city,
-              address: branchValues?.address,
-              phone: branchValues?.phone,
-            },
-          ],
+          branch: {
+            name: clinicValues?.name + " - (Base)",
+            city: branchValues?.city,
+            address: branchValues?.address,
+            phone_number: branchValues?.phone_number,
+          },
           onSuccess: () => {
             setVisible(false);
-            refetchClinics();
+            // refetchClinics();
           },
           onError: (error) => {
             message.error({
@@ -89,16 +89,21 @@ export const CreateClinicSingleModal: React.FC<CreateClinicSingleModalProps> = (
         >
           <Input placeholder="Clinic Name" />
         </Form.Item>
-        <Form.Item name={["branches", "city"]} label={<TranslatedText tPrefix="components" tKey="modals.create-clinic-single.form.city" />}>
+        <Form.Item
+          required
+          name={["branch", "city"]}
+          label={<TranslatedText tPrefix="components" tKey="modals.create-clinic-single.form.city" />}
+          rules={[{ required: true, message: "Please enter city" }]}
+        >
           <Input placeholder="City" />
         </Form.Item>
-        <Form.Item
-          name={["branches", "address"]}
-          label={<TranslatedText tPrefix="components" tKey="modals.create-clinic-single.form.address" />}
-        >
+        <Form.Item name={["branch", "address"]} label={<TranslatedText tPrefix="components" tKey="modals.create-clinic-single.form.address" />}>
           <Input placeholder="Address" />
         </Form.Item>
-        <Form.Item name={["branches", "phone"]} label={<TranslatedText tPrefix="components" tKey="modals.create-clinic-single.form.phone" />}>
+        <Form.Item
+          name={["branch", "phone_number"]}
+          label={<TranslatedText tPrefix="components" tKey="modals.create-clinic-single.form.phone" />}
+        >
           <Input placeholder="Phone" />
         </Form.Item>
       </Form>

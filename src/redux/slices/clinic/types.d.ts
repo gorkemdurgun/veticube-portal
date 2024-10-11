@@ -1,12 +1,11 @@
 type CreateClinicRequestPayload = {
+  name: string;
+  branch: {
     name: string;
-    branches?: {
-      name: string;
-      city?: string;
-      address?: string;
-      phone?: string;
-    }[];
-    onSuccess?: (clinicId: string) => void;
-    onError?: (error: string) => void;
+    city: string;
+    address?: string;
+    phone_number?: string;
   };
-  
+  onSuccess?: (clinicId: string) => void;
+  onError?: (error: string) => void;
+};
