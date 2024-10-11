@@ -6,7 +6,6 @@ import { signUpRequest, signUpSuccess, signUpFailure } from "@/redux/slices/auth
 import { getUserSuccess } from "@/redux/slices/user/userSlice";
 import { auth } from "@/services/cognito";
 import { queries } from "@/services/db";
-import { GetUserResponse } from "@/services/db/queries/user";
 import toErrorMessage from "@/utils/toError";
 
 import type { CallEffect, PutEffect } from "redux-saga/effects";

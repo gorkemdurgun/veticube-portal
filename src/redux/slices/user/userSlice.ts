@@ -5,7 +5,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 interface UserState {
   loading: boolean;
   error: string | null;
-  user: GetUserSuccessPayload | null;
+  user: GetUserSuccessPayload["user"] | null;
 }
 
 const initialState: UserState = {
@@ -22,7 +22,7 @@ const userSlice = createSlice({
       state.loading = true;
     },
     getUserSuccess: (state, action: PayloadAction<GetUserSuccessPayload>) => {
-      state.user = action.payload;
+      state.user = action.payload.user;
       state.loading = false;
       state.error = null;
     },

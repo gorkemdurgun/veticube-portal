@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { store } from "@/redux/store";
 
-import { getUser, getManager, getVeterinarian, getNurse, getSecretary, getClient } from "./user";
+import { getUserById } from "./user";
 
 export const axiosInstance = axios.create({
   baseURL: "http://35.158.95.5:8080/api/rest",
@@ -21,11 +21,6 @@ axiosInstance.interceptors.request.use((config) => {
 
 export const rest = {
   user: {
-    getUser,
-    getManager,
-    getVeterinarian,
-    getNurse,
-    getSecretary,
-    getClient,
+    getUserById,
   },
 };

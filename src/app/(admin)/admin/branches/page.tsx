@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+import { useQuery } from "@apollo/client";
 import { Breadcrumb, Button, Card, Divider, message, Segmented } from "antd";
 
 import { useCustomAppQuery } from "@/hooks";
@@ -27,6 +28,7 @@ const AdminBranchesPage: React.FC = () => {
     query: queries.clinic.GetClinicAndBranches,
   });
   */
+ const { loading, data } = useQuery(queries.clinic.GetClinicAndBranches);
 
   return (
     <div className="w-full flex flex-col gap-4">

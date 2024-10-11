@@ -2,20 +2,21 @@ import toErrorMessage from "@/utils/toError";
 
 import { axiosInstance } from "..";
 
-type GetUserResponse = {
+type GetUserByIdResponse = {
   user: {
     id: string;
-    name: string;
-    phone_number: string;
+    full_name: string;
     email: string;
+    phone_number?: string;
+    status: string;
     created_at: string;
     updated_at: string;
   };
 };
 
-export const getUser = async (id: string) => {
+export const getUserById = async (id: string) => {
   try {
-    const { data } = await axiosInstance.get<GetUserResponse>(`/getUser/${id}`);
+    const { data } = await axiosInstance.get<GetUserByIdResponse>(`/getUserById/${id}`);
     return data;
   } catch (error) {
     const strError = toErrorMessage(error);

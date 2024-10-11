@@ -25,13 +25,19 @@ export const signupUser = (
     Name: "phone_number",
     Value: phone_number || "",
   };
+  const dataRole = {
+    Name: "custom:role",
+    Value: "user",
+  };
 
   const attributeEmail = new CognitoUserAttribute(dataEmail);
   const attributeName = new CognitoUserAttribute(dataName);
   const attributePhoneNumber = new CognitoUserAttribute(dataPhoneNumber);
+  const attributeRole = new CognitoUserAttribute(dataRole);
   attributeList.push(attributeEmail);
   attributeList.push(attributeName);
   attributeList.push(attributePhoneNumber);
+  attributeList.push(attributeRole);
 
   return new Promise((resolve, reject) => {
     userPool.signUp(email, password, attributeList, [], (err, result) => {

@@ -35,27 +35,29 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
     );
 
     // Hasura rest req for user data
-    const { user: getUserResponse } = yield call(rest.user.getUser, userId);
-    console.log("getUserResponse", getUserResponse);
+    const { user }: GetUserSuccessPayload = yield call(rest.user.getUserById, userId);
+    console.log("user", user);
 
-    if (!getUserResponse) {
-      throw new Error("No user data found at index 0");
+    if (!user) {
+      throw new Error("No user data found in response");
     }
 
     if (process.env.NODE_ENV === "development") {
-      message.success(`Welcome, ${getUserResponse.name}!`);
+      message.success(`Welcome, ${user.full_name}!`);
     }
 
     // User data to Redux
     yield put(
       getUserSuccess({
-        id: getUserResponse.id,
-        name: getUserResponse.name,
-        email: getUserResponse.email,
-        role: userRole,
-        phone_number: getUserResponse.phone_number,
-        created_at: getUserResponse.created_at,
-        updated_at: getUserResponse.updated_at,
+        user: {
+          id: user.id,
+          full_name: user.full_name,
+          email: user.email,
+          phone_number: user.phone_number,
+          status: user.status,
+          created_at: user.created_at,
+          updated_at: user.updated_at,
+        },
       })
     );
 
