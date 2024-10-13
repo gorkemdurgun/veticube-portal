@@ -22,7 +22,13 @@ import { AddVeterinaryModal, VerifyUserModal } from "../modals";
 
 type Props = {
   isLoading: boolean;
-  branches?: ClinicBranchItem[];
+  branches?: {
+    id: string;
+    branch_name: string;
+    phone_number: string;
+    city: string;
+    address: string;
+  }[];
 };
 
 const VetTable = ({ vets }: { vets: ClinicBranchVeterinarianItem[] }) => {
@@ -150,9 +156,9 @@ export const BranchesList: React.FC<Props> = ({ isLoading, branches }) => {
             pagination={false}
             expandable={{
               expandRowByClick: true,
-              rowExpandable: (record) => record.veterinarians.length > 0,
-              defaultExpandedRowKeys: branches?.filter((branch) => branch.veterinarians.length > 0).map((branch) => branch.id),
-              expandedRowRender: (record) => <VetTable vets={record.veterinarians} />,
+              // rowExpandable: (record) => record.veterinarians.length > 0,
+              // defaultExpandedRowKeys: branches?.filter((branch) => branch.veterinarians.length > 0).map((branch) => branch.id),
+              // expandedRowRender: (record) => <VetTable vets={record.veterinarians} />,
             }}
             columns={[
               {

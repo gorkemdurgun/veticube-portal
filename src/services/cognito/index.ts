@@ -1,6 +1,7 @@
 import { loginUser } from "./login";
 import { refreshSession } from "./refresh";
 import { signupUser, resendOtp, confirmUser } from "./signup";
+import { updateAttributes } from "./user";
 
 export const auth = {
   login: {
@@ -13,5 +14,8 @@ export const auth = {
     signupUser,
     resendOtp,
     confirmUser,
+  },
+  user: {
+    updateAttributes,
   },
 };

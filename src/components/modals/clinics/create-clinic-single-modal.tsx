@@ -1,8 +1,9 @@
 import { useState } from "react";
 
+import { useQuery } from "@apollo/client";
 import { Checkbox, Divider, Form, Input, InputNumber, message, Modal } from "antd";
 
-import { useAppDispatch, useAppSelector, useCustomAppQuery } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { createClinicRequest } from "@/redux/slices/clinic/clinicSlice";
 import { mutations, queries } from "@/services/db";
 
@@ -28,11 +29,7 @@ export const CreateClinicSingleModal: React.FC<CreateClinicSingleModalProps> = (
   const { loading, error } = useAppSelector((state) => state.clinic);
   const [createClinicForm] = Form.useForm<ClinicFormValues>();
 
-  /*
-  const { refetch: refetchClinics } = useCustomAppQuery({
-    query: queries.clinic.GetClinicAndBranches,
-  });
-  */
+  const { refetch: refetchClinics } = useQuery(queries.clinic.GetManagerClinicAssignments);
 
   const handleOk = () => {
     const clinicValues = createClinicForm.getFieldsValue();
@@ -50,7 +47,7 @@ export const CreateClinicSingleModal: React.FC<CreateClinicSingleModalProps> = (
           },
           onSuccess: () => {
             setVisible(false);
-            // refetchClinics();
+            refetchClinics();
           },
           onError: (error) => {
             message.error({

@@ -2,11 +2,11 @@
 
 import { useParams } from "next/navigation";
 
-import { useCustomAppQuery } from "@/hooks";
 import { queries } from "@/services/db";
 
 import PatientOverviewCard from "@/components/patients/patient-overview-card";
 import PatientWeightHistory from "@/components/patients/patient-weight-history";
+import { useQuery } from "@apollo/client";
 
 const weightData = [
   {
@@ -54,10 +54,7 @@ const weightData = [
 const PatientsIDPage = () => {
   const { id: petId } = useParams();
 
-  const { loading, data } = useCustomAppQuery({
-    query: queries.pet.GetPetOverview,
-    options: { variables: { petId } },
-  });
+  const { loading, data } = useQuery(queries.pet.GetPetOverview, { variables: { petId } });
   // console.log("Pet data", data?.pet[0].name);
 
   return (

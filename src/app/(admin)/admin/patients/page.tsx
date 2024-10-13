@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 
 import { PiPlusCircleDuotone as AddIcon, PiMagnifyingGlassDuotone as ViewIcon } from "react-icons/pi";
 
+import { useQuery } from "@apollo/client";
 import dayjs from "dayjs";
 
 import { svg } from "@/assets";
-import { useCustomAppQuery } from "@/hooks";
 import { queries } from "@/services/db";
 import { chart } from "@/utils";
 
@@ -21,15 +21,10 @@ const PatientsPage = () => {
   const [filters, setFilters] = useState<Record<string, string | undefined>>();
 
   const last30Days = dayjs().subtract(30, "day").format("YYYY-MM-DD");
-  const { data } = useCustomAppQuery({
-    query: queries.pet.GetClinicPets,
-  });
-  const { data: chartData } = useCustomAppQuery({
-    query: queries.pet.GetRegisteredPatientsChartData,
-    options: {
-      variables: {
-        untilDate: last30Days,
-      },
+  const { data } = useQuery(queries.pet.GetClinicPets);
+  const { data: chartData } = useQuery(queries.pet.GetRegisteredPatientsChartData, {
+    variables: {
+      untilDate: last30Days,
     },
   });
 

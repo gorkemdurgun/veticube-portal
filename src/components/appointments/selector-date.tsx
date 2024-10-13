@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
+import { useQuery } from "@apollo/client";
 import { DatePicker } from "antd";
 import dayjs, { Dayjs } from "dayjs";
 
-import { useCustomAppQuery } from "@/hooks";
 import { queries } from "@/services/db";
 import type { GetSelectedDateReservationsResponse } from "@/services/db/queries/clinic";
 
@@ -15,12 +15,10 @@ type Props = DatePickerProps & {
 
 const SelectorDate: React.FC<Props> = ({ onDateChange, ...props }) => {
   const [date, setDate] = useState<dayjs.Dayjs | undefined>(undefined);
-  const { data, loading, refetch } = useCustomAppQuery({
-    query: queries.clinic.GetSelectedDateReservations,
-    options: {
-      skip: !date,
-      variables: { selectedDate: date?.format("YYYY-MM-DD") },
-    },
+  const { data, loading, refetch } = useQuery(queries.clinic.GetSelectedDateReservations, {
+    skip: !date,
+    variables: { selectedDate: date?.format("YYYY-MM-DD") },
+    fetchPolicy: "no-cache",
   });
 
   // Zamanı parse et ve dakikaları ayır

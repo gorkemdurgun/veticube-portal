@@ -22,8 +22,8 @@ export const GQL = gql`
   }
 `;
 
-const service = async (clinic_id: string, branch_name: string, city: string, address?: string, phone_number?: string) => {
-  const { data } = await apolloGqlClient.mutate<{
+export const createBranch = async (clinic_id: string, branch_name: string, city: string, address?: string, phone_number?: string) => {
+  const { data, errors } = await apolloGqlClient.mutate<{
     branch: { returning: { id: string; clinic_id: string; branch_name: string; city: string; address: string; phone_number: string }[] };
   }>({
     mutation: GQL,
@@ -41,7 +41,6 @@ const service = async (clinic_id: string, branch_name: string, city: string, add
     },
   });
 
-  return data;
+  return { data, errors };
 };
 
-export { service as createBranch };

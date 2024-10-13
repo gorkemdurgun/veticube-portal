@@ -12,20 +12,29 @@ export function* createClinic(action: ReturnType<typeof createClinicRequest>): G
 
   try {
     // Ana kliniği oluştur
-    const createdClinic = yield call(mutations.clinics.createClinic, name);
-    console.log("createdClinic", createdClinic);
+    const { data: createClinicData, errors: createClinicErrors } = yield call(mutations.clinics.createClinic, name);
 
-    const clinicId = createdClinic.insert_clinic.returning[0].id;
-    if (!clinicId) {
-      throw new Error("Failed to create clinic");
+    if (createClinicErrors) {
+      console.error("createClinicErrors", createClinicErrors);
+      throw new Error(createClinicErrors[0]?.message);
     }
 
-    // Ana kliniğe bağlı bir branch oluştur
-    const createdBranch = yield call(mutations.clinics.createBranch, clinicId, branch.name, branch.city, branch.address, branch.phone_number);
-    console.log("createdBranch", createdBranch);
+    // Oluşturulan ana kliniğin ID'sini al
+    const clinicId = createClinicData.insert_clinic.returning[0].id;
 
-    if (!createdBranch) {
-      throw new Error("Failed to create branch");
+    // Ana kliniğe bağlı bir branch oluştur
+    const { data: createBranchData, errors: createBranchErrors } = yield call(
+      mutations.clinics.createBranch,
+      clinicId,
+      branch.name,
+      branch.city,
+      branch.address,
+      branch.phone_number
+    );
+
+    if (createBranchErrors) {
+      console.error("createBranchErrors", createBranchErrors);
+      throw new Error(createBranchErrors[0]?.message);
     }
 
     // Kullanıcı ile kliniği ilişkilendir
@@ -33,17 +42,24 @@ export function* createClinic(action: ReturnType<typeof createClinicRequest>): G
     if (!userId) {
       throw new Error("User ID is not available");
     }
-    // const relatedManager = yield call(mutations.auth.managers.insertManager, userId, clinicId);
 
-    /*
+    // Kullanıcıyı kliniğe yönetici olarak ekle
+    const { data: addManagerData, errors: addManagerErrors } = yield call(mutations.clinics.addManagerToClinic, userId, clinicId);
+
+    console.log("addManagerData", addManagerData);
+
+    if (addManagerErrors) {
+      console.error("addManagerErrors", addManagerErrors);
+      throw new Error(addManagerErrors[0]?.message);
+    }
+
     // Başarılı olunduğunda Redux state güncelleme
-    yield put(createClinicSuccess(clinicId));
+    yield put(createClinicSuccess());
 
     // Başarılı olunduğunda onSuccess callback fonksiyonunu çağırma
     if (onSuccess) {
       onSuccess(clinicId);
     }
-    */
   } catch (error) {
     const strError = toErrorMessage(error);
 

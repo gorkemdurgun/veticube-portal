@@ -2,10 +2,10 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 
 import { PiSpinnerGapDuotone as LoadingIcon } from "react-icons/pi";
 
+import { useQuery } from "@apollo/client";
 import { Avatar, Select, Spin } from "antd";
 import debounce from "lodash/debounce";
 
-import { useCustomAppQuery } from "@/hooks";
 import { queries } from "@/services/db";
 import { SearchPetResponse } from "@/services/db/queries/pet/searchPet";
 
@@ -23,13 +23,10 @@ export function SearchPatientInput<ValueType extends { key?: string; label: Reac
   const [selectedValue, setSelectedValue] = useState<string | number | undefined>();
   const [options, setOptions] = useState<ValueType[]>([]);
 
-  const { data, loading } = useCustomAppQuery({
-    query: queries.pet.SearchPet,
-    options: {
-      skip: !searchValue || searchValue.length < 2,
-      variables: {
-        _ilike: `%${searchValue}%`,
-      },
+  const { data, loading } = useQuery<SearchPetResponse>(queries.pet.SearchPet, {
+    skip: !searchValue || searchValue.length < 2,
+    variables: {
+      _ilike: `%${searchValue}%`,
     },
   });
 

@@ -6,7 +6,7 @@ import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Descriptions, Divider, Form, Input, message } from "antd";
 import { useRouter } from "next/navigation";
 
-import { useAppDispatch, useAppSelector, useCustomAppQuery } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks";
 import { loginRequest } from "@/redux/slices/auth/authSlice";
 import { queries } from "@/services/db";
 
@@ -100,7 +100,7 @@ const Login: React.FC = () => {
                 <Divider>
                   <span className="font-normal text-gray-500">or</span>
                 </Divider>
-                <Button  type="link" href="/sign-up">
+                <Button type="link" href="/sign-up">
                   Sign up
                 </Button>
               </div>

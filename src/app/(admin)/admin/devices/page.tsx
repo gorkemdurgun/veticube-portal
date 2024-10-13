@@ -1,17 +1,15 @@
 "use client";
 
+import { useQuery } from "@apollo/client";
 import { useRouter } from "next/navigation";
 
-import { useCustomAppQuery } from "@/hooks";
 import { queries } from "@/services/db";
 
 import CustomButton from "@/components/common/custom-button";
 
 const DevicesPage = () => {
   const router = useRouter();
-  const { loading, data } = useCustomAppQuery({
-    query: queries.device.GetUserDevices,
-  });
+  const { loading, data } = useQuery(queries.device.GetUserDevices);
 
   if (loading) {
     return <div>Loading...</div>;
