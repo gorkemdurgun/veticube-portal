@@ -1,12 +1,12 @@
 "use client";
 
+import { useQuery } from "@apollo/client";
 import { useParams } from "next/navigation";
 
 import { queries } from "@/services/db";
 
 import PatientOverviewCard from "@/components/patients/patient-overview-card";
 import PatientWeightHistory from "@/components/patients/patient-weight-history";
-import { useQuery } from "@apollo/client";
 
 const weightData = [
   {
