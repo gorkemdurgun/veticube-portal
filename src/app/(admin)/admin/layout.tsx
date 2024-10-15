@@ -122,7 +122,7 @@ export default function AdminLayout({
     },
     {
       type: "item",
-      disabled: true,
+      // disabled: true,
       className: "!h-12 py-2 text-sm",
       key: "/admin/settings",
       label: t("sidebar.settings"),

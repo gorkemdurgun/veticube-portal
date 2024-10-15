@@ -38,12 +38,6 @@ type Props = {
   }[];
 };
 
-const roleOptions = [
-  { label: "Veteriner", value: "veterinarian" },
-  { label: "Hemşire", value: "nurse" },
-  { label: "Sekreter", value: "secretary" },
-];
-
 const VetTable = ({ vets }: { vets: ClinicBranchVeterinarianItem[] }) => {
   const [verifyModalVisible, setVerifyModalVisible] = useState<boolean>(false);
   const [verifyVetModalData, setVerifyVetModalData] = useState({

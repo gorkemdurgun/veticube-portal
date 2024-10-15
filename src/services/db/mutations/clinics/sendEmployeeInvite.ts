@@ -16,15 +16,15 @@ const GQL = gql`
 `;
 
 export const sendEmployeeInvite = async (inviter_id: string, invitee_email: string, branch_id: string, role: UserRole) => {
-  const { data, errors } = await apolloGqlClient.mutate<{
-    clinic: { returning: { id: string; invitee_email: string; role: string; status: string }[] };
+  const { data } = await apolloGqlClient.mutate<{
+    insert_clinic_management_invitations_one: { id: string; invitee_email: string; role: string; status: string };
   }>({
     mutation: GQL,
     variables: {
-        inviter_id,
-        invitee_email,
-        branch_id,
-        role,
+      inviter_id,
+      invitee_email,
+      branch_id,
+      role,
     },
     context: {
       headers: {
@@ -32,5 +32,5 @@ export const sendEmployeeInvite = async (inviter_id: string, invitee_email: stri
       },
     },
   });
-  return { data, errors };
+  return data;
 };

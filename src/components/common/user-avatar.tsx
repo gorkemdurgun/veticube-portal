@@ -3,6 +3,7 @@ import { PiSignOutDuotone as SignOutIcon } from "react-icons/pi";
 import { Avatar, Button, Divider, Popconfirm } from "antd";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
+import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
 import { logout } from "@/redux/slices/auth/authSlice";
 
 export const UserAvatar: React.FC<{}> = () => {
@@ -19,7 +20,15 @@ export const UserAvatar: React.FC<{}> = () => {
       <span className="text-sm text-gray-500">{`${user?.full_name}`}</span>
       {/* <span className="text-xs text-gray-400">{`(${user?.role})`}</span> */}
       <Divider type="vertical" className="mx-0" />
-      <Popconfirm icon={null} title="Are you sure you want to sign out?" okButtonProps={{ danger: true }} onConfirm={() => dispatch(logout())}>
+      <Popconfirm
+        icon={null}
+        title="Are you sure you want to sign out?"
+        okButtonProps={{ danger: true }}
+        onConfirm={() => {
+          apolloGqlClient.clearStore();
+          dispatch(logout());
+        }}
+      >
         <Button danger type="link" className="mx-0 p-0">
           <SignOutIcon className="w-4 h-4" />
         </Button>

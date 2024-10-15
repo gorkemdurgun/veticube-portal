@@ -58,6 +58,13 @@ const BranchesListFooter: React.FC<Props> = ({ isLoading, branches }) => {
   });
   const [autoCompleteOptions, setAutoCompleteOptions] = useState<AutoCompleteProps["options"]>([]);
 
+  const clearInvite = () => {
+    setInvite({
+      branchId: undefined,
+      email: "",
+      role: roleOptions[0].value,
+    });
+  };
   const handleSearch = (value: string) => {
     setAutoCompleteOptions(() => {
       if (!value || value.includes("@")) {
@@ -69,25 +76,27 @@ const BranchesListFooter: React.FC<Props> = ({ isLoading, branches }) => {
       }));
     });
   };
-
   const handleInviteUser = () => {
     if (!user || !invite.branchId || !invite.email || !invite.role) {
       message.error("Davet gönderilemedi");
       return;
     }
 
-    mutations.clinics.sendEmployeeInvite(user?.id, invite.email, invite.branchId, invite.role).then(({ data, errors }) => {
-      if (errors) {
-        message.error("Kullanıcı daveti gönderilemedi");
-      } else {
-        message.success("Kullanıcı daveti gönderildi");
-        setInvite({
-          branchId: undefined,
-          email: "",
-          role: roleOptions[0].value,
-        });
+    mutations.clinics
+      .sendEmployeeInvite(user?.id, invite.email, invite.branchId, invite.role)
+      .then((data) => {
+        message.success(`Kullanıcı daveti gönderildi: ${data?.insert_clinic_management_invitations_one?.invitee_email}`);
+      })
+      .catch((error) => {
+        if (error.message.includes("unique constraint")) {
+          message.error("Bu email adresine sahip bir kullanıcı zaten davet edilmiş");
+        } else {
+          message.error("Davet gönderilemedi");
+        }
+      }).finally(() => {
+        clearInvite();
       }
-    });
+    );
   };
 
   return (
