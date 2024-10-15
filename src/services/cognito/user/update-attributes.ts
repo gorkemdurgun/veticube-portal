@@ -1,22 +1,35 @@
-import { AuthenticationDetails, CognitoUser } from "amazon-cognito-identity-js";
+import {
+  AuthenticationDetails,
+  CognitoUser,
+  CognitoUserAttribute,
+  CognitoUserSession,
+  ICognitoUserAttributeData,
+} from "amazon-cognito-identity-js";
 
 import userPool from "../userpool";
 
-export const updateAttributes = (email: string, newRole: UserRole) => {
+export const updateAttributes = (attributes: { Name: string; Value: string }[]) => {
   return new Promise((resolve, reject) => {
-    const user = new CognitoUser({
-      Username: email,
-      Pool: userPool,
-    });
+    const user = userPool.getCurrentUser();
 
-    user.updateAttributes(
-      [
-        {
-          Name: "custom:role",
-          Value: newRole,
-        },
-      ],
-      (err, result) => {
+    user?.getSession((err: Error, session: CognitoUserSession | null) => {
+      if (err) {
+        console.error("Failed to get session", err);
+        reject("Failed to get session");
+        return;
+      }
+
+      if (!session?.isValid()) {
+        console.error("Session is not valid");
+        reject("Session is not valid");
+        return;
+      }
+
+      const attributeList: ICognitoUserAttributeData[] = attributes.map((attr) => {
+        return new CognitoUserAttribute(attr);
+      });
+
+      user?.updateAttributes(attributeList, (err, result) => {
         if (err) {
           console.error("Update attributes failed", err);
           reject(err);
@@ -25,7 +38,13 @@ export const updateAttributes = (email: string, newRole: UserRole) => {
 
         console.log("Update attributes success", result);
         resolve(result);
-      }
-    );
+      });
+    });
+
+    if (!user) {
+      console.error("No user found");
+      reject("No user found");
+      return;
+    }
   });
 };

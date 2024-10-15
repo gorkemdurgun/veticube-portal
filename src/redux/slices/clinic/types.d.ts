@@ -9,3 +9,10 @@ type CreateClinicRequestPayload = {
   onSuccess?: (clinicId: string) => void;
   onError?: (error: string) => void;
 };
+
+type UpdateEmployeeInviteRequestPayload = {
+  inviteId: string;
+  status: "accepted" | "rejected";
+  onSuccess?: () => void;
+  onError?: (error: string) => void;
+};

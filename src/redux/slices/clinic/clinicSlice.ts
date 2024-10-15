@@ -26,10 +26,28 @@ const clinicSlice = createSlice({
     createClinicFailure: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.error = action.payload;
-    }
+    },
+    updateEmployeeInviteRequest: (state, action: PayloadAction<UpdateEmployeeInviteRequestPayload>) => {
+      state.loading = true;
+      state.error = null;
+    },
+    updateEmployeeInviteSuccess: (state) => {
+      state.loading = false;
+    },
+    updateEmployeeInviteFailure: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
-export const { createClinicRequest, createClinicSuccess, createClinicFailure } = clinicSlice.actions;
+export const {
+  createClinicRequest,
+  createClinicSuccess,
+  createClinicFailure,
+  updateEmployeeInviteRequest,
+  updateEmployeeInviteSuccess,
+  updateEmployeeInviteFailure,
+} = clinicSlice.actions;
 
 export default clinicSlice.reducer;

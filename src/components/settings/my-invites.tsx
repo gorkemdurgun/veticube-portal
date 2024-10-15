@@ -6,10 +6,12 @@ import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 
 import { queries } from "@/services/db";
-import { updateIncomingInvite } from "@/services/db/mutations/settings";
 
 import { TranslatedText } from "../common";
 import CustomButton from "../common/custom-button";
+import { auth } from "@/services/cognito";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { updateEmployeeInviteRequest } from "@/redux/slices/clinic/clinicSlice";
 
 type Props = {};
 
@@ -27,29 +29,31 @@ invites: clinic_management_invitations {
 
 const MyInvites: React.FC<Props> = () => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
 
-  const { data, loading: isLoading, error, refetch } = useQuery(queries.settings.GetMyInvites);
+  const { loading: clinicLoading } = useAppSelector((state) => state.clinic);
 
-  const handleUpdateInvite = async (id: string, status: string) => {
-    updateIncomingInvite(id, status)
-      .then((data) => {
-        const status = data?.update_clinic_management_invitations_by_pk.status;
-        if (status === "accepted") {
-          message.success("Davet kabul edildi");
-        } else {
-          message.success("Davet reddedildi");
-        }
+  const { data: invitesData, loading: invitesLoading, error: invitesError, refetch: invitesRefetch } = useQuery(queries.settings.GetMyInvites);
+
+  const loading = clinicLoading || invitesLoading;
+
+  const handleUpdateInvite = async (id: string, status: "accepted" | "rejected") => {
+    dispatch(
+      updateEmployeeInviteRequest({
+        inviteId: id,
+        status,
+        onSuccess() {
+          invitesRefetch();
+        },
+        onError(error) {
+          message.error(error);
+        },
       })
-      .catch((error) => {
-        message.error("Bir hata oluştu");
-      })
-      .finally(() => {
-        refetch();
-      });
+    );
   };
 
-  if (error) {
-    console.error(error);
+  if (invitesError) {
+    console.error(invitesError);
   }
 
   return (
@@ -57,12 +61,13 @@ const MyInvites: React.FC<Props> = () => {
       <div className="w-full flex flex-col gap-4">
         {/* <TranslatedText className="text-2xl font-semibold" tPrefix="components" tKey="branches.branches-list.list" /> */}
         <h1 className="text-2xl font-semibold">Davet Listesi</h1>
-        {isLoading ? (
+        {invitesLoading ? (
           <div>Loading...</div>
         ) : (
           <Table
-            dataSource={data?.invites}
+            dataSource={invitesData?.invites}
             rowKey="id"
+            loading={loading}
             rowClassName="cursor-pointer"
             pagination={false}
             expandable={{
@@ -101,14 +106,16 @@ const MyInvites: React.FC<Props> = () => {
                 key: "action",
                 render: (text, record) => (
                   <div className="flex gap-2">
-                    <CustomButton loading={isLoading} variant="primary-text" onClick={() => handleUpdateInvite(record.id, "accepted")}>
+                    <CustomButton disabled={loading} variant="primary-text" onClick={() => handleUpdateInvite(record.id, "accepted")}>
                       Kabul Et
                     </CustomButton>
-                    <Popconfirm icon={null} placement="bottomLeft" title="Daveti geri çevirmek istediğinize emin misiniz?"
-                        onConfirm={() => handleUpdateInvite(record.id, "rejected")}
-                        
+                    <Popconfirm
+                      icon={null}
+                      placement="bottomLeft"
+                      title="Daveti geri çevirmek istediğinize emin misiniz?"
+                      onConfirm={() => handleUpdateInvite(record.id, "rejected")}
                     >
-                      <CustomButton loading={isLoading} variant="neutral-text">
+                      <CustomButton disabled={loading} variant="neutral-text">
                         Geri Çevir
                       </CustomButton>
                     </Popconfirm>

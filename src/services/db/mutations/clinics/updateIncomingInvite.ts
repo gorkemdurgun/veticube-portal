@@ -6,13 +6,15 @@ const GQL = gql`
   mutation UpdateIncomingInvite($id: uuid = "", $status: String) {
     update_clinic_management_invitations_by_pk(pk_columns: { id: $id }, _set: { status: $status }) {
       status
+      invitee_email
+      role
     }
   }
 `;
 
-export const updateIncomingInvite = async (id: string, status: string) => {
+export const updateIncomingInvite = async (id: string, status: "accepted" | "rejected") => {
   const { data } = await apolloGqlClient.mutate<{
-    update_clinic_management_invitations_by_pk: { status: string };
+    update_clinic_management_invitations_by_pk: { status: string; invitee_email: string; role: UserRole };
   }>({
     mutation: GQL,
     variables: {
