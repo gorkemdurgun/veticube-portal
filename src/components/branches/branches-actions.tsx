@@ -15,7 +15,7 @@ type BranchesActionsProps = {
   clinicName?: string;
 };
 
-export const BranchesActions: React.FC<BranchesActionsProps> = ({ isLoading, clinicName }) => {
+const BranchesActions: React.FC<BranchesActionsProps> = ({ isLoading, clinicName }) => {
   const ref1 = useRef(null);
   const [tourCreateClinicVisible, setTourCreateClinicVisible] = useState<boolean>(false);
   const [createClinicModalVisible, setCreateClinicModalVisible] = useState<boolean>(false);
@@ -85,3 +85,5 @@ export const BranchesActions: React.FC<BranchesActionsProps> = ({ isLoading, cli
     </>
   );
 };
+
+export default BranchesActions;

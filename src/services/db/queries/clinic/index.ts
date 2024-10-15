@@ -1,3 +1,3 @@
-export * from "./getManagerClinicAssignments";
+export * from "./getClinics";
 export * from "./getSelectedDateReservations";
 export * from "./getClinicBranchEmployees";

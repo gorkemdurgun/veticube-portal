@@ -9,11 +9,13 @@ import {
   PiSealWarningDuotone as NotVerifiedIcon,
 } from "react-icons/pi";
 
-import { Badge, Button, Divider, Dropdown, List, message, Popconfirm, Table, Tooltip, Input, Select, AutoComplete } from "antd";
+import { Badge, Button, Divider, Dropdown, List, message, Popconfirm, Table, Tooltip, Input, Select, AutoComplete, Descriptions } from "antd";
 import { useTranslation } from "react-i18next";
 
 import { auth } from "@/services/cognito";
 import { queries } from "@/services/db";
+
+import BranchesListFooter from "./branches-list-footer";
 
 import type { AutoCompleteProps, TableProps } from "antd";
 
@@ -29,8 +31,18 @@ type Props = {
     phone_number: string;
     city: string;
     address: string;
+    employees: {
+      user_id: string;
+      role: string;
+    }[];
   }[];
 };
+
+const roleOptions = [
+  { label: "Veteriner", value: "veterinarian" },
+  { label: "Hemşire", value: "nurse" },
+  { label: "Sekreter", value: "secretary" },
+];
 
 const VetTable = ({ vets }: { vets: ClinicBranchVeterinarianItem[] }) => {
   const [verifyModalVisible, setVerifyModalVisible] = useState<boolean>(false);
@@ -129,26 +141,8 @@ const VetTable = ({ vets }: { vets: ClinicBranchVeterinarianItem[] }) => {
   );
 };
 
-export const BranchesList: React.FC<Props> = ({ isLoading, branches }) => {
+const BranchesList: React.FC<Props> = ({ isLoading, branches }) => {
   const { t } = useTranslation();
-
-  const [invite, setInvite] = useState({
-    email: "",
-    role: "veterinarian",
-  });
-  const [autoCompleteOptions, setAutoCompleteOptions] = useState<AutoCompleteProps["options"]>([]);
-
-  const handleSearch = (value: string) => {
-    setAutoCompleteOptions(() => {
-      if (!value || value.includes("@")) {
-        return [];
-      }
-      return ["gmail.com", "hotmail.com", "outlook.com"].map((domain) => ({
-        label: `${value}@${domain}`,
-        value: `${value}@${domain}`,
-      }));
-    });
-  };
 
   return (
     <>
@@ -204,61 +198,19 @@ export const BranchesList: React.FC<Props> = ({ isLoading, branches }) => {
                         disabled={!record?.id && !record?.branch_name}
                         // onClick={() => onAddVetClick(record.id, record.branch_name)}
                       >
-                        <AddUserIcon className="w-5 h-5" />
+                        <EditIcon className="w-5 h-5" />
                       </Button>
                     </Tooltip>
                   </div>
                 ),
               },
             ]}
-            footer={() => (
-              <div className="flex flex-row items-center gap-4">
-                {/* <TranslatedText tPrefix="components" tKey="branches.branches-list.footer.add-user" /> */}
-                <div className="flex flex-row items-center">
-                  <span className="text-gray-500">Email</span>
-                  <Divider type="vertical" className="mx-2" />
-                  <AutoComplete
-                    className="w-[280px]"
-                    placeholder="Çalışanın email adresini girin"
-                    value={invite.email}
-                    onChange={(value) => setInvite({ ...invite, email: value })}
-                    options={autoCompleteOptions}
-                    onSearch={handleSearch}
-                  />
-                </div>
-                <div className="flex flex-row items-center">
-                  <span className="text-gray-500">Rol</span>
-                  <Divider type="vertical" className="mx-2" />
-                  <Select
-                    className="min-w-32"
-                    placement="bottomRight"
-                    options={[
-                      { label: "Veteriner", value: "veterinarian" },
-                      { label: "Hemşire", value: "nurse" },
-                      { label: "Sekreter", value: "secretary" },
-                    ]}
-                    value={invite.role}
-                    onChange={(value) => setInvite({ ...invite, role: value })}
-                    labelRender={(props) => <span>{props.label}</span>}
-                  />
-                </div>
-                <Popconfirm
-                  icon={null}
-                  placement="bottomLeft"
-                  title={`${invite.email} adresine ${invite.role} rolü ile davet göndermek istediğinize emin misiniz?`}
-                  okText="Evet"
-                  cancelText="Hayır"
-                  onConfirm={() => console.log("Invite user")}
-                >
-                  <CustomButton variant="primary-faded" className="px-8">
-                    Davet Gönder
-                  </CustomButton>
-                </Popconfirm>
-              </div>
-            )}
+            footer={() => <BranchesListFooter isLoading={isLoading} branches={branches} />}
           />
         )}
       </div>
     </>
   );
 };
+
+export default BranchesList;

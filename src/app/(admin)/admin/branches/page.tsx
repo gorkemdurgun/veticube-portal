@@ -7,7 +7,8 @@ import { Breadcrumb, Button, Card, Divider, message, Segmented } from "antd";
 
 import { queries } from "@/services/db";
 
-import { BranchesActions, BranchesList } from "@/components/branches";
+import BranchesActions from "@/components/branches/branches-actions";
+import BranchesList from "@/components/branches/branches-list";
 import { TranslatedText } from "@/components/common";
 
 import type { BreadcrumbProps } from "antd";
@@ -22,14 +23,14 @@ const breadcrumbItems: BreadcrumbProps["items"] = [
 ];
 
 const AdminBranchesPage: React.FC = () => {
-  const { loading, data } = useQuery(queries.clinic.GetManagerClinicAssignments);
+  const { loading, data } = useQuery(queries.clinic.GetClinics);
 
   return (
     <div className="w-full flex flex-col gap-4">
       <Breadcrumb items={breadcrumbItems} />
-      <BranchesActions isLoading={loading} clinicName={data?.manager_clinic_assignments[0]?.clinic?.clinic_name} />
+      <BranchesActions isLoading={loading} clinicName={data?.clinics[0]?.clinic_name} />
       <Divider className="my-2" />
-      <BranchesList isLoading={loading} branches={data?.manager_clinic_assignments[0]?.clinic?.branches} />
+      <BranchesList isLoading={loading} branches={data?.clinics[0]?.branches} />
     </div>
   );
 };
