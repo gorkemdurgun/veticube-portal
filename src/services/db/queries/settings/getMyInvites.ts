@@ -16,7 +16,7 @@ type GetMyInvitesResponse = {
 
 export const GET_MY_INVITES: TypedDocumentNode<GetMyInvitesResponse> = gql`
   query GetMyInvites {
-    invites: clinic_management_invitations {
+    invites: clinic_management_invitations(where: { status: { _eq: "pending" } }) {
       id
       invitee_email
       role

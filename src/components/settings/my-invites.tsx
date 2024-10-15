@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 
 import { useQuery } from "@apollo/client";
-import { Popconfirm, Table } from "antd";
+import { message, Popconfirm, Table } from "antd";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 
 import { queries } from "@/services/db";
+import { updateIncomingInvite } from "@/services/db/mutations/settings";
 
 import { TranslatedText } from "../common";
 import CustomButton from "../common/custom-button";
@@ -27,7 +28,25 @@ invites: clinic_management_invitations {
 const MyInvites: React.FC<Props> = () => {
   const { t } = useTranslation();
 
-  const { data, loading: isLoading, error } = useQuery(queries.settings.GetMyInvites);
+  const { data, loading: isLoading, error, refetch } = useQuery(queries.settings.GetMyInvites);
+
+  const handleUpdateInvite = async (id: string, status: string) => {
+    updateIncomingInvite(id, status)
+      .then((data) => {
+        const status = data?.update_clinic_management_invitations_by_pk.status;
+        if (status === "accepted") {
+          message.success("Davet kabul edildi");
+        } else {
+          message.success("Davet reddedildi");
+        }
+      })
+      .catch((error) => {
+        message.error("Bir hata oluştu");
+      })
+      .finally(() => {
+        refetch();
+      });
+  };
 
   if (error) {
     console.error(error);
@@ -81,9 +100,19 @@ const MyInvites: React.FC<Props> = () => {
                 title: "İşlem",
                 key: "action",
                 render: (text, record) => (
-                  <Popconfirm icon={null} placement="bottomLeft" title="Daveti geri çevirmek istediğinize emin misiniz?">
-                    <CustomButton variant="neutral-text">Geri Çevir</CustomButton>
-                  </Popconfirm>
+                  <div className="flex gap-2">
+                    <CustomButton loading={isLoading} variant="primary-text" onClick={() => handleUpdateInvite(record.id, "accepted")}>
+                      Kabul Et
+                    </CustomButton>
+                    <Popconfirm icon={null} placement="bottomLeft" title="Daveti geri çevirmek istediğinize emin misiniz?"
+                        onConfirm={() => handleUpdateInvite(record.id, "rejected")}
+                        
+                    >
+                      <CustomButton loading={isLoading} variant="neutral-text">
+                        Geri Çevir
+                      </CustomButton>
+                    </Popconfirm>
+                  </div>
                 ),
               },
             ]}

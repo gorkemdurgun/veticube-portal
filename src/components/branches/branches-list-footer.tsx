@@ -93,10 +93,10 @@ const BranchesListFooter: React.FC<Props> = ({ isLoading, branches }) => {
         } else {
           message.error("Davet gönderilemedi");
         }
-      }).finally(() => {
+      })
+      .finally(() => {
         clearInvite();
-      }
-    );
+      });
   };
 
   return (
@@ -150,7 +150,7 @@ const BranchesListFooter: React.FC<Props> = ({ isLoading, branches }) => {
           </Descriptions>
         )}
       >
-        <CustomButton disabled={!invite.branchId || !invite.email || !invite.role} variant="primary-faded" className="px-8">
+        <CustomButton loading={isLoading} disabled={!invite.branchId || !invite.email || !invite.role} variant="primary-faded" className="px-8">
           Davet Gönder
         </CustomButton>
       </Popconfirm>
