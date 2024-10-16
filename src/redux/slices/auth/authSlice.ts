@@ -64,9 +64,7 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    signUpVetAccountRequest: (state, action: PayloadAction<SignUpVetAccountRequestPayload>) => {
-      state.loading = true;
-    },
+   
     */
   },
 });
