@@ -1,14 +1,5 @@
 import { useEffect, useState } from "react";
 
-import {
-  PiUserCirclePlus as AddUserIcon,
-  PiPhone as PhoneIcon,
-  PiMapPin as AddressIcon,
-  PiPencilSimple as EditIcon,
-  PiSealCheckDuotone as VerifiedIcon,
-  PiSealWarningDuotone as NotVerifiedIcon,
-} from "react-icons/pi";
-
 import { Badge, Button, Divider, Dropdown, List, message, Popconfirm, Table, Tooltip, Input, Select, AutoComplete, Descriptions } from "antd";
 import { useTranslation } from "react-i18next";
 
@@ -20,7 +11,7 @@ import type { AutoCompleteProps, TableProps } from "antd";
 
 import { TranslatedText } from "../common";
 import CustomButton from "../common/custom-button";
-import { AddVeterinaryModal, VerifyUserModal } from "../modals";
+import EmailInput from "../common/email-input";
 
 type Props = {
   isLoading: boolean;
@@ -117,14 +108,7 @@ const BranchesListFooter: React.FC<Props> = ({ isLoading, branches }) => {
       <div className="flex flex-row items-center">
         <span className="text-gray-500">Email</span>
         <Divider type="vertical" className="mx-2" />
-        <AutoComplete
-          className="w-[280px]"
-          placeholder="Çalışanın email adresini girin"
-          value={invite.email}
-          onChange={(value) => setInvite({ ...invite, email: value })}
-          options={autoCompleteOptions}
-          onSearch={handleSearch}
-        />
+        <EmailInput className="w-[280px]" value={invite.email} onChange={(value) => setInvite({ ...invite, email: value })} />
       </div>
       <div className="flex flex-row items-center">
         <span className="text-gray-500">Rol</span>
