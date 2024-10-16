@@ -51,7 +51,8 @@ import OxygenIcon from "./svg/pack-4/oxygen.svg";
 import CarbonIcon from "./svg/pack-4/carbon.svg";
 
 // PNG
-import Logo from "./png/logo/veticube-logo-transparent.png";
+import Logo from "./png/logo/veticube-logo.png";
+import LogoWhite from "./png/logo/veticube-logo-wh.png";
 import Brand1 from "./png/brands/brand-1.png";
 import Brand2 from "./png/brands/brand-2.png";
 import Brand3 from "./png/brands/brand-3.png";
@@ -62,6 +63,7 @@ import FeaturesChart from "./png/landing/features-chart.png";
 
 export const png = {
   Logo,
+  LogoWhite,
   Brand1,
   Brand2,
   Brand3,

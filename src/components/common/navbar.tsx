@@ -1,6 +1,8 @@
 import { DownOutlined, MoonOutlined, SunOutlined } from "@ant-design/icons";
 import { Avatar, Badge, Dropdown, Layout, Tooltip } from "antd";
+import Image from "next/image";
 
+import { png } from "@/assets";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { setLanguage } from "@/redux/slices/language/languageSlice";
 import { setMode } from "@/redux/slices/theme/themeSlice";
@@ -43,7 +45,15 @@ export const Navbar: React.FC = () => {
   return (
     <Header className="!p-0 flex items-center bg-gray-50 border-b">
       <div className="w-full flex justify-between items-center px-4">
-        <div className="text-emerald-700">Admin Panel</div>
+        <div className="flex items-center gap-0 sm:gap-2">
+          <div className="relative w-8 h-8 sm:w-12 sm:h-12">
+            <Image src={png.Logo} alt="veticube-logo" layout="fill" />
+          </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center sm:gap-2">
+            <span className="text-md sm:text-2xl text-green-600 font-semibold font-oswald">VETICUBE</span>
+            <span className="text-[0px] sm:text-xs text-gray-400 sm:mt-2">{`[ admin panel v.1.0 ]`}</span>
+          </div>
+        </div>
         <div className="grid grid-flow-col items-center gap-2">
           {/* <Dropdown.Button
             type="default"
@@ -62,7 +72,9 @@ export const Navbar: React.FC = () => {
           >
             {darkMode ? <MoonOutlined /> : <SunOutlined />}
           </Dropdown.Button> */}
-          <Dropdown.Button type="default" trigger={["click"]} icon={<DownOutlined />} menu={{ items: langItems, selectedKeys: [language] }}>
+          <Dropdown.Button 
+          className="hidden sm:block"
+          type="default" trigger={["click"]} icon={<DownOutlined />} menu={{ items: langItems, selectedKeys: [language] }}>
             {language === "tr" ? "Türkçe" : "English"}
           </Dropdown.Button>
           <UserAvatar />
