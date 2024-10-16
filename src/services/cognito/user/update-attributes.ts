@@ -1,10 +1,6 @@
-import {
-  AuthenticationDetails,
-  CognitoUser,
-  CognitoUserAttribute,
-  CognitoUserSession,
-  ICognitoUserAttributeData,
-} from "amazon-cognito-identity-js";
+import { CognitoUserAttribute, CognitoUserSession } from "amazon-cognito-identity-js";
+
+import type { ICognitoUserAttributeData } from "amazon-cognito-identity-js";
 
 import userPool from "../userpool";
 

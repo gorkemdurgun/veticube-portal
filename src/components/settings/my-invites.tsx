@@ -5,13 +5,13 @@ import { message, Popconfirm, Table } from "antd";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { updateEmployeeInviteRequest } from "@/redux/slices/clinic/clinicSlice";
+import { auth } from "@/services/cognito";
 import { queries } from "@/services/db";
 
 import { TranslatedText } from "../common";
 import CustomButton from "../common/custom-button";
-import { auth } from "@/services/cognito";
-import { useAppDispatch, useAppSelector } from "@/hooks";
-import { updateEmployeeInviteRequest } from "@/redux/slices/clinic/clinicSlice";
 
 type Props = {};
 

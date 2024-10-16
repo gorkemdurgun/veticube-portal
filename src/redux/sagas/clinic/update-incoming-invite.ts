@@ -1,14 +1,14 @@
+import { message } from "antd";
 import { call, put } from "redux-saga/effects";
 
+import { logout } from "@/redux/slices/auth/authSlice";
 import { updateEmployeeInviteRequest, updateEmployeeInviteSuccess, updateEmployeeInviteFailure } from "@/redux/slices/clinic/clinicSlice";
 import { store } from "@/redux/store";
+import { auth } from "@/services/cognito";
 import { mutations } from "@/services/db";
 import toErrorMessage from "@/utils/toError";
 
 import type { CallEffect, PutEffect } from "redux-saga/effects";
-import { auth } from "@/services/cognito";
-import { message } from "antd";
-import { logout } from "@/redux/slices/auth/authSlice";
 
 export function* updateIncomingInvite(
   action: ReturnType<typeof updateEmployeeInviteRequest>
@@ -25,14 +25,12 @@ export function* updateIncomingInvite(
     if (currentStatus === "accepted") {
       if (currentRole) {
         // Kullanıcı rolünü güncelleme
-        const cognitoResponse = yield call(auth.user.updateAttributes, [
+        yield call(auth.user.updateAttributes, [
           {
             Name: "custom:role",
             Value: currentRole,
           },
         ]);
-
-        console.log("cognitoResponse", cognitoResponse);
       }
     } else if (currentStatus === "rejected") {
       message.error("Davet reddedildi");
