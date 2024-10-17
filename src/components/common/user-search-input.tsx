@@ -13,12 +13,18 @@ import CustomButton from "./custom-button";
 import type { SelectProps } from "antd";
 import type { DefaultOptionType } from "rc-select/lib/Select";
 
-type Props = {
-  inputClassName?: string;
-  onSelectUserId?: (userId: string) => void;
+type SelectedClient = {
+  id: string;
+  name: string;
+  pets: { id: string; name: string }[];
 };
 
-const UserSearchInput: React.FC<Props> = ({ inputClassName, onSelectUserId }) => {
+type Props = {
+  inputClassName?: string;
+  onSelectClient?: (client: SelectedClient) => void;
+};
+
+const UserSearchInput: React.FC<Props> = ({ inputClassName, onSelectClient }) => {
   const [value, onChange] = useState<string | null>(null);
   const [selectedOption, setSelectedOption] = useState<DefaultOptionType | null>(null);
   const [selectOptions, setSelectOptions] = useState<SelectProps["options"]>([]);
@@ -35,8 +41,9 @@ const UserSearchInput: React.FC<Props> = ({ inputClassName, onSelectUserId }) =>
     if (data?.records) {
       setSelectOptions(
         data.records.map((record) => ({
-          label: record.pets.length > 0 ? `${record.full_name} (${record.pets.map((pet) => pet.name).join(", ")})` : record.full_name,
+          label: record.full_name,
           value: record.id,
+          data: record,
         }))
       );
     }
@@ -44,7 +51,11 @@ const UserSearchInput: React.FC<Props> = ({ inputClassName, onSelectUserId }) =>
 
   useEffect(() => {
     if (selectedOption) {
-      onSelectUserId?.(selectedOption.value as string);
+      onSelectClient?.({
+        id: selectedOption.value as string,
+        name: selectedOption.label as string,
+        pets: selectedOption.data.pets.map((pet: any) => ({ id: pet.id, name: pet.name })),
+      });
     }
   }, [selectedOption]);
 
