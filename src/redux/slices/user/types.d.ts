@@ -12,4 +12,12 @@ type GetUserSuccessPayload = {
     created_at: string;
     updated_at: string;
   };
+  assignments: {
+    role: UserRole;
+    assigned_at: string;
+    branch: {
+      id: string;
+      branch_name: string;
+    };
+  }[];
 };

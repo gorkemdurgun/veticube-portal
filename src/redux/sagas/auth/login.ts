@@ -6,6 +6,7 @@ import { loginRequest, loginSuccess, loginFailure } from "@/redux/slices/auth/au
 import { getUserSuccess } from "@/redux/slices/user/userSlice";
 import { auth } from "@/services/cognito";
 import { rest } from "@/services/db";
+import type { GetUserByIdResponse, GetManagerAssignmentsResponse, GetEmployeeAssignmentsResponse } from "@/services/db/rest/user";
 import toErrorMessage from "@/utils/toError";
 
 import type { CallEffect, PutEffect } from "redux-saga/effects";
@@ -16,7 +17,7 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
     // Cognito login
     const authResponse = yield call(auth.login.loginUser, email, password);
     const userId = authResponse?.idToken?.payload?.sub;
-    const userRole = authResponse?.idToken?.payload["custom:role"];
+    const userRole = authResponse?.idToken?.payload["custom:role"] as UserRole;
 
     console.log("authResponse", authResponse);
 
@@ -35,7 +36,7 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
     );
 
     // Hasura rest req for user data
-    const { user }: GetUserSuccessPayload = yield call(rest.user.getUserById, userId);
+    const { user }: GetUserByIdResponse = yield call(rest.user.getUserById, userId);
     console.log("user", user);
 
     if (!user) {
@@ -46,20 +47,47 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
       message.success(`Welcome, ${user.full_name}!`);
     }
 
-    // User data to Redux
-    yield put(
-      getUserSuccess({
-        user: {
-          id: user.id,
-          full_name: user.full_name,
-          email: user.email,
-          phone_number: user.phone_number,
-          status: user.status,
-          created_at: user.created_at,
-          updated_at: user.updated_at,
-        },
-      })
-    );
+    if (userRole === "manager") {
+      const { assignment }: GetManagerAssignmentsResponse = yield call(rest.user.getManagerAssignments, userId);
+      console.log("user's assignments...", assignment);
+
+      // User data to Redux
+      yield put(
+        getUserSuccess({
+          user: {
+            id: user.id,
+            full_name: user.full_name,
+            email: user.email,
+            phone_number: user.phone_number,
+            status: user.status,
+            created_at: user.created_at,
+            updated_at: user.updated_at,
+          },
+          assignments: [assignment],
+        })
+      );
+    } else if (userRole === "veterinarian" || userRole === "nurse" || userRole === "secretary") {
+      const { assignment }: GetEmployeeAssignmentsResponse = yield call(rest.user.getEmployeeAssignments, userId);
+      console.log("user's assignments...", assignment);
+
+      // User data to Redux
+      yield put(
+        getUserSuccess({
+          user: {
+            id: user.id,
+            full_name: user.full_name,
+            email: user.email,
+            phone_number: user.phone_number,
+            status: user.status,
+            created_at: user.created_at,
+            updated_at: user.updated_at,
+          },
+          assignments: [assignment],
+        })
+      );
+    } else {
+      throw new Error("Unknown user role");
+    }
 
     if (onSuccess) {
       onSuccess();

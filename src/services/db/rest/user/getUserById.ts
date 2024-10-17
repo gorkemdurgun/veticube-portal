@@ -2,7 +2,7 @@ import toErrorMessage from "@/utils/toError";
 
 import { axiosInstance } from "..";
 
-type GetUserByIdResponse = {
+export type GetUserByIdResponse = {
   user: {
     id: string;
     full_name: string;
