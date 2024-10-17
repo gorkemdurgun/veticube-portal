@@ -49,8 +49,8 @@ const EmailInput: React.FC<Props> = ({ value, onChange, scannable, onScanned, in
   }, [value]);
 
   return (
-    <Spin  spinning={scanLoading}>
-      <div className="w-full fle flex-col items-center">
+    <Spin spinning={scanLoading}>
+      <div className="w-full flex flex-col">
         <div className="flex flex-row items-center gap-2">
           <AutoComplete
             className={inputClassName}
@@ -61,15 +61,17 @@ const EmailInput: React.FC<Props> = ({ value, onChange, scannable, onScanned, in
             options={autoCompleteOptions}
             onSearch={handleSearch}
           />
-          <CustomButton
-            disabled={scanLoading || userAlreadyExists !== null || value === ""}
-            size="sm"
-            className="px-4 "
-            variant="secondary-faded"
-            onClick={scanUser}
-          >
-            <ScanIcon className="w-5 h-5" />
-          </CustomButton>
+          {scannable && (
+            <CustomButton
+              disabled={scanLoading || userAlreadyExists !== null || value === ""}
+              size="sm"
+              className="px-4 "
+              variant="secondary-faded"
+              onClick={scanUser}
+            >
+              <ScanIcon className="w-5 h-5" />
+            </CustomButton>
+          )}
         </div>
         {scannable && (
           <div className="flex flex-row items-center gap-2 mt-2">
