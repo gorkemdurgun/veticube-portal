@@ -2,8 +2,11 @@ import { useCallback, useEffect, useState } from "react";
 
 import { PiScanDuotone as ScanIcon, PiCheckCircleDuotone as AvailableIcon, PiWarningCircle as ExistIcon } from "react-icons/pi";
 
+import { useQuery } from "@apollo/client";
 import { Select, Spin } from "antd";
 import { debounce } from "lodash";
+
+import { queries } from "@/services/db";
 
 import CustomButton from "./custom-button";
 
@@ -20,25 +23,24 @@ const UserSearchInput: React.FC<Props> = ({ inputClassName, onSelectUserId }) =>
   const [selectedOption, setSelectedOption] = useState<DefaultOptionType | null>(null);
   const [selectOptions, setSelectOptions] = useState<SelectProps["options"]>([]);
 
-  const url = "https://api.github.com/search/users?q=";
+  const { data, refetch } = useQuery(queries.clinic.SearchBranchClient);
 
   const onSearchChange = async (searchText: string) => {
-    if (searchText.length < 3) {
-      setSelectOptions([]);
-      return;
-    }
-
-    const response = await fetch(url + searchText);
-    const data = await response.json();
-
-    console.log("data", data);
-    const options = data.items?.map((user: any) => ({
-      value: user.id,
-      label: user.login,
-    }));
-    setSelectOptions(options);
+    if (!searchText || searchText.length < 3) return;
+    await refetch({ term: `%${searchText}%` });
   };
-  const debouncedOnSearchChange = useCallback(debounce(onSearchChange, 800), []);
+  const debouncedOnSearchChange = useCallback(debounce(onSearchChange, 300), []);
+
+  useEffect(() => {
+    if (data?.records) {
+      setSelectOptions(
+        data.records.map((record) => ({
+          label: record.pets.length > 0 ? `${record.full_name} (${record.pets.map((pet) => pet.name).join(", ")})` : record.full_name,
+          value: record.id,
+        }))
+      );
+    }
+  }, [data]);
 
   useEffect(() => {
     if (selectedOption) {
@@ -48,18 +50,23 @@ const UserSearchInput: React.FC<Props> = ({ inputClassName, onSelectUserId }) =>
 
   return (
     <div className="w-full flex flex-col">
-      <Select
-        showSearch
-        labelInValue
-        className={inputClassName}
-        placeholder="Kullanıcı ara"
-        value={value}
-        onChange={(value) => onChange(value)}
-        filterOption={false}
-        options={selectOptions}
-        onSearch={debouncedOnSearchChange}
-        onSelect={(value, option) => setSelectedOption(option)}
-      />
+      <div className="flex flex-row items-center gap-2">
+        <Select
+          showSearch
+          labelInValue
+          className={inputClassName}
+          placeholder="Müşteri adı, email veya hayvan adı ile arama yapın"
+          value={value}
+          onChange={(value) => onChange(value)}
+          filterOption={false}
+          options={selectOptions}
+          onSearch={debouncedOnSearchChange}
+          onSelect={(value, option) => setSelectedOption(option)}
+        />
+        <CustomButton variant="secondary-faded" className="w-full text-left">
+          + Yeni Müşteri Ekle
+        </CustomButton>
+      </div>
       <div className="flex flex-row items-center gap-2 mt-2">
         {selectOptions && selectedOption ? (
           <div className="flex flex-row items-center gap-1">

@@ -45,7 +45,9 @@ const AddNewPatient = () => {
         <div className="flex flex-col">
           <h5 className="text-lg font-semibold">Müşteri Bilgileri</h5>
           <Divider className="my-3" />
-          <UserSearchInput onSelectUserId={(userId) => setSelectedUserId(userId)} />
+          <UserSearchInput 
+          inputClassName="min-w-[300px]"
+          onSelectUserId={(userId) => setSelectedUserId(userId)} />
           <h6 className="text-sm text-gray-500 mt-2">{selectedUserId}</h6>
           {/* <Form.Item label="Ad Soyad" name={["client", "fullName"]} rules={[{ required: true, message: "Please input the name!" }]}>
             <Input placeholder="Müşteri adını girin" />
