@@ -49,7 +49,7 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
 
     if (userRole === "manager") {
       const { assignment }: GetManagerAssignmentsResponse = yield call(rest.user.getManagerAssignments, userId);
-      console.log("user's assignments...", assignment);
+      const branches = assignment?.clinic?.branches;
 
       // User data to Redux
       yield put(
@@ -63,7 +63,11 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
             created_at: user.created_at,
             updated_at: user.updated_at,
           },
-          assignments: [assignment],
+          assignments: branches.map((branch) => ({
+            role: "manager",
+            assigned_at: assignment.assigned_at,
+            branch: branch,
+          })),
         })
       );
     } else if (userRole === "veterinarian" || userRole === "nurse" || userRole === "secretary") {
@@ -85,9 +89,12 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
           assignments: [assignment],
         })
       );
-    } else {
+    }
+    /*
+    else {
       throw new Error("Unknown user role");
     }
+    */
 
     if (onSuccess) {
       onSuccess();

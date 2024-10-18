@@ -4,11 +4,14 @@ import { axiosInstance } from "..";
 
 export type GetManagerAssignmentsResponse = {
   assignment: {
-    role: UserRole;
     assigned_at: string;
-    branch: {
+    clinic: {
       id: string;
-      branch_name: string;
+      clinic_name: string;
+      branches: {
+        id: string;
+        branch_name: string;
+      }[];
     };
   };
 };
