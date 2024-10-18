@@ -27,5 +27,5 @@ export const addManagerToClinic = async (user_id: string, clinic_id: string) => 
       },
     },
   });
-  return { data, errors };
+  return data;
 };

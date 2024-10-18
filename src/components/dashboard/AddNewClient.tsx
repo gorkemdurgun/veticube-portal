@@ -2,16 +2,21 @@ import React, { useState } from "react";
 
 import { PiUserPlusDuotone as AddIcon } from "react-icons/pi";
 
-import { Form, Input, Select, Divider } from "antd";
+import { Form, Input, Select, Divider, message } from "antd";
 
 import { useAppSelector } from "@/hooks";
 
 import { ComponentCard } from "../common";
 import CustomButton from "../common/custom-button";
+import { mutations } from "@/services/db";
+import { uiError } from "@/utils/uiError";
 const { Option } = Select;
 
 type ClientForm = {
   selectedBranch: string;
+  userEmail: string;
+  userFullName: string;
+  userPhone?: string;
 };
 
 const AddNewClient = () => {
@@ -22,7 +27,19 @@ const AddNewClient = () => {
 
   const handleSubmit = () => {
     clientForm.validateFields().then((values) => {
-      console.log("values", values);
+      const { selectedBranch, userEmail, userFullName, userPhone } = values;
+      mutations.clinics
+        .addClientRecordToBranch(userEmail, userFullName, selectedBranch, userPhone)
+        .then(() => {
+          clientForm.resetFields();
+          message.success("Müşteri başarıyla eklendi!");
+        })
+        .catch((e) => {
+          message.error(uiError(e.message));
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     });
   };
 
@@ -39,9 +56,19 @@ const AddNewClient = () => {
           </Select>
         </Form.Item>
         <Divider />
+        <Form.Item label="Müşteri Adı Soyadı" name="userFullName" rules={[{ required: true, message: "Lütfen müşteri adı soyadı giriniz!" }]}>
+          <Input placeholder="Ad soyad" />
+        </Form.Item>
+        <Form.Item label="Müşteri E-posta" name="userEmail" rules={[{ required: true, message: "Lütfen müşteri e-posta adresi giriniz!" }]}>
+          <Input placeholder="E-posta adresi" />
+        </Form.Item>
+        <Form.Item label="Müşteri Telefon" name="userPhone">
+          <Input placeholder="Telefon numarası (opsiyonel )" />
+        </Form.Item>
+        <Divider />
         <Form.Item>
-          <CustomButton variant="secondary-faded" loading={loading} onClick={handleSubmit}>
-            Ekle
+          <CustomButton className="w-full" variant="secondary-faded" loading={loading} onClick={handleSubmit}>
+            Müşteriyi Ekle
           </CustomButton>
         </Form.Item>
       </Form>

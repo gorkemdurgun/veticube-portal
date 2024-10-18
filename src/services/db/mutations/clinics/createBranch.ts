@@ -41,6 +41,6 @@ export const createBranch = async (clinic_id: string, branch_name: string, city:
     },
   });
 
-  return { data, errors };
+  return data;
 };
 

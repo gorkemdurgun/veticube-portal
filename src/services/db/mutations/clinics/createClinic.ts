@@ -32,5 +32,5 @@ export const createClinic = async (clinic_name: string) => {
   });
 
   // console.log("createclinic res", data, errors);
-  return { data, errors };
+  return data;
 };
