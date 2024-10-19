@@ -1,25 +1,30 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-import { PiUserPlusDuotone as AddIcon } from "react-icons/pi";
-
-import { Form, Input, Select, Divider, message } from "antd";
+import { Card, Checkbox, Divider, Form, Input, message, Modal, Select, Steps } from "antd";
 
 import { useAppSelector } from "@/hooks";
-
-import { ComponentCard } from "../common";
-import CustomButton from "../common/custom-button";
 import { mutations } from "@/services/db";
 import { uiError } from "@/utils/uiError";
+
+import CustomButton from "@/components/common/custom-button";
+
 const { Option } = Select;
+
+type Props = {
+  visible: boolean;
+  onClose: () => void;
+};
 
 type ClientForm = {
   selectedBranch: string;
-  userEmail: string;
-  userFullName: string;
-  userPhone?: string;
+  user: {
+    email: string;
+    fullName: string;
+    phone?: string;
+  };
 };
 
-const AddNewClient = () => {
+const AddClientToBranchModal = ({ visible, onClose }: Props) => {
   const [loading, setLoading] = useState(false);
   const { assignments: branchAssignments } = useAppSelector((state) => state.user);
 
@@ -27,24 +32,12 @@ const AddNewClient = () => {
 
   const handleSubmit = () => {
     clientForm.validateFields().then((values) => {
-      const { selectedBranch, userEmail, userFullName, userPhone } = values;
-      mutations.clinics
-        .addClientRecordToBranch(userEmail, userFullName, selectedBranch, userPhone)
-        .then(() => {
-          clientForm.resetFields();
-          message.success("Müşteri başarıyla eklendi!");
-        })
-        .catch((e) => {
-          message.error(uiError(e.message));
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      console.log("values", values);
     });
   };
 
   return (
-    <ComponentCard title="Müşteri Ekle" extra={<AddIcon className="text-2xl text-green-600" />}>
+    <Modal title="Müşteri Ekle" open={visible} onOk={onClose} onCancel={onClose} footer={null}>
       <Form form={clientForm} layout="vertical" initialValues={{ selectedBranch: branchAssignments[0].branch.id }}>
         <Form.Item label="Eklenecek Şube" name="selectedBranch" rules={[{ required: true, message: "Lütfen bir şube seçiniz!" }]}>
           <Select disabled={branchAssignments.length < 2} placeholder="Şube seçiniz">
@@ -56,24 +49,32 @@ const AddNewClient = () => {
           </Select>
         </Form.Item>
         <Divider />
-        <Form.Item label="Müşteri Adı Soyadı" name="userFullName" rules={[{ required: true, message: "Lütfen müşteri adı soyadı giriniz!" }]}>
+        <Form.Item
+          label="Müşteri Adı Soyadı"
+          name={["user", "name"]}
+          rules={[{ required: true, message: "Lütfen müşteri adı soyadı giriniz!" }]}
+        >
           <Input placeholder="Ad soyad" />
         </Form.Item>
-        <Form.Item label="Müşteri E-posta" name="userEmail" rules={[{ required: true, message: "Lütfen müşteri e-posta adresi giriniz!" }]}>
+        <Form.Item
+          label="Müşteri E-posta"
+          name={["user", "email"]}
+          rules={[{ required: true, message: "Lütfen müşteri e-posta adresi giriniz!" }]}
+        >
           <Input placeholder="E-posta adresi" />
         </Form.Item>
-        <Form.Item label="Müşteri Telefon" name="userPhone">
+        <Form.Item label="Müşteri Telefon" name={["user", "phone"]}>
           <Input placeholder="Telefon numarası (opsiyonel )" />
         </Form.Item>
         <Divider />
         <Form.Item>
           <CustomButton className="w-full" variant="secondary-faded" loading={loading} onClick={handleSubmit}>
-            Müşteriyi Ekle
+            Devam Et
           </CustomButton>
         </Form.Item>
       </Form>
-    </ComponentCard>
+    </Modal>
   );
 };
 
-export default AddNewClient;
+export default AddClientToBranchModal;

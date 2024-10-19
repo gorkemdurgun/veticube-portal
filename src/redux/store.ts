@@ -4,6 +4,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import rootSaga from "@/redux/sagas";
+import appReducer from "@/redux/slices/app/appSlice";
 import appointmentReducer from "@/redux/slices/appointment/appointmentSlice";
 import authReducer from "@/redux/slices/auth/authSlice";
 import clinicReducer from "@/redux/slices/clinic/clinicSlice";
@@ -16,10 +17,11 @@ const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["theme", "lang", "auth", "user"],
+  whitelist: ["app", "theme", "lang", "auth", "user"],
 };
 
 const reducers = combineReducers({
+  app: appReducer,
   theme: themeReducer,
   lang: languageReducer,
   auth: authReducer,

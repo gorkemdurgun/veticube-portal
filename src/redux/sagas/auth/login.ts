@@ -1,11 +1,12 @@
 import { message } from "antd";
 import { call, put } from "redux-saga/effects";
 
-import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
+import { getBreedsSuccess } from "@/redux/slices/app/appSlice";
 import { loginRequest, loginSuccess, loginFailure } from "@/redux/slices/auth/authSlice";
 import { getUserSuccess } from "@/redux/slices/user/userSlice";
 import { auth } from "@/services/cognito";
 import { rest } from "@/services/db";
+import { GetBreedsResponse } from "@/services/db/rest/app";
 import type { GetUserByIdResponse, GetManagerAssignmentsResponse, GetEmployeeAssignmentsResponse } from "@/services/db/rest/user";
 import toErrorMessage from "@/utils/toError";
 
@@ -89,12 +90,14 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
           assignments: [assignment],
         })
       );
-    }
-    /*
-    else {
+    } else {
       throw new Error("Unknown user role");
     }
-    */
+
+    // Get breeds from DB
+    const { breeds }: GetBreedsResponse = yield call(rest.app.getBreeds);
+    if (!breeds) throw new Error("No breeds found in database");
+    yield put(getBreedsSuccess(breeds));
 
     if (onSuccess) {
       onSuccess();
