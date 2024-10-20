@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 
-import { PiCatDuotone as CatIcon, PiDogDuotone as DogIcon } from "react-icons/pi";
+import { PiCatDuotone as CatIcon, PiDogDuotone as DogIcon, PiGenderFemale as FemaleIcon, PiGenderMale as MaleIcon } from "react-icons/pi";
 
-import { AutoComplete, Card, Checkbox, Divider, Form, Input, message, Modal, Select, Steps } from "antd";
+import { AutoComplete, Card, Checkbox, DatePicker, Divider, Form, Input, InputNumber, message, Modal, Radio, Select, Steps } from "antd";
 
 import { useAppSelector } from "@/hooks";
 import { mutations } from "@/services/db";
 import { uiError } from "@/utils/uiError";
 
 import CustomButton from "@/components/common/custom-button";
+import SelectableCard from "@/components/common/selectable-card";
 
 const { Option } = Select;
 
@@ -25,7 +26,7 @@ type PetForm = {
   gender?: string;
   birthDate?: string;
   weight?: number;
-  chipNumber?: string;
+  medicalNotes?: string;
 };
 
 const AddPetToClient = ({ visible, onClose, ownerId }: Props) => {
@@ -60,29 +61,25 @@ const AddPetToClient = ({ visible, onClose, ownerId }: Props) => {
             *<span className="ml-1 text-sm text-black">Tür</span>
           </h5>
           <div className="grid grid-cols-2 gap-4">
-            <Card
-              className={
-                "cursor-pointer flex items-center justify-center border-2 hover:border-blue-600" +
-                (selectedSpecies === "Dog" ? " bg-blue-50 border-blue-600 text-blue-600" : "")
-              }
+            <SelectableCard
+              selected={selectedSpecies === "Dog"}
               onClick={() => setSelectedSpecies("Dog")}
+              onClear={() => setSelectedSpecies(undefined)}
             >
               <DogIcon size={32} />
               <span>Köpek</span>
-            </Card>
-            <Card
-              className={
-                "cursor-pointer flex items-center justify-center border-2 hover:border-blue-600" +
-                (selectedSpecies === "Cat" ? " bg-blue-50 border-blue-600 text-blue-600" : "")
-              }
+            </SelectableCard>
+            <SelectableCard
+              selected={selectedSpecies === "Cat"}
               onClick={() => setSelectedSpecies("Cat")}
+              onClear={() => setSelectedSpecies(undefined)}
             >
               <CatIcon size={32} />
               <span>Kedi</span>
-            </Card>
+            </SelectableCard>
           </div>
         </div>
-        <Form.Item label="Cins" name="breed" rules={[{ required: true, message: "Lütfen pet cinsini girin." }]}>
+        <Form.Item label="Cins" name="breed">
           <Select
             showSearch
             disabled={!selectedSpecies}
@@ -99,6 +96,35 @@ const AddPetToClient = ({ visible, onClose, ownerId }: Props) => {
                 </Option>
               ))}
           </Select>
+        </Form.Item>
+        <Form.Item label="Cinsiyet" name="gender">
+          <Radio.Group
+            className="w-full"
+            optionType="button"
+            options={[
+              {
+                style: { width: "50%" },
+                label: "Erkek",
+                value: "male",
+              },
+              {
+                style: { width: "50%" },
+                label: "Dişi",
+                value: "female",
+              },
+            ]}
+          />
+        </Form.Item>
+        <div className="grid grid-cols-2 gap-4">
+          <Form.Item label="Doğum Tarihi" name="birthDate">
+            <DatePicker className="w-full" format={"YYYY-MM-DD"} />
+          </Form.Item>
+          <Form.Item label="Ağırlık" name="weight">
+            <InputNumber step={0.1} className="w-full" />
+          </Form.Item>
+        </div>
+        <Form.Item label="Tıbbi Notlar" name="medicalNotes">
+          <Input.TextArea />
         </Form.Item>
         <Divider />
         <Form.Item>
