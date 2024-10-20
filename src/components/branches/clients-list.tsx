@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { useQuery } from "@apollo/client";
-import { Popover, Table, type TableProps } from "antd";
+import { Popover, Select, Table, type TableProps } from "antd";
 
 import { useAppSelector } from "@/hooks";
 import { queries } from "@/services/db";
@@ -15,11 +15,12 @@ type Props = {};
 const ClientsList: React.FC<Props> = () => {
   const { assignments } = useAppSelector((state) => state.user);
   const [currentBranch, setCurrentBranch] = useState(assignments[0].branch.id);
+  const [currentClient, setCurrentClient] = useState(undefined);
 
   const [visibleAddClientModal, setVisibleAddClientModal] = useState(false);
   const [visibleAddPetModal, setVisibleAddPetModal] = useState(false);
 
-  const { data, loading } = useQuery(queries.clinic.GetBranchClients, {
+  const { data: clientsData, loading } = useQuery(queries.clinic.GetBranchClients, {
     variables: { branch_id: currentBranch },
   });
 
@@ -77,23 +78,37 @@ const ClientsList: React.FC<Props> = () => {
   ];
 
   //   if (loading) return <Loader />;
-  if (!data) return <div>Veri bulunamadı</div>;
-
+  if (!clientsData) return <div>Müşteri bulunamadı</div>;
+  clientsData;
   return (
     <>
       <AddClientToBranchModal visible={visibleAddClientModal} onClose={() => setVisibleAddClientModal(false)} />
-      <AddPetToClient visible={visibleAddPetModal} onClose={() => setVisibleAddPetModal(false)} />
+      <AddPetToClient
+        visible={visibleAddPetModal}
+        onClose={() => setVisibleAddPetModal(false)}
+        data={{
+          clients: clientsData.branch_clients,
+          initialClient: currentClient,
+        }}
+      />
       <Table
         columns={columns}
-        dataSource={data.branch_clients}
+        dataSource={clientsData.branch_clients}
         rowKey="id"
         loading={loading}
         title={() => (
           <div className="flex justify-between items-center">
             <h2 className="text-lg font-semibold">Müşteriler</h2>
-            <CustomButton variant="secondary-opaque" onClick={() => setVisibleAddClientModal(true)}>
-              Yeni Müşteri Ekle
-            </CustomButton>
+            <div className="flex gap-2">
+              <Select
+                value={currentBranch}
+                options={assignments.map((assignment) => ({ label: assignment.branch.branch_name, value: assignment.branch.id }))}
+                onChange={(value) => setCurrentBranch(value)}
+              />
+              <CustomButton variant="secondary-opaque" onClick={() => setVisibleAddClientModal(true)}>
+                Yeni Müşteri Ekle
+              </CustomButton>
+            </div>
           </div>
         )}
       />

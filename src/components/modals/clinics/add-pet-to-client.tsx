@@ -16,20 +16,23 @@ const { Option } = Select;
 type Props = {
   visible: boolean;
   onClose: () => void;
-  ownerId?: string;
+  data: {
+    clients: any[];
+    initialClient?: string;
+  };
 };
 
 type PetForm = {
   owner_id: string;
   name: string;
-  breed?: string;
+  breed_id?: string;
   gender?: string;
   birthDate?: string;
   weight?: number;
   medicalNotes?: string;
 };
 
-const AddPetToClient = ({ visible, onClose, ownerId }: Props) => {
+const AddPetToClient = ({ visible, onClose, data }: Props) => {
   const [loading, setLoading] = useState(false);
   const { breeds } = useAppSelector((state) => state.app);
 
@@ -38,20 +41,36 @@ const AddPetToClient = ({ visible, onClose, ownerId }: Props) => {
 
   const handleSubmit = () => {
     petForm.validateFields().then((values) => {
-      console.log("values", values);
+      mutations.clinics
+        .addPetToClient(values.owner_id, values.name, values.breed_id, values.gender, values.birthDate, values.medicalNotes)
+        .then(
+          () => {
+            message.success("Pet başarıyla eklendi.");
+            onClose();
+          },
+          (error) => {
+            uiError(error);
+          }
+        );
     });
   };
 
   useEffect(() => {
     // reset breed field when species changes
-    petForm.setFieldsValue({ breed: undefined });
+    petForm.setFieldsValue({ breed_id: undefined });
   }, [selectedSpecies]);
 
   return (
-    <Modal title="Pet Ekle" open={true} onOk={onClose} onCancel={onClose} footer={null}>
+    <Modal open={visible} onOk={onClose} onCancel={onClose} footer={null} title="Pet Ekle">
       <Form form={petForm} layout="vertical">
-        <Form.Item name="owner_id" initialValue={ownerId} hidden>
-          <Input />
+        <Form.Item label="Sahip" name="owner_id" rules={[{ required: true, message: "Lütfen sahip seçin" }]} initialValue={data?.initialClient}>
+          <Select showSearch optionFilterProp="title">
+            {data?.clients?.map((client) => (
+              <Option key={client.id} value={client.id} title={client.full_name}>
+                {client.full_name}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
         <Form.Item label="Ad" name="name" rules={[{ required: true, message: "Lütfen pet adını girin." }]}>
           <Input />
@@ -79,13 +98,13 @@ const AddPetToClient = ({ visible, onClose, ownerId }: Props) => {
             </SelectableCard>
           </div>
         </div>
-        <Form.Item label="Cins" name="breed">
+        <Form.Item label="Cins" name="breed_id">
           <Select
             showSearch
             disabled={!selectedSpecies}
             optionFilterProp="title"
             onSelect={(value, option) => {
-              petForm.setFieldsValue({ breed: option?.value as string });
+              petForm.setFieldsValue({ breed_id: option?.value as string });
             }}
           >
             {breeds
@@ -120,10 +139,10 @@ const AddPetToClient = ({ visible, onClose, ownerId }: Props) => {
             <DatePicker className="w-full" format={"YYYY-MM-DD"} />
           </Form.Item>
           <Form.Item label="Ağırlık" name="weight">
-            <InputNumber step={0.1} className="w-full" />
+            <InputNumber disabled step={0.1} className="w-full" />
           </Form.Item>
         </div>
-        <Form.Item label="Tıbbi Notlar" name="medicalNotes">
+        <Form.Item label="Notlar" name="medicalNotes">
           <Input.TextArea />
         </Form.Item>
         <Divider />

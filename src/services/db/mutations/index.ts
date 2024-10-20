@@ -1,6 +1,14 @@
 import { createAppointment } from "./appointments";
 import { insertVeterinarian, updateVetRole } from "./auth";
-import { createClinic, createBranch, addManagerToClinic, addClientRecordToBranch, sendEmployeeInvite, updateIncomingInvite } from "./clinics";
+import {
+  createClinic,
+  createBranch,
+  addManagerToClinic,
+  addClientRecordToBranch,
+  sendEmployeeInvite,
+  updateIncomingInvite,
+  addPetToClient,
+} from "./clinics";
 import { createDemoRequest } from "./requests";
 
 export const mutations = {
@@ -18,6 +26,7 @@ export const mutations = {
     createBranch,
     addManagerToClinic,
     addClientRecordToBranch,
+    addPetToClient,
     sendEmployeeInvite,
     updateIncomingInvite,
   },
