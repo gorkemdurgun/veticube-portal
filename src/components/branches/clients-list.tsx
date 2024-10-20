@@ -101,6 +101,7 @@ const ClientsList: React.FC<Props> = () => {
             <h2 className="text-lg font-semibold">Müşteriler</h2>
             <div className="flex gap-2">
               <Select
+                disabled={assignments.length < 2}
                 value={currentBranch}
                 options={assignments.map((assignment) => ({ label: assignment.branch.branch_name, value: assignment.branch.id }))}
                 onChange={(value) => setCurrentBranch(value)}
