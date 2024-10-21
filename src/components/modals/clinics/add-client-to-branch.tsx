@@ -13,18 +13,19 @@ const { Option } = Select;
 type Props = {
   visible: boolean;
   onClose: () => void;
+  onSuccess: (ownerId: string) => void;
 };
 
 type ClientForm = {
   selectedBranch: string;
   user: {
     email: string;
-    fullName: string;
+    name: string;
     phone?: string;
   };
 };
 
-const AddClientToBranchModal = ({ visible, onClose }: Props) => {
+const AddClientToBranchModal = ({ visible, onClose, onSuccess }: Props) => {
   const [loading, setLoading] = useState(false);
   const { assignments: branchAssignments } = useAppSelector((state) => state.user);
 
@@ -32,12 +33,29 @@ const AddClientToBranchModal = ({ visible, onClose }: Props) => {
 
   const handleSubmit = () => {
     clientForm.validateFields().then((values) => {
-      console.log("values", values);
+      console.log("clientForm", values);
+      mutations.clinics
+        .addClientRecordToBranch(values.user.email, values.user.name, values.selectedBranch, values.user.phone)
+        .then((res) => {
+          message.success("Müşteri başarıyla eklendi!");
+          if (res?.client_record?.returning[0]?.id) {
+            onSuccess(res.client_record.returning[0].id);
+            onClose();
+          } else {
+            message.error("Müşteri eklendi fakat bir hata oluştu!");
+          }
+        })
+        .catch((error) => {
+          console.log("error", error);
+          // message.error(uiError(error));
+        }).finally(() => {
+          clientForm.resetFields();
+        });
     });
   };
 
   return (
-    <Modal title="Müşteri Ekle" open={visible} onOk={onClose} onCancel={onClose} footer={null}>
+    <Modal title="Müşteri Ekle" open={visible} onCancel={onClose} footer={null}>
       <Form form={clientForm} layout="vertical" initialValues={{ selectedBranch: branchAssignments[0].branch.id }}>
         <Form.Item label="Eklenecek Şube" name="selectedBranch" rules={[{ required: true, message: "Lütfen bir şube seçiniz!" }]}>
           <Select disabled={branchAssignments.length < 2} placeholder="Şube seçiniz">

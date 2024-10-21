@@ -16,10 +16,14 @@ export const uiError = (errorMessage: string) => {
 
   // Check if error message includes any of the errorWords
   for (const key in errorWords) {
-    if (errorMessage.includes(key)) {
-      return errorWords[key];
+    if (typeof errorMessage !== "string") {
+      return "Bir hata oluştu";
     } else {
-      return errorMessage;
+      if (errorMessage?.includes(key)) {
+        return errorWords[key];
+      } else {
+        return errorMessage;
+      }
     }
   }
 };

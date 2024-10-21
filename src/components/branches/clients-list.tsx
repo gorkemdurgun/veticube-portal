@@ -15,12 +15,16 @@ type Props = {};
 const ClientsList: React.FC<Props> = () => {
   const { assignments } = useAppSelector((state) => state.user);
   const [currentBranch, setCurrentBranch] = useState(assignments[0].branch.id);
-  const [currentClient, setCurrentClient] = useState(undefined);
+  const [currentClientId, setCurrentClientId] = useState<string | undefined>(undefined);
 
   const [visibleAddClientModal, setVisibleAddClientModal] = useState(false);
   const [visibleAddPetModal, setVisibleAddPetModal] = useState(false);
 
-  const { data: clientsData, loading } = useQuery(queries.clinic.GetBranchClients, {
+  const {
+    data: clientsData,
+    loading,
+    refetch: refetchClients,
+  } = useQuery(queries.clinic.GetBranchClients, {
     variables: { branch_id: currentBranch },
   });
 
@@ -82,14 +86,23 @@ const ClientsList: React.FC<Props> = () => {
   clientsData;
   return (
     <>
-      <AddClientToBranchModal visible={visibleAddClientModal} onClose={() => setVisibleAddClientModal(false)} />
+      <AddClientToBranchModal
+        visible={visibleAddClientModal}
+        onClose={() => setVisibleAddClientModal(false)}
+        onSuccess={(ownerId) => {
+          refetchClients();
+          setVisibleAddPetModal(true);
+          setCurrentClientId(ownerId);
+        }}
+      />
       <AddPetToClient
         visible={visibleAddPetModal}
         onClose={() => setVisibleAddPetModal(false)}
         data={{
           clients: clientsData.branch_clients,
-          initialClient: currentClient,
+          initialClientId: currentClientId,
         }}
+        onSuccess={() => refetchClients()}
       />
       <Table
         columns={columns}

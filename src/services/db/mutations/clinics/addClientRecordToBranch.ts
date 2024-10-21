@@ -22,7 +22,17 @@ const GQL = gql`
 
 export const addClientRecordToBranch = async (email: string, full_name: string, branch_id: string, phone_number?: string) => {
   const { data, errors } = await apolloGqlClient.mutate<{
-    clinic: { returning: { id: string; email: string; full_name: string; phone_number: string; created_at: string; branch_id: string }[] };
+    client_record: {
+      affected_rows: number;
+      returning: {
+        email: string;
+        full_name: string;
+        phone_number: string;
+        created_at: string;
+        branch_id: string;
+        id: string;
+      }[];
+    };
   }>({
     mutation: GQL,
     variables: {

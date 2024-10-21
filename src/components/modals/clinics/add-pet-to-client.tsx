@@ -16,9 +16,10 @@ const { Option } = Select;
 type Props = {
   visible: boolean;
   onClose: () => void;
+  onSuccess?: () => void;
   data: {
     clients: any[];
-    initialClient?: string;
+    initialClientId?: string;
   };
 };
 
@@ -32,7 +33,7 @@ type PetForm = {
   medicalNotes?: string;
 };
 
-const AddPetToClient = ({ visible, onClose, data }: Props) => {
+const AddPetToClient = ({ visible, onClose, onSuccess, data }: Props) => {
   const [loading, setLoading] = useState(false);
   const { breeds } = useAppSelector((state) => state.app);
 
@@ -43,15 +44,17 @@ const AddPetToClient = ({ visible, onClose, data }: Props) => {
     petForm.validateFields().then((values) => {
       mutations.clinics
         .addPetToClient(values.owner_id, values.name, values.breed_id, values.gender, values.birthDate, values.medicalNotes)
-        .then(
-          () => {
-            message.success("Pet başarıyla eklendi.");
-            onClose();
-          },
-          (error) => {
-            uiError(error);
-          }
-        );
+        .then(() => {
+          message.success("Pet başarıyla eklendi.");
+          onClose();
+          onSuccess?.();
+        })
+        .catch((error) => {
+          console.log("error", error);
+        })
+        .finally(() => {
+          petForm.resetFields();
+        }); 
     });
   };
 
@@ -63,7 +66,12 @@ const AddPetToClient = ({ visible, onClose, data }: Props) => {
   return (
     <Modal open={visible} onOk={onClose} onCancel={onClose} footer={null} title="Pet Ekle">
       <Form form={petForm} layout="vertical">
-        <Form.Item label="Sahip" name="owner_id" rules={[{ required: true, message: "Lütfen sahip seçin" }]} initialValue={data?.initialClient}>
+        <Form.Item
+          label="Sahip"
+          name="owner_id"
+          rules={[{ required: true, message: "Lütfen sahip seçin" }]}
+          initialValue={data?.initialClientId}
+        >
           <Select showSearch optionFilterProp="title">
             {data?.clients?.map((client) => (
               <Option key={client.id} value={client.id} title={client.full_name}>
