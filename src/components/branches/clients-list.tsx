@@ -72,10 +72,28 @@ const ClientsList: React.FC<Props> = () => {
               {value[0]?.name} + {value.length - 1}
             </Popover>
           ) : (
-            value[0]?.name
+            <a className="block text-blue-700 hover:text-blue-500">{value[0]?.name}</a>
           )
         ) : (
           "-"
+        );
+      },
+    },
+    {
+      title: "İşlem",
+      dataIndex: "id",
+      key: "id",
+      render(value, record, index) {
+        return (
+          <CustomButton
+            variant="secondary-faded"
+            onClick={() => {
+              setCurrentClientId(record.id);
+              setVisibleAddPetModal(true);
+            }}
+          >
+            Pet Ekle
+          </CustomButton>
         );
       },
     },
@@ -113,15 +131,16 @@ const ClientsList: React.FC<Props> = () => {
           <div className="flex justify-between items-center">
             <h2 className="text-lg font-semibold">Müşteriler</h2>
             <div className="flex gap-2">
+              <CustomButton variant="secondary-opaque" onClick={() => setVisibleAddClientModal(true)}>
+                Yeni Müşteri Ekle
+              </CustomButton>
               <Select
+                className="min-w-[200px]"
                 disabled={assignments.length < 2}
                 value={currentBranch}
                 options={assignments.map((assignment) => ({ label: assignment.branch.branch_name, value: assignment.branch.id }))}
                 onChange={(value) => setCurrentBranch(value)}
               />
-              <CustomButton variant="secondary-opaque" onClick={() => setVisibleAddClientModal(true)}>
-                Yeni Müşteri Ekle
-              </CustomButton>
             </div>
           </div>
         )}

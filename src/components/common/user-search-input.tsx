@@ -61,7 +61,7 @@ const UserSearchInput: React.FC<Props> = ({ inputClassName, onSelectClient }) =>
 
   return (
     <div className="w-full flex flex-col">
-      <div className="flex flex-row items-center gap-2">
+      {/* <div className="flex flex-row items-center gap-2"> */}
         <Select
           showSearch
           labelInValue
@@ -74,11 +74,11 @@ const UserSearchInput: React.FC<Props> = ({ inputClassName, onSelectClient }) =>
           onSearch={debouncedOnSearchChange}
           onSelect={(value, option) => setSelectedOption(option)}
         />
-        <CustomButton variant="secondary-faded" className="w-full text-left">
+        {/* <CustomButton variant="secondary-faded" className="w-full text-left">
           + Yeni Müşteri Ekle
-        </CustomButton>
-      </div>
-      <div className="flex flex-row items-center gap-2 mt-2">
+        </CustomButton> */}
+      {/* </div> */}
+      {/* <div className="flex flex-row items-center gap-2 mt-2">
         {selectOptions && selectedOption ? (
           <div className="flex flex-row items-center gap-1">
             <AvailableIcon className="w-6 h-6 text-success-500" />
@@ -87,7 +87,7 @@ const UserSearchInput: React.FC<Props> = ({ inputClassName, onSelectClient }) =>
             </span>
           </div>
         ) : null}
-      </div>
+      </div> */}
     </div>
   );
 };

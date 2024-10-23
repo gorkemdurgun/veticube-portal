@@ -54,7 +54,7 @@ const AddPetToClient = ({ visible, onClose, onSuccess, data }: Props) => {
         })
         .finally(() => {
           petForm.resetFields();
-        }); 
+        });
     });
   };
 
@@ -63,15 +63,14 @@ const AddPetToClient = ({ visible, onClose, onSuccess, data }: Props) => {
     petForm.setFieldsValue({ breed_id: undefined });
   }, [selectedSpecies]);
 
+  useEffect(() => {
+    petForm.setFieldsValue({ owner_id: data.initialClientId });
+  }, [data.initialClientId]);
+
   return (
     <Modal open={visible} onOk={onClose} onCancel={onClose} footer={null} title="Pet Ekle">
-      <Form form={petForm} layout="vertical">
-        <Form.Item
-          label="Sahip"
-          name="owner_id"
-          rules={[{ required: true, message: "Lütfen sahip seçin" }]}
-          initialValue={data?.initialClientId}
-        >
+      <Form form={petForm} layout="vertical" initialValues={{ owner_id: data.initialClientId }}>
+        <Form.Item label="Sahip" name="owner_id" rules={[{ required: true, message: "Lütfen sahip seçin" }]}>
           <Select showSearch optionFilterProp="title">
             {data?.clients?.map((client) => (
               <Option key={client.id} value={client.id} title={client.full_name}>
@@ -84,9 +83,7 @@ const AddPetToClient = ({ visible, onClose, onSuccess, data }: Props) => {
           <Input />
         </Form.Item>
         <div className="flex flex-col gap-2 my-2">
-          <h5 className="text-xs text-error-600">
-            *<span className="ml-1 text-sm text-black">Tür</span>
-          </h5>
+          <span className="text-sm text-black">Tür</span>
           <div className="grid grid-cols-2 gap-4">
             <SelectableCard
               selected={selectedSpecies === "Dog"}
