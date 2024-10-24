@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { queries } from "@/services/db";
 
 import CustomButton from "@/components/common/custom-button";
+import ActivateDeviceModal from "@/components/modals/devices/activate-device";
 
 const DevicesPage = () => {
   const router = useRouter();
@@ -19,6 +20,7 @@ const DevicesPage = () => {
 
   return (
     <div className="w-full flex flex-col gap-4">
+      <ActivateDeviceModal visible={true} setVisible={() => {}} />
       {data?.devices.map((device, index) => {
         return (
           <div key={device.id} className="flex p-4 bg-gray-100 rounded-lg">
