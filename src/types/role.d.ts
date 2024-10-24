@@ -1,1 +1,1 @@
-type UserRole = "manager" | "veterinarian" | "nurse" | "secretary" | "client";
+type UserRole = "manager" | "veterinarian" | "nurse" | "secretary" | "client" | "user";

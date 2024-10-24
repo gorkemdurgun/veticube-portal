@@ -48,7 +48,8 @@ const AddClientToBranchModal = ({ visible, onClose, onSuccess }: Props) => {
         .catch((error) => {
           console.log("error", error);
           // message.error(uiError(error));
-        }).finally(() => {
+        })
+        .finally(() => {
           clientForm.resetFields();
         });
     });
@@ -56,6 +57,7 @@ const AddClientToBranchModal = ({ visible, onClose, onSuccess }: Props) => {
 
   return (
     <Modal title="Müşteri Ekle" open={visible} onCancel={onClose} footer={null}>
+      {/* 
       <Form form={clientForm} layout="vertical" initialValues={{ selectedBranch: branchAssignments[0].branch.id }}>
         <Form.Item label="Eklenecek Şube" name="selectedBranch" rules={[{ required: true, message: "Lütfen bir şube seçiniz!" }]}>
           <Select disabled={branchAssignments.length < 2} placeholder="Şube seçiniz">
@@ -91,6 +93,7 @@ const AddClientToBranchModal = ({ visible, onClose, onSuccess }: Props) => {
           </CustomButton>
         </Form.Item>
       </Form>
+       */}
     </Modal>
   );
 };

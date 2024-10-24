@@ -75,28 +75,31 @@ export const Navbar: React.FC = () => {
           >
             {darkMode ? <MoonOutlined /> : <SunOutlined />}
           </Dropdown.Button> */}
-          <Spin spinning={appLoading}>
-            <Dropdown.Button
-              type="default"
-              trigger={["click"]}
-              icon={<DownOutlined />}
-              menu={{
-                items: assignments.map((assignment) => ({
-                  key: assignment.branch.id,
-                  label: assignment.branch.branch_name,
-                  disabled: assignment.branch.id === activeBranch,
-                  onClick: () =>
-                    dispatch(
-                      setActiveBranchRequest({
-                        branch_id: assignment.branch.id,
-                      })
-                    ),
-                })),
-              }}
-            >
-              {assignments?.find((assignment) => assignment.branch.id === activeBranch)?.branch.branch_name}
-            </Dropdown.Button>
-          </Spin>
+          {activeBranch && (
+            <Spin spinning={appLoading}>
+              <Dropdown.Button
+                type="default"
+                trigger={["click"]}
+                disabled={assignments.length < 2}
+                icon={<DownOutlined />}
+                menu={{
+                  items: assignments.map((assignment) => ({
+                    key: assignment.branch.id,
+                    label: assignment.branch.branch_name,
+                    disabled: assignment.branch.id === activeBranch,
+                    onClick: () =>
+                      dispatch(
+                        setActiveBranchRequest({
+                          branch_id: assignment.branch.id,
+                        })
+                      ),
+                  })),
+                }}
+              >
+                {assignments?.find((assignment) => assignment.branch.id === activeBranch)?.branch.branch_name}
+              </Dropdown.Button>
+            </Spin>
+          )}
           {/* <Dropdown.Button
             className="hidden sm:block"
             type="default"

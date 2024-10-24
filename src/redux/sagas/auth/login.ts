@@ -1,6 +1,7 @@
 import { message } from "antd";
 import { call, put } from "redux-saga/effects";
 
+import { setActiveBranchRequest } from "@/redux/slices/app/appSlice";
 import { loginRequest, loginSuccess, loginFailure } from "@/redux/slices/auth/authSlice";
 import { getUserSuccess } from "@/redux/slices/user/userSlice";
 import { auth } from "@/services/cognito";
@@ -47,51 +48,47 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
       message.success(`Welcome, ${user.full_name}!`);
     }
 
+    let assignmentList: GetUserSuccessPayload["assignments"] = [];
     if (userRole === "manager") {
       const { assignment }: GetManagerAssignmentsResponse = yield call(rest.user.getManagerAssignments, userId);
       const branches = assignment?.clinic?.branches;
 
-      // User data to Redux
-      yield put(
-        getUserSuccess({
-          user: {
-            id: user.id,
-            full_name: user.full_name,
-            email: user.email,
-            phone_number: user.phone_number,
-            status: user.status,
-            created_at: user.created_at,
-            updated_at: user.updated_at,
-          },
-          assignments: branches.map((branch) => ({
-            role: "manager",
-            assigned_at: assignment.assigned_at,
-            branch: branch,
-          })),
-        })
-      );
+      if (!branches) {
+        throw new Error("No branches found in response");
+      }
+
+      assignmentList = branches.map((branch) => ({
+        role: "manager",
+        assigned_at: assignment.assigned_at,
+        branch: branch,
+      }));
     } else if (userRole === "veterinarian" || userRole === "nurse" || userRole === "secretary") {
       const { assignment }: GetEmployeeAssignmentsResponse = yield call(rest.user.getEmployeeAssignments, userId);
-      console.log("user's assignments...", assignment);
-
-      // User data to Redux
-      yield put(
-        getUserSuccess({
-          user: {
-            id: user.id,
-            full_name: user.full_name,
-            email: user.email,
-            phone_number: user.phone_number,
-            status: user.status,
-            created_at: user.created_at,
-            updated_at: user.updated_at,
-          },
-          assignments: [assignment],
-        })
-      );
+      assignmentList = [assignment];
+    } else if (userRole === "user") {
+      assignmentList = [];
     } else {
       throw new Error("Unknown user role");
     }
+
+    if (assignmentList.length > 0) {
+      yield put(setActiveBranchRequest({ branch_id: assignmentList[0].branch.id }));
+    }
+
+    yield put(
+      getUserSuccess({
+        user: {
+          id: user.id,
+          full_name: user.full_name,
+          email: user.email,
+          phone_number: user.phone_number,
+          status: user.status,
+          created_at: user.created_at,
+          updated_at: user.updated_at,
+        },
+        assignments: assignmentList,
+      })
+    );
 
     if (onSuccess) {
       onSuccess();

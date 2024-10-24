@@ -91,10 +91,6 @@ const ClientsList: React.FC<Props> = () => {
     },
   ];
 
-  //   if (loading) return <Loader />;
-
-  console.log("branchClients in clientlist", branchClients);
-
   return (
     <>
       <AddClientToBranchModal
