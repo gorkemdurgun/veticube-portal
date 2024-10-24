@@ -3,6 +3,7 @@ import axios from "axios";
 import { store } from "@/redux/store";
 
 import { getBreeds } from "./app";
+import { getClinicRecordsByBranchId } from "./clinic";
 import { getUserById, getManagerAssignments, getEmployeeAssignments } from "./user";
 
 export const axiosInstance = axios.create({
@@ -29,4 +30,7 @@ export const rest = {
   app: {
     getBreeds,
   },
+  clinic: {
+    getClinicRecordsByBranchId,
+  }
 };

@@ -1,9 +1,10 @@
 import { DownOutlined, MoonOutlined, SunOutlined } from "@ant-design/icons";
-import { Avatar, Badge, Dropdown, Layout, Tooltip } from "antd";
+import { Avatar, Badge, Dropdown, Layout, Spin, Tooltip } from "antd";
 import Image from "next/image";
 
 import { png } from "@/assets";
 import { useAppDispatch, useAppSelector } from "@/hooks";
+import { setActiveBranchRequest } from "@/redux/slices/app/appSlice";
 import { setLanguage } from "@/redux/slices/language/languageSlice";
 import { setMode } from "@/redux/slices/theme/themeSlice";
 
@@ -41,6 +42,8 @@ export const Navbar: React.FC = () => {
   const dispatch = useAppDispatch();
   const { darkMode } = useAppSelector((state) => state.theme);
   const { language } = useAppSelector((state) => state.lang);
+  const { assignments } = useAppSelector((state) => state.user);
+  const { activeBranch, loading: appLoading } = useAppSelector((state) => state.app);
 
   return (
     <Header className="!p-0 flex items-center bg-gray-50 border-b">
@@ -72,7 +75,29 @@ export const Navbar: React.FC = () => {
           >
             {darkMode ? <MoonOutlined /> : <SunOutlined />}
           </Dropdown.Button> */}
-          <Dropdown.Button
+          <Spin spinning={appLoading}>
+            <Dropdown.Button
+              type="default"
+              trigger={["click"]}
+              icon={<DownOutlined />}
+              menu={{
+                items: assignments.map((assignment) => ({
+                  key: assignment.branch.id,
+                  label: assignment.branch.branch_name,
+                  disabled: assignment.branch.id === activeBranch,
+                  onClick: () =>
+                    dispatch(
+                      setActiveBranchRequest({
+                        branch_id: assignment.branch.id,
+                      })
+                    ),
+                })),
+              }}
+            >
+              {assignments?.find((assignment) => assignment.branch.id === activeBranch)?.branch.branch_name}
+            </Dropdown.Button>
+          </Spin>
+          {/* <Dropdown.Button
             className="hidden sm:block"
             type="default"
             trigger={["click"]}
@@ -80,7 +105,7 @@ export const Navbar: React.FC = () => {
             menu={{ items: langItems, selectedKeys: [language] }}
           >
             {language === "tr" ? "Türkçe" : "English"}
-          </Dropdown.Button>
+          </Dropdown.Button> */}
           <UserAvatar />
         </div>
       </div>

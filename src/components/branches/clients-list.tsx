@@ -14,19 +14,11 @@ type Props = {};
 
 const ClientsList: React.FC<Props> = () => {
   const { assignments } = useAppSelector((state) => state.user);
-  const [currentBranch, setCurrentBranch] = useState(assignments[0].branch.id);
+  const { branchClients, loading: appLoading } = useAppSelector((state) => state.app);
   const [currentClientId, setCurrentClientId] = useState<string | undefined>(undefined);
 
   const [visibleAddClientModal, setVisibleAddClientModal] = useState(false);
   const [visibleAddPetModal, setVisibleAddPetModal] = useState(false);
-
-  const {
-    data: clientsData,
-    loading,
-    refetch: refetchClients,
-  } = useQuery(queries.clinic.GetBranchClients, {
-    variables: { branch_id: currentBranch },
-  });
 
   const columns: TableProps["columns"] = [
     {
@@ -100,20 +92,20 @@ const ClientsList: React.FC<Props> = () => {
   ];
 
   //   if (loading) return <Loader />;
-  if (!clientsData) return <div>Müşteri bulunamadı</div>;
-  clientsData;
+
+  console.log("branchClients in clientlist", branchClients);
+
   return (
     <>
       <AddClientToBranchModal
         visible={visibleAddClientModal}
         onClose={() => setVisibleAddClientModal(false)}
         onSuccess={(ownerId) => {
-          refetchClients();
           setVisibleAddPetModal(true);
           setCurrentClientId(ownerId);
         }}
       />
-      <AddPetToClient
+      {/* <AddPetToClient
         visible={visibleAddPetModal}
         onClose={() => setVisibleAddPetModal(false)}
         data={{
@@ -121,12 +113,12 @@ const ClientsList: React.FC<Props> = () => {
           initialClientId: currentClientId,
         }}
         onSuccess={() => refetchClients()}
-      />
+      /> */}
       <Table
         columns={columns}
-        dataSource={clientsData.branch_clients}
+        dataSource={branchClients}
         rowKey="id"
-        loading={loading}
+        loading={appLoading}
         title={() => (
           <div className="flex justify-between items-center">
             <h2 className="text-lg font-semibold">Müşteriler</h2>
@@ -134,13 +126,6 @@ const ClientsList: React.FC<Props> = () => {
               <CustomButton variant="secondary-opaque" onClick={() => setVisibleAddClientModal(true)}>
                 Yeni Müşteri Ekle
               </CustomButton>
-              <Select
-                className="min-w-[200px]"
-                disabled={assignments.length < 2}
-                value={currentBranch}
-                options={assignments.map((assignment) => ({ label: assignment.branch.branch_name, value: assignment.branch.id }))}
-                onChange={(value) => setCurrentBranch(value)}
-              />
             </div>
           </div>
         )}
