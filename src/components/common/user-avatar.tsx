@@ -5,6 +5,7 @@ import { Avatar, Button, Divider, Popconfirm } from "antd";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
 import { logout } from "@/redux/slices/auth/authSlice";
+import { persistor } from "@/redux/store";
 
 export const UserAvatar: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
@@ -26,7 +27,7 @@ export const UserAvatar: React.FC<{}> = () => {
         okButtonProps={{ danger: true }}
         onConfirm={() => {
           apolloGqlClient.clearStore();
-          dispatch(logout());
+          persistor.purge();
         }}
       >
         <Button danger type="link" className="mx-0 p-0">
