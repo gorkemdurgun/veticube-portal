@@ -1,12 +1,10 @@
 import { useState } from "react";
 
-import { Card, Checkbox, Divider, Form, Input, message, Modal, Select, Steps } from "antd";
+import { Form, message, Modal, Select } from "antd";
 
 import { useAppSelector } from "@/hooks";
 import { mutations } from "@/services/db";
-import { uiError } from "@/utils/uiError";
 
-import CustomButton from "@/components/common/custom-button";
 
 const { Option } = Select;
 

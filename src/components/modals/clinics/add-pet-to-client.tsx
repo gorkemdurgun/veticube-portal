@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { PiCatDuotone as CatIcon, PiDogDuotone as DogIcon, PiGenderFemale as FemaleIcon, PiGenderMale as MaleIcon } from "react-icons/pi";
+import { PiCatDuotone as CatIcon, PiDogDuotone as DogIcon } from "react-icons/pi";
 
-import { AutoComplete, Card, Checkbox, DatePicker, Divider, Form, Input, InputNumber, message, Modal, Radio, Select, Steps } from "antd";
+import { DatePicker, Divider, Form, Input, InputNumber, message, Modal, Radio, Select } from "antd";
 
 import { useAppSelector } from "@/hooks";
 import { mutations } from "@/services/db";
-import { uiError } from "@/utils/uiError";
 
 import CustomButton from "@/components/common/custom-button";
 import SelectableCard from "@/components/common/selectable-card";
@@ -35,7 +34,7 @@ type PetForm = {
 
 const AddPetToClient = ({ visible, onClose, onSuccess, data }: Props) => {
   const [loading, setLoading] = useState(false);
-  const { breeds } = useAppSelector((state) => state.app);
+  const { breedList } = useAppSelector((state) => state.app);
 
   const [selectedSpecies, setSelectedSpecies] = useState<string | undefined>(undefined);
   const [petForm] = Form.useForm<PetForm>();
@@ -112,7 +111,7 @@ const AddPetToClient = ({ visible, onClose, onSuccess, data }: Props) => {
               petForm.setFieldsValue({ breed_id: option?.value as string });
             }}
           >
-            {breeds
+            {breedList
               .filter((breed) => breed.species_name === selectedSpecies)
               .map((breed) => (
                 <Option key={breed.id} value={breed.id} title={breed.name}>

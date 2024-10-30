@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
 
 import { Popconfirm, Table } from "antd";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 
-import { TranslatedText } from "../common";
 import CustomButton from "../common/custom-button";
 
 type Props = {

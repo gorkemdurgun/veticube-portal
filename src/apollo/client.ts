@@ -1,11 +1,9 @@
-import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from "@apollo/client";
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import { message } from "antd";
 
-import { logout } from "@/redux/slices/auth/authSlice";
 import { store } from "@/redux/store";
-import { auth } from "@/services/cognito";
 
 const httpLink = new HttpLink({
   uri: "http://35.158.95.5:8080/v1/graphql",

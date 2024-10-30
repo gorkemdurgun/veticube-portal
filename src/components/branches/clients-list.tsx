@@ -1,14 +1,11 @@
 import { useState } from "react";
 
-import { useQuery } from "@apollo/client";
-import { Popover, Select, Table, type TableProps } from "antd";
+import { Popover, Table, type TableProps } from "antd";
 
 import { useAppSelector } from "@/hooks";
-import { queries } from "@/services/db";
 
 import CustomButton from "../common/custom-button";
 import AddClientToBranchModal from "../modals/clinics/add-client-to-branch";
-import AddPetToClient from "../modals/clinics/add-pet-to-client";
 
 type Props = {};
 

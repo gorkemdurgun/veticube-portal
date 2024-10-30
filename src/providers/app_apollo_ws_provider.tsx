@@ -33,7 +33,7 @@ apolloWsClient.setLink(
     options: {
       connectionParams: () => {
         const state = store.getState();
-        const token = state.auth?.clientSession?.idToken?.jwtToken;
+        const token = state.auth?.session?.idToken?.jwtToken;
         return {
           headers: {
             Authorization: token ? `Bearer ${token}` : "",

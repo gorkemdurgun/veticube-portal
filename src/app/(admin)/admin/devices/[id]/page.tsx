@@ -2,13 +2,11 @@
 
 import { useEffect, useState } from "react";
 
-import { t } from "i18next";
 import { useParams } from "next/navigation";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
 import { apolloWsClient } from "@/providers/app_apollo_ws_provider";
 import { subscriptions } from "@/services/db";
-import { convertDateTime, convertTime } from "@/utils/timer";
+import { convertDateTime } from "@/utils/timer";
 
 import SensorOverview from "@/components/devices/SensorOverview";
 import TemperatureCard from "@/components/devices/TemperatureCard";

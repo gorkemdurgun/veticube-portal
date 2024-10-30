@@ -1,32 +1,32 @@
 "use server";
 
 import {
-  PiUserPlus as RegisterIcon,
-  PiSignIn as LoginIcon,
+  PiHeadCircuitDuotone as AIIcon,
+  PiCaretRight as ArrowIcon,
+  PiCalendarDotsDuotone as CalendarIcon,
+  PiGlobeHemisphereWestDuotone as GlobeIcon,
   PiInstagramLogo as InstagramIcon,
+  PiSignIn as LoginIcon,
+  PiEnvelopeSimple as MailIcon,
+  PiRankingDuotone as RankingIcon,
+  PiUserPlus as RegisterIcon,
+  PiRocketLaunchDuotone as RocketIcon,
+  PiCalendarDots as StepsCalendarIcon,
+  PiStethoscope as StepsHealthIcon,
+  PiMapPin as StepsStartIcon,
+  PiTable as StepsTableIcon,
+  PiTestTube as StepsTestIcon,
+  PiSyringe as StepsVaccinationIcon,
+  PiPackageDuotone as StockIcon,
   PiWhatsappLogo as WhatsappIcon,
   PiYoutubeLogo as YoutubeIcon,
-  PiEnvelopeSimple as MailIcon,
-  PiCalendarDotsDuotone as CalendarIcon,
-  PiRocketLaunchDuotone as RocketIcon,
-  PiGlobeHemisphereWestDuotone as GlobeIcon,
-  PiRankingDuotone as RankingIcon,
-  PiHeadCircuitDuotone as AIIcon,
-  PiPackageDuotone as StockIcon,
-  PiMapPin as StepsStartIcon,
-  PiStethoscope as StepsHealthIcon,
-  PiSyringe as StepsVaccinationIcon,
-  PiTestTube as StepsTestIcon,
-  PiTable as StepsTableIcon,
-  PiCalendarDots as StepsCalendarIcon,
-  PiCaretRight as ArrowIcon,
 } from "react-icons/pi";
 
-import { Card, FloatButton, Tooltip, Image as AntdImage, Calendar, Timeline, Tag, Divider } from "antd";
+import { Image as AntdImage, Divider, FloatButton, Timeline, Tooltip } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 
-import { png, svg } from "@/assets";
+import { png } from "@/assets";
 
 import CustomButton from "@/components/common/custom-button";
 

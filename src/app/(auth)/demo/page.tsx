@@ -3,17 +3,17 @@
 import React, { useState } from "react";
 
 import {
-  PiUserDuotone as ManageClientsIcon,
-  PiDogDuotone as ManagePatientsIcon,
-  PiStorefrontDuotone as BranchesIcon,
-  PiDeviceTabletDuotone as DevicesIcon,
   PiHeadCircuitDuotone as AiIcon,
   PiCalendarDotsDuotone as AppointmentsIcon,
-  PiPackageDuotone as StockIcon,
+  PiStorefrontDuotone as BranchesIcon,
+  PiDeviceTabletDuotone as DevicesIcon,
+  PiUserDuotone as ManageClientsIcon,
+  PiDogDuotone as ManagePatientsIcon,
   PiChartBarDuotone as ReportsIcon,
+  PiPackageDuotone as StockIcon,
 } from "react-icons/pi";
 
-import { Badge, Card, Checkbox, Divider, Form, Input, Image, Steps, message, Select } from "antd";
+import { Badge, Checkbox, Divider, Form, Input, message, Select, Steps } from "antd";
 import { IconType } from "react-icons";
 
 import citiesJson from "@/constants/cities.json";

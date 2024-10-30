@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
 
-import { Breadcrumb, Card, Divider, Segmented } from "antd";
+import { Breadcrumb } from "antd";
 
 import { TranslatedText } from "@/components/common";
 

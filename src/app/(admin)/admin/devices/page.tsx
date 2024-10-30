@@ -1,9 +1,7 @@
 "use client";
 
-import { useQuery } from "@apollo/client";
 import { useRouter } from "next/navigation";
 
-import CustomButton from "@/components/common/custom-button";
 import ActivateDeviceModal from "@/components/modals/devices/activate-device";
 
 const DevicesPage = () => {

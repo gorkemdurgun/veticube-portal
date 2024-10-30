@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
-import { Breadcrumb, Card, Divider, Menu, Segmented } from "antd";
+import { Breadcrumb, Menu } from "antd";
 
-import { ComponentCard, TranslatedText } from "@/components/common";
+import { TranslatedText } from "@/components/common";
 import MyInvites from "@/components/settings/my-invites";
 
 import type { BreadcrumbProps } from "antd";

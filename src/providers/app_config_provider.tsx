@@ -1,6 +1,5 @@
 import { ConfigProvider, theme } from "antd";
 
-import { useAppSelector } from "@/hooks";
 import componentTranslationsEN from "@/localization/components/en_US";
 import componentTranslationsTR from "@/localization/components/tr_TR";
 import { customTheme } from "@/styles/theme";

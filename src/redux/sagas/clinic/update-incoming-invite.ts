@@ -1,9 +1,7 @@
 import { message } from "antd";
 import { call, put } from "redux-saga/effects";
 
-import { logout } from "@/redux/slices/auth/authSlice";
-import { updateEmployeeInviteRequest, updateEmployeeInviteSuccess, updateEmployeeInviteFailure } from "@/redux/slices/clinic/clinicSlice";
-import { store } from "@/redux/store";
+import { updateEmployeeInviteFailure, updateEmployeeInviteRequest, updateEmployeeInviteSuccess } from "@/redux/slices/clinic/clinicSlice";
 import { auth } from "@/services/cognito";
 import { mutations } from "@/services/db";
 import toErrorMessage from "@/utils/toError";

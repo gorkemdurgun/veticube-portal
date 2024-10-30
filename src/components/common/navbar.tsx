@@ -1,5 +1,5 @@
-import { DownOutlined, MoonOutlined, SunOutlined } from "@ant-design/icons";
-import { Avatar, Badge, Dropdown, Layout, Spin, Tooltip } from "antd";
+import { DownOutlined } from "@ant-design/icons";
+import { Dropdown, Layout, Spin } from "antd";
 import Image from "next/image";
 
 import { png } from "@/assets";

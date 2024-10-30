@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 
-import { useAppSelector } from "@/hooks";
 import i18n from "@/localization/i18n";
 
 const AppI18Provider = ({ children }: Readonly<{ children: React.ReactNode }>) => {

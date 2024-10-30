@@ -4,7 +4,6 @@ import { Avatar, Button, Divider, Popconfirm } from "antd";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
-import { logout } from "@/redux/slices/auth/authSlice";
 import { persistor } from "@/redux/store";
 
 export const UserAvatar: React.FC<{}> = () => {

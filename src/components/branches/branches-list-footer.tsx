@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { useMutation } from "@apollo/client";
-import { Badge, Button, Divider, Dropdown, List, message, Popconfirm, Table, Tooltip, Input, Select, AutoComplete, Descriptions } from "antd";
+import { Descriptions, Divider, message, Popconfirm, Select } from "antd";
 import { useTranslation } from "react-i18next";
 
 import { clinicMutations } from "@/apollo/mutation";
 import { useAppSelector } from "@/hooks";
-import { auth } from "@/services/cognito";
 
-import type { AutoCompleteProps, TableProps } from "antd";
+import type { AutoCompleteProps } from "antd";
 
 import CustomButton from "../common/custom-button";
 import EmailInput from "../common/email-input";

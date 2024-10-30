@@ -2,12 +2,11 @@ import { message } from "antd";
 import { call, put } from "redux-saga/effects";
 
 import { setActiveBranchRequest } from "@/redux/slices/app/appSlice";
-import { loginRequest, loginSuccess, loginFailure } from "@/redux/slices/auth/authSlice";
+import { loginFailure, loginRequest, loginSuccess } from "@/redux/slices/auth/authSlice";
 import { getUserSuccess } from "@/redux/slices/user/userSlice";
 import { auth } from "@/services/cognito";
 import { rest } from "@/services/db";
-import { GetBreedsResponse } from "@/services/db/rest/app";
-import type { GetUserByIdResponse, GetManagerAssignmentsResponse, GetEmployeeAssignmentsResponse } from "@/services/db/rest/user";
+import type { GetEmployeeAssignmentsResponse, GetManagerAssignmentsResponse, GetUserByIdResponse } from "@/services/db/rest/user";
 import toErrorMessage from "@/utils/toError";
 
 import type { CallEffect, PutEffect } from "redux-saga/effects";

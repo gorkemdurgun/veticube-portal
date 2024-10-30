@@ -1,14 +1,12 @@
 import { useState } from "react";
 
-import { PiWarehouseDuotone as OneBranchIcon, PiBuildingOfficeDuotone as MultiBranchIcon } from "react-icons/pi";
+import { PiBuildingOfficeDuotone as MultiBranchIcon, PiWarehouseDuotone as OneBranchIcon } from "react-icons/pi";
 
-import { Card, Checkbox, Divider, Form, Input, InputNumber, Modal } from "antd";
+import { Card, Divider, Modal } from "antd";
 
 import { useAppDispatch } from "@/hooks";
-import { mutations } from "@/services/db";
 
-import { CreateClinicMultipleModal } from "./create-clinic-multiple-modal";
-import { CreateClinicSingleModal } from "./create-clinic-single-modal";
+import CreateClinicSingleModal from "./create-clinic-single-modal";
 
 import { TranslatedText } from "../../common";
 
@@ -18,7 +16,7 @@ type CreateClinicChooseModalProps = {
 };
 type ClinicType = "single" | "multiple";
 
-export const CreateClinicChooseModal: React.FC<CreateClinicChooseModalProps> = ({ visible, setVisible }) => {
+const CreateClinicChooseModal: React.FC<CreateClinicChooseModalProps> = ({ visible, setVisible }) => {
   const dispatch = useAppDispatch();
   const [clinicType, setClinicType] = useState<string>();
   const [createSingleModalVisible, setCreateSingleModalVisible] = useState<boolean>(false);
@@ -95,3 +93,5 @@ export const CreateClinicChooseModal: React.FC<CreateClinicChooseModalProps> = (
     </>
   );
 };
+
+export default CreateClinicChooseModal;

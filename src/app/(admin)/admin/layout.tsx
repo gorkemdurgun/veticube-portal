@@ -1,28 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
 
 import {
+  PiWalletDuotone as AccountingIcon,
+  PiCalendarDotsDuotone as AppointmentsIcon,
+  PiStorefrontDuotone as BranchesIcon,
+  PiUserCircleDuotone as ClientsIcon,
   PiSquaresFourDuotone as DashboardIcon,
   PiDeviceTabletDuotone as DevicesIcon,
-  PiCalendarDotsDuotone as AppointmentsIcon,
   PiPawPrintDuotone as PatientsIcon,
-  PiUserCircleDuotone as ClientsIcon,
-  PiClockCounterClockwiseDuotone as TransactionsIcon,
-  PiStorefrontDuotone as BranchesIcon,
-  PiPackageDuotone as StockIcon,
-  PiWalletDuotone as AccountingIcon,
   PiGearDuotone as SettingsIcon,
+  PiPackageDuotone as StockIcon
 } from "react-icons/pi";
 
-import { MoonOutlined, SunOutlined, DownOutlined } from "@ant-design/icons";
-import { Button, Dropdown, Layout, Menu, Switch, Tooltip, theme } from "antd";
+import { Layout, Menu } from "antd";
 import { MenuProps } from "antd/lib";
 import { usePathname, useRouter } from "next/navigation";
-import { Router } from "next/router";
 import { useTranslation } from "react-i18next";
 
-import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useAppDispatch } from "@/hooks";
 
 import { Navbar } from "@/components/common";
 

@@ -2,13 +2,13 @@ import { useEffect, useRef, useState } from "react";
 
 import { PiPlusBold as AddIcon } from "react-icons/pi";
 
-import { Button, Card, Skeleton, Space, Tour } from "antd";
+import { Button, Card, Skeleton, Space } from "antd";
 
 import { TranslatedText } from "@/components/common";
 
 import type { TourProps } from "antd";
 
-import { CreateClinicBranchModal, CreateClinicChooseModal } from "../modals";
+import CreateClinicChooseModal from "../modals/clinics/create-clinic-choose-modal";
 
 type BranchesActionsProps = {
   isLoading?: boolean;

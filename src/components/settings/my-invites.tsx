@@ -1,17 +1,10 @@
-import { useEffect, useState } from "react";
 
-import { useQuery } from "@apollo/client";
-import { message, Popconfirm, Spin, Table } from "antd";
-import dayjs from "dayjs";
+import { message, Spin } from "antd";
 import { useTranslation } from "react-i18next";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { updateEmployeeInviteRequest } from "@/redux/slices/clinic/clinicSlice";
-import { auth } from "@/services/cognito";
-import { queries } from "@/services/db";
 
-import { TranslatedText } from "../common";
-import CustomButton from "../common/custom-button";
 
 type Props = {};
 
@@ -34,6 +27,7 @@ const MyInvites: React.FC<Props> = () => {
   const { user } = useAppSelector((state) => state.user);
   const { loading: clinicLoading } = useAppSelector((state) => state.clinic);
 
+  /*
   const {
     data: invitesData,
     loading: invitesLoading,
@@ -42,8 +36,10 @@ const MyInvites: React.FC<Props> = () => {
   } = useQuery(queries.settings.GetMyInvites, {
     // skip: user.role !== "user"
   });
+  */
 
-  const loading = clinicLoading || invitesLoading;
+  let loading = clinicLoading;
+  // const loading = clinicLoading || invitesLoading;
 
   const handleUpdateInvite = async (id: string, status: "accepted" | "rejected") => {
     dispatch(
@@ -51,7 +47,7 @@ const MyInvites: React.FC<Props> = () => {
         inviteId: id,
         status,
         onSuccess() {
-          invitesRefetch();
+          // invitesRefetch();
         },
         onError(error) {
           message.error(error);
@@ -60,13 +56,15 @@ const MyInvites: React.FC<Props> = () => {
     );
   };
 
+  /*
   if (invitesError) {
     console.error(invitesError);
   }
+  */
 
   return (
     <Spin spinning={loading}>
-      <Table
+      {/* <Table
         dataSource={invitesData?.invites}
         rowKey="id"
         loading={loading}
@@ -125,7 +123,7 @@ const MyInvites: React.FC<Props> = () => {
             ),
           },
         ]}
-      />
+      /> */}
     </Spin>
   );
 };

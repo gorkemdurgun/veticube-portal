@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { PiScanDuotone as ScanIcon, PiCheckCircleDuotone as AvailableIcon, PiWarningCircle as ExistIcon } from "react-icons/pi";
+import { PiCheckCircleDuotone as AvailableIcon, PiWarningCircle as ExistIcon, PiScanDuotone as ScanIcon } from "react-icons/pi";
 
 import { AutoComplete, Spin } from "antd";
 

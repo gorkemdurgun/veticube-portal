@@ -1,18 +1,16 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-import { LockOutlined, UserOutlined, MailOutlined, FlagOutlined, PhoneOutlined } from "@ant-design/icons";
+import { LockOutlined, MailOutlined, PhoneOutlined } from "@ant-design/icons";
 import { Button, Card, Divider, Form, Input, message } from "antd";
 import { useRouter } from "next/navigation";
 
-import { countries } from "@/constants/countries";
 import { useAppDispatch } from "@/hooks";
 import { signUpRequest } from "@/redux/slices/auth/authSlice";
-import userPool from "@/services/cognito/userpool";
 
 import { CountrySelector } from "@/components/common";
-import { VerifyUserModal } from "@/components/modals";
+import VerifyUserModal from "@/components/modals/users/verify-user-modal";
 
 type SignupFormValues = {
   first_name: string;
@@ -121,9 +119,7 @@ const Signup: React.FC = () => {
                 <Divider>
                   <span className="text-sm text-gray-500 font-normal">Zaten bir hesabınız var mı?</span>
                 </Divider>
-                <Button 
-                className="text-md text-green-700"
-                type="link" onClick={() => router.push("/login")}>
+                <Button className="text-md text-green-700" type="link" onClick={() => router.push("/login")}>
                   Giriş Yap
                 </Button>
               </div>

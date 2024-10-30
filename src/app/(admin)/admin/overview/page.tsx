@@ -1,8 +1,6 @@
 "use client";
 
-import { useSubscription } from "@apollo/client";
 import { Breadcrumb } from "antd";
-import { useTranslation } from "react-i18next";
 
 import { TranslatedText } from "@/components/common";
 

@@ -1,27 +1,21 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import {
-  PiUserCirclePlus as AddUserIcon,
-  PiPhone as PhoneIcon,
-  PiMapPin as AddressIcon,
   PiPencilSimple as EditIcon,
-  PiSealCheckDuotone as VerifiedIcon,
   PiSealWarningDuotone as NotVerifiedIcon,
+  PiSealCheckDuotone as VerifiedIcon
 } from "react-icons/pi";
 
-import { Badge, Button, Divider, Dropdown, List, message, Popconfirm, Table, Tooltip, Input, Select, AutoComplete, Descriptions } from "antd";
+import { Button, List, message, Popconfirm, Table, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
 
 import { auth } from "@/services/cognito";
-import { queries } from "@/services/db";
 
 import BranchesListFooter from "./branches-list-footer";
 
-import type { AutoCompleteProps, TableProps } from "antd";
 
 import { TranslatedText } from "../common";
-import CustomButton from "../common/custom-button";
-import { AddVeterinaryModal, VerifyUserModal } from "../modals";
+import VerifyUserModal from "../modals/users/verify-user-modal";
 
 type Props = {
   isLoading: boolean;

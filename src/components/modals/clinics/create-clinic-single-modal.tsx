@@ -1,11 +1,8 @@
-import { useState } from "react";
 
-import { useQuery } from "@apollo/client";
-import { Checkbox, Divider, Form, Input, InputNumber, message, Modal } from "antd";
+import { Divider, Form, Input, message, Modal } from "antd";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { createClinicRequest } from "@/redux/slices/clinic/clinicSlice";
-import { mutations } from "@/services/db";
 
 import { TranslatedText } from "../../common";
 
@@ -24,7 +21,7 @@ type ClinicFormValues = {
   };
 };
 
-export const CreateClinicSingleModal: React.FC<CreateClinicSingleModalProps> = ({ visible, setVisible }) => {
+const CreateClinicSingleModal: React.FC<CreateClinicSingleModalProps> = ({ visible, setVisible }) => {
   const dispatch = useAppDispatch();
   const { loading, error } = useAppSelector((state) => state.clinic);
   const [createClinicForm] = Form.useForm<ClinicFormValues>();
@@ -107,3 +104,5 @@ export const CreateClinicSingleModal: React.FC<CreateClinicSingleModalProps> = (
     </Modal>
   );
 };
+
+export default CreateClinicSingleModal;

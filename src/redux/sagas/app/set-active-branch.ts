@@ -1,9 +1,7 @@
 import { message } from "antd";
 import { call, put } from "redux-saga/effects";
 
-import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
-import { setActiveBranchRequest, setActiveBranchSuccess, setActiveBranchFailure } from "@/redux/slices/app/appSlice";
-import { auth } from "@/services/cognito";
+import { setActiveBranchFailure, setActiveBranchRequest, setActiveBranchSuccess } from "@/redux/slices/app/appSlice";
 import { rest } from "@/services/db";
 import { GetClinicRecordsByBranchIdResponse } from "@/services/db/rest/clinic";
 import toErrorMessage from "@/utils/toError";

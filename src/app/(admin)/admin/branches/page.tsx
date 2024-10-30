@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 
 import { useQuery } from "@apollo/client";
-import { Breadcrumb, Button, Card, Divider, message, Segmented } from "antd";
+import { Breadcrumb, Divider } from "antd";
 
 import { clinicQueries } from "@/apollo/query";
 
