@@ -1,20 +1,10 @@
-import {
-  GET_CLINICS,
-  GET_EMPLOYEE_INVITATIONS,
-  GET_SELECTED_DATE_RESERVATIONS,
-  GET_CLINIC_BRANCH_EMPLOYEES,
-  SEARCH_BRANCH_CLIENT,
-  GET_BRANCH_CLIENTS,
-} from "./clinic";
+import { GET_CLINICS, GET_EMPLOYEE_INVITATIONS, SEARCH_BRANCH_CLIENT, GET_BRANCH_CLIENTS } from "./clinic";
 import { GET_USER_DEVICES } from "./device";
 import { GET_CLINIC_PETS, GET_PET_OVERVIEW, GET_REGISTERED_PATIENTS_CHART_DATA, SEARCH_PET } from "./pet";
 import { GET_MY_INVITES } from "./settings";
 
 export const queries = {
   clinic: {
-    GetSelectedDateReservations: GET_SELECTED_DATE_RESERVATIONS,
-    GetClinicBranchEmployees: GET_CLINIC_BRANCH_EMPLOYEES,
-    /* current queries */
     GetClinics: GET_CLINICS,
     GetEmployeeInvitations: GET_EMPLOYEE_INVITATIONS,
     SearchBranchClient: SEARCH_BRANCH_CLIENT,

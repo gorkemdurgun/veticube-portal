@@ -6,7 +6,6 @@ import { Divider, Drawer, Form, Input, Select } from "antd";
 import dayjs from "dayjs";
 
 import { useAppDispatch } from "@/hooks";
-import { createAppointmentRequest } from "@/redux/slices/appointment/appointmentSlice";
 
 import { SearchPatientInput } from "@/components/appointments";
 import SelectorDate from "@/components/appointments/selector-date";
@@ -64,6 +63,7 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
     const values = createForm.getFieldsValue();
     if (!values.date || !values.time || !values.patientId || !values.process) return;
 
+    /*
     dispatch(
       createAppointmentRequest({
         data: {
@@ -78,6 +78,7 @@ const CreateAppointmentDrawer: React.FC<Props> = ({ visible, setVisible }) => {
         },
       })
     );
+    */
   };
 
   const FormSection = ({ label, formItems, extras }: { label: string; formItems: JSX.Element[]; extras?: React.ReactNode }) => {

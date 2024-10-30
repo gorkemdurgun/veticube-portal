@@ -8,7 +8,7 @@ import { getUserById, getManagerAssignments, getEmployeeAssignments } from "./us
 
 export const axiosInstance = axios.create({
   baseURL: "http://35.158.95.5:8080/api/rest",
-  timeout: 1000,
+  timeout: 15000,
 });
 
 axiosInstance.interceptors.request.use((config) => {

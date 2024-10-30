@@ -1,4 +1,3 @@
-import { createAppointment } from "./appointments";
 import { insertVeterinarian, updateVetRole } from "./auth";
 import {
   createClinic,
@@ -29,8 +28,5 @@ export const mutations = {
     addPetToClient,
     sendEmployeeInvite,
     updateIncomingInvite,
-  },
-  appointments: {
-    createAppointment,
   },
 };

@@ -5,8 +5,6 @@ import Image from "next/image";
 import { png } from "@/assets";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { setActiveBranchRequest } from "@/redux/slices/app/appSlice";
-import { setLanguage } from "@/redux/slices/language/languageSlice";
-import { setMode } from "@/redux/slices/theme/themeSlice";
 
 import { UserAvatar } from "./user-avatar";
 
@@ -18,30 +16,28 @@ export const Navbar: React.FC = () => {
     {
       key: "tr",
       label: "Türkçe",
-      onClick: () => dispatch(setLanguage("tr")),
+      // onClick: () => dispatch(setLanguage("tr")),
     },
     {
       key: "en",
       label: "English",
-      onClick: () => dispatch(setLanguage("en")),
+      // onClick: () => dispatch(setLanguage("en")),
     },
   ];
   const themeItems: MenuProps["items"] = [
     {
       key: "dark",
       label: "Dark",
-      onClick: () => dispatch(setMode(true)),
+      // onClick: () => dispatch(setMode(true)),
     },
     {
       key: "light",
       label: "Light",
-      onClick: () => dispatch(setMode(false)),
+      // onClick: () => dispatch(setMode(false)),
     },
   ];
 
   const dispatch = useAppDispatch();
-  const { darkMode } = useAppSelector((state) => state.theme);
-  const { language } = useAppSelector((state) => state.lang);
   const { assignments } = useAppSelector((state) => state.user);
   const { activeBranch, loading: appLoading } = useAppSelector((state) => state.app);
 
