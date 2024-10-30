@@ -4,8 +4,6 @@ import { Button, Divider, Form, Input, Modal, Select } from "antd";
 import Image from "next/image";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
-// import { signUpVetAccountRequest } from "@/redux/slices/auth/authSlice";
-import { queries } from "@/services/db";
 
 import CustomButton from "@/components/common/custom-button";
 

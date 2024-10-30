@@ -5,7 +5,7 @@ import { Checkbox, Divider, Form, Input, InputNumber, message, Modal } from "ant
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { createClinicRequest } from "@/redux/slices/clinic/clinicSlice";
-import { mutations, queries } from "@/services/db";
+import { mutations } from "@/services/db";
 
 import { TranslatedText } from "../../common";
 

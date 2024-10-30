@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Button, Form, Input, message, Modal, Select } from "antd";
 
 import { auth } from "@/services/cognito";
-import { queries } from "@/services/db";
 
 import { TranslatedText } from "../../common";
 
@@ -17,7 +16,7 @@ type Props = {
   onClosed?: () => void;
 };
 
-export const VerifyUserModal: React.FC<Props> = ({ visible, setVisible, data, onSuccess, onClosed }) => {
+const VerifyUserModal: React.FC<Props> = ({ visible, setVisible, data, onSuccess, onClosed }) => {
   const [loading, setLoading] = useState(false);
   const [otp, setOtp] = useState("");
 
@@ -78,3 +77,5 @@ export const VerifyUserModal: React.FC<Props> = ({ visible, setVisible, data, on
     </Modal>
   );
 };
+
+export default VerifyUserModal;

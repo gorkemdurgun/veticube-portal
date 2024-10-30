@@ -1,4 +1,4 @@
-type GetClinicsRes = {
+type GetClinicDetailRes = {
   clinics: {
     id: string;
     clinic_name: string;
@@ -13,5 +13,17 @@ type GetClinicsRes = {
         role: string;
       }[];
     }[];
+  }[];
+};
+type GetPendingInvitationsRes = {
+  invitations: {
+    id: string;
+    inviter_id: string;
+    invitee_email: string;
+    branch_id: string;
+    role: string;
+    status: string;
+    created_at: string;
+    updated_at: string;
   }[];
 };

@@ -8,9 +8,8 @@ import { useRouter } from "next/navigation";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { loginRequest } from "@/redux/slices/auth/authSlice";
-import { queries } from "@/services/db";
 
-import { VerifyUserModal } from "@/components/modals";
+import VerifyUserModal from "@/components/modals/users/verify-user-modal";
 
 type LoginForm = {
   email: string;
