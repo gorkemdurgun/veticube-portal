@@ -3,7 +3,6 @@
 import { ApolloProvider } from "@apollo/client";
 
 import { apolloClient } from "@/apollo/client";
-import AppApolloGqlProvider from "@/providers/app_apollo_gql_provider";
 import AppApolloWSProvider from "@/providers/app_apollo_ws_provider";
 import AppAuthProvider from "@/providers/app_auth_provider";
 import AppConfigProvider from "@/providers/app_config_provider";
@@ -18,7 +17,6 @@ export default function Providers({
   return (
     <AppReduxProvider>
       <AppApolloWSProvider>
-        {/* <AppApolloGqlProvider> */}
         <ApolloProvider client={apolloClient}>
           <AppConfigProvider>
             <AppI18Provider>
@@ -26,7 +24,6 @@ export default function Providers({
             </AppI18Provider>
           </AppConfigProvider>
         </ApolloProvider>
-        {/* </AppApolloGqlProvider> */}
       </AppApolloWSProvider>
     </AppReduxProvider>
   );

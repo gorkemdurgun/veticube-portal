@@ -1,8 +1,9 @@
 import { call, put } from "redux-saga/effects";
 
+import { apolloClient } from "@/apollo/client";
+import { clinicMutations } from "@/apollo/mutation";
 import { createClinicRequest, createClinicSuccess, createClinicFailure } from "@/redux/slices/clinic/clinicSlice";
 import { store } from "@/redux/store";
-import { mutations } from "@/services/db";
 import toErrorMessage from "@/utils/toError";
 
 import type { CallEffect, PutEffect } from "redux-saga/effects";
@@ -12,7 +13,16 @@ export function* createClinic(action: ReturnType<typeof createClinicRequest>): G
 
   try {
     // Ana kliniği oluştur
-    const { data: createClinicData, errors: createClinicErrors } = yield call(mutations.clinics.createClinic, name);
+    const { data: createClinicData, errors: createClinicErrors } = yield call(() =>
+      apolloClient.mutate({
+        mutation: clinicMutations.createClinic,
+        variables: {
+          clinic_name: name,
+        },
+      })
+    );
+
+    console.log("createClinicData", createClinicData);
 
     if (createClinicErrors) {
       console.error("createClinicErrors", createClinicErrors);
@@ -23,14 +33,20 @@ export function* createClinic(action: ReturnType<typeof createClinicRequest>): G
     const clinicId = createClinicData.insert_clinic.returning[0].id;
 
     // Ana kliniğe bağlı bir branch oluştur
-    const { data: createBranchData, errors: createBranchErrors } = yield call(
-      mutations.clinics.createBranch,
-      clinicId,
-      branch.name,
-      branch.city,
-      branch.address,
-      branch.phone_number
+    const { data: createBranchData, errors: createBranchErrors } = yield call(() =>
+      apolloClient.mutate({
+        mutation: clinicMutations.createBranch,
+        variables: {
+          clinic_id: clinicId,
+          branch_name: branch.name,
+          city: branch.city,
+          address: branch.address,
+          phone_number: branch.phone_number,
+        },
+      })
     );
+
+    console.log("createBranchData", createBranchData);
 
     if (createBranchErrors) {
       console.error("createBranchErrors", createBranchErrors);
@@ -44,7 +60,15 @@ export function* createClinic(action: ReturnType<typeof createClinicRequest>): G
     }
 
     // Kullanıcıyı kliniğe yönetici olarak ekle
-    const { data: addManagerData, errors: addManagerErrors } = yield call(mutations.clinics.addManagerToClinic, userId, clinicId);
+    const { data: addManagerData, errors: addManagerErrors } = yield call(() =>
+      apolloClient.mutate({
+        mutation: clinicMutations.addManagerToClinic,
+        variables: {
+          user_id: userId,
+          clinic_id: clinicId,
+        },
+      })
+    );
 
     console.log("addManagerData", addManagerData);
 

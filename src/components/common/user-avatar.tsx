@@ -2,8 +2,8 @@ import { PiSignOutDuotone as SignOutIcon } from "react-icons/pi";
 
 import { Avatar, Button, Divider, Popconfirm } from "antd";
 
+import { apolloClient } from "@/apollo/client";
 import { useAppDispatch, useAppSelector } from "@/hooks";
-import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
 import { persistor } from "@/redux/store";
 
 export const UserAvatar: React.FC<{}> = () => {
@@ -26,7 +26,7 @@ export const UserAvatar: React.FC<{}> = () => {
         title="Are you sure you want to sign out?"
         okButtonProps={{ danger: true }}
         onConfirm={() => {
-          apolloGqlClient.clearStore();
+          apolloClient.clearStore();
           persistor.purge();
         }}
       >

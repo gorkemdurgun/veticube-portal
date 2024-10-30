@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
+import { apolloClient } from "@/apollo/client";
 
 const GQL = gql`
   mutation AddPetToClient(
@@ -48,7 +48,7 @@ export const addPetToClient = async (
   birthdate?: string,
   medical_notes?: string
 ) => {
-  const { data, errors } = await apolloGqlClient.mutate<{}>({
+  const { data, errors } = await apolloClient.mutate<{}>({
     mutation: GQL,
     variables: {
       owner_id,

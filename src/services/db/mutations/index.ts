@@ -1,32 +1,9 @@
-import { insertVeterinarian, updateVetRole } from "./auth";
-import {
-  createClinic,
-  createBranch,
-  addManagerToClinic,
-  addClientRecordToBranch,
-  sendEmployeeInvite,
-  updateIncomingInvite,
-  addPetToClient,
-} from "./clinics";
-import { createDemoRequest } from "./requests";
+import { addClientRecordToBranch, updateIncomingInvite, addPetToClient } from "./clinics";
 
 export const mutations = {
-  requests: {
-    createDemoRequest,
-  },
-  auth: {
-    veterinarians: {
-      insertVeterinarian,
-      updateVetRole,
-    },
-  },
   clinics: {
-    createClinic,
-    createBranch,
-    addManagerToClinic,
     addClientRecordToBranch,
     addPetToClient,
-    sendEmployeeInvite,
     updateIncomingInvite,
   },
 };

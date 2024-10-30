@@ -55,33 +55,7 @@ const RequestDemoPage: React.FC = () => {
   };
   const handleCompleteStep1 = () => {
     requestDemoFormStep1.validateFields().then((values) => {
-      mutations.requests
-        .createDemoRequest(
-          requestDemoFormStep0.getFieldValue("clinic_name"),
-          requestDemoFormStep0.getFieldValue("city"),
-          requestDemoFormStep0.getFieldValue("district"),
-          requestDemoFormStep0.getFieldValue("address"),
-          requestDemoFormStep0.getFieldValue("services_offered"),
-          values.first_name,
-          values.last_name,
-          values.email,
-          values.phone,
-          values.feedback_channel,
-          values.active_softwares
-        )
-        .then(() => {
-          requestDemoFormStep0.resetFields();
-          requestDemoFormStep1.resetFields();
-          setSendSuccess(true);
-        })
-        .catch((err) => {
-          setSendError(true);
-          if (err?.message?.includes("duplicate key")) {
-            message.error("You have already submitted a request, we accelerate the process");
-          } else {
-            message.error("Something went wrong, please contact us on our email");
-          }
-        });
+      console.log("requestDemoFormStep1", values);
     });
   };
 

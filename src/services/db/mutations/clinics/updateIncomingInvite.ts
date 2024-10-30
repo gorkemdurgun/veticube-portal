@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
+import { apolloClient } from "@/apollo/client";
 
 const GQL = gql`
   mutation UpdateIncomingInvite($id: uuid = "", $status: String) {
@@ -13,7 +13,7 @@ const GQL = gql`
 `;
 
 export const updateIncomingInvite = async (id: string, status: "accepted" | "rejected") => {
-  const { data } = await apolloGqlClient.mutate<{
+  const { data } = await apolloClient.mutate<{
     update_clinic_management_invitations_by_pk: { status: string; invitee_email: string; role: UserRole };
   }>({
     mutation: GQL,

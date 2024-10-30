@@ -1,6 +1,8 @@
 import { gql } from "@apollo/client";
 
-import { apolloGqlClient } from "@/providers/app_apollo_gql_provider";
+import { apolloClient } from "@/apollo/client";
+
+
 
 const GQL = gql`
   mutation AddClientRecordToBranch($email: String, $full_name: String, $phone_number: String, $branch_id: uuid) {
@@ -21,7 +23,7 @@ const GQL = gql`
 `;
 
 export const addClientRecordToBranch = async (email: string, full_name: string, branch_id: string, phone_number?: string) => {
-  const { data, errors } = await apolloGqlClient.mutate<{
+  const { data, errors } = await apolloClient.mutate<{
     client_record: {
       affected_rows: number;
       returning: {
