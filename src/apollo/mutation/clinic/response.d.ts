@@ -1,6 +1,13 @@
 type SendPersonnelInviteRes = {
   insert_clinic_management_invitations_one: { id: string; invitee_email: string; role: string; status: string };
 };
+type ReplyToInviteRes = {
+  update_clinic_management_invitations_by_pk: {
+    status: string;
+    invitee_email: string;
+    role: string;
+  };
+};
 type CreateClinicRes = {
   insert_clinic: {
     affected_rows: number;

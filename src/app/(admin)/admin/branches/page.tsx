@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useQuery } from "@apollo/client";
 import { Breadcrumb, Divider } from "antd";
 
@@ -24,7 +23,7 @@ const breadcrumbItems: BreadcrumbProps["items"] = [
 
 const AdminBranchesPage: React.FC = () => {
   const { loading: clinicDetailLoading, data: clinicDetailData } = useQuery(clinicQueries.GetClinicDetail);
-  const { loading: pendingInvitationsLoading, data: pendingInvitationsData } = useQuery(clinicQueries.GetPendingInvitations);
+  const { loading: branchInvitationsLoading, data: branchInvitationsData } = useQuery(clinicQueries.GetBranchPendingInvitations);
 
   return (
     <div className="w-full flex flex-col gap-4">
@@ -34,8 +33,8 @@ const AdminBranchesPage: React.FC = () => {
       <BranchesList isLoading={clinicDetailLoading} branches={clinicDetailData?.clinics[0]?.branches} />
       <Divider className="my-2" />
       <InvitesList
-        isLoading={pendingInvitationsLoading}
-        invitations={pendingInvitationsData?.invitations}
+        isLoading={branchInvitationsLoading}
+        invitations={branchInvitationsData?.invitations}
         branches={clinicDetailData?.clinics[0]?.branches.map((branch) => ({
           id: branch.id,
           branch_name: branch.branch_name,

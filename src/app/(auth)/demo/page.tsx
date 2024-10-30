@@ -17,7 +17,6 @@ import { Badge, Checkbox, Divider, Form, Input, message, Select, Steps } from "a
 import { IconType } from "react-icons";
 
 import citiesJson from "@/constants/cities.json";
-import { mutations } from "@/services/db";
 
 import CustomButton from "@/components/common/custom-button";
 

@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 
 import { useParams } from "next/navigation";
 
+import { deviceSubscriptions } from "@/apollo/subscription";
 import { apolloWsClient } from "@/providers/app_apollo_ws_provider";
-import { subscriptions } from "@/services/db";
 import { convertDateTime } from "@/utils/timer";
 
 import SensorOverview from "@/components/devices/SensorOverview";
@@ -18,9 +18,9 @@ const DeviceIdPage = () => {
   useEffect(() => {
     if (!device_id) return;
     const subscription = apolloWsClient.subscribe({
-      query: subscriptions.devices.getDeviceData,
+      query: deviceSubscriptions.GetDeviceData,
       variables: {
-        deviceId: device_id,
+        deviceId: device_id as string,
       },
     });
 

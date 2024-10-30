@@ -5,7 +5,6 @@ import { PiCatDuotone as CatIcon, PiDogDuotone as DogIcon } from "react-icons/pi
 import { DatePicker, Divider, Form, Input, InputNumber, message, Modal, Radio, Select } from "antd";
 
 import { useAppSelector } from "@/hooks";
-import { mutations } from "@/services/db";
 
 import CustomButton from "@/components/common/custom-button";
 import SelectableCard from "@/components/common/selectable-card";
@@ -41,19 +40,7 @@ const AddPetToClient = ({ visible, onClose, onSuccess, data }: Props) => {
 
   const handleSubmit = () => {
     petForm.validateFields().then((values) => {
-      mutations.clinics
-        .addPetToClient(values.owner_id, values.name, values.breed_id, values.gender, values.birthDate, values.medicalNotes)
-        .then(() => {
-          message.success("Pet başarıyla eklendi.");
-          onClose();
-          onSuccess?.();
-        })
-        .catch((error) => {
-          console.log("error", error);
-        })
-        .finally(() => {
-          petForm.resetFields();
-        });
+      console.log("petForm", values);
     });
   };
 

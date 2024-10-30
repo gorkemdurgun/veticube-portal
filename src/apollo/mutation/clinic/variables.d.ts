@@ -4,6 +4,10 @@ type SendPersonnelInviteVar = {
   branch_id: string;
   role: string;
 };
+type ReplyToInviteVar = {
+  id?: string;
+  status: string;
+};
 type CreateClinicVar = {
   clinic_name: string;
 };

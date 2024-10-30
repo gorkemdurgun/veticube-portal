@@ -3,8 +3,6 @@ import { useState } from "react";
 import { Form, message, Modal, Select } from "antd";
 
 import { useAppSelector } from "@/hooks";
-import { mutations } from "@/services/db";
-
 
 const { Option } = Select;
 
@@ -32,24 +30,6 @@ const AddClientToBranchModal = ({ visible, onClose, onSuccess }: Props) => {
   const handleSubmit = () => {
     clientForm.validateFields().then((values) => {
       console.log("clientForm", values);
-      mutations.clinics
-        .addClientRecordToBranch(values.user.email, values.user.name, values.selectedBranch, values.user.phone)
-        .then((res) => {
-          message.success("Müşteri başarıyla eklendi!");
-          if (res?.client_record?.returning[0]?.id) {
-            onSuccess(res.client_record.returning[0].id);
-            onClose();
-          } else {
-            message.error("Müşteri eklendi fakat bir hata oluştu!");
-          }
-        })
-        .catch((error) => {
-          console.log("error", error);
-          // message.error(uiError(error));
-        })
-        .finally(() => {
-          clientForm.resetFields();
-        });
     });
   };
 

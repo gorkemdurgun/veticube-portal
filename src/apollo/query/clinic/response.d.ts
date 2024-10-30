@@ -15,8 +15,20 @@ type GetClinicDetailRes = {
     }[];
   }[];
 };
-type GetPendingInvitationsRes = {
+type GetBranchPendingInvitationsRes = {
   invitations: {
+    id: string;
+    inviter_id: string;
+    invitee_email: string;
+    branch_id: string;
+    role: string;
+    status: string;
+    created_at: string;
+    updated_at: string;
+  }[];
+};
+type GetUserPendingInvitationsRes = {
+  user_invitations: {
     id: string;
     inviter_id: string;
     invitee_email: string;

@@ -21,8 +21,8 @@ export const GET_CLINIC_DETAIL: TypedDocumentNode<GetClinicDetailRes> = gql`
     }
   }
 `;
-export const GET_PENDING_INVITATIONS: TypedDocumentNode<GetPendingInvitationsRes> = gql`
-  query GetPendingInvitations {
+export const GET_BRANCH_PENDING_INVITATIONS: TypedDocumentNode<GetBranchPendingInvitationsRes> = gql`
+  query GetBranchPendingInvitations {
     invitations: clinic_management_invitations(where: { status: { _eq: "pending" } }) {
       id
       inviter_id
@@ -35,3 +35,18 @@ export const GET_PENDING_INVITATIONS: TypedDocumentNode<GetPendingInvitationsRes
     }
   }
 `;
+export const GET_USER_PENDING_INVITATIONS: TypedDocumentNode<GetUserPendingInvitationsRes, GetUserPendingInvitationsVar> = gql`
+  query GetUserPendingInvitations($userEmail: String = "") {
+    user_invitations: clinic_management_invitations(where: { invitee_email: { _eq: $userEmail }, status: { _eq: "pending" } }) {
+      id
+      inviter_id
+      invitee_email
+      branch_id
+      role
+      status
+      created_at
+      updated_at
+    }
+  }
+`;
+

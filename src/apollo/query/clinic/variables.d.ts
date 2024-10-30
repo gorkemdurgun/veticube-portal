@@ -1,0 +1,3 @@
+type GetUserPendingInvitationsVar = {
+  userEmail?: string;
+};

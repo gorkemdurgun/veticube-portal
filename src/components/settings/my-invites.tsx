@@ -1,10 +1,13 @@
-
-import { message, Spin } from "antd";
+import { useQuery } from "@apollo/client";
+import { message, Popconfirm, Spin, Table } from "antd";
+import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 
+import { clinicQueries } from "@/apollo/query";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { updateEmployeeInviteRequest } from "@/redux/slices/clinic/clinicSlice";
 
+import CustomButton from "../common/custom-button";
 
 type Props = {};
 
@@ -27,19 +30,18 @@ const MyInvites: React.FC<Props> = () => {
   const { user } = useAppSelector((state) => state.user);
   const { loading: clinicLoading } = useAppSelector((state) => state.clinic);
 
-  /*
   const {
-    data: invitesData,
-    loading: invitesLoading,
-    error: invitesError,
+    data: userInvitesData,
+    loading: userInvitesLoading,
+    error: userInvitesError,
     refetch: invitesRefetch,
-  } = useQuery(queries.settings.GetMyInvites, {
-    // skip: user.role !== "user"
+  } = useQuery(clinicQueries.GetUserPendingInvitations, {
+    variables: {
+      userEmail: user?.email,
+    },
   });
-  */
 
-  let loading = clinicLoading;
-  // const loading = clinicLoading || invitesLoading;
+  const loading = clinicLoading || userInvitesLoading;
 
   const handleUpdateInvite = async (id: string, status: "accepted" | "rejected") => {
     dispatch(
@@ -47,7 +49,7 @@ const MyInvites: React.FC<Props> = () => {
         inviteId: id,
         status,
         onSuccess() {
-          // invitesRefetch();
+          invitesRefetch();
         },
         onError(error) {
           message.error(error);
@@ -56,16 +58,10 @@ const MyInvites: React.FC<Props> = () => {
     );
   };
 
-  /*
-  if (invitesError) {
-    console.error(invitesError);
-  }
-  */
-
   return (
     <Spin spinning={loading}>
-      {/* <Table
-        dataSource={invitesData?.invites}
+      <Table
+        dataSource={userInvitesData?.user_invitations}
         rowKey="id"
         loading={loading}
         rowClassName="cursor-pointer"
@@ -87,7 +83,7 @@ const MyInvites: React.FC<Props> = () => {
             title: "Şube",
             dataIndex: "branch",
             key: "branch",
-            render: (text) => <span>{text.branch_name}</span>,
+            render: (text) => <span>{text?.branch_name}</span>,
           },
           {
             title: "Rol",
@@ -123,7 +119,7 @@ const MyInvites: React.FC<Props> = () => {
             ),
           },
         ]}
-      /> */}
+      />
     </Spin>
   );
 };

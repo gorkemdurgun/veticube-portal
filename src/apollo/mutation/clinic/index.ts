@@ -14,6 +14,15 @@ export const SEND_PERSONNEL_INVITE: TypedDocumentNode<SendPersonnelInviteRes, Se
     }
   }
 `;
+export const REPLY_TO_INVITE: TypedDocumentNode<ReplyToInviteRes, ReplyToInviteVar> = gql`
+  mutation UpdateIncomingInvite($id: uuid = "", $status: String) {
+    update_clinic_management_invitations_by_pk(pk_columns: { id: $id }, _set: { status: $status }) {
+      status
+      invitee_email
+      role
+    }
+  }
+`;
 export const CREATE_CLINIC: TypedDocumentNode<CreateClinicRes, CreateClinicVar> = gql`
   mutation InsertClinic($clinic_name: String) {
     insert_clinic: insert_clinic_management_clinics(objects: { clinic_name: $clinic_name }) {
@@ -55,4 +64,3 @@ export const ADD_MANAGER_TO_CLINIC: TypedDocumentNode<AddManagerToClinicRes, Add
     }
   }
 `;
-

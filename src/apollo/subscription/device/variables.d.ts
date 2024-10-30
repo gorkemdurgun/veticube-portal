@@ -1,0 +1,3 @@
+type GetDeviceDataVar = {
+  deviceId?: string;
+};

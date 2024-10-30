@@ -1,9 +1,10 @@
 import { message } from "antd";
 import { call, put } from "redux-saga/effects";
 
+import { apolloClient } from "@/apollo/client";
+import { clinicMutations } from "@/apollo/mutation";
 import { updateEmployeeInviteFailure, updateEmployeeInviteRequest, updateEmployeeInviteSuccess } from "@/redux/slices/clinic/clinicSlice";
 import { auth } from "@/services/cognito";
-import { mutations } from "@/services/db";
 import toErrorMessage from "@/utils/toError";
 
 import type { CallEffect, PutEffect } from "redux-saga/effects";
@@ -15,7 +16,18 @@ export function* updateIncomingInvite(
 
   try {
     // Daveti cevaplama
-    const updatedInviteData = yield call(mutations.clinics.updateIncomingInvite, inviteId, status);
+    const { data: updatedInviteData } = yield call(() =>
+      apolloClient.mutate({
+        mutation: clinicMutations.replyToInvite,
+        variables: {
+          id: inviteId,
+          status,
+        },
+      })
+    );
+
+    console.log("updatedInviteData", updatedInviteData);
+
     const currentStatus = updatedInviteData?.update_clinic_management_invitations_by_pk.status;
     const currentRole = updatedInviteData?.update_clinic_management_invitations_by_pk.role;
 
