@@ -2,25 +2,7 @@ import { gql } from "@apollo/client";
 
 import type { TypedDocumentNode } from "@apollo/client";
 
-type GetClinicsResponse = {
-  clinics: {
-    id: string;
-    clinic_name: string;
-    branches: {
-      id: string;
-      branch_name: string;
-      phone_number: string;
-      city: string;
-      address: string;
-      employees: {
-        user_id: string;
-        role: string;
-      }[];
-    }[];
-  }[];
-};
-
-export const GET_CLINICS: TypedDocumentNode<GetClinicsResponse> = gql`
+export const GET_CLINICS: TypedDocumentNode<GetClinicsRes> = gql`
   query GetClinics {
     clinics: clinic_management_clinics {
       id

@@ -1,7 +1,8 @@
 "use client";
 
-// import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { ApolloProvider } from "@apollo/client";
 
+import { apolloClient } from "@/apollo/client";
 import AppApolloGqlProvider from "@/providers/app_apollo_gql_provider";
 import AppApolloWSProvider from "@/providers/app_apollo_ws_provider";
 import AppAuthProvider from "@/providers/app_auth_provider";
@@ -17,13 +18,15 @@ export default function Providers({
   return (
     <AppReduxProvider>
       <AppApolloWSProvider>
-        <AppApolloGqlProvider>
+        {/* <AppApolloGqlProvider> */}
+        <ApolloProvider client={apolloClient}>
           <AppConfigProvider>
             <AppI18Provider>
               <AppAuthProvider>{children}</AppAuthProvider>
             </AppI18Provider>
           </AppConfigProvider>
-        </AppApolloGqlProvider>
+        </ApolloProvider>
+        {/* </AppApolloGqlProvider> */}
       </AppApolloWSProvider>
     </AppReduxProvider>
   );

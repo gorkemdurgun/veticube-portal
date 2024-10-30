@@ -29,7 +29,7 @@ export const CreateClinicSingleModal: React.FC<CreateClinicSingleModalProps> = (
   const { loading, error } = useAppSelector((state) => state.clinic);
   const [createClinicForm] = Form.useForm<ClinicFormValues>();
 
-  const { refetch: refetchClinics } = useQuery(queries.clinic.GetClinics);
+  // const { refetch: refetchClinics } = useQuery(queries.clinic.GetClinics);
 
   const handleOk = () => {
     const clinicValues = createClinicForm.getFieldsValue();
@@ -47,7 +47,7 @@ export const CreateClinicSingleModal: React.FC<CreateClinicSingleModalProps> = (
           },
           onSuccess: () => {
             setVisible(false);
-            refetchClinics();
+            // refetchClinics();
           },
           onError: (error) => {
             message.error({

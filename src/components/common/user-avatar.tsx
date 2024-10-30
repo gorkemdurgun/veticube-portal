@@ -9,7 +9,8 @@ import { persistor } from "@/redux/store";
 
 export const UserAvatar: React.FC<{}> = () => {
   const dispatch = useAppDispatch();
-  const { darkMode } = useAppSelector((state) => state.theme);
+  // const { darkMode } = useAppSelector((state) => state.theme);
+  let darkMode = false;
   const { user } = useAppSelector((state) => state.user);
 
   return (

@@ -64,7 +64,8 @@ const appointmentTypeSwitch: {
 };
 
 const EventItem: React.FC<{ type: AppointmentType; time: string }> = ({ type, time }) => {
-  const { darkMode } = useAppSelector((state) => state.theme);
+  // const { darkMode } = useAppSelector((state) => state.theme);
+  let darkMode = false;
 
   const typeSwitch = appointmentTypeSwitch[type];
 

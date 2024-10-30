@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
+import { useMutation } from "@apollo/client";
 import { Badge, Button, Divider, Dropdown, List, message, Popconfirm, Table, Tooltip, Input, Select, AutoComplete, Descriptions } from "antd";
 import { useTranslation } from "react-i18next";
 
+import { clinicMutations } from "@/apollo/mutation";
 import { useAppSelector } from "@/hooks";
 import { auth } from "@/services/cognito";
-import { mutations, queries } from "@/services/db";
 
 import type { AutoCompleteProps, TableProps } from "antd";
 
-import { TranslatedText } from "../common";
 import CustomButton from "../common/custom-button";
 import EmailInput from "../common/email-input";
 
@@ -38,6 +38,8 @@ const BranchesListFooter: React.FC<Props> = ({ isLoading, branches }) => {
   const { t } = useTranslation();
   const { user } = useAppSelector((state) => state.user);
 
+  const [spiMutate, { data: spiData, loading: spiLoading, error: spiError }] = useMutation(clinicMutations.sendPersonnelInvite);
+
   const [invite, setInvite] = useState<{
     branchId: string | undefined;
     email: string;
@@ -56,38 +58,23 @@ const BranchesListFooter: React.FC<Props> = ({ isLoading, branches }) => {
       role: roleOptions[0].value,
     });
   };
-  const handleSearch = (value: string) => {
-    setAutoCompleteOptions(() => {
-      if (!value || value.includes("@")) {
-        return [];
-      }
-      return ["gmail.com", "hotmail.com", "outlook.com"].map((domain) => ({
-        label: `${value}@${domain}`,
-        value: `${value}@${domain}`,
-      }));
-    });
-  };
+
   const handleInviteUser = () => {
     if (!user || !invite.branchId || !invite.email || !invite.role) {
       message.error("Davet gönderilemedi");
       return;
     }
 
-    mutations.clinics
-      .sendEmployeeInvite(user?.id, invite.email, invite.branchId, invite.role)
-      .then((data) => {
-        message.success(`Kullanıcı daveti gönderildi: ${data?.insert_clinic_management_invitations_one?.invitee_email}`);
-      })
-      .catch((error) => {
-        if (error.message.includes("unique constraint")) {
-          message.error("Bu email adresine sahip bir kullanıcı zaten davet edilmiş");
-        } else {
-          message.error("Davet gönderilemedi");
-        }
-      })
-      .finally(() => {
-        clearInvite();
-      });
+    spiMutate({
+      variables: {
+        inviter_id: user?.id,
+        invitee_email: invite.email,
+        branch_id: invite.branchId,
+        role: invite.role,
+      },
+    }).finally(() => {
+      clearInvite();
+    });
   };
 
   return (
@@ -108,7 +95,7 @@ const BranchesListFooter: React.FC<Props> = ({ isLoading, branches }) => {
       <div className="flex flex-row items-center">
         <span className="text-gray-500">Email</span>
         <Divider type="vertical" className="mx-2" />
-        <EmailInput className="w-[280px]" value={invite.email} onChange={(value) => setInvite({ ...invite, email: value })} />
+        <EmailInput inputClassName="w-[280px]" value={invite.email} onChange={(value) => setInvite({ ...invite, email: value })} />
       </div>
       <div className="flex flex-row items-center">
         <span className="text-gray-500">Rol</span>

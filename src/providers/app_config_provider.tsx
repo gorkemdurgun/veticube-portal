@@ -1,6 +1,5 @@
 import { ConfigProvider, theme } from "antd";
 
-
 import { useAppSelector } from "@/hooks";
 import componentTranslationsEN from "@/localization/components/en_US";
 import componentTranslationsTR from "@/localization/components/tr_TR";
@@ -10,8 +9,10 @@ import type { ConfigProviderProps } from "antd";
 
 const AppConfigProvider = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   const { defaultAlgorithm, darkAlgorithm } = theme;
-  const { darkMode } = useAppSelector((state) => state.theme);
-  const { language } = useAppSelector((state) => state.lang);
+  // const { darkMode } = useAppSelector((state) => state.theme);
+  // const { language } = useAppSelector((state) => state.lang);
+  let darkMode = false;
+  let language = "en";
 
   const appTheme: ConfigProviderProps["theme"] = {
     algorithm: darkMode ? darkAlgorithm : defaultAlgorithm,

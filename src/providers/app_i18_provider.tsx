@@ -4,7 +4,8 @@ import { useAppSelector } from "@/hooks";
 import i18n from "@/localization/i18n";
 
 const AppI18Provider = ({ children }: Readonly<{ children: React.ReactNode }>) => {
-  const { language } = useAppSelector((state) => state.lang);
+  // const { language } = useAppSelector((state) => state.lang);
+  let language = "en";
 
   useEffect(() => {
     i18n.changeLanguage(language);
