@@ -27,103 +27,6 @@ type Props = {
   }[];
 };
 
-const VetTable = ({ vets }: { vets: ClinicBranchVeterinarianItem[] }) => {
-  const [verifyModalVisible, setVerifyModalVisible] = useState<boolean>(false);
-  const [verifyVetModalData, setVerifyVetModalData] = useState({
-    userEmail: "",
-  });
-
-  const onVerifyClick = (vetEmail: string) =>
-    Promise.resolve(
-      auth.signup.resendOtp(vetEmail, (email) => {
-        message.success(`Verification email sent to ${email}`);
-        setVerifyVetModalData({ userEmail: email });
-        setTimeout(() => {
-          setVerifyModalVisible(true);
-        }, 1000);
-      })
-    );
-
-  return (
-    <>
-      <VerifyUserModal visible={verifyModalVisible} setVisible={setVerifyModalVisible} data={verifyVetModalData} />
-      <List
-        dataSource={vets}
-        renderItem={(vet) => {
-          const isVetAuthorized = vet?.user?.allowed_roles?.includes("vet");
-          const isVetVerified = vet?.user?.is_verified;
-          return (
-            <List.Item
-              className="bg-gray-100 rounded-lg !p-4"
-              actions={[
-                <Popconfirm
-                  key={vet.vetId}
-                  disabled={isVetVerified}
-                  overlayInnerStyle={{ width: "360px" }}
-                  icon={null}
-                  placement="bottomLeft"
-                  title="Kullanıcı doğrulama"
-                  description="Kullanıcının email adresine doğrulama kodu gönderilecektir. Devam etmek istiyor musunuz?"
-                  onConfirm={() => onVerifyClick(vet?.user?.email)}
-                >
-                  <Button
-                    disabled={isVetVerified}
-                    danger={!isVetVerified}
-                    className={isVetVerified ? "bg-green-200 text-green-500" : "bg-red-200 text-red-500"}
-                  >
-                    {isVetVerified ? (
-                      <div className="flex flex-row gap-2">
-                        <VerifiedIcon className="w-5 h-5" />
-                        Verified User
-                      </div>
-                    ) : (
-                      <div className="flex flex-row gap-2">
-                        <NotVerifiedIcon className="w-5 h-5" />
-                        Not Verified User (Click to Verify)
-                      </div>
-                    )}
-                  </Button>
-                </Popconfirm>,
-                <Button
-                  key={vet.vetId}
-                  disabled={isVetAuthorized}
-                  danger={!isVetAuthorized}
-                  className={isVetAuthorized ? "bg-green-200 text-green-500" : "bg-red-200 text-red-500"}
-                >
-                  <span>
-                    {isVetAuthorized ? (
-                      <div className="flex flex-row items-center gap-2">
-                        <VerifiedIcon className="w-5 h-5" />
-                        Authorized Vet User
-                      </div>
-                    ) : (
-                      <div className="flex flex-row items-center gap-2">
-                        <NotVerifiedIcon className="w-5 h-5" />
-                        Not Authorized Vet User
-                      </div>
-                    )}
-                  </span>
-                </Button>,
-              ]}
-            >
-              <List.Item.Meta
-                title={
-                  <div className="flex flex-row gap-2">
-                    <span className="font-semibold">
-                      {vet.user?.first_name} {vet.user?.last_name}
-                    </span>
-                    <span className="text-gray-500">{`(${vet.user?.email})`}</span>
-                  </div>
-                }
-              />
-            </List.Item>
-          );
-        }}
-      />
-    </>
-  );
-};
-
 const BranchesList: React.FC<Props> = ({ isLoading, branches }) => {
   const { t } = useTranslation();
 
@@ -173,7 +76,7 @@ const BranchesList: React.FC<Props> = ({ isLoading, branches }) => {
               {
                 title: t("components.branches.branches-list.columns.actions"),
                 key: "actions",
-                render: (record: ClinicBranchItem) => (
+                render: (record: { id: string; branch_name: string }) => (
                   <div className="flex flex-row gap-2">
                     <Tooltip placement="bottom" title="Add Veterinarian">
                       <Button
