@@ -1,13 +1,11 @@
 "use client";
 
-
 import { Breadcrumb } from "antd";
 
+import ClientsList from "@/components/branches/clients-list";
 import { TranslatedText } from "@/components/common";
 
 import type { BreadcrumbProps } from "antd";
-
-
 
 const AdminClientsPage: React.FC = () => {
   const breadcrumbItems: BreadcrumbProps["items"] = [
@@ -20,9 +18,11 @@ const AdminClientsPage: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="w-full flex flex-col gap-4">
       <Breadcrumb items={breadcrumbItems} />
-      <div className="flex flex-row gap-4">AdminClientsPage</div>
+      <div className="grid grid-cols-1 lg:grid-cols-[auto_240px] gap-4">
+        <ClientsList />
+      </div>
     </div>
   );
 };

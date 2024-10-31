@@ -31,6 +31,7 @@ const ClientsList: React.FC<Props> = () => {
       title: "Email",
       dataIndex: "email",
       key: "email",
+      responsive: ["xl"],
     },
     {
       title: "Telefon",
@@ -62,7 +63,7 @@ const ClientsList: React.FC<Props> = () => {
                 </div>
               }
             >
-              {value[0]?.name} + {value.length - 1}
+              {value[0]?.name} +{value.length - 1}
             </Popover>
           ) : (
             <a className="block text-blue-700 hover:text-blue-500">{value[0]?.name}</a>
