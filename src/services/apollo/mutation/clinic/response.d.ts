@@ -1,13 +1,4 @@
-type SendPersonnelInviteRes = {
-  insert_clinic_management_invitations_one: { id: string; invitee_email: string; role: string; status: string };
-};
-type ReplyToInviteRes = {
-  update_clinic_management_invitations_by_pk: {
-    status: string;
-    invitee_email: string;
-    role: string;
-  };
-};
+// CLINIC BASIS
 type CreateClinicRes = {
   insert_clinic: {
     affected_rows: number;
@@ -19,6 +10,15 @@ type CreateClinicRes = {
     }[];
   };
 };
+type AddManagerToClinicRes = {
+  inserted_manager: {
+    user_id: string;
+    clinic_id: string;
+    assigned_at: string;
+  };
+};
+
+// BRANCH BASIS
 type CreateBranchRes = {
   insert_branch: {
     affected_rows: number;
@@ -34,10 +34,25 @@ type CreateBranchRes = {
     }[];
   };
 };
-type AddManagerToClinicRes = {
-  inserted_manager: {
-    user_id: string;
-    clinic_id: string;
-    assigned_at: string;
+type SendPersonnelInviteRes = {
+  insert_clinic_management_invitations_one: { id: string; invitee_email: string; role: string; status: string };
+};
+type ReplyToInviteRes = {
+  update_clinic_management_invitations_by_pk: {
+    status: string;
+    invitee_email: string;
+    role: string;
+  };
+};
+type AddClientToBranchRes = {
+  client: {
+    id: string;
+    email: string;
+  };
+};
+type AddPetToClientRes = {
+  pet: {
+    id: string;
+    created_at: string;
   };
 };

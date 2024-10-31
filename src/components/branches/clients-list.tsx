@@ -1,21 +1,25 @@
 import { useState } from "react";
 
+import { useQuery } from "@apollo/client";
 import { Popover, Table, type TableProps } from "antd";
 
 import { useAppSelector } from "@/hooks";
+import { clinicQueries } from "@/services/apollo/query";
 
 import CustomButton from "../common/custom-button";
 import AddClientToBranchModal from "../modals/clinics/add-client-to-branch";
+import AddPetToClient from "../modals/clinics/add-pet-to-client";
 
 type Props = {};
 
 const ClientsList: React.FC<Props> = () => {
   const { assignments } = useAppSelector((state) => state.user);
-  const { branchClients, loading: appLoading } = useAppSelector((state) => state.app);
   const [currentClientId, setCurrentClientId] = useState<string | undefined>(undefined);
 
   const [visibleAddClientModal, setVisibleAddClientModal] = useState(false);
   const [visibleAddPetModal, setVisibleAddPetModal] = useState(false);
+
+  const { data: clientsData, refetch: refetchClients, loading: appLoading } = useQuery(clinicQueries.GetBranchClientRecords);
 
   const columns: TableProps["columns"] = [
     {
@@ -41,7 +45,7 @@ const ClientsList: React.FC<Props> = () => {
       dataIndex: "pets",
       key: "pets",
       render(value, record, index) {
-        const isExist = value.length > 0;
+        const isExist = value?.length > 0;
         return isExist ? (
           value.length > 1 ? (
             <Popover
@@ -93,23 +97,26 @@ const ClientsList: React.FC<Props> = () => {
       <AddClientToBranchModal
         visible={visibleAddClientModal}
         onClose={() => setVisibleAddClientModal(false)}
-        onSuccess={(ownerId) => {
+        onSuccess={(skipPet, ownerId) => {
+          refetchClients();
+
+          if (skipPet) return;
           setVisibleAddPetModal(true);
           setCurrentClientId(ownerId);
         }}
       />
-      {/* <AddPetToClient
+      <AddPetToClient
         visible={visibleAddPetModal}
         onClose={() => setVisibleAddPetModal(false)}
         data={{
-          clients: clientsData.branch_clients,
+          clients: clientsData?.branch_clients,
           initialClientId: currentClientId,
         }}
         onSuccess={() => refetchClients()}
-      /> */}
+      />
       <Table
         columns={columns}
-        dataSource={branchClients}
+        dataSource={clientsData?.branch_clients}
         rowKey="id"
         loading={appLoading}
         title={() => (

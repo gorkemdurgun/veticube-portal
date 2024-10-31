@@ -2,6 +2,7 @@ import { gql } from "@apollo/client";
 
 import type { TypedDocumentNode } from "@apollo/client";
 
+// CLINIC BASIS
 export const GET_CLINIC_DETAIL: TypedDocumentNode<GetClinicDetailRes> = gql`
   query GetClinicDetail {
     clinics: clinic_management_clinics {
@@ -17,6 +18,24 @@ export const GET_CLINIC_DETAIL: TypedDocumentNode<GetClinicDetailRes> = gql`
           user_id
           role
         }
+      }
+    }
+  }
+`;
+
+// BRANCH BASIS
+export const GET_BRANCH_CLIENT_RECORDS: TypedDocumentNode<GetBranchClientRecordsRes> = gql`
+  query GetBranchClientRecords {
+    branch_clients: clinic_management_branch_client_records {
+      email
+      full_name
+      phone_number
+      created_at
+      branch_id
+      id
+      pets {
+        id
+        name
       }
     }
   }
@@ -49,4 +68,3 @@ export const GET_USER_PENDING_INVITATIONS: TypedDocumentNode<GetUserPendingInvit
     }
   }
 `;
-

@@ -1,3 +1,4 @@
+// CLINIC BASIS
 type GetClinicDetailRes = {
   clinics: {
     id: string;
@@ -14,6 +15,18 @@ type GetClinicDetailRes = {
       }[];
     }[];
   }[];
+};
+
+// BRANCH BASIS
+type GetBranchClientRecordsRes = {
+  branch_clients: Array<{
+    email: string;
+    full_name: string;
+    phone_number: string;
+    created_at: string;
+    branch_id: string;
+    id: string;
+  }>;
 };
 type GetBranchPendingInvitationsRes = {
   invitations: {

@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 
 import { PiCatDuotone as CatIcon, PiDogDuotone as DogIcon } from "react-icons/pi";
 
+import { useMutation } from "@apollo/client";
 import { DatePicker, Divider, Form, Input, InputNumber, message, Modal, Radio, Select } from "antd";
 
+import breedsJson from "@/constants/breeds.json";
 import { useAppSelector } from "@/hooks";
+import { clinicMutations } from "@/services/apollo/mutation";
 
 import CustomButton from "@/components/common/custom-button";
 import SelectableCard from "@/components/common/selectable-card";
@@ -16,7 +19,7 @@ type Props = {
   onClose: () => void;
   onSuccess?: () => void;
   data: {
-    clients: any[];
+    clients: any;
     initialClientId?: string;
   };
 };
@@ -33,14 +36,37 @@ type PetForm = {
 
 const AddPetToClient = ({ visible, onClose, onSuccess, data }: Props) => {
   const [loading, setLoading] = useState(false);
-  const { breedList } = useAppSelector((state) => state.app);
 
   const [selectedSpecies, setSelectedSpecies] = useState<string | undefined>(undefined);
   const [petForm] = Form.useForm<PetForm>();
 
+  const [addPetMutation] = useMutation(clinicMutations.addPetToClient);
+
   const handleSubmit = () => {
     petForm.validateFields().then((values) => {
-      console.log("petForm", values);
+      setLoading(true);
+      addPetMutation({
+        variables: {
+          owner_id: values.owner_id,
+          name: values.name,
+          birthdate: values.birthDate,
+          breed_id: values.breed_id,
+          gender: values.gender,
+          medical_notes: values.medicalNotes,
+        },
+      })
+        .then(() => {
+          message.success("Pet başarıyla eklendi");
+          setLoading(false);
+          onClose();
+          if (onSuccess) {
+            onSuccess();
+          }
+        })
+        .catch((error) => {
+          message.error(error.message);
+          setLoading(false);
+        });
     });
   };
 
@@ -58,7 +84,7 @@ const AddPetToClient = ({ visible, onClose, onSuccess, data }: Props) => {
       <Form form={petForm} layout="vertical" initialValues={{ owner_id: data.initialClientId }}>
         <Form.Item label="Sahip" name="owner_id" rules={[{ required: true, message: "Lütfen sahip seçin" }]}>
           <Select showSearch optionFilterProp="title">
-            {data?.clients?.map((client) => (
+            {data?.clients?.map((client: any) => (
               <Option key={client.id} value={client.id} title={client.full_name}>
                 {client.full_name}
               </Option>
@@ -98,7 +124,7 @@ const AddPetToClient = ({ visible, onClose, onSuccess, data }: Props) => {
               petForm.setFieldsValue({ breed_id: option?.value as string });
             }}
           >
-            {breedList
+            {breedsJson.breeds
               .filter((breed) => breed.species_name === selectedSpecies)
               .map((breed) => (
                 <Option key={breed.id} value={breed.id} title={breed.name}>
@@ -138,7 +164,7 @@ const AddPetToClient = ({ visible, onClose, onSuccess, data }: Props) => {
         </Form.Item>
         <Divider />
         <Form.Item>
-          <CustomButton className="w-full" variant="secondary-faded" loading={loading} onClick={handleSubmit}>
+          <CustomButton className="w-full" variant="primary-opaque" loading={loading} onClick={handleSubmit}>
             Devam Et
           </CustomButton>
         </Form.Item>
