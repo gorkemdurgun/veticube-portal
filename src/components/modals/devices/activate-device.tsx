@@ -1,14 +1,14 @@
-
 import { Divider, Form, Input, Modal, Select } from "antd";
 import Image from "next/image";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
 
 import CustomButton from "@/components/common/custom-button";
+import SerialNumberInput from "@/components/inputs/serial-number-input";
 
 type Props = {
   visible: boolean;
-  setVisible: (visible: boolean) => void;
+  onClose: () => void;
 };
 
 type FormValues = {
@@ -16,25 +16,37 @@ type FormValues = {
   selectedBranch: string;
 };
 
-const ActivateDeviceModal: React.FC<Props> = ({ visible, setVisible }) => {
+const ActivateDeviceModal: React.FC<Props> = ({ visible, onClose }) => {
   const dispatch = useAppDispatch();
   const { assignments } = useAppSelector((state) => state.user);
 
   const [deviceForm] = Form.useForm<FormValues>();
 
   const handleCancel = () => {
-    setVisible(false);
+    deviceForm.resetFields();
+    onClose();
   };
 
-  const handleOk = () => {};
+  const handleOk = () => {
+    deviceForm
+      .validateFields()
+      .then((values) => {
+        console.log(values);
+        // deviceForm.resetFields();
+        // onClose();
+      })
+      .catch((error) => {
+        console.error("Validation failed:", error);
+      });
+  };
 
   return (
-    <Modal open={visible} title="Cihazı Aktive Et" onClose={handleCancel} footer={null}>
+    <Modal open={visible} title="Cihazı Aktive Et" onClose={handleCancel} onCancel={handleCancel} footer={null}>
       <Form name="activate-device-form" layout="vertical" preserve={false} form={deviceForm}>
-        <div className="relative h-40 w-full">
+        <div className="relative h-[300px] w-full">
           <Image
             alt="Instructions"
-            src={"https://d3d04dcnmm83ls.cloudfront.net/1807100_59be55795d9c4df0ad5193de426e5496.jpg"}
+            src={"https://stg-images.samsung.com/is/image/samsung/assets/ph/microwave-oven-model-number.png?$ORIGIN_PNG$"}
             layout="fill"
             objectFit="contain"
           />
@@ -46,19 +58,18 @@ const ActivateDeviceModal: React.FC<Props> = ({ visible, setVisible }) => {
             Seri numarası, cihazınızın arkasında bulunan etiket üzerinde yer almaktadır ve 16 karakterden oluşmaktadır.
           </span>
           <div className="flex flex-col mt-4">
-            <Form.Item
-              name="serialNo"
-              label="Cihaz Seri No."
-              rules={[{ required: true, message: "Lütfen geçerli bir seri numarası giriniz." }]}
-            >
-              <Input placeholder="XXXX-XXXX-XXXX-XXXX" />
+            <Form.Item name="serialNo" label="Seri Numarası" rules={[{ required: true, message: "Lütfen geçerli bir seri numarası giriniz." }]}>
+              <SerialNumberInput
+                value={deviceForm.getFieldValue("serialNo")}
+                onChange={(value) => deviceForm.setFieldsValue({ serialNo: value })}
+              />
             </Form.Item>
             <Form.Item
               name="selectedBranch"
               label="Şube"
               rules={[{ required: true, message: "Lütfen cihazı aktif etmek istediğiniz şubeyi seçiniz." }]}
             >
-              <Select>
+              <Select placeholder="Cihazı hangi şubede kullanmak istediğinizi seçiniz.">
                 {assignments.map((assignment) => (
                   <Select.Option key={assignment.branch.id} value={assignment.branch.id}>
                     {assignment.branch.branch_name}
