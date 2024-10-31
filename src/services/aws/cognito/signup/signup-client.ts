@@ -1,6 +1,6 @@
 import { CognitoUser, CognitoUserAttribute } from "amazon-cognito-identity-js";
 
-import userPool from "@/services/cognito/userpool";
+import userPool from "@/services/aws/cognito/userpool";
 
 export const signupUser = (
   name: string,
@@ -38,7 +38,6 @@ export const signupUser = (
   attributeList.push(attributeName);
   attributeList.push(attributePhoneNumber);
   attributeList.push(attributeRole);
-  
 
   return new Promise((resolve, reject) => {
     userPool.signUp(email, password, attributeList, [], (err, result) => {

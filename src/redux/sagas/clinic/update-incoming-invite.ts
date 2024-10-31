@@ -1,10 +1,10 @@
 import { message } from "antd";
 import { call, put } from "redux-saga/effects";
 
-import { apolloClient } from "@/apollo/client";
-import { clinicMutations } from "@/apollo/mutation";
 import { updateEmployeeInviteFailure, updateEmployeeInviteRequest, updateEmployeeInviteSuccess } from "@/redux/slices/clinic/clinicSlice";
-import { auth } from "@/services/cognito";
+import { apolloClient } from "@/services/apollo/client";
+import { clinicMutations } from "@/services/apollo/mutation";
+import { auth } from "@/services/aws/cognito";
 import toErrorMessage from "@/utils/toError";
 
 import type { CallEffect, PutEffect } from "redux-saga/effects";

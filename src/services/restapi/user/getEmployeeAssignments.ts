@@ -1,6 +1,5 @@
+import { axiosClient } from "@/services/restapi/client";
 import toErrorMessage from "@/utils/toError";
-
-import { axiosInstance } from "..";
 
 export type GetEmployeeAssignmentsResponse = {
   assignment: {
@@ -15,7 +14,7 @@ export type GetEmployeeAssignmentsResponse = {
 
 export const getEmployeeAssignments = async (userId: string) => {
   try {
-    const { data } = await axiosInstance.get<GetEmployeeAssignmentsResponse>(`/getEmployeeAssignments/${userId}`);
+    const { data } = await axiosClient.get<GetEmployeeAssignmentsResponse>(`/getEmployeeAssignments/${userId}`);
     return data;
   } catch (error) {
     const strError = toErrorMessage(error);

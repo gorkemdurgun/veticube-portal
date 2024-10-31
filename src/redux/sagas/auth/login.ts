@@ -4,10 +4,8 @@ import { call, put } from "redux-saga/effects";
 import { setActiveBranchRequest } from "@/redux/slices/app/appSlice";
 import { loginRequest, loginSuccess, loginFailure } from "@/redux/slices/auth/authSlice";
 import { getUserSuccess } from "@/redux/slices/user/userSlice";
-import { auth } from "@/services/cognito";
-import { rest } from "@/services/db";
-import { GetBreedsResponse } from "@/services/db/rest/app";
-import type { GetUserByIdResponse, GetManagerAssignmentsResponse, GetEmployeeAssignmentsResponse } from "@/services/db/rest/user";
+import { auth } from "@/services/aws/cognito";
+import { userServices } from "@/services/restapi/user";
 import toErrorMessage from "@/utils/toError";
 
 import type { CallEffect, PutEffect } from "redux-saga/effects";
@@ -37,7 +35,7 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
     );
 
     // Hasura rest req for user data
-    const { user }: GetUserByIdResponse = yield call(rest.user.getUserById, userId);
+    const { user }: Awaited<ReturnType<typeof userServices.getUserById>> = yield call(userServices.getUserById, userId);
     console.log("user", user);
 
     if (!user) {
@@ -50,7 +48,10 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
 
     let assignmentList: GetUserSuccessPayload["assignments"] = [];
     if (userRole === "manager") {
-      const { assignment }: GetManagerAssignmentsResponse = yield call(rest.user.getManagerAssignments, userId);
+      const { assignment }: Awaited<ReturnType<typeof userServices.getManagerAssignments>> = yield call(
+        userServices.getManagerAssignments,
+        userId
+      );
       const branches = assignment?.clinic?.branches;
 
       if (!branches) {
@@ -63,7 +64,10 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
         branch: branch,
       }));
     } else if (userRole === "veterinarian" || userRole === "nurse" || userRole === "secretary") {
-      const { assignment }: GetEmployeeAssignmentsResponse = yield call(rest.user.getEmployeeAssignments, userId);
+      const { assignment }: Awaited<ReturnType<typeof userServices.getEmployeeAssignments>> = yield call(
+        userServices.getEmployeeAssignments,
+        userId
+      );
       assignmentList = [assignment];
     } else if (userRole === "user") {
       assignmentList = [];

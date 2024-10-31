@@ -1,0 +1,24 @@
+{
+  "breeds": [
+    {
+      "id": "3d415697-05f4-4710-99c0-6a4dd0aceb45",
+      "species_name": "Cat",
+      "name": "Siamese"
+    },
+    {
+      "id": "c91c6a23-f393-4459-81e5-7cb381b1edb9",
+      "species_name": "Cat",
+      "name": "Persian"
+    },
+    {
+      "id": "fc2fedc8-f9ba-45b5-b902-f9eea8f727c7",
+      "species_name": "Dog",
+      "name": "Golden Retriever"
+    },
+    {
+      "id": "f35e8387-df40-4648-b04a-f1233290c7f0",
+      "species_name": "Dog",
+      "name": "Bulldog"
+    }
+  ]
+}

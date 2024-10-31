@@ -3,9 +3,9 @@ import { message, Popconfirm, Spin, Table } from "antd";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 
-import { clinicQueries } from "@/apollo/query";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { updateEmployeeInviteRequest } from "@/redux/slices/clinic/clinicSlice";
+import { clinicQueries } from "@/services/apollo/query";
 
 import CustomButton from "../common/custom-button";
 

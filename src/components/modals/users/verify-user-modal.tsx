@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Input, message, Modal } from "antd";
 
-import { auth } from "@/services/cognito";
+import { auth } from "@/services/aws/cognito";
 
 import { TranslatedText } from "../../common";
 

@@ -1,18 +1,13 @@
 import { useState } from "react";
 
-import {
-  PiPencilSimple as EditIcon,
-  PiSealWarningDuotone as NotVerifiedIcon,
-  PiSealCheckDuotone as VerifiedIcon
-} from "react-icons/pi";
+import { PiPencilSimple as EditIcon, PiSealWarningDuotone as NotVerifiedIcon, PiSealCheckDuotone as VerifiedIcon } from "react-icons/pi";
 
 import { Button, List, message, Popconfirm, Table, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
 
-import { auth } from "@/services/cognito";
+import { auth } from "@/services/aws/cognito";
 
 import BranchesListFooter from "./branches-list-footer";
-
 
 import { TranslatedText } from "../common";
 import VerifyUserModal from "../modals/users/verify-user-modal";

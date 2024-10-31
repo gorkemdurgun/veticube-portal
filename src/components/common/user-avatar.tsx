@@ -2,9 +2,9 @@ import { PiSignOutDuotone as SignOutIcon } from "react-icons/pi";
 
 import { Avatar, Button, Divider, Popconfirm } from "antd";
 
-import { apolloClient } from "@/apollo/client";
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { persistor } from "@/redux/store";
+import { apolloClient } from "@/services/apollo/client";
 
 export const UserAvatar: React.FC<{}> = () => {
   const dispatch = useAppDispatch();

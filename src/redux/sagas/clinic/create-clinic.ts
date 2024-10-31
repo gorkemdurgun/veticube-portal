@@ -1,9 +1,9 @@
 import { call, put } from "redux-saga/effects";
 
-import { apolloClient } from "@/apollo/client";
-import { clinicMutations } from "@/apollo/mutation";
 import { createClinicRequest, createClinicSuccess, createClinicFailure } from "@/redux/slices/clinic/clinicSlice";
 import { store } from "@/redux/store";
+import { apolloClient } from "@/services/apollo/client";
+import { clinicMutations } from "@/services/apollo/mutation";
 import toErrorMessage from "@/utils/toError";
 
 import type { CallEffect, PutEffect } from "redux-saga/effects";

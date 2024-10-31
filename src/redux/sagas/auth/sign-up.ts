@@ -2,7 +2,7 @@ import { message } from "antd";
 import { call, put } from "redux-saga/effects";
 
 import { signUpFailure, signUpRequest, signUpSuccess } from "@/redux/slices/auth/authSlice";
-import { auth } from "@/services/cognito";
+import { auth } from "@/services/aws/cognito";
 import toErrorMessage from "@/utils/toError";
 
 import type { CallEffect, PutEffect } from "redux-saga/effects";

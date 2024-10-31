@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 
 import { useParams } from "next/navigation";
 
-import { deviceSubscriptions } from "@/apollo/subscription";
 import { apolloWsClient } from "@/providers/app_apollo_ws_provider";
+import { deviceSubscriptions } from "@/services/apollo/subscription";
 import { convertDateTime } from "@/utils/timer";
 
 import SensorOverview from "@/components/devices/SensorOverview";

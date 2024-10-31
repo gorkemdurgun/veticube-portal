@@ -3,7 +3,7 @@
 import { useQuery } from "@apollo/client";
 import { Breadcrumb, Divider } from "antd";
 
-import { clinicQueries } from "@/apollo/query";
+import { clinicQueries } from "@/services/apollo/query";
 
 import BranchesActions from "@/components/branches/branches-actions";
 import BranchesList from "@/components/branches/branches-list";

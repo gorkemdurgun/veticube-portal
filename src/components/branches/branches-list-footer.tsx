@@ -4,8 +4,8 @@ import { useMutation } from "@apollo/client";
 import { Descriptions, Divider, message, Popconfirm, Select } from "antd";
 import { useTranslation } from "react-i18next";
 
-import { clinicMutations } from "@/apollo/mutation";
 import { useAppSelector } from "@/hooks";
+import { clinicMutations } from "@/services/apollo/mutation";
 
 import type { AutoCompleteProps } from "antd";
 
