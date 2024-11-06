@@ -52,3 +52,17 @@ type GetUserPendingInvitationsRes = {
     updated_at: string;
   }[];
 };
+type GetBranchDeviceAssignmentsRes = {
+  device_assignments: {
+    id: string;
+    device_id: string;
+    branch_id: string;
+    device_nickname: string;
+    iot_device: {
+      id: string;
+      device_type: string;
+      device_model: string;
+      serial_number: string;
+    };
+  }[];
+};

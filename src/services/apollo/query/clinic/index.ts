@@ -68,3 +68,22 @@ export const GET_USER_PENDING_INVITATIONS: TypedDocumentNode<GetUserPendingInvit
     }
   }
 `;
+export const GET_BRANCH_DEVICE_ASSIGNMENTS: TypedDocumentNode<GetBranchDeviceAssignmentsRes, GetBranchDeviceAssignmentsVar> = gql`
+  query GetBranchDeviceAssignments($branchId: uuid = "") {
+    device_assignments: iot_management_iot_device_assignments(where: { branch_id: { _eq: $branchId } }) {
+      id
+      device_id
+      branch_id
+      device_nickname
+      iot_device {
+        id
+        device_type
+        device_model
+        serial_number
+      }
+    }
+  }
+`;
+
+
+
