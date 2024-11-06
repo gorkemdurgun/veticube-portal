@@ -2,22 +2,31 @@
 
 import { useState } from "react";
 
-import { PiPlusSquareDuotone, PiDeviceTabletCameraBold as IoTIcon, PiCheckCircle as CompleteIcon
-
-
- } from "react-icons/pi";
+import { PiPlusSquareDuotone, PiDeviceTabletCameraBold as IoTIcon, PiCheckCircle as CompleteIcon } from "react-icons/pi";
 
 import { useQuery } from "@apollo/client";
-import { Card } from "antd";
+import { Breadcrumb, Card } from "antd";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import { useAppSelector } from "@/hooks";
 import { clinicQueries } from "@/services/apollo/query";
 
+import { TranslatedText } from "@/components/common";
 import CustomButton from "@/components/common/custom-button";
 import { DeviceCard } from "@/components/devices/device-card";
 import ActivateDeviceModal from "@/components/modals/devices/activate-device";
+
+import type { BreadcrumbProps } from "antd";
+
+const breadcrumbItems: BreadcrumbProps["items"] = [
+  {
+    title: <TranslatedText tPrefix="breadcrumb" tKey="panel" />,
+  },
+  {
+    title: <TranslatedText tPrefix="breadcrumb" tKey="devices" />,
+  },
+];
 
 const DevicesPage = () => {
   const router = useRouter();
@@ -36,6 +45,7 @@ const DevicesPage = () => {
     <>
       <ActivateDeviceModal visible={activateModalVisible} onClose={() => setActivateModalVisible(false)} />
       <div className="w-full flex flex-col gap-4">
+        <Breadcrumb items={breadcrumbItems} />
         <div className="w-full flex items-center justify-between p-4 bg-white rounded-lg">
           <span className="text-2xl font-semibold">Devices</span>
           <CustomButton variant="neutral-faded" onClick={() => setActivateModalVisible(true)} icon={PiPlusSquareDuotone} />

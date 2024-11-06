@@ -7,16 +7,16 @@ import { TranslatedText } from "@/components/common";
 
 import type { BreadcrumbProps } from "antd";
 
-const AdminClientsPage: React.FC = () => {
-  const breadcrumbItems: BreadcrumbProps["items"] = [
-    {
-      title: <TranslatedText tPrefix="breadcrumb" tKey="panel" />,
-    },
-    {
-      title: <TranslatedText tPrefix="breadcrumb" tKey="clients" />,
-    },
-  ];
+const breadcrumbItems: BreadcrumbProps["items"] = [
+  {
+    title: <TranslatedText tPrefix="breadcrumb" tKey="panel" />,
+  },
+  {
+    title: <TranslatedText tPrefix="breadcrumb" tKey="clients" />,
+  },
+];
 
+const AdminClientsPage: React.FC = () => {
   return (
     <div className="w-full flex flex-col gap-4">
       <Breadcrumb items={breadcrumbItems} />
