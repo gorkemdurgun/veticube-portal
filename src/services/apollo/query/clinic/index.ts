@@ -24,9 +24,21 @@ export const GET_CLINIC_DETAIL: TypedDocumentNode<GetClinicDetailRes> = gql`
 `;
 
 // BRANCH BASIS
-export const GET_BRANCH_CLIENT_RECORDS: TypedDocumentNode<GetBranchClientRecordsRes> = gql`
-  query GetBranchClientRecords {
-    branch_clients: clinic_management_branch_client_records {
+export const GET_FILTERED_BRANCH_CLIENT_RECORDS: TypedDocumentNode<GetFilteredBranchClientRecordsRes, GetFilteredBranchClientRecordsVar> = gql`
+  query GetBranchClientRecords($branchId: uuid = "", $limit: Int = 10, $offset: Int = 0, $searchTerm: String = "") {
+    branch_clients: clinic_management_branch_client_records(
+      where: {
+        branch_id: { _eq: $branchId }
+        _or: [
+          { full_name: { _ilike: $searchTerm } }
+          { email: { _ilike: $searchTerm } }
+          { phone_number: { _ilike: $searchTerm } }
+          { pets: { name: { _ilike: $searchTerm } } }
+        ]
+      }
+      limit: $limit
+      offset: $offset
+    ) {
       email
       full_name
       phone_number
@@ -84,6 +96,3 @@ export const GET_BRANCH_DEVICE_ASSIGNMENTS: TypedDocumentNode<GetBranchDeviceAss
     }
   }
 `;
-
-
-

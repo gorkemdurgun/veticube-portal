@@ -18,7 +18,7 @@ type GetClinicDetailRes = {
 };
 
 // BRANCH BASIS
-type GetBranchClientRecordsRes = {
+type GetFilteredBranchClientRecordsRes = {
   branch_clients: Array<{
     email: string;
     full_name: string;
@@ -26,6 +26,10 @@ type GetBranchClientRecordsRes = {
     created_at: string;
     branch_id: string;
     id: string;
+    pets: Array<{
+      id: string;
+      name: string;
+    }>;
   }>;
 };
 type GetBranchPendingInvitationsRes = {
