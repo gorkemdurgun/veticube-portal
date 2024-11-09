@@ -12,7 +12,13 @@ type ButtonType =
   | "primary-faded"
   | "secondary-text"
   | "secondary-opaque"
-  | "secondary-faded";
+  | "secondary-faded"
+  | "warning-text"
+  | "warning-opaque"
+  | "warning-faded"
+  | "danger-text"
+  | "danger-opaque"
+  | "danger-faded";
 
 type Props = React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
   loading?: boolean;

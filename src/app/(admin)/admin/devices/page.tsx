@@ -50,7 +50,7 @@ const DevicesPage = () => {
           <span className="text-2xl font-semibold">Devices</span>
           <CustomButton variant="neutral-faded" onClick={() => setActivateModalVisible(true)} icon={PiPlusSquareDuotone} />
         </div>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
           {deviceAssignmentsData?.device_assignments?.map((item, index) => {
             return (
               <IotCard
@@ -59,8 +59,9 @@ const DevicesPage = () => {
                   nick_name: item.device_nickname,
                   type: item.iot_device.device_type,
                   model: item.iot_device.device_model,
+                  serial_number: item.iot_device.serial_number,
                 }}
-                treatment={{
+                current_treatment={{
                   pet: {
                     name: "Rex",
                     owner_name: "John Doe",

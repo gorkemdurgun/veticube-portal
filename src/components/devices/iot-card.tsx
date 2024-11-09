@@ -1,21 +1,25 @@
 import React from "react";
 
-import { PiDeviceTabletCameraBold as IotIcon } from "react-icons/pi";
+import { PiDeviceTabletCameraBold as IotIcon, PiGear as SettingsIcon } from "react-icons/pi";
 
-import { Card, Descriptions, Tag } from "antd";
+import { Card, Tag } from "antd";
 import { IconType } from "react-icons";
 
+import { IotCardEmpty } from "./iot-card-empty";
 import { IotCardTreatment } from "./iot-card-treatment";
 
 import type { CardProps } from "antd";
+
+import CustomButton from "../common/custom-button";
 
 type Props = CardProps & {
   iot: {
     nick_name: string;
     type: string;
     model: string;
+    serial_number: string;
   };
-  treatment?: {
+  current_treatment?: {
     pet: {
       name: string;
       owner_name: string;
@@ -24,42 +28,41 @@ type Props = CardProps & {
       reason: string;
       start_date: string;
     };
-  } | null;
+  };
 };
 
-const Component: React.FC<Props> = ({ iot, treatment, ...props }) => {
+const Component: React.FC<Props> = ({ iot, current_treatment, ...props }) => {
   return (
     <Card
       className="border-0 shadow-basic"
       classNames={{
-        header: `!bg-gradient-to-r from-teal-50/50 to-teal-50/10`,
-        title: `text-teal-600 text-lg font-semibold`,
-        body: `!p-2`,
+        header: `!bg-gradient-to-r from-gray-50/50 to-gray-50/10`,
+        title: `text-gray-700 text-md font-normal`,
+        body: `!p-4 bg-gray-50/50`,
       }}
       title={
         <div className="flex justify-between items-center">
+          {iot.nick_name}
           <div className="flex items-center gap-2">
-            <IotIcon size={24} />
-            {iot.nick_name}
-          </div>
-          <div className="flex gap-2 font-[500]">
-            <span className="text-sm text-gray-500">
-              {iot.type}
-              <span className="text-gray-400"> | {iot.model}</span>
-            </span>
+            <Tag color={current_treatment ? "success" : "warning"}>{current_treatment ? "Aktif Tedavi" : "Kullanıma Hazır"}</Tag>
+            <CustomButton variant="neutral-text" icon={SettingsIcon} onClick={() => console.log("Edit")} />
           </div>
         </div>
       }
       {...props}
     >
-      {treatment && (
-        <IotCardTreatment
-          active_treatment={{
-            pet: treatment.pet,
-            treatment: treatment.treatment,
-          }}
-        />
-      )}
+      <div className="flex flex-col gap-2">
+        {current_treatment ? (
+          <IotCardTreatment
+            current_treatment={{
+              pet: current_treatment.pet,
+              treatment: current_treatment.treatment,
+            }}
+          />
+        ) : (
+          <IotCardEmpty />
+        )}
+      </div>
     </Card>
   );
 };

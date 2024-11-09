@@ -226,3 +226,59 @@ div > .ant-picker-calendar-date-content {
     background-color: rgba(64, 138, 154, 0.3) !important; /* teal-500 with opacity 30% */
   }
 }
+
+/* Warning buttons */
+.button-warning-text {
+  background-color: transparent;
+  color: #f1c232; /* yellow-600 */
+  &:hover {
+    text-decoration: underline;
+  }
+  &:active {
+    color: #e0b400; /* yellow-700 */
+  }
+}
+
+.button-warning-opaque {
+  background-color: #f1c232 !important; /* yellow-600 */
+  color: #fdfdea !important; /* yellow-50 */
+  &:active {
+    background-color: #e0b400 !important; /* yellow-700 */
+  }
+}
+
+.button-warning-faded {
+  background-color: rgba(241, 194, 50, 0.25) !important; /* yellow-500 with opacity 25% */
+  color: #f1c232 !important; /* yellow-600 */
+  &:active {
+    background-color: rgba(241, 194, 50, 0.3) !important; /* yellow-500 with opacity 30% */
+  }
+}
+
+/* Danger buttons */
+.button-danger-text {
+  background-color: transparent;
+  color: #c23030; /* red-600 */
+  &:hover {
+    text-decoration: underline;
+  }
+  &:active {
+    color: #9e1c1c; /* red-700 */
+  }
+}
+
+.button-danger-opaque {
+  background-color: #c23030 !important; /* red-600 */
+  color: #fef2f2 !important; /* red-50 */
+  &:active {
+    background-color: #9e1c1c !important; /* red-700 */
+  }
+}
+
+.button-danger-faded {
+  background-color: rgba(220, 38, 38, 0.25) !important; /* red-500 with opacity 25% */
+  color: #c23030 !important; /* red-600 */
+  &:active {
+    background-color: rgba(220, 38, 38, 0.3) !important; /* red-500 with opacity 30% */
+  }
+}
