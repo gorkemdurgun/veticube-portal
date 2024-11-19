@@ -1,8 +1,9 @@
 import React from "react";
 
-import { PiDeviceTabletCameraBold as IotIcon, PiGear as SettingsIcon } from "react-icons/pi";
+import { PiDeviceTabletCameraBold as IotIcon, PiGear as SettingsIcon, PiArrowRight as DetailIcon } from "react-icons/pi";
 
 import { Card, Tag } from "antd";
+import { useRouter } from "next/navigation";
 import { IconType } from "react-icons";
 
 import { IotCardEmpty } from "./iot-card-empty";
@@ -32,6 +33,8 @@ type Props = CardProps & {
 };
 
 const Component: React.FC<Props> = ({ iot, current_treatment, ...props }) => {
+  const router = useRouter();
+
   return (
     <Card
       className="border-0 shadow-basic"
@@ -45,7 +48,8 @@ const Component: React.FC<Props> = ({ iot, current_treatment, ...props }) => {
           {iot.nick_name}
           <div className="flex items-center gap-2">
             <Tag color={current_treatment ? "success" : "warning"}>{current_treatment ? "Aktif Tedavi" : "Kullanıma Hazır"}</Tag>
-            <CustomButton variant="neutral-text" icon={SettingsIcon} onClick={() => console.log("Edit")} />
+            {/* <CustomButton variant="neutral-text" icon={SettingsIcon} onClick={() => console.log("Edit")} /> */}
+            <CustomButton variant="neutral-text" icon={DetailIcon} onClick={() => router.push(`/admin/devices/${iot.serial_number}`)} />
           </div>
         </div>
       }

@@ -8,6 +8,7 @@ import { apolloWsClient } from "@/providers/app_apollo_ws_provider";
 import { deviceSubscriptions } from "@/services/apollo/subscription";
 import { convertDateTime } from "@/utils/timer";
 
+import CommandLogs from "@/components/devices/CommandLogs";
 import SensorOverview from "@/components/devices/SensorOverview";
 import TemperatureCard from "@/components/devices/TemperatureCard";
 
@@ -51,9 +52,8 @@ const DeviceIdPage = () => {
   }
 
   return (
-    <div className="w-full flex flex-col gap-4">
-      <SensorOverview temperature={30} humidity={40} oxygen={50} carbon={60} lambLevel={2} isIR={true} isUV={false} />
-      <div className="grid grid-cols-2 gap-4">
+    <div className="w-full grid grid-cols-[3fr,2fr] gap-4">
+      <div className="flex flex-col gap-4">
         <TemperatureCard
           temperatureData={dataArr?.map((data) => {
             return {
@@ -62,6 +62,10 @@ const DeviceIdPage = () => {
             };
           })}
         />
+      </div>
+      <div className="flex flex-col gap-4">
+        <SensorOverview temperature={30} humidity={40} oxygen={50} carbon={60} lambLevel={2} isIR={true} isUV={false} />
+        <CommandLogs />
       </div>
     </div>
   );
