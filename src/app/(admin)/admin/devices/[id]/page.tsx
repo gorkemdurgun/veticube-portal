@@ -12,6 +12,17 @@ import CommandLogs from "@/components/devices/CommandLogs";
 import SensorOverview from "@/components/devices/SensorOverview";
 import TemperatureCard from "@/components/devices/TemperatureCard";
 
+const dummyDatas = {
+  temperature: [
+    { t: 28, date: "2021-09-23 12:00:00" },
+    { t: 27, date: "2021-09-23 12:05:00" },
+    { t: 27.8, date: "2021-09-23 12:10:00" },
+    { t: 28, date: "2021-09-23 12:13:00" },
+    { t: 28.2, date: "2021-09-23 12:15:00" },
+    { t: 28.1, date: "2021-09-23 12:30:00" },
+  ],
+};
+
 const DeviceIdPage = () => {
   const { id: device_id } = useParams();
   const [dataArr, setDataArr] = useState<{ t: number; h: number; date: string }[] | undefined>([]);
@@ -55,12 +66,15 @@ const DeviceIdPage = () => {
     <div className="w-full grid grid-cols-[3fr,2fr] gap-4">
       <div className="flex flex-col gap-4">
         <TemperatureCard
+          /*
           temperatureData={dataArr?.map((data) => {
             return {
               t: data.t,
               date: data.date,
             };
           })}
+        */
+          temperatureData={dummyDatas.temperature}
         />
       </div>
       <div className="flex flex-col gap-4">

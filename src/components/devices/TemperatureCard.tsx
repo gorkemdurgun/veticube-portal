@@ -1,4 +1,5 @@
 import { Tooltip } from "antd";
+import dayjs from "dayjs";
 import { ResponsiveContainer, LineChart, CartesianGrid, XAxis, YAxis, Legend, Line } from "recharts";
 
 import { ComponentCard } from "../common";
@@ -28,10 +29,14 @@ const TemperatureCard: React.FC<TemperatureCardProps> = ({ temperatureData }) =>
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
-            <YAxis />
+            <XAxis dataKey="date" tickFormatter={(value) => dayjs(value).format("HH:mm")} interval={0} />
+            <YAxis
+            tickFormatter={(value) => `${value}°C`}
+            />
             <Tooltip />
-            <Legend />
+            <Legend 
+             formatter={(value) => `Sıcaklık`}
+            />
             <Line
               type="monotone"
               dataKey="t"
