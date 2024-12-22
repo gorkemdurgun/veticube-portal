@@ -6,14 +6,12 @@ interface UserState {
   loading: boolean;
   error: string | null;
   user: GetUserSuccessPayload["user"] | null;
-  assignments: GetUserSuccessPayload["assignments"];
 }
 
 const initialState: UserState = {
   loading: false,
   error: null,
   user: null,
-  assignments: [],
 };
 
 const userSlice = createSlice({
@@ -25,7 +23,6 @@ const userSlice = createSlice({
     },
     getUserSuccess: (state, action: PayloadAction<GetUserSuccessPayload>) => {
       state.user = action.payload.user;
-      state.assignments = action.payload.assignments;
       state.loading = false;
       state.error = null;
     },

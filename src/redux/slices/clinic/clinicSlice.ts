@@ -5,11 +5,13 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 interface ClinicState {
   loading: boolean;
   error: string | null;
+  assignments: GetUserClinicAssignmentsSuccessPayload["assignments"];
 }
 
 const initialState: ClinicState = {
   loading: false,
   error: null,
+  assignments: [],
 };
 
 const clinicSlice = createSlice({
@@ -38,6 +40,18 @@ const clinicSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    getUserClinicAssignmentsRequest: (state, action: PayloadAction<GetUserClinicAssignmentsRequestPayload>) => {
+      state.loading = true;
+      state.error = null;
+    },
+    getUserClinicAssignmentsSuccess: (state, action: PayloadAction<GetUserClinicAssignmentsSuccessPayload>) => {
+      state.assignments = action.payload.assignments;
+      state.loading = false;
+    },
+    getUserClinicAssignmentsFailure: (state, action: PayloadAction<string>) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -48,6 +62,9 @@ export const {
   updateEmployeeInviteRequest,
   updateEmployeeInviteSuccess,
   updateEmployeeInviteFailure,
+  getUserClinicAssignmentsRequest,
+  getUserClinicAssignmentsSuccess,
+  getUserClinicAssignmentsFailure,
 } = clinicSlice.actions;
 
 export default clinicSlice.reducer;

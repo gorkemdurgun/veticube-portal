@@ -18,7 +18,7 @@ type FormValues = {
 
 const ActivateDeviceModal: React.FC<Props> = ({ visible, onClose }) => {
   const dispatch = useAppDispatch();
-  const { assignments } = useAppSelector((state) => state.user);
+  const { assignments: branchAssignments } = useAppSelector((state) => state.clinic);
 
   const [deviceForm] = Form.useForm<FormValues>();
 
@@ -70,7 +70,7 @@ const ActivateDeviceModal: React.FC<Props> = ({ visible, onClose }) => {
               rules={[{ required: true, message: "Lütfen cihazı aktif etmek istediğiniz şubeyi seçiniz." }]}
             >
               <Select placeholder="Cihazı hangi şubede kullanmak istediğinizi seçiniz.">
-                {assignments.map((assignment) => (
+                {branchAssignments?.map((assignment) => (
                   <Select.Option key={assignment.branch.id} value={assignment.branch.id}>
                     {assignment.branch.branch_name}
                   </Select.Option>

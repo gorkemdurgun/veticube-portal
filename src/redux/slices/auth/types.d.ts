@@ -5,7 +5,7 @@
 type LoginRequestPayload = {
   email: string;
   password: string;
-  onSuccess?: () => void;
+  onSuccess?: (userId: string, userRole: UserRole) => void;
   onError?: (error: string) => void;
 };
 

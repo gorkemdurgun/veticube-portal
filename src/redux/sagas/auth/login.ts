@@ -46,39 +46,6 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
       message.success(`Welcome, ${user.full_name}!`);
     }
 
-    let assignmentList: GetUserSuccessPayload["assignments"] = [];
-    if (userRole === "manager") {
-      const { assignment }: Awaited<ReturnType<typeof userServices.getManagerAssignments>> = yield call(
-        userServices.getManagerAssignments,
-        userId
-      );
-      const branches = assignment?.clinic?.branches;
-
-      if (!branches) {
-        throw new Error("No branches found in response");
-      }
-
-      assignmentList = branches.map((branch) => ({
-        role: "manager",
-        assigned_at: assignment.assigned_at,
-        branch: branch,
-      }));
-    } else if (userRole === "veterinarian" || userRole === "nurse" || userRole === "secretary") {
-      const { assignment }: Awaited<ReturnType<typeof userServices.getEmployeeAssignments>> = yield call(
-        userServices.getEmployeeAssignments,
-        userId
-      );
-      assignmentList = [assignment];
-    } else if (userRole === "user") {
-      assignmentList = [];
-    } else {
-      throw new Error("Unknown user role");
-    }
-
-    if (assignmentList.length > 0) {
-      yield put(setActiveBranchRequest({ branch_id: assignmentList[0].branch.id }));
-    }
-
     yield put(
       getUserSuccess({
         user: {
@@ -90,12 +57,11 @@ export function* login(action: ReturnType<typeof loginRequest>): Generator<CallE
           created_at: user.created_at,
           updated_at: user.updated_at,
         },
-        assignments: assignmentList,
       })
     );
 
     if (onSuccess) {
-      onSuccess();
+      onSuccess(userId, userRole);
     }
   } catch (error) {
     console.error(error);

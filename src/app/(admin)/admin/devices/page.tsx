@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { PiPlusSquareDuotone } from "react-icons/pi";
+import { PiPlus as AddIcon } from "react-icons/pi";
 
 import { useQuery } from "@apollo/client";
 import { Breadcrumb, Card } from "antd";
@@ -41,6 +41,8 @@ const DevicesPage = () => {
 
   const [activateModalVisible, setActivateModalVisible] = useState(false);
 
+  console.log("deviceAssignmentsData", deviceAssignmentsData);
+
   return (
     <>
       <ActivateDeviceModal visible={activateModalVisible} onClose={() => setActivateModalVisible(false)} />
@@ -48,33 +50,45 @@ const DevicesPage = () => {
         <Breadcrumb items={breadcrumbItems} />
         <div className="w-full flex items-center justify-between p-4 bg-white rounded-lg">
           <span className="text-2xl font-semibold">Devices</span>
-          <CustomButton variant="neutral-faded" onClick={() => setActivateModalVisible(true)} icon={PiPlusSquareDuotone} />
+          <CustomButton variant="neutral-faded" onClick={() => setActivateModalVisible(true)} icon={AddIcon}>
+            Add Device
+          </CustomButton>
         </div>
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
-          {deviceAssignmentsData?.device_assignments?.map((item, index) => {
-            return (
-              <IotCard
-                key={index}
-                iot={{
-                  nick_name: item.device_nickname,
-                  type: item.iot_device.device_type,
-                  model: item.iot_device.device_model,
-                  serial_number: item.iot_device.serial_number,
-                }}
-                current_treatment={{
-                  pet: {
-                    name: "Rex",
-                    owner_name: "John Doe",
-                  },
-                  treatment: {
-                    reason: "Kısırlaştırma Operasyonu",
-                    start_date: "2021-08-12T17:40:00Z",
-                  },
-                }}
-              />
-            );
-          })}
-        </div>
+        {!deviceAssignmentsData?.device_assignments || deviceAssignmentsData?.device_assignments.length === 0 ? (
+          <Card className="p-4 text-center bg-gray-100 rounded-lg">
+            <span className="text-gray-800">
+              Henüz hiç cihaz atanmamış.
+              <br />
+              <span className="text-sm font-bold">Cihaz eklemek için sağ üstteki Add Device butonuna tıklayınız.</span>
+            </span>
+          </Card>
+        ) : (
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
+            {deviceAssignmentsData?.device_assignments?.map((item, index) => {
+              return (
+                <IotCard
+                  key={index}
+                  iot={{
+                    nick_name: item.device_nickname,
+                    type: item.iot_device.device_type,
+                    model: item.iot_device.device_model,
+                    serial_number: item.iot_device.serial_number,
+                  }}
+                  current_treatment={{
+                    pet: {
+                      name: "Rex",
+                      owner_name: "John Doe",
+                    },
+                    treatment: {
+                      reason: "Kısırlaştırma Operasyonu",
+                      start_date: "2021-08-12T17:40:00Z",
+                    },
+                  }}
+                />
+              );
+            })}
+          </div>
+        )}
         {/* {data?.devices.map((device, index) => {
         return (
           <div key={device.id} className="flex p-4 bg-gray-100 rounded-lg">

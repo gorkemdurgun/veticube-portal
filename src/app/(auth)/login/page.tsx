@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
 import { loginRequest } from "@/redux/slices/auth/authSlice";
+import { getUserClinicAssignmentsRequest } from "@/redux/slices/clinic/clinicSlice";
 
 import VerifyUserModal from "@/components/modals/users/verify-user-modal";
 
@@ -23,7 +24,6 @@ const Login: React.FC = () => {
   const { loading } = useAppSelector((state) => state.auth);
 
   const [loginForm] = Form.useForm<LoginForm>();
-  const [userId, setUserId] = useState<string | null>(null);
   const [isNotConfirmed, setIsNotConfirmed] = useState(false);
 
   const handleSubmit = () => {
@@ -32,8 +32,14 @@ const Login: React.FC = () => {
         loginRequest({
           email: loginForm.getFieldValue("email"),
           password: loginForm.getFieldValue("password"),
-          onSuccess: () => {
+          onSuccess(userId, userRole) {
             router.push("/admin");
+            dispatch(
+              getUserClinicAssignmentsRequest({
+                userId: userId,
+                userRole: userRole,
+              })
+            );
           },
           onError(error) {
             if (error === "User is not confirmed.") {

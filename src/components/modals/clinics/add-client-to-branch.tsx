@@ -28,7 +28,7 @@ type ClientForm = {
 
 const AddClientToBranchModal = ({ visible, onClose, onSuccess }: Props) => {
   const [loading, setLoading] = useState(false);
-  const { assignments: branchAssignments } = useAppSelector((state) => state.user);
+  const { assignments: branchAssignments } = useAppSelector((state) => state.clinic);
 
   const [clientForm] = Form.useForm<ClientForm>();
 

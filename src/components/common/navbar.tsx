@@ -38,7 +38,7 @@ export const Navbar: React.FC = () => {
   ];
 
   const dispatch = useAppDispatch();
-  const { assignments } = useAppSelector((state) => state.user);
+  const { assignments: branchAssignments } = useAppSelector((state) => state.clinic);
   const { activeBranch, loading: appLoading } = useAppSelector((state) => state.app);
 
   return (
@@ -76,10 +76,10 @@ export const Navbar: React.FC = () => {
               <Dropdown.Button
                 type="default"
                 trigger={["click"]}
-                disabled={assignments.length < 2}
+                disabled={branchAssignments.length < 2}
                 icon={<DownOutlined />}
                 menu={{
-                  items: assignments.map((assignment) => ({
+                  items: branchAssignments?.map((assignment) => ({
                     key: assignment.branch.id,
                     label: assignment.branch.branch_name,
                     disabled: assignment.branch.id === activeBranch,
@@ -92,7 +92,7 @@ export const Navbar: React.FC = () => {
                   })),
                 }}
               >
-                {assignments?.find((assignment) => assignment.branch.id === activeBranch)?.branch.branch_name}
+                {branchAssignments?.find((assignment) => assignment.branch.id === activeBranch)?.branch.branch_name}
               </Dropdown.Button>
             </Spin>
           )}
