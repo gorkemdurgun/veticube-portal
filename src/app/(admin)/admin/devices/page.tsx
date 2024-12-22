@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { PiPlus as AddIcon, PiClockClockwise as WaitingIcon } from "react-icons/pi";
+import { PiPlus as AddIcon, PiClock as WaitingIcon } from "react-icons/pi";
 
 import { useQuery } from "@apollo/client";
 import { Breadcrumb, Card, Tag } from "antd";
@@ -69,11 +69,13 @@ const DevicesPage = () => {
                     <div key={index} className="flex items-center gap-4 p-2 bg-gray-50 rounded-lg">
                       <span className="text-md font-semibold">{item.device_serial_number}</span>
                       {!item.is_assigned && (
-                        <Tag className="inline-flex gap-2 items-center" icon={<WaitingIcon />} color="orange">
-                          Firmadan Onay Bekliyor
+                        <Tag className="inline-flex gap-2 items-center" icon={<WaitingIcon />} color="default">
+                          Doğrulama bekleniyor
                         </Tag>
                       )}
-                      <span className="ml-auto text-gray-400">{dayjs(item.created_at).format("DD/MM/YYYY HH:mm")}</span>
+                      <span className="ml-auto text-gray-400">
+                        Eşleştirme talebi gönderildi: {dayjs(item.created_at).format("DD/MM/YYYY HH:mm")}
+                      </span>
                     </div>
                   );
                 })}

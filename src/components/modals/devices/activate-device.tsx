@@ -35,15 +35,20 @@ const ActivateDeviceModal: React.FC<Props> = ({ visible, onClose }) => {
   };
 
   const handleOk = () => {
-    if (!user) return;
+    if (!user?.id) return;
     deviceForm
       .validateFields()
       .then((values) => {
+        console.log({
+          "user.id": user.id,
+          "values.serialNo": values.serialNo,
+          "values.selectedBranch": values.selectedBranch,
+        });
         assignRequestMutate({
           variables: {
+            user_id: user.id,
             device_serial_number: values.serialNo,
             branch_id: values.selectedBranch,
-            user_id: user.id,
           },
         })
           .then(() => {

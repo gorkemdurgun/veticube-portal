@@ -95,17 +95,17 @@ export const ADD_PET_TO_CLIENT: TypedDocumentNode<AddPetToClientRes, AddPetToCli
   }
 `;
 export const ASSIGN_DEVICE_TO_BRANCH_REQUEST: TypedDocumentNode<AssignDeviceToBranchRequestRes, AssignDeviceToBranchRequestVar> = gql`
-  mutation InsertAssignRequests($user_id: uuid, $branch_id: uuid, $device_serial_number: String) {
-    insert_iot_management_assign_requests(objects: { user_id: $user_id, branch_id: $branch_id, device_serial_number: $device_serial_number }) {
+  mutation InsertAssignRequests($device_serial_number: String, $branch_id: uuid, $user_id: uuid) {
+    insert_iot_management_assign_requests(objects: { device_serial_number: $device_serial_number, branch_id: $branch_id, user_id: $user_id }) {
       affected_rows
       returning {
-        id
-        user_id
-        branch_id
-        device_serial_number
         is_assigned
+        device_serial_number
         created_at
         updated_at
+        branch_id
+        id
+        user_id
       }
     }
   }

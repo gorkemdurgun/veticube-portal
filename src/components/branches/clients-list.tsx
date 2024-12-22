@@ -21,7 +21,7 @@ import AddPetToClient from "../modals/clinics/add-pet-to-client";
 type Props = {};
 
 const ClientsList: React.FC<Props> = () => {
-  const { assignments } = useAppSelector((state) => state.user);
+  const { assignments } = useAppSelector((state) => state.clinic);
   const [currentClientId, setCurrentClientId] = useState<string | undefined>(undefined);
 
   const [visibleAddClientModal, setVisibleAddClientModal] = useState(false);
@@ -60,6 +60,24 @@ const ClientsList: React.FC<Props> = () => {
       },
     },
     {
+      title: "Email",
+      dataIndex: "client",
+      key: "email",
+      sorter: (a, b) => a.email.localeCompare(b.email),
+      render(value, record, index) {
+        return <span>{record?.email}</span>;
+      },
+    },
+    {
+      title: "Telefon",
+      dataIndex: "client",
+      key: "phone",
+      sorter: (a, b) => a.phone.localeCompare(b.phone),
+      render(value, record, index) {
+        return record?.phone ? <span>{record?.phone}</span> : <span className="text-gray-400">-</span>;
+      },
+    },
+    {
       title: "Petler",
       dataIndex: "pets",
       key: "pets",
@@ -94,8 +112,8 @@ const ClientsList: React.FC<Props> = () => {
       render(value, record, index) {
         return (
           <div className="flex gap-2">
-            <CustomButton size="md" variant="primary-faded" icon={WhatsappIcon} />
-            <CustomButton size="md" variant="neutral-faded" icon={EmailIcon} />
+            <CustomButton disabled={record?.phone ? false : true} size="md" variant="primary-faded" icon={WhatsappIcon} />
+            <CustomButton disabled={record?.email ? false : true} size="md" variant="neutral-faded" icon={EmailIcon} />
             <CustomButton size="md" variant="neutral-faded" icon={EditIcon} />
           </div>
         );
