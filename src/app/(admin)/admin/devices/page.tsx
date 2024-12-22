@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 
-import { PiPlus as AddIcon } from "react-icons/pi";
+import { PiPlus as AddIcon, PiClockClockwise as WaitingIcon } from "react-icons/pi";
 
 import { useQuery } from "@apollo/client";
-import { Breadcrumb, Card } from "antd";
+import { Breadcrumb, Card, Tag } from "antd";
+import dayjs from "dayjs";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -32,6 +33,8 @@ const DevicesPage = () => {
   const router = useRouter();
 
   const { activeBranch } = useAppSelector((state) => state.app);
+
+  const { data: branchDeviceAssignmentRequests } = useQuery(clinicQueries.GetBranchDeviceAssignmentRequests);
   const { loading, data: deviceAssignmentsData } = useQuery(clinicQueries.GetBranchDeviceAssignments, {
     skip: !activeBranch,
     variables: {
@@ -54,15 +57,43 @@ const DevicesPage = () => {
             Add Device
           </CustomButton>
         </div>
-        {!deviceAssignmentsData?.device_assignments || deviceAssignmentsData?.device_assignments.length === 0 ? (
-          <Card className="p-4 text-center bg-gray-100 rounded-lg">
-            <span className="text-gray-800">
-              Henüz hiç cihaz atanmamış.
-              <br />
-              <span className="text-sm font-bold">Cihaz eklemek için sağ üstteki Add Device butonuna tıklayınız.</span>
-            </span>
-          </Card>
-        ) : (
+
+        {/* Cihaz ve Şube Eşleştirme İstekleri */}
+        {branchDeviceAssignmentRequests?.branch_device_assignment_requests &&
+          branchDeviceAssignmentRequests?.branch_device_assignment_requests.length > 0 && (
+            <div className="flex flex-col gap-4 p-4 bg-white rounded-lg">
+              <h5 className="text-md">Bekleyen Eşleştirme İstekleri</h5>
+              <div className="max-h-64 overflow-y-auto flex flex-col gap-2">
+                {branchDeviceAssignmentRequests?.branch_device_assignment_requests?.map((item, index) => {
+                  return (
+                    <div key={index} className="flex items-center gap-4 p-2 bg-gray-50 rounded-lg">
+                      <span className="text-md font-semibold">{item.device_serial_number}</span>
+                      {!item.is_assigned && (
+                        <Tag className="inline-flex gap-2 items-center" icon={<WaitingIcon />} color="orange">
+                          Firmadan Onay Bekliyor
+                        </Tag>
+                      )}
+                      <span className="ml-auto text-gray-400">{dayjs(item.created_at).format("DD/MM/YYYY HH:mm")}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+        {/* Atanmış Cihazlar */}
+        {!deviceAssignmentsData?.device_assignments ||
+          (deviceAssignmentsData?.device_assignments.length === 0 &&
+            branchDeviceAssignmentRequests?.branch_device_assignment_requests.length === 0 && (
+              <Card className="p-4 text-center bg-gray-100 rounded-lg">
+                <span className="text-gray-800">
+                  Henüz hiç cihaz atanmamış.
+                  <br />
+                  <span className="text-sm font-bold">Cihaz eklemek için sağ üstteki Add Device butonuna tıklayınız.</span>
+                </span>
+              </Card>
+            ))}
+        {deviceAssignmentsData?.device_assignments && deviceAssignmentsData?.device_assignments.length > 0 && (
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
             {deviceAssignmentsData?.device_assignments?.map((item, index) => {
               return (
@@ -74,7 +105,8 @@ const DevicesPage = () => {
                     model: item.iot_device.device_model,
                     serial_number: item.iot_device.serial_number,
                   }}
-                  current_treatment={{
+                  current_treatment={
+                    undefined /*{
                     pet: {
                       name: "Rex",
                       owner_name: "John Doe",
@@ -83,19 +115,13 @@ const DevicesPage = () => {
                       reason: "Kısırlaştırma Operasyonu",
                       start_date: "2021-08-12T17:40:00Z",
                     },
-                  }}
+                  }*/
+                  }
                 />
               );
             })}
           </div>
         )}
-        {/* {data?.devices.map((device, index) => {
-        return (
-          <div key={device.id} className="flex p-4 bg-gray-100 rounded-lg">
-            <CustomButton onClick={() => router.push(`/admin/devices/${device.device_id}`)}>{device.device_id}</CustomButton>
-          </div>
-        );
-      })} */}
       </div>
     </>
   );

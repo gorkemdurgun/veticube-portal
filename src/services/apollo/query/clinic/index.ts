@@ -96,3 +96,16 @@ export const GET_BRANCH_DEVICE_ASSIGNMENTS: TypedDocumentNode<GetBranchDeviceAss
     }
   }
 `;
+export const GET_BRANCH_DEVICE_ASSIGNMENT_REQUESTS: TypedDocumentNode<GetBranchDeviceAssignmentRequestsRes> = gql`
+  query GetAssignRequests {
+    branch_device_assignment_requests: iot_management_assign_requests(where: { is_assigned: { _eq: false } }) {
+      is_assigned
+      device_serial_number
+      created_at
+      updated_at
+      branch_id
+      id
+      user_id
+    }
+  }
+`;

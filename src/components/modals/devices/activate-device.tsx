@@ -1,7 +1,9 @@
-import { Divider, Form, Input, Modal, Select } from "antd";
+import { useMutation } from "@apollo/client";
+import { Divider, Form, Input, message, Modal, Select } from "antd";
 import Image from "next/image";
 
 import { useAppDispatch, useAppSelector } from "@/hooks";
+import { clinicMutations } from "@/services/apollo/mutation";
 
 import CustomButton from "@/components/common/custom-button";
 import SerialNumberInput from "@/components/inputs/serial-number-input";
@@ -18,9 +20,14 @@ type FormValues = {
 
 const ActivateDeviceModal: React.FC<Props> = ({ visible, onClose }) => {
   const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.user);
   const { assignments: branchAssignments } = useAppSelector((state) => state.clinic);
 
   const [deviceForm] = Form.useForm<FormValues>();
+
+  const [assignRequestMutate, { data: assignRequestData, loading: assignRequestLoading, error: assignRequestError }] = useMutation(
+    clinicMutations.assignDeviceToBranchRequest
+  );
 
   const handleCancel = () => {
     deviceForm.resetFields();
@@ -28,12 +35,23 @@ const ActivateDeviceModal: React.FC<Props> = ({ visible, onClose }) => {
   };
 
   const handleOk = () => {
+    if (!user) return;
     deviceForm
       .validateFields()
       .then((values) => {
-        console.log(values);
-        // deviceForm.resetFields();
-        // onClose();
+        assignRequestMutate({
+          variables: {
+            device_serial_number: values.serialNo,
+            branch_id: values.selectedBranch,
+            user_id: user.id,
+          },
+        })
+          .then(() => {
+            handleCancel();
+          })
+          .catch((error) => {
+            message.error("Cihazı aktif etme işlemi sırasında bir hata oluştu.", error);
+          });
       })
       .catch((error) => {
         console.error("Validation failed:", error);

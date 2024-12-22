@@ -14,7 +14,7 @@ const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["app", "theme", "lang", "auth", "user"],
+  whitelist: ["app", "theme", "lang", "auth", "user", "clinic"],
 };
 
 const reducers = combineReducers({

@@ -6,6 +6,7 @@ import {
   ADD_MANAGER_TO_CLINIC,
   ADD_CLIENT_TO_BRANCH,
   ADD_PET_TO_CLIENT,
+  ASSIGN_DEVICE_TO_BRANCH_REQUEST,
 } from "./clinic";
 
 export const clinicMutations = {
@@ -16,4 +17,5 @@ export const clinicMutations = {
   addManagerToClinic: ADD_MANAGER_TO_CLINIC,
   addClientToBranch: ADD_CLIENT_TO_BRANCH,
   addPetToClient: ADD_PET_TO_CLIENT,
+  assignDeviceToBranchRequest: ASSIGN_DEVICE_TO_BRANCH_REQUEST,
 };

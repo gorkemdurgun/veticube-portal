@@ -4,6 +4,7 @@ import {
   GET_BRANCH_PENDING_INVITATIONS,
   GET_USER_PENDING_INVITATIONS,
   GET_BRANCH_DEVICE_ASSIGNMENTS,
+  GET_BRANCH_DEVICE_ASSIGNMENT_REQUESTS
 } from "./clinic";
 
 export const clinicQueries = {
@@ -12,4 +13,5 @@ export const clinicQueries = {
   GetBranchPendingInvitations: GET_BRANCH_PENDING_INVITATIONS,
   GetUserPendingInvitations: GET_USER_PENDING_INVITATIONS,
   GetBranchDeviceAssignments: GET_BRANCH_DEVICE_ASSIGNMENTS,
+  GetBranchDeviceAssignmentRequests: GET_BRANCH_DEVICE_ASSIGNMENT_REQUESTS
 };

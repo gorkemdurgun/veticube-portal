@@ -56,3 +56,16 @@ type AddPetToClientRes = {
     created_at: string;
   };
 };
+type AssignDeviceToBranchRequestRes = {
+  insert_iot_management_assign_requests: {
+    affected_rows: number;
+    returning: {
+      id: string;
+      user_id: string;
+      branch_id: string;
+      is_assigned: boolean;
+      created_at: string;
+      updated_at: string;
+    }[];
+  };
+};

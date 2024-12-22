@@ -70,3 +70,14 @@ type GetBranchDeviceAssignmentsRes = {
     };
   }[];
 };
+type GetBranchDeviceAssignmentRequestsRes = {
+  branch_device_assignment_requests: {
+    is_assigned: boolean;
+    device_serial_number: string;
+    created_at: string;
+    updated_at: string;
+    branch_id: string;
+    id: string;
+    user_id: string;
+  }[];
+};

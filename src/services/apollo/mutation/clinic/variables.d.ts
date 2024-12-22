@@ -39,3 +39,8 @@ type AddPetToClientVar = {
   birthdate?: string;
   medical_notes?: string;
 };
+type AssignDeviceToBranchRequestVar = {
+  user_id: string;
+  branch_id: string;
+  device_serial_number: string;
+};
