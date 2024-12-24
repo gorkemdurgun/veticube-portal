@@ -26,6 +26,6 @@ type BranchClients = {
 
 type Breed = {
   id: string;
-  name: string;
-  species_name: string;
+  breed: string;
+  species: string;
 };

@@ -1,24 +1,50 @@
 {
   "breeds": [
     {
-      "id": "3d415697-05f4-4710-99c0-6a4dd0aceb45",
-      "species_name": "Cat",
-      "name": "Siamese"
+      "id": 1,
+      "species": "cat",
+      "breed": "abyssinian"
     },
     {
-      "id": "c91c6a23-f393-4459-81e5-7cb381b1edb9",
-      "species_name": "Cat",
-      "name": "Persian"
+      "id": 2,
+      "species": "cat",
+      "breed": "american-bobtail"
     },
     {
-      "id": "fc2fedc8-f9ba-45b5-b902-f9eea8f727c7",
-      "species_name": "Dog",
-      "name": "Golden Retriever"
+      "id": 3,
+      "species": "cat",
+      "breed": "american-curl"
     },
     {
-      "id": "f35e8387-df40-4648-b04a-f1233290c7f0",
-      "species_name": "Dog",
-      "name": "Bulldog"
+      "id": 4,
+      "species": "cat",
+      "breed": "american-shorthair"
+    },
+    {
+      "id": 5,
+      "species": "cat",
+      "breed": "american-wirehair"
+    },
+    {
+      "id": 6,
+      "species": "cat",
+      "breed": "balinese"
+    },
+    {
+      "id": 7,
+      "species": "cat",
+      "breed": "bengal"
+    },
+    {
+      "id": 8,
+      "species": "cat",
+      "breed": "birman"
+    },
+    {
+      "id": 9,
+      "species": "cat",
+      "breed": "bombay"
     }
   ]
+  
 }

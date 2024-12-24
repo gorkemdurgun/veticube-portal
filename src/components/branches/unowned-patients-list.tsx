@@ -69,30 +69,21 @@ const UnownedPatientsList: React.FC<Props> = () => {
       },
     },
     {
-      title: "Telefon",
-      dataIndex: "client",
-      key: "phone",
-      sorter: (a, b) => a.phone.localeCompare(b.phone),
+      title: "Tür",
+      dataIndex: "breed_id",
+      key: "breed_id",
+      sorter: (a, b) => a.breed_id.localeCompare(b.breed_id),
       render(value, record, index) {
-        return record?.phone ? <span>{record?.phone}</span> : <span className="text-gray-400">-</span>;
+        return record?.breed_id ? <span>{record?.breed_id}</span> : <span className="text-gray-400">-</span>;
       },
     },
     {
-      title: "Petler",
-      dataIndex: "pet_records",
-      key: "pet_records",
+      title: "Sahip",
+      dataIndex: "client",
+      key: "client",
       sorter: (a, b) => a.pets.length - b.pets.length,
       render(value, record, index) {
-        const isExist = value?.length > 0;
-        return isExist ? (
-          <div className="flex flex-wrap items-center gap-2">
-            {value.map((pet: any) => (
-              <div key={pet.id} className="cursor-pointer px-2 py-1 bg-gray-100 rounded-md">
-                <span className="text-sm text-gray-900">{pet.name}</span>
-              </div>
-            ))}
-          </div>
-        ) : (
+        return (
           <CustomButton
             variant="neutral-faded"
             icon={AddIcon}

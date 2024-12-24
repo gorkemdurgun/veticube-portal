@@ -127,10 +127,10 @@ const AddPetToClient = ({ visible, onClose, onSuccess, data }: Props) => {
             }}
           >
             {breedsJson.breeds
-              .filter((breed) => breed.species_name === selectedSpecies)
-              .map((breed) => (
-                <Option key={breed.id} value={breed.id} title={breed.name}>
-                  {breed.name}
+              // .filter((breedItems) => breedItems.species === selectedSpecies)
+              .map((breedItem) => (
+                <Option key={breedItem.id} value={breedItem.id} title={breedItem.breed}>
+                  {breedItem.breed}
                 </Option>
               ))}
           </Select>
