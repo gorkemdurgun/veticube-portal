@@ -44,8 +44,6 @@ const DevicesPage = () => {
 
   const [activateModalVisible, setActivateModalVisible] = useState(false);
 
-  console.log("deviceAssignmentsData", assignmentsData);
-
   return (
     <>
       <ActivateDeviceModal visible={activateModalVisible} onClose={() => setActivateModalVisible(false)} onDone={refetchRequests} />

@@ -9,6 +9,7 @@ import { IconType } from "react-icons";
 import type { CardProps } from "antd";
 
 import CustomButton from "../common/custom-button";
+import SearchPetInput from "../inputs/search-pet-input";
 
 type Props = CardProps & {};
 
@@ -23,8 +24,8 @@ const Component: React.FC<Props> = ({ ...props }) => {
           Evcil hayvanı üniteye yerleştirdikten sonra aşağıdaki adımları takip ederek tedavi başlatabilirsiniz.
         </span>
         <div className="flex flex-col items-center gap-2">
-          <Select showSearch className="w-full" placeholder="Evcil Hayvan Seç" options={[]} />
-          <Select showSearch className="w-full" placeholder="Tedavi Seç" />
+          <SearchPetInput />
+          {/* <Select showSearch className="w-full" placeholder="Tedavi Seç" /> */}
         </div>
         <CustomButton className="w-full" variant="primary-faded" size="sm" onClick={() => console.log("Detaylar")}>
           Tedavi Başlat

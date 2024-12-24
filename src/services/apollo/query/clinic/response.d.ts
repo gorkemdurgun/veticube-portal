@@ -18,21 +18,7 @@ type GetClinicDetailRes = {
 };
 
 // BRANCH BASIS
-type GetFilteredBranchClientRecordsRes = {
-  records: Array<{
-    email: string;
-    full_name: string;
-    phone_number: string;
-    created_at: string;
-    branch_id: string;
-    id: string;
-    pets: Array<{
-      id: string;
-      name: string;
-    }>;
-  }>;
-};
-type GetUnownedPetRecordsRes = {
+type GetPetRecordsRes = {
   records: Array<{
     id: string;
     birthdate: string;
@@ -42,6 +28,10 @@ type GetUnownedPetRecordsRes = {
     name: string;
     created_at: string;
     updated_at: string;
+    client_record: {
+      id: string;
+      full_name: string;
+    };
   }>;
 };
 type GetBranchPendingInvitationsRes = {

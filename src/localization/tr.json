@@ -154,5 +154,15 @@
         }
       }
     }
+  },
+
+  "breeds": {
+    "1": "Habeş",
+    "2": "Amerikan Bobtail"
+  },
+  "gender": {
+    "1": "Male",
+    "2": "Female",
+    "3": "Unknown"
   }
 }

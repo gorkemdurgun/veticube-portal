@@ -2,16 +2,13 @@
 // --------------------
 
 // BRANCH BASIS
-type GetFilteredBranchClientRecordsVar = {
+
+type GetPetRecordsVar = {
   branchId: string;
   limit?: number;
   offset?: number;
   searchTerm?: string;
-};
-type GetUnownedPetRecordsVar = {
-  limit?: number;
-  offset?: number;
-  searchTerm?: string;
+  isStray?: boolean;
 };
 type GetUserPendingInvitationsVar = {
   userEmail?: string;

@@ -24,38 +24,17 @@ export const GET_CLINIC_DETAIL: TypedDocumentNode<GetClinicDetailRes> = gql`
 `;
 
 // BRANCH BASIS
-export const GET_FILTERED_BRANCH_CLIENT_RECORDS: TypedDocumentNode<GetFilteredBranchClientRecordsRes, GetFilteredBranchClientRecordsVar> = gql`
-  query GetBranchClientRecords($branchId: uuid = "", $limit: Int = 10, $offset: Int = 0, $searchTerm: String = "%") {
-    records: clinic_management_branch_client_records(
+export const GET_BRANCH_PET_RECORDS: TypedDocumentNode<GetPetRecordsRes, GetPetRecordsVar> = gql`
+  query GetBranchPetRecords($branchId: uuid = "", $limit: Int = 10, $offset: Int = 0, $searchTerm: String = "%", $isStray: Boolean = false) {
+    records: clinic_management_branch_pet_records(
       where: {
         branch_id: { _eq: $branchId }
         _or: [
-          { full_name: { _ilike: $searchTerm } }
-          { email: { _ilike: $searchTerm } }
-          { phone_number: { _ilike: $searchTerm } }
-          { pet_records: { name: { _ilike: $searchTerm } } }
+          { client_id: { _is_null: $isStray } } # isStray kontrolü çalışıyor
+          { client_id: { _is_null: true } } # Geçersiz kılınan durumda tüm kayıtlar
         ]
+        name: { _ilike: $searchTerm }
       }
-      limit: $limit
-      offset: $offset
-    ) {
-      email
-      full_name
-      phone_number
-      created_at
-      branch_id
-      id
-      pet_records {
-        id
-        name
-      }
-    }
-  }
-`;
-export const GET_UNOWNED_PET_RECORDS: TypedDocumentNode<GetUnownedPetRecordsRes, GetUnownedPetRecordsVar> = gql`
-  query GetUnownedPetRecords($limit: Int = 10, $offset: Int = 0, $searchTerm: String = "%") {
-    records: clinic_management_branch_pet_records(
-      where: { client_id: { _is_null: true }, name: { _ilike: $searchTerm } }
       limit: $limit
       offset: $offset
     ) {
@@ -67,6 +46,10 @@ export const GET_UNOWNED_PET_RECORDS: TypedDocumentNode<GetUnownedPetRecordsRes,
       created_at
       updated_at
       id
+      client_record {
+        id
+        full_name
+      }
     }
   }
 `;

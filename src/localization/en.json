@@ -185,5 +185,15 @@
         }
       }
     }
+  },
+
+  "breeds": {
+    "1": "Abyssinian",
+    "2": "American Bobtail"
+  },
+  "gender": {
+    "1": "Male",
+    "2": "Female",
+    "3": "Unknown"
   }
 }

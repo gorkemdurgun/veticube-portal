@@ -18,10 +18,6 @@ type Props = {
   visible: boolean;
   onClose: () => void;
   onSuccess?: () => void;
-  data: {
-    clients: any;
-    initialClientId?: string;
-  };
 };
 
 type PetForm = {
@@ -34,7 +30,7 @@ type PetForm = {
   medicalNotes?: string;
 };
 
-const AddPetToClient = ({ visible, onClose, onSuccess, data }: Props) => {
+const AddPetToClient = ({ visible, onClose, onSuccess }: Props) => {
   const [loading, setLoading] = useState(false);
 
   const [selectedSpecies, setSelectedSpecies] = useState<string | undefined>(undefined);
@@ -74,23 +70,14 @@ const AddPetToClient = ({ visible, onClose, onSuccess, data }: Props) => {
     petForm.setFieldsValue({ breed_id: undefined });
   }, [selectedSpecies]);
 
-  useEffect(() => {
-    petForm.setFieldsValue({ owner_id: data.initialClientId });
-  }, [data.initialClientId]);
-
   return (
     <Modal open={visible} onOk={onClose} onCancel={onClose} footer={null} title="Pet Ekle">
-      <Form form={petForm} layout="vertical" initialValues={{ owner_id: data.initialClientId }}>
+      <Form form={petForm} layout="vertical">
         <Form.Item label="Sahip" name="owner_id">
-          <Select defaultValue={data.initialClientId || null} showSearch optionFilterProp="title">
+          <Select defaultValue={null} showSearch optionFilterProp="title">
             <Option value={null} title="Sahipsiz">
               <span className="italic text-warning-600">Sahipsiz</span>
             </Option>
-            {data?.clients?.map((client: any) => (
-              <Option key={client.id} value={client.id} title={client.full_name}>
-                {client.full_name}
-              </Option>
-            ))}
           </Select>
         </Form.Item>
         <Form.Item label="Ad" name="name" rules={[{ required: true, message: "Lütfen pet adını girin." }]}>
