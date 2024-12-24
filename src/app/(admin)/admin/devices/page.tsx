@@ -34,8 +34,8 @@ const DevicesPage = () => {
 
   const { activeBranch } = useAppSelector((state) => state.app);
 
-  const { data: branchDeviceAssignmentRequests } = useQuery(clinicQueries.GetBranchDeviceAssignmentRequests);
-  const { loading, data: deviceAssignmentsData } = useQuery(clinicQueries.GetBranchDeviceAssignments, {
+  const { data: requestsData, refetch: refetchRequests } = useQuery(clinicQueries.GetBranchDeviceAssignmentRequests);
+  const { loading, data: assignmentsData } = useQuery(clinicQueries.GetBranchDeviceAssignments, {
     skip: !activeBranch,
     variables: {
       branchId: activeBranch as string,
@@ -44,11 +44,11 @@ const DevicesPage = () => {
 
   const [activateModalVisible, setActivateModalVisible] = useState(false);
 
-  console.log("deviceAssignmentsData", deviceAssignmentsData);
+  console.log("deviceAssignmentsData", assignmentsData);
 
   return (
     <>
-      <ActivateDeviceModal visible={activateModalVisible} onClose={() => setActivateModalVisible(false)} />
+      <ActivateDeviceModal visible={activateModalVisible} onClose={() => setActivateModalVisible(false)} onDone={refetchRequests} />
       <div className="w-full flex flex-col gap-4">
         <Breadcrumb items={breadcrumbItems} />
         <div className="w-full flex items-center justify-between p-4 bg-white rounded-lg">
@@ -59,45 +59,43 @@ const DevicesPage = () => {
         </div>
 
         {/* Cihaz ve Şube Eşleştirme İstekleri */}
-        {branchDeviceAssignmentRequests?.branch_device_assignment_requests &&
-          branchDeviceAssignmentRequests?.branch_device_assignment_requests.length > 0 && (
-            <div className="flex flex-col gap-4 p-4 bg-white rounded-lg">
-              <h5 className="text-md">Bekleyen Eşleştirme İstekleri</h5>
-              <div className="max-h-64 overflow-y-auto flex flex-col gap-2">
-                {branchDeviceAssignmentRequests?.branch_device_assignment_requests?.map((item, index) => {
-                  return (
-                    <div key={index} className="flex items-center gap-4 p-2 bg-gray-50 rounded-lg">
-                      <span className="text-md font-semibold">{item.device_serial_number}</span>
-                      {!item.is_assigned && (
-                        <Tag className="inline-flex gap-2 items-center" icon={<WaitingIcon />} color="default">
-                          Doğrulama bekleniyor
-                        </Tag>
-                      )}
-                      <span className="ml-auto text-gray-400">
-                        Eşleştirme talebi gönderildi: {dayjs(item.created_at).format("DD/MM/YYYY HH:mm")}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
+        {requestsData?.branch_device_assignment_requests && requestsData?.branch_device_assignment_requests.length > 0 && (
+          <div className="flex flex-col gap-4 p-4 bg-white rounded-lg">
+            <h5 className="text-md">Bekleyen Eşleştirme İstekleri</h5>
+            <div className="max-h-64 overflow-y-auto flex flex-col gap-2">
+              {requestsData?.branch_device_assignment_requests?.map((item, index) => {
+                return (
+                  <div key={index} className="flex flex-col sm:flex-row items-center gap-4 p-2 bg-gray-50 rounded-lg">
+                    <span className="text-md font-semibold">{item.device_serial_number}</span>
+                    {!item.is_assigned && (
+                      <Tag className="inline-flex gap-2 items-center" icon={<WaitingIcon />} color="default">
+                        Doğrulama bekleniyor
+                      </Tag>
+                    )}
+                    <span className="ml-auto text-gray-400">
+                      Eşleştirme talebi gönderildi: {dayjs(item.created_at).format("DD/MM/YYYY HH:mm")}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
-          )}
+          </div>
+        )}
 
         {/* Atanmış Cihazlar */}
-        {!deviceAssignmentsData?.device_assignments ||
-          (deviceAssignmentsData?.device_assignments.length === 0 &&
-            branchDeviceAssignmentRequests?.branch_device_assignment_requests.length === 0 && (
-              <Card className="p-4 text-center bg-gray-100 rounded-lg">
-                <span className="text-gray-800">
-                  Henüz hiç cihaz atanmamış.
-                  <br />
-                  <span className="text-sm font-bold">Cihaz eklemek için sağ üstteki Add Device butonuna tıklayınız.</span>
-                </span>
-              </Card>
-            ))}
-        {deviceAssignmentsData?.device_assignments && deviceAssignmentsData?.device_assignments.length > 0 && (
+        {!assignmentsData?.device_assignments ||
+          (assignmentsData?.device_assignments.length === 0 && requestsData?.branch_device_assignment_requests.length === 0 && (
+            <Card className="p-4 text-center bg-gray-100 rounded-lg">
+              <span className="text-gray-800">
+                Henüz hiç cihaz atanmamış.
+                <br />
+                <span className="text-sm font-bold">Cihaz eklemek için sağ üstteki Add Device butonuna tıklayınız.</span>
+              </span>
+            </Card>
+          ))}
+        {assignmentsData?.device_assignments && assignmentsData?.device_assignments.length > 0 && (
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
-            {deviceAssignmentsData?.device_assignments?.map((item, index) => {
+            {assignmentsData?.device_assignments?.map((item, index) => {
               return (
                 <IotCard
                   key={index}

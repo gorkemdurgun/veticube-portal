@@ -9,6 +9,7 @@ import {
 
 import { useQuery } from "@apollo/client";
 import { Input, Popover, Table, type TableProps } from "antd";
+import dayjs from "dayjs";
 import { debounce } from "lodash";
 
 import { useAppSelector } from "@/hooks";
@@ -20,7 +21,7 @@ import AddPetToClient from "../modals/clinics/add-pet-to-client";
 
 type Props = {};
 
-const ClientsList: React.FC<Props> = () => {
+const UnownedPatientsList: React.FC<Props> = () => {
   const { assignments } = useAppSelector((state) => state.clinic);
   const [currentClientId, setCurrentClientId] = useState<string | undefined>(undefined);
 
@@ -31,13 +32,12 @@ const ClientsList: React.FC<Props> = () => {
   const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined);
 
   const {
-    data: clientsData,
-    refetch: refetchClients,
+    data: unownedPatientsData,
+    refetch: refetchUnownedPatients,
     loading: appLoading,
-  } = useQuery(clinicQueries.GetFilteredBranchClientRecords, {
+  } = useQuery(clinicQueries.GetUnownedPetRecords, {
     skip: !assignments.length,
     variables: {
-      branchId: assignments[0]?.branch?.id,
       searchTerm: searchTerm ? `%${searchTerm}%` : undefined,
       limit: pagination.limit,
       offset: pagination.offset,
@@ -46,26 +46,26 @@ const ClientsList: React.FC<Props> = () => {
 
   const columns: TableProps["columns"] = [
     {
-      title: "Ad Soyad",
-      dataIndex: "client",
-      key: "id",
+      title: "Pet Adı",
+      dataIndex: "name",
+      key: "name",
       width: 300,
-      sorter: (a, b) => a.full_name.localeCompare(b.full_name),
+      sorter: (a, b) => a.name.localeCompare(b.name),
       render(value, record, index) {
         return (
           <div className="flex items-center justify-between gap-2">
-            <span>{record?.full_name}</span>
+            <span>{record?.name}</span>
           </div>
         );
       },
     },
     {
-      title: "Email",
-      dataIndex: "client",
-      key: "email",
-      sorter: (a, b) => a.email.localeCompare(b.email),
+      title: "Yaş",
+      dataIndex: "birthdate",
+      key: "birthdate",
+      sorter: (a, b) => a.birthdate.localeCompare(b.birthdate),
       render(value, record, index) {
-        return <span>{record?.email}</span>;
+        return value ? <span>{dayjs().diff(dayjs(value), "year")}</span> : <span className="text-gray-400">-</span>;
       },
     },
     {
@@ -127,27 +127,7 @@ const ClientsList: React.FC<Props> = () => {
 
   return (
     <>
-      <AddClientToBranchModal
-        visible={visibleAddClientModal}
-        onClose={() => setVisibleAddClientModal(false)}
-        onSuccess={(skipPet, ownerId) => {
-          refetchClients();
-
-          if (skipPet) return;
-          setVisibleAddPetModal(true);
-          setCurrentClientId(ownerId);
-        }}
-      />
-      <AddPetToClient
-        visible={visibleAddPetModal}
-        onClose={() => setVisibleAddPetModal(false)}
-        data={{
-          clients: clientsData?.branch_clients,
-          initialClientId: currentClientId,
-        }}
-        onSuccess={() => refetchClients()}
-      />
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4" id="unowned-patients-list">
         <Input
           allowClear
           size="large"
@@ -157,15 +137,21 @@ const ClientsList: React.FC<Props> = () => {
         <Table
           rowKey="id"
           columns={columns}
-          dataSource={clientsData?.branch_clients}
+          dataSource={unownedPatientsData?.records}
           loading={appLoading}
           pagination={{ pageSize: 10 }}
           title={() => (
             <div className="flex justify-between items-center">
-              <h2 className="text-lg font-semibold">Müşteriler</h2>
+              <div className="flex flex-col gap-2">
+                <h2 className="text-lg font-semibold">Sahipsiz Pet Listesi</h2>
+                <span className="text-sm text-gray-600">{unownedPatientsData?.records?.length} kayıt bulundu</span>
+              </div>
               <div className="flex gap-2">
                 <CustomButton variant="secondary-opaque" icon={AddIcon} onClick={() => setVisibleAddClientModal(true)}>
-                  Müşteri Kaydı
+                  Yeni Müşteri
+                </CustomButton>
+                <CustomButton variant="secondary-opaque" icon={AddIcon} onClick={() => setVisibleAddPetModal(true)}>
+                  Yeni Pet
                 </CustomButton>
               </div>
             </div>
@@ -176,4 +162,4 @@ const ClientsList: React.FC<Props> = () => {
   );
 };
 
-export default ClientsList;
+export default UnownedPatientsList;

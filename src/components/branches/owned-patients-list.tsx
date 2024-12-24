@@ -18,9 +18,11 @@ import CustomButton from "../common/custom-button";
 import AddClientToBranchModal from "../modals/clinics/add-client-to-branch";
 import AddPetToClient from "../modals/clinics/add-pet-to-client";
 
-type Props = {};
+type Props = {
+  href?: string;
+};
 
-const ClientsList: React.FC<Props> = () => {
+const OwnedPatientsList: React.FC<Props> = () => {
   const { assignments } = useAppSelector((state) => state.clinic);
   const [currentClientId, setCurrentClientId] = useState<string | undefined>(undefined);
 
@@ -31,8 +33,8 @@ const ClientsList: React.FC<Props> = () => {
   const [searchTerm, setSearchTerm] = useState<string | undefined>(undefined);
 
   const {
-    data: clientsData,
-    refetch: refetchClients,
+    data: ownedPatientsData,
+    refetch: refetchOwnedPatients,
     loading: appLoading,
   } = useQuery(clinicQueries.GetFilteredBranchClientRecords, {
     skip: !assignments.length,
@@ -131,7 +133,7 @@ const ClientsList: React.FC<Props> = () => {
         visible={visibleAddClientModal}
         onClose={() => setVisibleAddClientModal(false)}
         onSuccess={(skipPet, ownerId) => {
-          refetchClients();
+          refetchOwnedPatients();
 
           if (skipPet) return;
           setVisibleAddPetModal(true);
@@ -142,12 +144,12 @@ const ClientsList: React.FC<Props> = () => {
         visible={visibleAddPetModal}
         onClose={() => setVisibleAddPetModal(false)}
         data={{
-          clients: clientsData?.branch_clients,
+          clients: ownedPatientsData?.records,
           initialClientId: currentClientId,
         }}
-        onSuccess={() => refetchClients()}
+        onSuccess={() => refetchOwnedPatients()}
       />
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4" id="owned-patients-list">
         <Input
           allowClear
           size="large"
@@ -157,15 +159,21 @@ const ClientsList: React.FC<Props> = () => {
         <Table
           rowKey="id"
           columns={columns}
-          dataSource={clientsData?.branch_clients}
+          dataSource={ownedPatientsData?.records}
           loading={appLoading}
           pagination={{ pageSize: 10 }}
           title={() => (
             <div className="flex justify-between items-center">
-              <h2 className="text-lg font-semibold">Müşteriler</h2>
+              <div className="flex flex-col gap-2">
+                <h2 className="text-lg font-semibold">Sahipli Pet Listesi</h2>
+                <span className="text-sm text-gray-600">{ownedPatientsData?.records?.length} kayıt bulundu</span>
+              </div>
               <div className="flex gap-2">
                 <CustomButton variant="secondary-opaque" icon={AddIcon} onClick={() => setVisibleAddClientModal(true)}>
-                  Müşteri Kaydı
+                  Yeni Müşteri
+                </CustomButton>
+                <CustomButton variant="secondary-opaque" icon={AddIcon} onClick={() => setVisibleAddPetModal(true)}>
+                  Yeni Pet
                 </CustomButton>
               </div>
             </div>
@@ -176,4 +184,4 @@ const ClientsList: React.FC<Props> = () => {
   );
 };
 
-export default ClientsList;
+export default OwnedPatientsList;

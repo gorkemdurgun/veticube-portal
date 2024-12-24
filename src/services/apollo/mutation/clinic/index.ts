@@ -78,19 +78,29 @@ export const ADD_CLIENT_TO_BRANCH: TypedDocumentNode<AddClientToBranchRes, AddCl
   }
 `;
 export const ADD_PET_TO_CLIENT: TypedDocumentNode<AddPetToClientRes, AddPetToClientVar> = gql`
-  mutation AddPetToClient(
-    $owner_id: uuid = ""
-    $name: String = ""
-    $breed_id: uuid = ""
-    $gender: pet_management_gender_enum = unknown
-    $birthdate: date = ""
-    $medical_notes: String = ""
-  ) {
-    pet: insert_pet_management_pets_one(
-      object: { owner_id: $owner_id, name: $name, breed_id: $breed_id, gender: $gender, birthdate: $birthdate, medical_notes: $medical_notes }
+  mutation InsertBranchPetRecords($birthdate: date, $breed_id: Int, $gender_id: Int, $chip_number: String, $name: String, $client_id: uuid) {
+    insert_clinic_management_branch_pet_records(
+      objects: {
+        birthdate: $birthdate
+        breed_id: $breed_id
+        gender_id: $gender_id
+        chip_number: $chip_number
+        name: $name
+        client_id: $client_id
+      }
     ) {
-      id
-      created_at
+      affected_rows
+      returning {
+        birthdate
+        breed_id
+        gender_id
+        chip_number
+        name
+        created_at
+        updated_at
+        client_id
+        id
+      }
     }
   }
 `;

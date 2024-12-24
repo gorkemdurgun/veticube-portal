@@ -11,6 +11,7 @@ import SerialNumberInput from "@/components/inputs/serial-number-input";
 type Props = {
   visible: boolean;
   onClose: () => void;
+  onDone?: () => void;
 };
 
 type FormValues = {
@@ -18,7 +19,7 @@ type FormValues = {
   selectedBranch: string;
 };
 
-const ActivateDeviceModal: React.FC<Props> = ({ visible, onClose }) => {
+const ActivateDeviceModal: React.FC<Props> = ({ visible, onClose, onDone }) => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.user);
   const { assignments: branchAssignments } = useAppSelector((state) => state.clinic);
@@ -52,6 +53,7 @@ const ActivateDeviceModal: React.FC<Props> = ({ visible, onClose }) => {
           },
         })
           .then(() => {
+            onDone && onDone();
             handleCancel();
           })
           .catch((error) => {

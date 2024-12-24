@@ -67,7 +67,7 @@ export default function AdminLayout({
     },
     {
       type: "item",
-      disabled: true,
+      // disabled: true,
       className: "!h-12 py-2 text-sm",
       key: "/admin/patients",
       label: t("sidebar.patients"),
@@ -76,7 +76,7 @@ export default function AdminLayout({
     },
     {
       type: "item",
-      // disabled: true,
+      disabled: true,
       className: "!h-12 py-2 text-sm",
       key: "/admin/clients",
       label: t("sidebar.clients"),

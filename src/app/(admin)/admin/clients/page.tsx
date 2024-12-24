@@ -20,9 +20,9 @@ const AdminClientsPage: React.FC = () => {
   return (
     <div className="w-full flex flex-col gap-4">
       <Breadcrumb items={breadcrumbItems} />
-      <div className="grid grid-cols-1 lg:grid-cols-[auto_240px] gap-4">
+      {/* <div className="grid grid-cols-1 lg:grid-cols-[auto_240px] gap-4">
         <ClientsList />
-      </div>
+      </div> */}
     </div>
   );
 };

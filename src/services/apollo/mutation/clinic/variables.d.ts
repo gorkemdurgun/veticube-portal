@@ -32,12 +32,12 @@ type AddClientToBranchVar = {
   phone_number?: string;
 };
 type AddPetToClientVar = {
-  owner_id: string;
+  client_id: string;
   name: string;
+  chip_number?: string;
   breed_id?: string;
-  gender?: string;
+  gender_id?: string;
   birthdate?: string;
-  medical_notes?: string;
 };
 type AssignDeviceToBranchRequestVar = {
   user_id: string;

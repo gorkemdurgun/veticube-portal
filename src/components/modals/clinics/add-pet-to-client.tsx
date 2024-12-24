@@ -47,12 +47,11 @@ const AddPetToClient = ({ visible, onClose, onSuccess, data }: Props) => {
       setLoading(true);
       addPetMutation({
         variables: {
-          owner_id: values.owner_id,
+          client_id: values.owner_id,
           name: values.name,
           birthdate: values.birthDate,
           breed_id: values.breed_id,
-          gender: values.gender,
-          medical_notes: values.medicalNotes,
+          gender_id: values.gender,
         },
       })
         .then(() => {
@@ -82,8 +81,11 @@ const AddPetToClient = ({ visible, onClose, onSuccess, data }: Props) => {
   return (
     <Modal open={visible} onOk={onClose} onCancel={onClose} footer={null} title="Pet Ekle">
       <Form form={petForm} layout="vertical" initialValues={{ owner_id: data.initialClientId }}>
-        <Form.Item label="Sahip" name="owner_id" rules={[{ required: true, message: "Lütfen sahip seçin" }]}>
-          <Select showSearch optionFilterProp="title">
+        <Form.Item label="Sahip" name="owner_id">
+          <Select defaultValue={data.initialClientId || null} showSearch optionFilterProp="title">
+            <Option value={null} title="Sahipsiz">
+              <span className="italic text-warning-600">Sahipsiz</span>
+            </Option>
             {data?.clients?.map((client: any) => (
               <Option key={client.id} value={client.id} title={client.full_name}>
                 {client.full_name}
@@ -139,14 +141,19 @@ const AddPetToClient = ({ visible, onClose, onSuccess, data }: Props) => {
             optionType="button"
             options={[
               {
-                style: { width: "50%" },
+                style: { width: "33.33%" },
                 label: "Erkek",
-                value: "male",
+                value: "1",
               },
               {
-                style: { width: "50%" },
+                style: { width: "33.33%" },
                 label: "Dişi",
-                value: "female",
+                value: "2",
+              },
+              {
+                style: { width: "33.33%" },
+                label: "Belirsiz",
+                value: "3",
               },
             ]}
           />

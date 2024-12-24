@@ -8,7 +8,11 @@ type GetFilteredBranchClientRecordsVar = {
   offset?: number;
   searchTerm?: string;
 };
-
+type GetUnownedPetRecordsVar = {
+  limit?: number;
+  offset?: number;
+  searchTerm?: string;
+};
 type GetUserPendingInvitationsVar = {
   userEmail?: string;
 };
