@@ -37,6 +37,8 @@ const SearchPetInput: React.FC<Props> = ({ onChange }) => {
       showSearch
       className="w-full"
       placeholder="Evcil Hayvan Seç"
+      optionFilterProp="label"
+      searchValue={searchTerm}
       options={
         branchPetsData?.records.map((pet) => ({
           label: pet.name,
