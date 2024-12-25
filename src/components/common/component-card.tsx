@@ -1,12 +1,15 @@
 import React from "react";
 
-import { Card } from "antd";
+import { PiInfoDuotone as InfoIcon } from "react-icons/pi";
+
+import { Card, Tooltip } from "antd";
 
 import type { CardProps } from "antd";
 
 type Props = CardProps & {
   header?: {
     title?: React.ReactNode;
+    tooltip?: string;
     extra?: React.ReactNode;
   };
   headerClassName?: string;
@@ -25,9 +28,14 @@ const Component: React.FC<Props> = ({ children, header, headerClassName, titleCl
       }}
       title={
         header?.title ? (
-          <div className="flex justify-between items-center">
+          <div className="flex items-center gap-2">
             {header.title}
-            {header.extra}
+            {header.tooltip ? (
+              <Tooltip autoAdjustOverflow placement="right" className="cursor-pointer" title={header.tooltip}>
+                <InfoIcon className="w-5 h-5" />
+              </Tooltip>
+            ) : undefined}
+            <div className="ml-auto">{header.extra}</div>
           </div>
         ) : undefined
       }

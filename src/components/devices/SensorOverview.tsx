@@ -24,8 +24,8 @@ const SensorOverview: React.FC<SensorOverviewProps> = ({ temperature, humidity, 
             <Image src={svg.pack4.TemperatureIcon} alt="Temperature Icon" layout="fill" objectFit="contain" />
           </div>
           <div className="text-center">
-            <p className="text-md font-semibold text-gray-800">{temperature}°C</p>
-            <p className="text-xs text-gray-500">Temperature</p>
+            <p className="text-lg font-semibold text-green-800">{temperature}°C</p>
+            <p className="text-xs text-green-500">Temperature</p>
           </div>
         </div>
         <div className="flex flex-col items-center justify-center gap-2 p-4 bg-white rounded-lg">
@@ -33,8 +33,8 @@ const SensorOverview: React.FC<SensorOverviewProps> = ({ temperature, humidity, 
             <Image src={svg.pack4.HumidityIcon} alt="Humidity Icon" layout="fill" objectFit="contain" />
           </div>
           <div className="text-center">
-            <p className="text-md font-semibold text-gray-800">{humidity}%</p>
-            <p className="text-xs text-gray-500">Humidity</p>
+            <p className="text-lg font-semibold text-green-800">{humidity}%</p>
+            <p className="text-xs text-green-500">Humidity</p>
           </div>
         </div>
         <div className="flex flex-col items-center justify-center gap-2 p-4 bg-white rounded-lg">
@@ -42,8 +42,8 @@ const SensorOverview: React.FC<SensorOverviewProps> = ({ temperature, humidity, 
             <Image src={svg.pack4.OxygenIcon} alt="Oxygen Icon" layout="fill" objectFit="contain" />
           </div>
           <div className="text-center">
-            <p className="text-md font-semibold text-gray-800">{oxygen}%</p>
-            <p className="text-xs text-gray-500">Oxygen</p>
+            <p className="text-lg font-semibold text-green-800">{oxygen}%</p>
+            <p className="text-xs text-green-500">Oxygen</p>
           </div>
         </div>
         <div className="flex flex-col items-center justify-center gap-2 p-4 bg-white rounded-lg">
@@ -51,8 +51,8 @@ const SensorOverview: React.FC<SensorOverviewProps> = ({ temperature, humidity, 
             <Image src={svg.pack4.CarbonIcon} alt="Carbon Icon" layout="fill" objectFit="contain" />
           </div>
           <div className="text-center">
-            <p className="text-md font-semibold text-gray-800">{carbon}%</p>
-            <p className="text-xs text-gray-500">Carbon</p>
+            <p className="text-lg font-semibold text-green-800">{carbon}%</p>
+            <p className="text-xs text-green-500">Carbon</p>
           </div>
         </div>
       </div>

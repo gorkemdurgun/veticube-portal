@@ -15,7 +15,12 @@ const TemperatureCard: React.FC<TemperatureCardProps> = ({ temperatureData }) =>
   console.log("temperatureData", temperatureData);
 
   return (
-    <ComponentCard title="Sıcaklık">
+    <ComponentCard
+      header={{
+        title: "Sıcaklık Grafiği",
+        tooltip: "Cihazın içindeki ortam sıcaklığını zamana göre gösterir. Eski verileri görmek için sağdaki menüyü kullanabilirsiniz.",
+      }}
+    >
       <div className="w-full h-96 mt-8">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
@@ -30,13 +35,9 @@ const TemperatureCard: React.FC<TemperatureCardProps> = ({ temperatureData }) =>
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" tickFormatter={(value) => dayjs(value).format("HH:mm")} interval={0} />
-            <YAxis
-            tickFormatter={(value) => `${value}°C`}
-            />
+            <YAxis tickFormatter={(value) => `${value}°C`} />
             <Tooltip />
-            <Legend 
-             formatter={(value) => `Sıcaklık`}
-            />
+            <Legend formatter={(value) => `Sıcaklık`} />
             <Line
               type="monotone"
               dataKey="t"
