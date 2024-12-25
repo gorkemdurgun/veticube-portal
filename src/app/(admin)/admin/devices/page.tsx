@@ -98,6 +98,7 @@ const DevicesPage = () => {
                 <IotCard
                   key={index}
                   iot={{
+                    id: item.iot_device.id,
                     nick_name: item.device_nickname,
                     type: item.iot_device.device_type,
                     model: item.iot_device.device_model,

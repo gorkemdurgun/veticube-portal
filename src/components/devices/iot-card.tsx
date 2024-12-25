@@ -15,6 +15,7 @@ import CustomButton from "../common/custom-button";
 
 type Props = CardProps & {
   iot: {
+    id: string;
     nick_name: string;
     type: string;
     model: string;
@@ -49,7 +50,7 @@ const Component: React.FC<Props> = ({ iot, current_treatment, ...props }) => {
           <div className="flex items-center gap-2">
             <Tag color={current_treatment ? "success" : "warning"}>{current_treatment ? "Aktif Tedavi" : "Kullanıma Hazır"}</Tag>
             {/* <CustomButton variant="neutral-text" icon={SettingsIcon} onClick={() => console.log("Edit")} /> */}
-            <CustomButton variant="neutral-text" icon={DetailIcon} onClick={() => router.push(`/admin/devices/${iot.serial_number}`)} />
+            <CustomButton variant="neutral-text" icon={DetailIcon} onClick={() => router.push(`/admin/devices/${iot.id}`)} />
           </div>
         </div>
       }

@@ -187,6 +187,12 @@
     }
   },
 
+  "sensors": {
+    "temp": "Temperature",
+    "hum": "Humidity",
+    "oxy": "Oxygen",
+    "cox": "Carbon Dioxide"
+  },
   "breeds": {
     "1": "Abyssinian",
     "2": "American Bobtail"

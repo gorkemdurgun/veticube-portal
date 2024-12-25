@@ -11,6 +11,12 @@
       "surgery": "Ameliyat",
       "grooming": "Bakım",
       "other": "Diğer"
+    },
+    "sensors": {
+      "temp": "Sıcaklık",
+      "hum": "Nem",
+      "oxy": "Oksijen",
+      "cox": "Karbon Dioksit"
     }
   },
   "breadcrumb": {

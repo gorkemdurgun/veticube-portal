@@ -31,7 +31,7 @@ const CustomButton: React.FC<Props> = ({ loading = false, size, variant, icon, .
   const selectedSize = size || "sm";
   const selectedVariant = variant || "primary-opaque";
 
-  let buttonClass = "flex items-center justify-center gap-1 py-2 px-2 transition-all button button-" + selectedVariant;
+  let buttonClass = "flex items-center justify-center gap-1 py-2 px-2 whitespace-nowrap transition-all button button-" + selectedVariant;
   let iconClass = `icon`;
 
   switch (selectedSize) {

@@ -7,6 +7,7 @@ import {
   GET_BRANCH_DEVICE_ASSIGNMENT_REQUESTS,
   GET_BRANCH_PET_RECORDS,
 } from "./clinic";
+import { GET_IOT_EVENT_LOGS, GET_IOT_DEVICE_BY_ID } from "./device";
 
 export const clinicQueries = {
   GetClinicDetail: GET_CLINIC_DETAIL,
@@ -15,4 +16,9 @@ export const clinicQueries = {
   GetUserPendingInvitations: GET_USER_PENDING_INVITATIONS,
   GetBranchDeviceAssignments: GET_BRANCH_DEVICE_ASSIGNMENTS,
   GetBranchDeviceAssignmentRequests: GET_BRANCH_DEVICE_ASSIGNMENT_REQUESTS,
+};
+
+export const deviceQueries = {
+  GetIotEventLogs: GET_IOT_EVENT_LOGS,
+  GetIotDeviceById: GET_IOT_DEVICE_BY_ID,
 };
